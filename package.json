@@ -1,0 +1,15 @@
+{
+  "name": "yoostartwp-groups",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Ahmed Mze",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "laravel-mix": "^6.0.39",
+    "postcss": "^8.4.5",
+    "resolve-url-loader": "^4.0.0",
+    "sass": "^1.45.0",
+    "sass-loader": "^12.4.0"
+  }
+}

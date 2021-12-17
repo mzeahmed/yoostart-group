@@ -1,21 +1,29 @@
 {
-    "name": "mzeahmed/yoostartwp-groups",
-    "description": "",
-    "keywords": [
-      "wordpress",
-      "plugin"
-    ],
-    "homepage": "https://github.com/mzeahmed/yoostartwp-groups",
-    "authors": [
-      {
-        "name": "Ahmed Mze",
-        "homepage": "https://ahmedmze.fr"
-      }
-    ],
-    "type": "wordpress-plugin",
-    "license": "proprietary",
-    "require": {
-      "php": ">=7.1"
-    },
-    "require-dev": {}
+  "name": "mzeahmed/yoostartwp-groups",
+  "description": "",
+  "keywords": [
+    "wordpress",
+    "plugin"
+  ],
+  "homepage": "https://github.com/mzeahmed/yoostartwp-groups",
+  "authors": [
+    {
+      "name": "Ahmed Mze",
+      "homepage": "https://ahmedmze.fr"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "YsGroups\\": "src/"
+    }
+  },
+  "type": "wordpress-plugin",
+  "license": "proprietary",
+  "require": {
+    "php": ">=7.1"
+  },
+  "require-dev": {},
+  "config": {
+    "sort-packages": true
   }
+}
