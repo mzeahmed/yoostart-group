@@ -8,8 +8,8 @@
  * @wordpress-plugin
  * Plugin Name:       Yoostart Groups
  * Plugin URI:        https://yoostart.com
- * Description:       Plugin de gestion des groupes, nécessite le plugin yoostartwp
- * Version:           1.0.5
+ * Description:       Plugin de gestion des groupes, à desctination de yoostart.com, nécessite le plugin yoostartwp
+ * Version:           1.0.5.1
  * Author:            Yoostart
  * Author URI:        yoostart.com
  * License:           GPL-2.0+
@@ -17,8 +17,6 @@
  * Text Domain:       yoostartwp-groups
  * Domain Path:       /languages
  */
-
-use YsGroups\Model\PluginPosts;
 
 defined('ABSPATH') || die;
 
@@ -38,5 +36,3 @@ function yoostart_groups(): ?\YsGroups\YsGroups
 }
 
 yoostart_groups();
-
-$posts = (new PluginPosts())->getPostsId(YS_GROUPS_POSTS);
