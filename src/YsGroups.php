@@ -3,7 +3,7 @@
 namespace YsGroups;
 
 use YsGroups\Services\Install;
-use YsGroups\Renderer\Renderer;
+use YsGroups\ViewRenderer\View;
 
 /**
  * @package YsGroups
@@ -92,7 +92,7 @@ class YsGroups
     public function dependencyNotice(): bool|string
     {
         if (! class_exists('Yoostart')) {
-            return Renderer::render('admin/dependency-notice', []);
+            return View::render('admin/dependency-notice', []);
         }
 
         return false;

@@ -1,8 +1,8 @@
 <?php
 
-namespace YsGroups\Renderer;
+namespace YsGroups\ViewRenderer;
 
-class Renderer
+class View
 {
     /**
      * @param string     $template

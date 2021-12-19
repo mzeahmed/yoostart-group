@@ -4,5 +4,4 @@ namespace YsGroups\Admin;
 
 class Options
 {
-
 }
