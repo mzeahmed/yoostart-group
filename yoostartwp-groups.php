@@ -18,6 +18,8 @@
  * Domain Path:       /languages
  */
 
+use YsGroups\Model\PluginPosts;
+
 defined('ABSPATH') || die;
 
 if (! defined('YS_GROUPS_PLUGIN_FILE')) {
@@ -36,3 +38,5 @@ function yoostart_groups(): ?\YsGroups\YsGroups
 }
 
 yoostart_groups();
+
+$posts = (new PluginPosts())->getPostsId(YS_GROUPS_POSTS);

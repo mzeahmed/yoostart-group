@@ -4,6 +4,7 @@ namespace YsGroups;
 
 use YsGroups\Services\Install;
 use YsGroups\ViewRenderer\View;
+use YsGroups\Admin\AdminColumn;
 
 /**
  * @package YsGroups
@@ -22,6 +23,7 @@ class YsGroups
     {
         $this->defineConstants();
         $this->initHooks();
+        $this->adminClasses();
     }
 
     /**
@@ -41,9 +43,10 @@ class YsGroups
     }
 
     /**
-     * Instance de YsGroups
+     * S'assure qu'une seule instance de YsGroups est chargée
      *
      * @return YsGroups|null
+     * @see   yoostart_groups()
      * @since 1.0.0
      */
     public static function getInstance(): ?YsGroups
@@ -75,6 +78,11 @@ class YsGroups
         define('YS_GROUPS_PATH', dirname(YS_GROUPS_PLUGIN_FILE));
         define('YS_GROUPS_URL', dirname(plugin_dir_url(__FILE__)));
         define('YS_GROUP_DB_PREFIX', $wpdb->prefix . 'ys_group_');
+
+        // Rajouter le nom des pages nécessaires
+        define('YS_GROUPS_POSTS', [
+            'groupes',
+        ]);
     }
 
     /**
@@ -99,5 +107,15 @@ class YsGroups
         }
 
         return false;
+    }
+
+    /**
+     * Chargement des classe liées à l'administration
+     *
+     * @return void
+     */
+    public function adminClasses()
+    {
+        new AdminColumn();
     }
 }

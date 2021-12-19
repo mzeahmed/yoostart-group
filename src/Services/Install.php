@@ -2,7 +2,7 @@
 
 namespace YsGroups\Services;
 
-use YsGroups\Helpers;
+use YsGroups\Admin\Helpers;
 use YsGroups\Model\DbSchema;
 
 class Install
@@ -50,18 +50,21 @@ class Install
      */
     private static function createPages()
     {
-        $pages = apply_filters('ys_groups_create_pages', [
-            'groupes' => [
-                'name' => _x('groupes', 'Page slug', YS_GROUPS_TEXT_DOMAIN),
-                'title' => _x('Groupes', 'Page title', YS_GROUPS_TEXT_DOMAIN),
-                'content' => '<!-- wp:shortcode -->[ys_groupes]<!-- /wp:shortcode -->',
-            ],
-        ]);
+        $pages = apply_filters(
+            'ys_groups_create_pages',
+            [
+                'groupes' => [
+                    'name' => _x('groupes', 'Page slug', YS_GROUPS_TEXT_DOMAIN),
+                    'title' => _x('Groupes', 'Page title', YS_GROUPS_TEXT_DOMAIN),
+                    'content' => '<!-- wp:shortcode -->[ys_groupes]<!-- /wp:shortcode -->',
+                ],
+            ]
+        );
 
         foreach ($pages as $key => $page) {
             Helpers::createPage(
                 esc_sql($page['name']),
-                'ys_groupes' . $key . '_page_id',
+                'ys_groupes_' . $key . '_page_id',
                 $page['title'],
                 $page['content'],
                 0,

@@ -1,6 +1,6 @@
 <?php
 
-namespace YsGroups;
+namespace YsGroups\Admin;
 
 /**
  * @package YsGroups
@@ -27,12 +27,12 @@ class Helpers
     /**
      * Créé une page et persist l'ID en base de données
      *
-     * @param string $slug
-     * @param string $option
-     * @param string $page_title
-     * @param string $page_content
-     * @param int    $post_parent
-     * @param string $post_status
+     * @param string $slug         Slug de la nouvelle  page
+     * @param string $option       Nom de l'option pour stocker l'ID de la page. (valeur de l'option == Id de la page)
+     * @param string $page_title   Titre de la nouvelle page (Défaut: '')
+     * @param string $page_content Contenu de la nouvelle page (Défaut: '')
+     * @param int    $post_parent  Parent de la nouvelle page (Default: 0)
+     * @param string $post_status  Le status de la page (Défault: publiée)
      *
      * @return int
      * @thanks WooCommerce
