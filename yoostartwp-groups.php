@@ -9,7 +9,7 @@
  * Plugin Name:       Yoostart Groups
  * Plugin URI:        https://yoostart.com
  * Description:       Plugin de gestion des groupes, nécessite le plugin yoostartwp
- * Version:           1.0.1
+ * Version:           1.0.2
  * Author:            Yoostart
  * Author URI:        yoostart.com
  * License:           GPL-2.0+
@@ -32,12 +32,6 @@ require_once __DIR__ . '/vendor/autoload.php';
  */
 function yoostart_groups(): ?\YsGroups\YsGroups
 {
-    if (! function_exists('run_yoostart')) {
-        add_action('admin_notices', function () {
-            return \YsGroups\Renderer\Renderer::render('admin/dependency-notice', []);
-        });
-    }
-
     return \YsGroups\YsGroups::getInstance();
 }
 

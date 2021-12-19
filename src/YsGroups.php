@@ -2,6 +2,9 @@
 
 namespace YsGroups;
 
+use YsGroups\Services\Install;
+use YsGroups\Renderer\Renderer;
+
 /**
  * @package YsGroups
  * @since   1.0.0
@@ -22,7 +25,7 @@ class YsGroups
     }
 
     /**
-     * Lorsque WP a chargé tous les plugins, on déclenche le hook `ys_groups_loaded`.
+     * Lorsque WP a fini de charger tous les plugins, on déclenche le hook `ys_groups_loaded`.
      *
      * Cela permet de s'assurer que `ys_groups_loaded` n'est appelé
      * qu'après que tous les autres plugins aient été chargés,
@@ -38,6 +41,8 @@ class YsGroups
     }
 
     /**
+     * Instance de YsGroups
+     *
      * @return YsGroups|null
      * @since 1.0.0
      */
@@ -75,8 +80,21 @@ class YsGroups
      */
     private function initHooks()
     {
-        register_activation_hook(YS_GROUPS_PLUGIN_FILE, ['YsGroups\Install', 'install']);
+        register_activation_hook(YS_GROUPS_PLUGIN_FILE, [Install::class, 'install']);
 
         add_action('plugins_loaded', [$this, 'onPluginsLoaded']);
+        add_action('admin_notices', [$this, 'dependencyNotice']);
+    }
+
+    /**
+     * @return bool|string
+     */
+    public function dependencyNotice(): bool|string
+    {
+        if (! class_exists('Yoostart')) {
+            return Renderer::render('admin/dependency-notice', []);
+        }
+
+        return false;
     }
 }

@@ -12,7 +12,7 @@ class Renderer
      */
     public static function render(string $template, array $data = null): bool|string
     {
-        ($data) ? extract($data) : null;
+        $data ?: extract($data);
 
         $path = self::getTemplatePath() . $template . '.php';
 

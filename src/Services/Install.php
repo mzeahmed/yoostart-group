@@ -1,6 +1,8 @@
 <?php
 
-namespace YsGroups;
+namespace YsGroups\Services;
+
+use YsGroups\Helpers;
 
 class Install
 {
@@ -17,10 +19,11 @@ class Install
 
         // Si nous sommes arrivés jusqu'ici, rien n'est encore en marche, réglons le transient maintenant.
         set_transient('', 'yes', MINUTE_IN_SECONDS * 10);
-        maybeDefineConstant('YS_GROUPS_INSTALLING', true);
+        Helpers::maybeDefineConstant('YS_GROUPS_INSTALLING', true);
 
         self::createTables();
         self::createOptions();
+        self::createPages();
 
         delete_transient('ys_groups_installing');
 
@@ -37,19 +40,10 @@ class Install
     {
         global $wpdb;
         $wpdb->hide_errors();
+        $prefix = $wpdb->prefix . 'ys_';
 
         require_once ABSPATH . 'wp-admin/includes/upgrade.php';
         // créer les tables nécessaires
-    }
-
-    /**
-     * Creation des options
-     *
-     * @return void
-     * @since 1.0.0
-     */
-    private static function createOptions()
-    {
     }
 
     /**
@@ -60,5 +54,23 @@ class Install
      */
     private static function createPages()
     {
+        $pages = apply_filters('ys_groups_create_pages', [
+            'groupes' => [
+                'name' => _x('groupes', 'Page slug', YS_GROUPS_TEXT_DOMAIN),
+                'title' => _x('Groupes', 'Page title', YS_GROUPS_TEXT_DOMAIN),
+                'content' => '<!-- wp:shortcode -->[ys_groupes]<!-- /wp:shortcode -->',
+            ],
+        ]);
+
+        foreach ($pages as $key => $page) {
+            Helpers::createPage(
+                esc_sql($page['name']),
+                'ys_groupes' . $key . '_page_id',
+                $page['title'],
+                $page['content'],
+                0,
+                ! empty($page['post_status']) ? $page['post_status'] : 'publish'
+            );
+        }
     }
 }
