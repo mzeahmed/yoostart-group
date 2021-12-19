@@ -3,6 +3,7 @@
 namespace YsGroups\Services;
 
 use YsGroups\Helpers;
+use YsGroups\Model\DbSchema;
 
 class Install
 {
@@ -22,7 +23,7 @@ class Install
         Helpers::maybeDefineConstant('YS_GROUPS_INSTALLING', true);
 
         self::createTables();
-        self::createOptions();
+        // self::createOptions();
         self::createPages();
 
         delete_transient('ys_groups_installing');
@@ -34,16 +35,11 @@ class Install
      * Creation des tables en base de données
      *
      * @return void
-     * @since 1.0.0
+     * @since 1.0.4
      */
     private static function createTables()
     {
-        global $wpdb;
-        $wpdb->hide_errors();
-        $prefix = $wpdb->prefix . 'ys_';
-
-        require_once ABSPATH . 'wp-admin/includes/upgrade.php';
-        // créer les tables nécessaires
+        DbSchema::createTables();
     }
 
     /**

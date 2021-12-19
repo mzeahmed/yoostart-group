@@ -61,6 +61,8 @@ class YsGroups
      */
     private function defineConstants()
     {
+        global $wpdb;
+
         if (! function_exists('get_plugin_data')) {
             require_once ABSPATH . 'wp-admin/includes/plugin.php';
         }
@@ -72,6 +74,7 @@ class YsGroups
         define('YS_GROUPS_TEXT_DOMAIN', $plugin_data['TextDomain']);
         define('YS_GROUPS_PATH', dirname(YS_GROUPS_PLUGIN_FILE));
         define('YS_GROUPS_URL', dirname(plugin_dir_url(__FILE__)));
+        define('YS_GROUP_DB_PREFIX', $wpdb->prefix . 'ys_group_');
     }
 
     /**
