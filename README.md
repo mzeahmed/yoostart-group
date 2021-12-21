@@ -17,8 +17,8 @@ Plugin en developpement, ajoutera la fonctionnalitée de gestion des groupes au 
 
 ## Prérequis
 
-* [WordPress](https://wordpress.org/) >= 5.3
-* [PHP](https://secure.php.net/manual/en/install.php) >= 7.4
+* [WordPress](https://wordpress.org/) >= 5.6
+* [PHP](https://secure.php.net/manual/en/install.php) >= 8
 * [Node.js](http://nodejs.org/) >= 8.0.0
 * [Laravel Mix](https://laravel-mix.com/)
 * [Sass](https://sass-lang.com/)

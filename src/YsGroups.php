@@ -2,9 +2,9 @@
 
 namespace YsGroups;
 
+use YsGroups\Admin\Admin;
 use YsGroups\Services\Install;
 use YsGroups\ViewRenderer\View;
-use YsGroups\Admin\AdminColumn;
 
 /**
  * @package YsGroups
@@ -23,7 +23,7 @@ class YsGroups
     {
         $this->defineConstants();
         $this->initHooks();
-        $this->adminClasses();
+        Admin::load();
     }
 
     /**
@@ -110,12 +110,29 @@ class YsGroups
     }
 
     /**
-     * Chargement des classe liées à l'administration
+     * Chargement des css et js du front
      *
      * @return void
+     * @since 1.0.6
      */
-    public function adminClasses()
+    public function enqueueScripts()
     {
-        new AdminColumn();
+        if (str_contains($_SERVER['REQUEST_URI'], 'groups')) {
+            wp_enqueue_style(
+                'ys-group',
+                YS_GROUPS_URL . '/public/css/app.css',
+                [],
+                YS_GROUPS_VERSION,
+                'all'
+            );
+
+            wp_enqueue_script(
+                'ys-group',
+                YS_GROUPS_URL . '/public/js/app.js',
+                [],
+                YS_GROUPS_VERSION,
+                true,
+            );
+        }
     }
 }

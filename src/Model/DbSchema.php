@@ -2,6 +2,9 @@
 
 namespace YsGroups\Model;
 
+/**
+ * @since 1.0.4
+ */
 class DbSchema
 {
     /**

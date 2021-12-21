@@ -7,3 +7,4 @@ mix.setPublicPath('public');
 
 mix.js('assets/js/app.js', 'js');
 mix.sass('assets/scss/app.scss', 'css');
+mix.sass('assets/scss/admin.scss', 'css');

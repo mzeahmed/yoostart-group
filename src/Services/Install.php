@@ -5,6 +5,9 @@ namespace YsGroups\Services;
 use YsGroups\Admin\Helpers;
 use YsGroups\Model\DbSchema;
 
+/**
+ * @since 1.0.0
+ */
 class Install
 {
     /**
@@ -23,7 +26,6 @@ class Install
         Helpers::maybeDefineConstant('YS_GROUPS_INSTALLING', true);
 
         self::createTables();
-        // self::createOptions();
         self::createPages();
 
         delete_transient('ys_groups_installing');

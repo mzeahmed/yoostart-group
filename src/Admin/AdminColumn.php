@@ -4,6 +4,9 @@ namespace YsGroups\Admin;
 
 use YsGroups\Model\PluginPosts;
 
+/**
+ * @since 1.0.5
+ */
 class AdminColumn
 {
     public function __construct()

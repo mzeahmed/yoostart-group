@@ -2,6 +2,9 @@
 
 namespace YsGroups\Model;
 
+/**
+ * @since 1.0.5
+ */
 class PluginPosts
 {
     /**

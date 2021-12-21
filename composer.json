@@ -22,7 +22,6 @@
   "require": {
     "php": ">=7.4"
   },
-  "require-dev": {},
   "config": {
     "sort-packages": true
   }
