@@ -1,6 +1,6 @@
 <?php
 
-namespace YsGroups\Services;
+namespace YsGroups\Admin;
 
 use YsGroups\Admin\Helpers;
 use YsGroups\Model\DbSchema;

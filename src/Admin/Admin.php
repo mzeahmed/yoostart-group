@@ -7,12 +7,19 @@ namespace YsGroups\Admin;
  */
 class Admin
 {
-    public static function load()
-    {
-        new AdminColumn();
-        new Options();
+    public AdminColumn $adminColumn;
+    public Options $options;
 
-        add_action('admin_enqueue_scripts', [self::class, 'enqueueStyles']);
+    /**
+     * @param AdminColumn $adminColumn
+     * @param Options     $options
+     */
+    public function __construct(AdminColumn $adminColumn, Options $options)
+    {
+        $this->adminColumn = $adminColumn;
+        $this->options     = $options;
+
+        add_action('admin_enqueue_scripts', [$this, 'enqueueStyles']);
     }
 
     /**
@@ -21,7 +28,7 @@ class Admin
      * @return void
      * @since 1.0.6
      */
-    public static function enqueueStyles()
+    public function enqueueStyles()
     {
         if (str_contains($_SERVER['REQUEST_URI'], 'ys_options_groups')) {
             wp_enqueue_style(

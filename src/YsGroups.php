@@ -2,8 +2,7 @@
 
 namespace YsGroups;
 
-use YsGroups\Admin\Admin;
-use YsGroups\Services\Install;
+use YsGroups\Admin\Install;
 use YsGroups\ViewRenderer\View;
 
 /**
@@ -23,7 +22,6 @@ class YsGroups
     {
         $this->defineConstants();
         $this->initHooks();
-        Admin::load();
     }
 
     /**

@@ -20,7 +20,10 @@
   "type": "wordpress-plugin",
   "license": "proprietary",
   "require": {
-    "php": ">=7.4"
+    "php": ">=8.0",
+    "symfony/config": "^6.0",
+    "symfony/dependency-injection": "^6.0",
+    "symfony/yaml": "^6.0"
   },
   "config": {
     "sort-packages": true

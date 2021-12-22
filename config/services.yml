@@ -1,0 +1,10 @@
+services:
+    _defaults:
+        autowire: true
+
+    YsGroups\:
+        resource: '../src/*'
+    #        exclude: '../src/{constants.php}'
+
+    YsGroups\Admin\Admin:
+        public: true
