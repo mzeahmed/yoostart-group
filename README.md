@@ -19,12 +19,11 @@ Plugin en developpement, ajoutera la fonctionnalitée de gestion des groupes au 
 
 * [WordPress](https://wordpress.org/) >= 5.6
 * [PHP](https://secure.php.net/manual/en/install.php) >= 8
-* [Node.js](http://nodejs.org/) >= 8.0.0
-* [Laravel Mix](https://laravel-mix.com/)
-* [Sass](https://sass-lang.com/)
 
-## Dépendances PHP
+## Dépendances
 
 * [symfony/dependency-injection](https://symfony.com/doc/current/components/dependency_injection.html)
+* [Laravel Mix](https://laravel-mix.com/)
+* [Sass](https://sass-lang.com/)
 
 ## Configuration du container de services
