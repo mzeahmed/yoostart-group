@@ -39,11 +39,11 @@ class YsGroupsCacheContainer extends Container
     public function getRemovedIds(): array
     {
         return [
-            'YsGroups\\Admin\\AdminColumn' => true,
             'YsGroups\\Admin\\GroupsList' => true,
             'YsGroups\\Admin\\Helpers' => true,
-            'YsGroups\\Admin\\Install' => true,
+            'YsGroups\\Admin\\OnPluginActivation' => true,
             'YsGroups\\Admin\\Options' => true,
+            'YsGroups\\Admin\\PostStates' => true,
             'YsGroups\\Container' => true,
             'YsGroups\\Model\\Db' => true,
             'YsGroups\\Model\\DbSchema' => true,
@@ -61,6 +61,6 @@ class YsGroupsCacheContainer extends Container
      */
     protected function getAdminService()
     {
-        return $this->services['YsGroups\\Admin\\Admin'] = new \YsGroups\Admin\Admin(new \YsGroups\Admin\AdminColumn(), new \YsGroups\Admin\Options());
+        return $this->services['YsGroups\\Admin\\Admin'] = new \YsGroups\Admin\Admin(new \YsGroups\Admin\PostStates(), new \YsGroups\Admin\Options());
     }
 }

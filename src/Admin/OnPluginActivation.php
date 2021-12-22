@@ -8,13 +8,13 @@ use YsGroups\Model\DbSchema;
 /**
  * @since 1.0.0
  */
-class Install
+class OnPluginActivation
 {
     /**
      * @return void
      * @since 1.0.0
      */
-    public static function install()
+    public static function activation()
     {
         // Vérifie si nous ne sommes pas déjà en train d'exécuter cette action
         if ('yes' === get_transient('ys_groups_installing')) {

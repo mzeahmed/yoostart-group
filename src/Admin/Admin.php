@@ -7,17 +7,17 @@ namespace YsGroups\Admin;
  */
 class Admin
 {
-    public AdminColumn $adminColumn;
+    public PostStates $postStates;
     public Options $options;
 
     /**
-     * @param AdminColumn $adminColumn
-     * @param Options     $options
+     * @param PostStates $postStates
+     * @param Options    $options
      */
-    public function __construct(AdminColumn $adminColumn, Options $options)
+    public function __construct(PostStates $postStates, Options $options)
     {
-        $this->adminColumn = $adminColumn;
-        $this->options     = $options;
+        $this->postStates = $postStates;
+        $this->options    = $options;
 
         add_action('admin_enqueue_scripts', [$this, 'enqueueStyles']);
     }

@@ -7,7 +7,7 @@ use YsGroups\Model\PluginPosts;
 /**
  * @since 1.0.5
  */
-class AdminColumn
+class PostStates
 {
     public function __construct()
     {

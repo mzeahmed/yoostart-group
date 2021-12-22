@@ -2,8 +2,8 @@
 
 namespace YsGroups;
 
-use YsGroups\Admin\Install;
 use YsGroups\ViewRenderer\View;
+use YsGroups\Admin\OnPluginActivation;
 
 /**
  * @package YsGroups
@@ -89,7 +89,7 @@ class YsGroups
      */
     private function initHooks()
     {
-        register_activation_hook(YS_GROUPS_PLUGIN_FILE, [Install::class, 'install']);
+        register_activation_hook(YS_GROUPS_PLUGIN_FILE, [OnPluginActivation::class, 'activation']);
 
         add_action('plugins_loaded', [$this, 'onPluginsLoaded']);
         add_action('admin_notices', [$this, 'dependencyNotice']);
