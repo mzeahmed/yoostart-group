@@ -12,7 +12,9 @@
 
     <div class="ys-groups-dashboard">
         <div class="main">
+            <table class="wp-list-table widefat fixed striped ys-groups">
 
+            </table>
         </div>
     </div>
 </div>

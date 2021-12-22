@@ -5,7 +5,7 @@ namespace YsGroups\Model;
 /**
  * @since 1.0.5
  */
-class PluginPosts
+class PluginPosts extends Db
 {
     /**
      * Recuperes les ids des pages créés par le plugin
@@ -17,15 +17,12 @@ class PluginPosts
      */
     public function getPostsId(array $posts): array
     {
-        global $wpdb;
-        $prefix = $wpdb->prefix;
-
         $result = [];
 
         foreach ($posts as $post) {
-            $result[] = $wpdb->get_var(
-                $wpdb->prepare(
-                    "SELECT option_value FROM " . $prefix . "options WHERE option_name = %s",
+            $result[] = $this->wpdb->get_var(
+                $this->wpdb->prepare(
+                    "SELECT option_value FROM " . $this->prefix . "options WHERE option_name = %s",
                     'ys_groupes_' . $post . '_page_id'
                 )
             );

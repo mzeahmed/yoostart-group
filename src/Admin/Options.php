@@ -14,6 +14,10 @@ class Options
         add_action('admin_menu', [$this, 'optionMenu'], 20);
     }
 
+    /**
+     * @return void
+     * @since 1.0.6
+     */
     public function optionMenu()
     {
         add_submenu_page(
@@ -29,6 +33,7 @@ class Options
 
     /**
      * @return string|null
+     * @since 1.0.6
      */
     public function groupsOptionsRender(): ?string
     {

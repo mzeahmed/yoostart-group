@@ -41,7 +41,7 @@ class Install
      */
     private static function createTables()
     {
-        DbSchema::createTables();
+        (new DbSchema())->createTables();
     }
 
     /**

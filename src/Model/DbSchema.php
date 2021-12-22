@@ -5,7 +5,7 @@ namespace YsGroups\Model;
 /**
  * @since 1.0.4
  */
-class DbSchema
+class DbSchema extends Db
 {
     /**
      * Creation des tables en base de données
@@ -13,12 +13,9 @@ class DbSchema
      * @return void
      * @since 1.0.4
      */
-    public static function createTables()
+    public function createTables()
     {
-        require_once ABSPATH . 'wp-admin/includes/upgrade.php';
-
-        global $wpdb;
-        $charsetCollate = $wpdb->get_charset_collate();
+        $charsetCollate = $this->wpdb->get_charset_collate();
 
         $groups        = YS_GROUP_DB_PREFIX . 'groups';
         $groupsMembers = YS_GROUP_DB_PREFIX . 'groups_members';
