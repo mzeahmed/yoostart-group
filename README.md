@@ -22,3 +22,9 @@ Plugin en developpement, ajoutera la fonctionnalitée de gestion des groupes au 
 * [Node.js](http://nodejs.org/) >= 8.0.0
 * [Laravel Mix](https://laravel-mix.com/)
 * [Sass](https://sass-lang.com/)
+
+## Dépendances PHP
+
+* [symfony/dependency-injection](https://symfony.com/doc/current/components/dependency_injection.html)
+
+## Configuration du container de services
