@@ -2,6 +2,7 @@
 
 namespace YsGroups;
 
+use YsGroups\Model\Groups;
 use YsGroups\ViewRenderer\View;
 use YsGroups\Admin\OnPluginActivation;
 

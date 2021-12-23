@@ -16,11 +16,12 @@ class View
      */
     public static function render(string $template, array $params = []): ?string
     {
+        $params ? extract($params) : null;
+
         $path = self::getTemplatePath() . $template . '.php';
 
         ob_start();
         require($path);
-        $params ?: extract($params);
 
         return ob_get_contents();
     }

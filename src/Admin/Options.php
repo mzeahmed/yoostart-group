@@ -2,6 +2,7 @@
 
 namespace YsGroups\Admin;
 
+use YsGroups\Model\Groups;
 use YsGroups\ViewRenderer\View;
 
 /**
@@ -37,6 +38,10 @@ class Options
      */
     public function groupsOptionsRender(): ?string
     {
-        return View::render('admin/groupes', []);
+        $groups = new Groups();
+
+        return View::render('admin/groupes', [
+            'groups' => $groups->getGroups(),
+        ]);
     }
 }

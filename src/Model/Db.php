@@ -23,6 +23,6 @@ class Db
         global $wpdb;
 
         $this->wpdb   = $wpdb;
-        $this->prefix = $this->wpdb->prefix;
+        $this->prefix = YS_GROUP_DB_PREFIX;
     }
 }
