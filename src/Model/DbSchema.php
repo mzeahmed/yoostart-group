@@ -16,10 +16,8 @@ class DbSchema extends Db
     public function createTables()
     {
         $charsetCollate = $this->wpdb->get_charset_collate();
-
-        $groups        = YS_GROUP_DB_PREFIX . 'groups';
-        $groupsMembers = YS_GROUP_DB_PREFIX . 'groups_members';
-
+        $groups = $this->ys_groups_prefix . 'groups';
+        $groupsMembers = $this->ys_groups_prefix . 'groups_members';
         $query = [];
 
         // Table ys_group_groups
@@ -27,7 +25,7 @@ class DbSchema extends Db
                         id bigint(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                         creator_id bigint(20) NOT NULL,
                         name varchar(100) NOT NULL,
-                        slug varchar(200) NOT NULL,
+                        slug varchar(200) NOT NULL UNIQUE,
                         description longtext NOT NULL,
                         status varchar(10) NOT NULL DEFAULT 'public',
                         created_at datetime NOT NULL,
@@ -35,7 +33,7 @@ class DbSchema extends Db
                         Key status (status)
                     ) {$charsetCollate};";
 
-        // Tbale ys_group_groups_members
+        // Table ys_group_groups_members
         $query[] = "CREATE TABLE {$groupsMembers} (
                         id bigint(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                         group_id bigint(20) NOT NULL,

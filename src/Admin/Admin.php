@@ -9,6 +9,7 @@ class Admin
 {
     public PostStates $postStates;
     public Options $options;
+    public string $page;
 
     /**
      * @param PostStates $postStates
@@ -18,8 +19,9 @@ class Admin
     {
         $this->postStates = $postStates;
         $this->options    = $options;
+        $this->page       = $_GET['page'] ?? '';
 
-        add_action('admin_enqueue_scripts', [$this, 'enqueueStyles']);
+        add_action('admin_enqueue_scripts', [$this, 'enqueueScripts']);
     }
 
     /**
@@ -28,15 +30,23 @@ class Admin
      * @return void
      * @since 1.0.6
      */
-    public function enqueueStyles()
+    public function enqueueScripts()
     {
-        if (str_contains($_SERVER['REQUEST_URI'], 'ys_options_groups')) {
+        if (isset($this->page) && ($this->page === 'ys_options_groups') || $this->page === 'ys_create_group') {
             wp_enqueue_style(
                 'ys-groups-admin',
                 YS_GROUPS_URL . '/public/css/admin.css',
                 [],
                 YS_GROUPS_VERSION,
                 'all'
+            );
+
+            wp_enqueue_script(
+                'ys-groups-admin',
+                YS_GROUPS_URL . '/public/js/admin.js',
+                [],
+                YS_GROUPS_VERSION,
+                true
             );
         }
     }

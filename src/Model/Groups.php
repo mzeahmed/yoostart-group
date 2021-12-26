@@ -18,7 +18,7 @@ class Groups extends Db
      */
     public function getGroups(int $perPage = 5, int $pageNumber = 1): array
     {
-        $q = "SELECT * FROM {$this->prefix}groups";
+        $q = "SELECT * FROM {$this->ys_groups_prefix}groups";
 
         if (! empty($_REQUEST['orderby'])) {
             $q .= 'ORDER BY' . esc_sql($_REQUEST['orderby']);

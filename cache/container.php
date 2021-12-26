@@ -39,7 +39,6 @@ class YsGroupsCacheContainer extends Container
     public function getRemovedIds(): array
     {
         return [
-            'YsGroups\\Admin\\GroupsList' => true,
             'YsGroups\\Admin\\Helpers' => true,
             'YsGroups\\Admin\\OnPluginActivation' => true,
             'YsGroups\\Admin\\Options' => true,

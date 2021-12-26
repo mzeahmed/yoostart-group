@@ -1,1 +1,23 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
+
+.ys-groups-dashboard {
+    margin-top: 60px;
+
+    .nav-tab {
+        &:hover {
+            text-decoration: none !important;
+        }
+    }
+
+    form {
+        button {
+            background-color: #4ab6a4 !important;
+            border-color: #4ab6a4 !important;
+
+            &:hover {
+                background-color: #fff !important;
+                color: #4ab6a4 !important;
+            }
+        }
+    }
+}

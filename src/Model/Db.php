@@ -7,6 +7,11 @@ namespace YsGroups\Model;
  */
 class Db
 {
+    /**
+     * Instance de wpdb
+     *
+     * @var \wpdb
+     */
     protected \wpdb $wpdb;
 
     /**
@@ -16,13 +21,21 @@ class Db
      */
     protected string $prefix;
 
+    /**
+     * Prefix des tables créés par le plugin
+     *
+     * @var string
+     */
+    protected string $ys_groups_prefix;
+
     public function __construct()
     {
         require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
         global $wpdb;
 
-        $this->wpdb   = $wpdb;
-        $this->prefix = YS_GROUP_DB_PREFIX;
+        $this->wpdb = $wpdb;
+        $this->prefix = $this->wpdb->prefix;
+        $this->ys_groups_prefix = YS_GROUPS_DB_PREFIX;
     }
 }

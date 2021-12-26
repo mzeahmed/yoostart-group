@@ -23,12 +23,21 @@ class Options
     {
         add_submenu_page(
             'ys_options',
-            __('Groupes', YS_GROUPS_TEXT_DOMAIN),
-            __('Groupes', YS_GROUPS_TEXT_DOMAIN),
+            __('Groups', YS_GROUPS_TEXT_DOMAIN),
+            __('Groups', YS_GROUPS_TEXT_DOMAIN),
             'manage_options',
             'ys_options_groups',
             [$this, 'groupsOptionsRender'],
             4
+        );
+
+        add_submenu_page(
+            '',
+            __('Create group', YS_GROUPS_TEXT_DOMAIN),
+            __('Create group', YS_GROUPS_TEXT_DOMAIN),
+            'manage_options',
+            'ys_create_group',
+            [$this, 'formRender']
         );
     }
 
@@ -38,10 +47,19 @@ class Options
      */
     public function groupsOptionsRender(): ?string
     {
-        $groups = new Groups();
+        $groupList = new GroupListTable();
+        $groupList->prepare_items();
 
-        return View::render('admin/groupes', [
-            'groups' => $groups->getGroups(),
+        return View::render('admin/groups-main', [
+            'groupList' => $groupList,
         ]);
+    }
+
+    /**
+     * @return string|null
+     */
+    public function formRender(): ?string
+    {
+        return View::render('admin/create-group', []);
     }
 }
