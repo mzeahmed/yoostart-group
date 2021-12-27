@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Yoostart Groups\n"
-"POT-Creation-Date: 2021-12-27 01:15+0100\n"
-"PO-Revision-Date: 2021-12-27 01:17+0100\n"
+"POT-Creation-Date: 2021-12-27 01:38+0100\n"
+"PO-Revision-Date: 2021-12-27 01:40+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -21,7 +21,6 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: vendor\n"
-"X-Poedit-SearchPathExcluded-2: node_modules\n"
 
 #: src/Admin/GroupListTable.php:62
 msgid "No groups found"
@@ -69,13 +68,12 @@ msgstr "Supprimer"
 
 #: src/Admin/OnPluginActivation.php:59
 msgctxt "Page slug"
-msgid "groupes"
+msgid "groups"
 msgstr "groupes"
 
 #: src/Admin/OnPluginActivation.php:60
-#, fuzzy
 msgctxt "Page title"
-msgid "Groupes"
+msgid "Groups"
 msgstr "Groupes"
 
 #: src/Admin/Options.php:26 src/Admin/Options.php:27
@@ -92,13 +90,13 @@ msgid "Create new group"
 msgstr "Créer un nouveau groupe"
 
 #: templates/admin/dependency-notice.php:15
-#, fuzzy, php-format
+#, php-format
 msgid ""
-"Le plugin Yoostart est nécessaire pour le bon fonctionnement de <strong>%s</"
-"strong>, veuillez l'activer"
+"The main Yoostart plugin is required to run <strong>%s</strong>, please "
+"activate it"
 msgstr ""
-"Le plugin Yoostart est nécessaire pour le bon fonctionnement de <strong>%s</"
-"strong> , veuillez l’activer"
+"Le plugin principal Yoostart est nécessaire pour que <strong>%s</strong> "
+"puisse fonctionner, veuillez l’activer"
 
 #: templates/admin/partials/_form.php:15
 msgid "Unauthorized user"
@@ -118,7 +116,7 @@ msgstr "Statut"
 
 #: templates/admin/partials/_form.php:32
 msgid "Public"
-msgstr "Public"
+msgstr "Publique"
 
 #: templates/admin/partials/_form.php:35
 msgid "Private"
@@ -126,7 +124,7 @@ msgstr "Privé"
 
 #: templates/admin/partials/_form.php:41
 msgid "Save"
-msgstr "Enregistrer"
+msgstr "Sauvegarder"
 
 #: templates/admin/partials/_tab-nav.php:18
 msgid "Create new groupe"
@@ -159,3 +157,16 @@ msgstr "Yoostart"
 #, fuzzy
 msgid "yoostart.com"
 msgstr "yoostart.com"
+
+#, fuzzy
+#~ msgctxt "Page title"
+#~ msgid "Groupes"
+#~ msgstr "Groupes"
+
+#, fuzzy, php-format
+#~ msgid ""
+#~ "Le plugin Yoostart est nécessaire pour le bon fonctionnement de <strong>"
+#~ "%s</strong>, veuillez l'activer"
+#~ msgstr ""
+#~ "Le plugin Yoostart est nécessaire pour le bon fonctionnement de <strong>"
+#~ "%s</strong> , veuillez l’activer"

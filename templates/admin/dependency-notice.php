@@ -12,7 +12,7 @@
         <?php
         printf(
             __(
-                "Le plugin Yoostart est nécessaire pour le bon fonctionnement de <strong>%s</strong>, veuillez l'activer",
+                "The main Yoostart plugin is required to run <strong>%s</strong>, please activate it",
                 YS_GROUPS_TEXT_DOMAIN
             ),
             YS_GROUPS_PLUGIN_NAME

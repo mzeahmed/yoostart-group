@@ -56,8 +56,8 @@ class OnPluginActivation
             'ys_groups_create_pages',
             [
                 'groupes' => [
-                    'name' => _x('groupes', 'Page slug', YS_GROUPS_TEXT_DOMAIN),
-                    'title' => _x('Groupes', 'Page title', YS_GROUPS_TEXT_DOMAIN),
+                    'name' => _x('groups', 'Page slug', YS_GROUPS_TEXT_DOMAIN),
+                    'title' => _x('Groups', 'Page title', YS_GROUPS_TEXT_DOMAIN),
                     'content' => '<!-- wp:shortcode -->[ys_groupes]<!-- /wp:shortcode -->',
                 ],
             ]
@@ -66,7 +66,7 @@ class OnPluginActivation
         foreach ($pages as $key => $page) {
             Helpers::createPage(
                 esc_sql($page['name']),
-                'ys_groupes_' . $key . '_page_id',
+                'ys_groups_' . $key . '_page_id',
                 $page['title'],
                 $page['content'],
                 0,
