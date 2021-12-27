@@ -16,25 +16,79 @@ class GroupListTable extends \WP_List_Table
     }
 
     /**
-     * @return array
-     * @see \WP_List_Table::single_row_columns()
+     * @return void
+     * @since 1.0.7
      */
-    public function get_columns(): array
+    public function prepare_items()
     {
-        return [
-            'cb' => '<input type="checkbox"/>',
-            'name' => _x('Name', 'Column label', YS_GROUPS_TEXT_DOMAIN),
-        ];
+        $perPage = 5;
+
+        $columns = $this->get_columns();
+        $hidden = [];
+        $sortable = $this->get_sortable_columns();
+
+        $this->_column_headers = [$columns, $hidden, $sortable];
+        $this->process_bulk_action();
+
+        $paged = isset($_REQUEST['paged']) ? ($perPage * max(0, intval($_REQUEST['paged']) - 1)) : 0;
+        $orderBy =
+            (isset($_REQUEST['orderby']) &&
+             in_array($_REQUEST['orderby'], array_keys($this->get_sortable_columns()))
+            ) ? $_REQUEST['orderby']
+                : 'name';
+
+        $items = (new Groups())->getGroups($orderBy, $perPage, $paged);
+
+        $current_page = $this->get_pagenum();
+        $total_items = count($items);
+        $items = array_slice($items, (($current_page - 1) * $perPage), $perPage);
+        $this->items = $items;
+
+        $this->set_pagination_args([
+            'total_items' => $total_items,
+            'per_page' => $perPage,
+            'total_pages' => ceil($total_items / $perPage),
+        ]);
     }
 
     /**
-     * @return array[]
+     * Affiche un message si aucun élément n'a été trouvé
+     *
+     * @return void
+     * @since 1.0.7
+     */
+    public function no_items()
+    {
+        _e('No groups found', YS_GROUPS_TEXT_DOMAIN);
+    }
+
+    /**
+     * @return array
+     * @see   \WP_List_Table::single_row_columns()
+     * @since 1.0.7
+     */
+    public function get_columns(): array
+    {
+        return apply_filters('ys_group_list_table_get_columns', [
+            'cb' => '<input type="checkbox"/>',
+            'name' => _x('Name', 'Column label', YS_GROUPS_TEXT_DOMAIN),
+            'creator_id' => _x('Author', 'Column label', YS_GROUPS_TEXT_DOMAIN),
+            'description' => _x('Desccription', 'Column label', YS_GROUPS_TEXT_DOMAIN),
+            'created_at' => _x('Created at', 'Column label', YS_GROUPS_TEXT_DOMAIN),
+            'status' => _x('Status', 'Column lable', YS_GROUPS_TEXT_DOMAIN),
+        ]);
+    }
+
+    /**
+     * @return array
+     * @since 1.0.7
      */
     public function get_sortable_columns(): array
     {
-        return [
-            'name' => ['name', false],
-        ];
+        return apply_filters('ys_group_list_table_get_sortable_columns', [
+            'name' => ['name', true],
+            'created_at' => ['created_at', true],
+        ]);
     }
 
     /**
@@ -42,21 +96,18 @@ class GroupListTable extends \WP_List_Table
      * @param string $column_name
      *
      * @return string
+     * @since 1.0.7
      */
     protected function column_default($item, $column_name): string
     {
-        switch ($column_name) {
-            case 'name':
-                return $item[$column_name];
-            default:
-                return print_r($item, true);
-        }
+        return $item[$column_name];
     }
 
     /**
      * @param $item
      *
      * @return string
+     * @since 1.0.7
      */
     protected function column_cb($item): string
     {
@@ -71,6 +122,7 @@ class GroupListTable extends \WP_List_Table
      * @param $item
      *
      * @return string
+     * @since 1.0.7
      */
     protected function column_name($item): string
     {
@@ -79,13 +131,13 @@ class GroupListTable extends \WP_List_Table
         $edit_query_args = [
             'page' => $page,
             'action' => 'edit',
-            'ysgroup' => $item['id'],
+            'id' => $item['id'],
         ];
 
         $actions['edit'] = sprintf(
             '<a href="%1$s">%2$s</a>',
             esc_url(
-                wp_nonce_url(add_query_arg($edit_query_args, 'admin.php'), 'editysgroup_' . $item['id'])
+                wp_nonce_url(add_query_arg($edit_query_args, 'admin.php'), 'edit' . $item['id'])
             ),
             _x('Edit', 'List table row action', YS_GROUPS_TEXT_DOMAIN)
         );
@@ -93,13 +145,13 @@ class GroupListTable extends \WP_List_Table
         $delete_query_args = [
             'page' => $page,
             'action' => 'delete',
-            'ysgroup' => $item['id'],
+            'id' => $item['id'],
         ];
 
         $actions['delete'] = sprintf(
             '<a href="%1$s">%2$s</a>',
             esc_url(
-                wp_nonce_url(add_query_arg($delete_query_args, 'admin.php'), 'deleteysgroup_' . $item['id'])
+                wp_nonce_url(add_query_arg($delete_query_args, 'admin.php'), 'delete' . $item['id'])
             ),
             _x('Delete', 'List table row action', YS_GROUPS_TEXT_DOMAIN)
         );
@@ -113,7 +165,21 @@ class GroupListTable extends \WP_List_Table
     }
 
     /**
+     * @param array $item
+     *
+     * @return string
+     * @since 1.0.7
+     */
+    protected function column_creator_id(array $item): string
+    {
+        $user = \WP_User::get_data_by('id', $item['creator_id']);
+
+        return $user->display_name;
+    }
+
+    /**
      * @return array
+     * @since 1.0.7
      */
     protected function get_bulk_actions(): array
     {
@@ -124,37 +190,22 @@ class GroupListTable extends \WP_List_Table
 
     /**
      * @return void
-     * @see $this->prepare_items()
+     * @see   $this->prepare_items()
+     * @since 1.0.8
      */
     protected function process_bulk_action()
     {
+        // Supression
         if ('delete' === $this->current_action()) {
-            // Methode de suppression ici
+            $groups_ids = $_REQUEST['id'] ?? [];
+
+            if (is_array($groups_ids)) {
+                $groups_ids = implode(',', $groups_ids);
+            }
+
+            if (! empty($groups_ids)) {
+                (new Groups())->delete($groups_ids);
+            }
         }
-    }
-
-    public function prepare_items()
-    {
-        $perPage = 5;
-
-        $columns = $this->get_columns();
-        $hidden = [];
-        $sortable = $this->get_sortable_columns();
-
-        $this->_column_headers = [$columns, $hidden, $sortable];
-        $this->process_bulk_action();
-
-        $data = (new Groups())->getGroups();
-        // dump($data);
-        $current_page = $this->get_pagenum();
-        $total_items = count($data);
-        $data = array_slice($data, (($current_page - 1) * $perPage), $perPage);
-        $this->items = $data;
-
-        $this->set_pagination_args([
-            'total_items' => $total_items,
-            'per_page' => $perPage,
-            'total_pages' => ceil($total_items / $perPage),
-        ]);
     }
 }

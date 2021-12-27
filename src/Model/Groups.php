@@ -10,24 +10,37 @@ class Groups extends Db
     /**
      * Recupération de tout les groupes
      *
-     * @param int $perPage
-     * @param int $pageNumber
+     * @param string $orderby
+     * @param int    $perPage
+     * @param        $paged
      *
-     * @return array
-     * @since 1.0.7.1
+     * @return object|array|null
+     * @since 1.0.7
      */
-    public function getGroups(int $perPage = 5, int $pageNumber = 1): array
+    public function getGroups(string $orderby, int $perPage, $paged): object|array|null
     {
-        $q = "SELECT * FROM {$this->ys_groups_prefix}groups";
-
-        if (! empty($_REQUEST['orderby'])) {
-            $q .= 'ORDER BY' . esc_sql($_REQUEST['orderby']);
-            $q .= ! empty($_REQUEST['order']) ? '' . esc_sql($_REQUEST['order']) : 'ASC';
-        }
-
-        $q .= " LIMIT $perPage";
-        $q .= ' offset ' . ($pageNumber - 1) * $perPage;
+        $q = $this
+            ->wpdb->prepare(
+                "SELECT * FROM {$this->ys_groups_prefix}groups ORDER BY $orderby LIMIT %d OFFSET %d",
+                $perPage,
+                $paged
+            );
 
         return $this->wpdb->get_results($q, 'ARRAY_A');
+    }
+
+    /**
+     * Suppression d'un group
+     *
+     * @param $group_ids
+     *
+     * @return bool|int
+     * @since 1.0.8
+     */
+    public function delete($group_ids): bool|int
+    {
+        $q = "DELETE FROM {$this->ys_groups_prefix}groups WHERE id IN($group_ids)";
+
+        return $this->wpdb->query($q);
     }
 }
