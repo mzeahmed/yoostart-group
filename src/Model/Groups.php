@@ -11,20 +11,14 @@ class Groups extends Db
      * Recupération de tout les groupes
      *
      * @param string $orderby
-     * @param int    $perPage
-     * @param        $paged
+     * @param string $order
      *
      * @return object|array|null
      * @since 1.0.7
      */
-    public function getGroups(string $orderby, int $perPage, $paged): object|array|null
+    public function getGroups(string $orderby, string $order): object|array|null
     {
-        $q = $this
-            ->wpdb->prepare(
-                "SELECT * FROM {$this->ys_groups_prefix}groups ORDER BY $orderby LIMIT %d OFFSET %d",
-                $perPage,
-                $paged
-            );
+        $q = "SELECT * FROM {$this->ys_groups_prefix}groups ORDER BY $orderby $order";
 
         return $this->wpdb->get_results($q, 'ARRAY_A');
     }

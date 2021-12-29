@@ -21,7 +21,7 @@ class GroupListTable extends \WP_List_Table
      */
     public function prepare_items()
     {
-        $perPage = 5;
+        $perPage = 10;
 
         $columns = $this->get_columns();
         $hidden = [];
@@ -30,14 +30,10 @@ class GroupListTable extends \WP_List_Table
         $this->_column_headers = [$columns, $hidden, $sortable];
         $this->process_bulk_action();
 
-        $paged = isset($_REQUEST['paged']) ? ($perPage * max(0, intval($_REQUEST['paged']) - 1)) : 0;
-        $orderBy =
-            (isset($_REQUEST['orderby']) &&
-             in_array($_REQUEST['orderby'], array_keys($this->get_sortable_columns()))
-            ) ? $_REQUEST['orderby']
-                : 'name';
+        $orderBy = (isset($_REQUEST['orderby'])) ? esc_sql($_REQUEST['orderby']) : 'created_at';
+        $order = (isset($_REQUEST['order'])) ? esc_sql($_REQUEST['order']) : 'DESC';
 
-        $items = (new Groups())->getGroups($orderBy, $perPage, $paged);
+        $items = (new Groups())->getGroups($orderBy, $order);
 
         $current_page = $this->get_pagenum();
         $total_items = count($items);
@@ -45,8 +41,8 @@ class GroupListTable extends \WP_List_Table
         $this->items = $items;
 
         $this->set_pagination_args([
-            'total_items' => $total_items,
             'per_page' => $perPage,
+            'total_items' => $total_items,
             'total_pages' => ceil($total_items / $perPage),
         ]);
     }
