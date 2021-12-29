@@ -73,7 +73,7 @@ class GroupListTable extends \WP_List_Table
             'cb' => '<input type="checkbox"/>',
             'name' => _x('Name', 'Column label', YS_GROUPS_TEXT_DOMAIN),
             'creator_id' => _x('Author', 'Column label', YS_GROUPS_TEXT_DOMAIN),
-            'description' => _x('Desccription', 'Column label', YS_GROUPS_TEXT_DOMAIN),
+            'description' => _x('Description', 'Column label', YS_GROUPS_TEXT_DOMAIN),
             'created_at' => _x('Created at', 'Column label', YS_GROUPS_TEXT_DOMAIN),
             'status' => _x('Status', 'Column lable', YS_GROUPS_TEXT_DOMAIN),
         ]);
@@ -175,6 +175,34 @@ class GroupListTable extends \WP_List_Table
         $user = \WP_User::get_data_by('id', $item['creator_id']);
 
         return $user->display_name;
+    }
+
+    /**
+     * @param $item
+     *
+     * @return string|null
+     * @since 1.0.8
+     */
+    protected function column_description($item): ?string
+    {
+        if (strlen($item['description']) >= 50) {
+            return substr($item['description'], 0, 50) . '...';
+        }
+
+        return $item['description'];
+    }
+
+    /**
+     * @param $item
+     *
+     * @return string
+     * @throws \Exception
+     */
+    protected function column_created_at($item): string
+    {
+        $date = new \DateTime($item['created_at']);
+
+        return $date->format('d-m-Y H:i:s');
     }
 
     /**

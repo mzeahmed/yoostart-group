@@ -10,13 +10,22 @@
     }
 
     form {
+        margin-top: 20px;
+
         button {
-            background-color: #4ab6a4 !important;
-            border-color: #4ab6a4 !important;
+            //background-color: #4ab6a4 !important;
+            //border-color: #4ab6a4 !important;
+
+            color: #2271b1;
+            border-color: #2271b1;
+            background: #f6f7f7;
 
             &:hover {
-                background-color: #fff !important;
-                color: #4ab6a4 !important;
+                //background-color: #fff !important;
+                //color: #4ab6a4 !important;
+                color: #2271b1;
+                border-color: #2271b1;
+                background: #f6f7f7;
             }
         }
     }

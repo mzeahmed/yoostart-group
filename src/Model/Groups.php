@@ -30,6 +30,58 @@ class Groups extends Db
     }
 
     /**
+     * Check si un slug exist deja
+     *
+     * @param string $slug
+     *
+     * @return bool
+     * @since 1.0.8
+     */
+    public function slugExist(string $slug): bool
+    {
+        $q = $this->wpdb->prepare("SELECT slug from {$this->ys_groups_prefix}groups WHERE slug = %s", $slug);
+        $result = $this->wpdb->get_results($q);
+
+        return (bool)$result;
+    }
+
+    /**
+     * Persistance des données en bdd
+     *
+     * @param int $author_id
+     * @param string $name
+     * @param string $slug
+     * @param string $description
+     * @param string $status
+     * @param string $created_at
+     *
+     * @return bool|int
+     * @since 1.0.8
+     */
+    public function persist(
+        int $author_id,
+        string $name,
+        string $slug,
+        string $description,
+        string $status,
+        string $created_at
+    ): bool|int {
+        return $this
+            ->wpdb->insert(
+                $this->ys_groups_prefix . 'groups',
+                [
+                    'creator_id' => $author_id,
+                    'name' => $name,
+                    'slug' => $slug,
+                    'description' => $description,
+                    'status' => $status,
+                    'created_at' => $created_at,
+                ],
+                ['%d', '%s', '%s', '%s', '%s', '%s']
+            );
+    }
+
+    /**
      * Suppression d'un group
      *
      * @param $group_ids

@@ -8,18 +8,18 @@ namespace YsGroups\Admin;
 class Admin
 {
     public PostStates $postStates;
-    public Options $options;
+    public OptionsMenu $options;
     public string $page;
 
     /**
-     * @param PostStates $postStates
-     * @param Options    $options
+     * @param PostStates  $postStates
+     * @param OptionsMenu $options
      */
-    public function __construct(PostStates $postStates, Options $options)
+    public function __construct(PostStates $postStates, OptionsMenu $options)
     {
         $this->postStates = $postStates;
-        $this->options    = $options;
-        $this->page       = $_GET['page'] ?? '';
+        $this->options = $options;
+        $this->page = $_GET['page'] ?? '';
 
         add_action('admin_enqueue_scripts', [$this, 'enqueueScripts']);
     }
