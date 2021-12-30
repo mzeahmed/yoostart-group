@@ -13,7 +13,7 @@ class OptionsMenu
     public function __construct()
     {
         add_action('admin_menu', [$this, 'optionMenu'], 20);
-        add_action('admin_init', [$this, 'persistDatas']);
+        add_action('admin_init', [$this, 'createGroupe']);
     }
 
     /**
@@ -65,9 +65,12 @@ class OptionsMenu
     }
 
     /**
+     * Creation de groupe
+     *
      * @return void
+     * @since 1.0.8
      */
-    public function persistDatas()
+    public function createGroupe()
     {
         $action = admin_url() . 'admin.php?page=ys_create_group';
         $user = wp_get_current_user();
@@ -103,6 +106,8 @@ class OptionsMenu
                     $_POST['ys_group_status'],
                     wp_date('Y-m-d H:i:s')
                 );
+
+                Helpers::addFlash(__('Group has been successfully created', YS_GROUPS_TEXT_DOMAIN), 'success');
 
                 wp_redirect(wp_get_referer(), 302, 'Yoostart Groups');
             }

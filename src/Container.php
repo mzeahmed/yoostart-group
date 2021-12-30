@@ -2,8 +2,8 @@
 
 namespace YsGroups;
 
-use Exception;
 use YsGroups\Admin\Admin;
+use YsGroups\Front\Front;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Dumper\PhpDumper;
@@ -34,7 +34,7 @@ class Container
             );
             try {
                 $loader->load('services.yml');
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 echo $e->getMessage();
             }
 
@@ -55,6 +55,8 @@ class Container
 
         try {
             $container->get(Admin::class);
+            $container->get(Session::class);
+            $container->get(Front::class);
         } catch (\Exception $e) {
             echo $e->getMessage();
         }

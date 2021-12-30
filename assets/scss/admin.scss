@@ -10,8 +10,6 @@
     }
 
     form {
-        margin-top: 20px;
-
         button {
             //background-color: #4ab6a4 !important;
             //border-color: #4ab6a4 !important;
@@ -28,5 +26,9 @@
                 background: #f6f7f7;
             }
         }
+    }
+
+    .ys-group-form-container {
+        margin-top: 20px;
     }
 }

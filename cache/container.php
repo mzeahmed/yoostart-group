@@ -21,6 +21,8 @@ class YsGroupsCacheContainer extends Container
         $this->services = $this->privates = [];
         $this->methodMap = [
             'YsGroups\\Admin\\Admin' => 'getAdminService',
+            'YsGroups\\Front\\Front' => 'getFrontService',
+            'YsGroups\\Session' => 'getSessionService',
         ];
 
         $this->aliases = [];
@@ -61,8 +63,26 @@ class YsGroupsCacheContainer extends Container
      */
     protected function getAdminService()
     {
-        return $this->services['YsGroups\\Admin\\Admin'] = new \YsGroups\Admin\Admin(new \YsGroups\Admin\PostStates(),
-            new \YsGroups\Admin\OptionsMenu()
-        );
+        return $this->services['YsGroups\\Admin\\Admin'] = new \YsGroups\Admin\Admin(new \YsGroups\Admin\PostStates(), new \YsGroups\Admin\OptionsMenu());
+    }
+
+    /**
+     * Gets the public 'YsGroups\Front\Front' shared autowired service.
+     *
+     * @return \YsGroups\Front\Front
+     */
+    protected function getFrontService()
+    {
+        return $this->services['YsGroups\\Front\\Front'] = new \YsGroups\Front\Front();
+    }
+
+    /**
+     * Gets the public 'YsGroups\Session' shared autowired service.
+     *
+     * @return \YsGroups\Session
+     */
+    protected function getSessionService()
+    {
+        return $this->services['YsGroups\\Session'] = new \YsGroups\Session();
     }
 }

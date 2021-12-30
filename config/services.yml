@@ -8,3 +8,9 @@ services:
 
     YsGroups\Admin\Admin:
         public: true
+
+    YsGroups\Session:
+        public: true
+
+    YsGroups\Front\Front:
+        public: true
