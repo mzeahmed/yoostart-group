@@ -51,7 +51,7 @@ class OptionsMenu
         $groupList = new GroupListTable();
         $groupList->prepare_items();
 
-        return View::render('admin/groups-main', [
+        return View::render('admin/groups', [
             'groupList' => $groupList,
         ]);
     }

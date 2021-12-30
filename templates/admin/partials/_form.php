@@ -9,8 +9,7 @@
 
 <div class="container ys-group-form-container">
     <!-- Message flash-->
-    <?php
-    if (isset($_SESSION['ys_flash']['message'])) : ?>
+    <?php if (isset($_SESSION['ys_flash']['message'])) : ?>
         <div class="container">
             <div class="alert alert-<?= $_SESSION['ys_flash']['type'] ?>">
                 <button type="button" class="close" data-dismiss="alert" aia-hidden="true">&times;</button>
@@ -19,8 +18,7 @@
         </div>
         <?php
         $_SESSION['ys_flash'] = []; ?>
-    <?php
-    endif; ?>
+    <?php endif; ?>
     <!-- Message flash-->
 
     <div class="row">
