@@ -16,7 +16,7 @@ class View
      */
     public static function render(string $template, array $params = []): ?string
     {
-        $params ? extract($params) : null;
+        extract($params);
 
         $path = self::getTemplatePath() . $template . '.php';
 

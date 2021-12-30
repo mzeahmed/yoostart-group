@@ -8,7 +8,9 @@ namespace YsGroups\Admin;
 class Admin
 {
     public PostStates $postStates;
+
     public OptionsMenu $options;
+
     public string $page;
 
     /**
