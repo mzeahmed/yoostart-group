@@ -18,9 +18,9 @@ class Groups extends Db
      */
     public function getGroups(string $orderby, string $order): object|array|null
     {
-        $q = "SELECT * FROM {$this->ys_groups_prefix}groups ORDER BY $orderby $order";
+        $query = "SELECT * FROM {$this->ys_groups_prefix}groups ORDER BY $orderby $order";
 
-        return $this->wpdb->get_results($q, 'ARRAY_A');
+        return $this->wpdb->get_results($query, 'ARRAY_A');
     }
 
     /**
@@ -33,16 +33,17 @@ class Groups extends Db
      */
     public function slugExist(string $slug): bool
     {
-        $q = $this->wpdb->prepare("SELECT slug from {$this->ys_groups_prefix}groups WHERE slug = %s", $slug);
-        $result = $this->wpdb->get_results($q);
+        $query = $this->wpdb->prepare("SELECT slug from {$this->ys_groups_prefix}groups WHERE slug = %s", $slug);
+        $result = $this->wpdb->get_results($query);
 
         return (bool)$result;
     }
 
     /**
-     * Persistance des données en bdd
+     * Persistance du groupe en bdd
      *
      * @param int $author_id
+     * @param string|null $cover_photo
      * @param string $name
      * @param string $slug
      * @param string $description
@@ -52,8 +53,9 @@ class Groups extends Db
      * @return bool|int
      * @since 1.0.8
      */
-    public function persist(
+    public function persistGroup(
         int $author_id,
+        ?string $cover_photo,
         string $name,
         string $slug,
         string $description,
@@ -65,13 +67,14 @@ class Groups extends Db
                 $this->ys_groups_prefix . 'groups',
                 [
                     'creator_id' => $author_id,
+                    'cover_photo' => $cover_photo,
                     'name' => $name,
                     'slug' => $slug,
                     'description' => $description,
                     'status' => $status,
                     'created_at' => $created_at,
                 ],
-                ['%d', '%s', '%s', '%s', '%s', '%s']
+                ['%d', '%s', '%s', '%s', '%s', '%s', '%s']
             );
     }
 
@@ -83,7 +86,7 @@ class Groups extends Db
      * @return bool|int
      * @since 1.0.8
      */
-    public function delete($group_ids): bool|int
+    public function deleteGroup($group_ids): bool|int
     {
         $q = "DELETE FROM {$this->ys_groups_prefix}groups WHERE id IN($group_ids)";
 

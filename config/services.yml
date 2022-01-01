@@ -4,7 +4,7 @@ services:
 
     YsGroups\:
         resource: '../src/*'
-    #        exclude: '../src/{constants.php}'
+        exclude: '../src/{constants.php}'
 
     YsGroups\Admin\Admin:
         public: true

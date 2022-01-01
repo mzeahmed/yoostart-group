@@ -96,8 +96,9 @@ class OptionsMenu
             ) {
                 $slug = str_replace(' ', '-', $_POST['ys_group_name']);
 
-                $groups->persist(
+                $groups->persistGroup(
                     $user->ID,
+                    $_POST['ys_group_cover'],
                     sanitize_text_field($_POST['ys_group_name']),
                     $groups->slugExist($slug) ?
                         sanitize_text_field($slug . '-' . rand(1, 10)) :
@@ -108,7 +109,7 @@ class OptionsMenu
                 );
 
                 Helpers::addFlash(__('Group has been successfully created', YS_GROUPS_TEXT_DOMAIN), 'success');
-
+                dump($_POST);
                 wp_redirect(wp_get_referer(), 302, 'Yoostart Groups');
             }
         }

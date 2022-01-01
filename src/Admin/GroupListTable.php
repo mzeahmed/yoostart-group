@@ -228,7 +228,7 @@ class GroupListTable extends \WP_List_Table
             }
 
             if (! empty($groups_ids)) {
-                (new Groups())->delete($groups_ids);
+                (new Groups())->deleteGroup($groups_ids);
             }
         }
     }
