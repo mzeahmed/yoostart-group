@@ -27,6 +27,7 @@ class Groups extends Db
      * Recuperation de l'ID du dernier groupe créer
      *
      * @return string|null
+     * @since 1.0.9
      */
     public function getLastId(): ?string
     {

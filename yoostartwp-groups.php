@@ -28,14 +28,14 @@ require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/src/constants.php';
 
 /**
- * @return \YsGroups\YsGroups|null
+ * @return YsGroups\YsGroups|null
  * @since 1.0.0
  */
-function yoostart_groups(): ?\YsGroups\YsGroups
+function yoostart_groups(): ?YsGroups\YsGroups
 {
-    return \YsGroups\YsGroups::getInstance();
+    return YsGroups\YsGroups::getInstance();
 }
 
 yoostart_groups();
 
-\YsGroups\Container::load();
+YsGroups\Container::load();

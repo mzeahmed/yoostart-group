@@ -10,17 +10,15 @@ class GroupsMembers extends Db
     /**
      * Recuperations des membres d'un groupe
      *
-     * @param int    $groupId
-     * @param string $orderby
-     * @param string $order
+     * @param int $groupId
      *
      * @return array|object|null
      * @since 1.0.9
      */
-    public function getMembers(int $groupId, string $orderby, string $order = 'ASC'): object|array|null
+    public function getMembers(int $groupId): object|array|null
     {
         $query = $this->wpdb->prepare(
-            "SELECT * FROM {$this->ys_groups_prefix}groups_members ORDER BY $orderby WHERE group_id = %s $order",
+            "SELECT user_id FROM {$this->ys_groups_prefix}groups_members WHERE group_id = %d ORDER BY modified_at DESC",
             $groupId
         );
 
@@ -30,13 +28,13 @@ class GroupsMembers extends Db
     /**
      * Persistance du membre en bdd
      *
-     * @param int      $groupId
-     * @param int      $userId
+     * @param int $groupId
+     * @param int $userId
      * @param int|null $inviterId
-     * @param bool     $isAdmin
-     * @param string   $modifiedAt
-     * @param bool     $isConfirmed
-     * @param bool     $isBanned
+     * @param bool $isAdmin
+     * @param string $modifiedAt
+     * @param bool $isConfirmed
+     * @param bool $isBanned
      *
      * @return bool|int
      * @since 1.0.9
