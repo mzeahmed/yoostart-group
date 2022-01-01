@@ -30,13 +30,13 @@ class GroupsMembers extends Db
     /**
      * Persistance du membre en bdd
      *
-     * @param int    $groupId
-     * @param int    $userId
-     * @param int    $inviterId
-     * @param bool   $isAdmin
-     * @param string $modifiedAt
-     * @param bool   $isConfirmed
-     * @param bool   $isBanned
+     * @param int      $groupId
+     * @param int      $userId
+     * @param int|null $inviterId
+     * @param bool     $isAdmin
+     * @param string   $modifiedAt
+     * @param bool     $isConfirmed
+     * @param bool     $isBanned
      *
      * @return bool|int
      * @since 1.0.9
@@ -44,7 +44,7 @@ class GroupsMembers extends Db
     public function persistMember(
         int $groupId,
         int $userId,
-        int $inviterId,
+        ?int $inviterId,
         bool $isAdmin,
         string $modifiedAt,
         bool $isConfirmed,

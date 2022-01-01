@@ -4,6 +4,7 @@ namespace YsGroups\Admin;
 
 use YsGroups\Model\Groups;
 use YsGroups\ViewRenderer\View;
+use YsGroups\Model\GroupsMembers;
 
 /**
  * @since 1.0.6
@@ -75,6 +76,7 @@ class OptionsMenu
         $action = admin_url() . 'admin.php?page=ys_create_group';
         $user = wp_get_current_user();
         $groups = new Groups();
+        $groupsMember = new GroupsMembers();
 
         if (isset($_POST['_ys_create_group_nonce'])) {
             if (! wp_verify_nonce($_POST['_ys_create_group_nonce'], $action)) {
@@ -106,6 +108,18 @@ class OptionsMenu
                     sanitize_textarea_field($_POST['ys_group_description']),
                     $_POST['ys_group_status'],
                     wp_date('Y-m-d H:i:s')
+                );
+
+                $groupId = $groups->getLastId();
+
+                $groupsMember->persistMember(
+                    $groupId,
+                    $user->ID,
+                    null,
+                    true,
+                    wp_date('Y-m-d H:i:s'),
+                    true,
+                    false
                 );
 
                 Helpers::addFlash(__('Group has been successfully created', YS_GROUPS_TEXT_DOMAIN), 'success');

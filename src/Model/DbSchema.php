@@ -39,7 +39,7 @@ class DbSchema extends Db
                         id bigint(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                         group_id bigint(20) NOT NULL,
                         user_id bigint(20) NOT NULL,
-                        inviter_id bigint(20) NOT NULL,
+                        inviter_id bigint(20) NULL,
                         is_admin tinyint(1) NOT NULL DEFAULT '0',
                         modified_at datetime NOT NULL,
                         is_confirmed tinyint(1) NOT NULL DEFAULT '0',

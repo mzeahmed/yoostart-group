@@ -24,6 +24,18 @@ class Groups extends Db
     }
 
     /**
+     * Recuperation de l'ID du dernier groupe créer
+     *
+     * @return string|null
+     */
+    public function getLastId(): ?string
+    {
+        $query = "SELECT id FROM {$this->ys_groups_prefix}groups ORDER BY created_at DESC LIMIT 1";
+
+        return $this->wpdb->get_var($query);
+    }
+
+    /**
      * Check si un slug exist deja
      *
      * @param string $slug
