@@ -3,10 +3,10 @@
 namespace YsGroups\Admin;
 
 /**
- * @package YsGroups
+ * @package YsAdminGroups
  * @since   1.0.0
  */
-class Helpers
+class AdminHelpers
 {
     /**
      * Défini une constante si elle n'est pas défini
@@ -67,19 +67,17 @@ class Helpers
 
         if (strlen($page_content) > 0) {
             // Search for an existing page with the specified page content (typically a shortcode).
-            $shortcode        = str_replace(['<!-- wp:shortcode -->', '<!-- /wp:shortcode -->'], '', $page_content);
+            $shortcode = str_replace(['<!-- wp:shortcode -->', '<!-- /wp:shortcode -->'], '', $page_content);
             $valid_page_found = $wpdb->get_var($wpdb->prepare(
                 "SELECT ID FROM $wpdb->posts WHERE post_type='page' AND post_status NOT IN ( 'pending', 'trash', 'future', 'auto-draft' ) AND post_content LIKE %s LIMIT 1;",
                 "%{$shortcode}%"
-            )
-            );
+            ));
         } else {
             // Search for an existing page with the specified page slug.
             $valid_page_found = $wpdb->get_var($wpdb->prepare(
                 "SELECT ID FROM $wpdb->posts WHERE post_type='page' AND post_status NOT IN ( 'pending', 'trash', 'future', 'auto-draft' )  AND post_name = %s LIMIT 1;",
                 $slug
-            )
-            );
+            ));
         }
 
         $valid_page_found = apply_filters('ys_groups_create_page_id', $valid_page_found, $slug, $page_content);
@@ -98,19 +96,17 @@ class Helpers
             $trashed_page_found = $wpdb->get_var($wpdb->prepare(
                 "SELECT ID FROM $wpdb->posts WHERE post_type='page' AND post_status = 'trash' AND post_content LIKE %s LIMIT 1;",
                 "%{$page_content}%"
-            )
-            );
+            ));
         } else {
             // Search for an existing page with the specified page slug.
             $trashed_page_found = $wpdb->get_var($wpdb->prepare(
                 "SELECT ID FROM $wpdb->posts WHERE post_type='page' AND post_status = 'trash' AND post_name = %s LIMIT 1;",
                 $slug
-            )
-            );
+            ));
         }
 
         if ($trashed_page_found) {
-            $page_id   = $trashed_page_found;
+            $page_id = $trashed_page_found;
             $page_data = [
                 'ID' => $page_id,
                 'post_status' => $post_status,
@@ -127,7 +123,7 @@ class Helpers
                 'post_parent' => $post_parent,
                 'comment_status' => 'closed',
             ];
-            $page_id   = wp_insert_post($page_data);
+            $page_id = wp_insert_post($page_data);
 
             do_action('ys_groups_page_created', $page_id, $page_data);
         }
@@ -141,18 +137,34 @@ class Helpers
 
     /**
      * Ajout de message flash en session
-     * Utilisation des alertes Bootstrap pour le $type
+     * Utilisation des classes Bootstrap pour le $type
      *
      * @param string $message
-     * @param string $type
+     * @param string $type @see https://getbootstrap.com/docs/5.0/components/alerts/
      *
      * @return void
      * @since 1.0.9
-     * @see   https://getbootstrap.com/docs/5.0/components/alerts/
      */
     public static function addFlash(string $message, string $type = 'info')
     {
         $_SESSION['ys_flash']['message'] = $message;
-        $_SESSION['ys_flash']['type']    = $type;
+        $_SESSION['ys_flash']['type'] = $type;
+    }
+
+    /**
+     * Lorsqu'on utilise WP_List_Table, recuperons l'action actuellement sélectionnée.
+     *
+     * @return string|null
+     * @since 1.1.0
+     */
+    public static function listTableCurrentBulkAction(): ?string
+    {
+        $action = ! empty($_REQUEST['action']) ? $_REQUEST['action'] : '';
+
+        if (! empty($_REQUEST['action2']) && $_REQUEST['action2'] != '-1') {
+            $action = $_REQUEST['action2'];
+        }
+
+        return $action;
     }
 }

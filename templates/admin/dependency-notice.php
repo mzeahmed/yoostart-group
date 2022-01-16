@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @package YsGroups
+ * @package YsAdminGroups
  * @since   1.0.0
  */
 

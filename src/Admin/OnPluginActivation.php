@@ -2,7 +2,7 @@
 
 namespace YsGroups\Admin;
 
-use YsGroups\Admin\Helpers;
+use YsGroups\Admin\AdminHelpers;
 use YsGroups\Model\DbSchema;
 
 /**
@@ -23,7 +23,7 @@ class OnPluginActivation
 
         // Si nous sommes arrivés jusqu'ici, rien n'est encore en marche, réglons le transient maintenant.
         set_transient('', 'yes', MINUTE_IN_SECONDS * 10);
-        Helpers::maybeDefineConstant('YS_GROUPS_INSTALLING', true);
+        AdminHelpers::maybeDefineConstant('YS_GROUPS_INSTALLING', true);
 
         self::createTables();
         self::createPages();
@@ -64,7 +64,7 @@ class OnPluginActivation
         );
 
         foreach ($pages as $key => $page) {
-            Helpers::createPage(
+            AdminHelpers::createPage(
                 esc_sql($page['name']),
                 'ys_groups_' . $key . '_page_id',
                 $page['title'],

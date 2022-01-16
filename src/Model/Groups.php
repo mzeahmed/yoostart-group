@@ -16,11 +16,26 @@ class Groups extends Db
      * @return object|array|null
      * @since 1.0.7
      */
-    public function getGroups(string $orderby, string $order): object|array|null
+    public function getGroups(string $orderby = 'created_at', string $order = 'DESC'): object|array|null
     {
         $query = "SELECT * FROM {$this->ys_groups_prefix}groups ORDER BY $orderby $order";
 
         return $this->wpdb->get_results($query, 'ARRAY_A');
+    }
+
+    /**
+     * Récuperation du nom des groupes en fonction des ids passés en parametres
+     *
+     * @param array|string $group_ids
+     *
+     * @return array|object|null
+     * @since 1.0.9
+     */
+    public function getGroupsName(array|string $group_ids): object|array|null
+    {
+        $query = $this->wpdb->prepare("SELECT name FROM {$this->ys_groups_prefix}groups WHERE id IN(%d)", $group_ids);
+
+        return $this->wpdb->get_results($query);
     }
 
     /**
@@ -55,13 +70,13 @@ class Groups extends Db
     /**
      * Persistance du groupe en bdd
      *
-     * @param int $author_id
+     * @param int         $author_id
      * @param string|null $cover_photo
-     * @param string $name
-     * @param string $slug
-     * @param string $description
-     * @param string $status
-     * @param string $created_at
+     * @param string      $name
+     * @param string      $slug
+     * @param string      $description
+     * @param string      $status
+     * @param string      $created_at
      *
      * @return bool|int
      * @since 1.0.8
@@ -101,8 +116,8 @@ class Groups extends Db
      */
     public function deleteGroup($group_ids): bool|int
     {
-        $q = "DELETE FROM {$this->ys_groups_prefix}groups WHERE id IN($group_ids)";
+        $query = "DELETE FROM {$this->ys_groups_prefix}groups WHERE id IN($group_ids)";
 
-        return $this->wpdb->query($q);
+        return $this->wpdb->query($query);
     }
 }

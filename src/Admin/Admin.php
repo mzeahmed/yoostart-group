@@ -8,19 +8,17 @@ namespace YsGroups\Admin;
 class Admin
 {
     public PostStates $postStates;
-
-    public OptionsMenu $options;
-
+    public YsAdminGroups $ysGroups;
     public string $page;
 
     /**
-     * @param PostStates  $postStates
-     * @param OptionsMenu $options
+     * @param PostStates    $postStates
+     * @param YsAdminGroups $ysGroups
      */
-    public function __construct(PostStates $postStates, OptionsMenu $options)
+    public function __construct(PostStates $postStates, YsAdminGroups $ysGroups)
     {
         $this->postStates = $postStates;
-        $this->options = $options;
+        $this->ysGroups = $ysGroups;
         $this->page = $_GET['page'] ?? '';
 
         add_action('admin_enqueue_scripts', [$this, 'enqueueScripts']);
@@ -50,6 +48,8 @@ class Admin
                 YS_GROUPS_VERSION,
                 true
             );
+
+            wp_localize_script('ys-group-admin', 'ys_group_ajaxurl', [admin_url('admin-ajax.php')]);
         }
     }
 }

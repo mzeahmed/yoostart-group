@@ -7,13 +7,13 @@ use YsGroups\ViewRenderer\View;
 use YsGroups\Admin\OnPluginActivation;
 
 /**
- * @package YsGroups
+ * @package YsAdminGroups
  * @since   1.0.0
  */
 class YsGroups
 {
     /**
-     * Instance de YsGroups
+     * Instance de YsAdminGroups
      *
      * @var YsGroups|null
      */
@@ -41,7 +41,7 @@ class YsGroups
     }
 
     /**
-     * S'assure qu'une seule instance de YsGroups est chargée
+     * S'assure qu'une seule instance de YsAdminGroups est chargée
      *
      * @return YsGroups|null
      * @see   yoostart_groups()

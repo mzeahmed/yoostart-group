@@ -28,7 +28,7 @@ class GroupListTable extends \WP_List_Table
         $sortable = $this->get_sortable_columns();
 
         $this->_column_headers = [$columns, $hidden, $sortable];
-        $this->process_bulk_action();
+        // $this->process_bulk_action();
 
         $orderBy = (isset($_REQUEST['orderby'])) ? esc_sql($_REQUEST['orderby']) : 'created_at';
         $order = (isset($_REQUEST['order'])) ? esc_sql($_REQUEST['order']) : 'DESC';
@@ -57,6 +57,40 @@ class GroupListTable extends \WP_List_Table
     {
         _e('No groups found', YS_GROUPS_TEXT_DOMAIN);
     }
+
+    /**
+     * Récupére un tableau associatif d'actions de masse disponibles sur cette table.
+     *
+     * @return array
+     * @since 1.0.7
+     */
+    protected function get_bulk_actions(): array
+    {
+        return [
+            'delete' => _x('Delete', 'List table bulk action', YS_GROUPS_TEXT_DOMAIN),
+        ];
+    }
+
+    /**
+     * @return void
+     * @see   $this->prepare_items()
+     * @since 1.0.8
+     */
+    // protected function process_bulk_action()
+    // {
+    //     // Supression
+    //     if ('do_delete' === $this->current_action()) {
+    //         $groups_ids = $_REQUEST['gid'] ?? [];
+    //
+    //         if (is_array($groups_ids)) {
+    //             $groups_ids = implode(',', $groups_ids);
+    //         }
+    //
+    //         if (! empty($groups_ids)) {
+    //             (new Groups())->deleteGroup($groups_ids);
+    //         }
+    //     }
+    // }
 
     /**
      * @return array
@@ -127,7 +161,7 @@ class GroupListTable extends \WP_List_Table
         $edit_query_args = [
             'page' => $page,
             'action' => 'edit',
-            'id' => $item['id'],
+            'gid' => $item['id'],
         ];
 
         $actions['edit'] = sprintf(
@@ -141,14 +175,15 @@ class GroupListTable extends \WP_List_Table
         $delete_query_args = [
             'page' => $page,
             'action' => 'delete',
-            'id' => $item['id'],
+            'gid' => $item['id'],
         ];
 
         $actions['delete'] = sprintf(
-            '<a href="%1$s">%2$s</a>',
+            '<a class="js-ys-group-delete" href="%1$s" data-group-id="%2$s">%3$s</a>',
             esc_url(
                 wp_nonce_url(add_query_arg($delete_query_args, 'admin.php'), 'delete' . $item['id'])
             ),
+            $item['id'],
             _x('Delete', 'List table row action', YS_GROUPS_TEXT_DOMAIN)
         );
 
@@ -202,34 +237,15 @@ class GroupListTable extends \WP_List_Table
     }
 
     /**
-     * @return array
-     * @since 1.0.7
-     */
-    protected function get_bulk_actions(): array
-    {
-        return [
-            'delete' => _x('Delete', 'List table bulk action', YS_GROUPS_TEXT_DOMAIN),
-        ];
-    }
-
-    /**
+     * @param $item
+     *
      * @return void
-     * @see   $this->prepare_items()
-     * @since 1.0.8
+     * @since 1.0.9
      */
-    protected function process_bulk_action()
+    public function single_row($item)
     {
-        // Supression
-        if ('delete' === $this->current_action()) {
-            $groups_ids = $_REQUEST['id'] ?? [];
-
-            if (is_array($groups_ids)) {
-                $groups_ids = implode(',', $groups_ids);
-            }
-
-            if (! empty($groups_ids)) {
-                (new Groups())->deleteGroup($groups_ids);
-            }
-        }
+        echo '<tr class="ys-group-list-row">';
+        $this->single_row_columns($item);
+        echo '</tr>';
     }
 }

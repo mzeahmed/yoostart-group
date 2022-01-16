@@ -42,14 +42,15 @@ class YsGroupsCacheContainer extends Container
     {
         return [
             'YsGroups\\Admin\\GroupListTable' => true,
-            'YsGroups\\Admin\\Helpers' => true,
+            'YsGroups\\Admin\\AdminHelpers' => true,
             'YsGroups\\Admin\\OnPluginActivation' => true,
-            'YsGroups\\Admin\\OptionsMenu' => true,
             'YsGroups\\Admin\\PostStates' => true,
+            'YsGroups\\Admin\\YsAdminGroups' => true,
             'YsGroups\\Container' => true,
             'YsGroups\\Model\\Db' => true,
             'YsGroups\\Model\\DbSchema' => true,
             'YsGroups\\Model\\Groups' => true,
+            'YsGroups\\Model\\GroupsMembers' => true,
             'YsGroups\\Model\\PluginPosts' => true,
             'YsGroups\\ViewRenderer\\View' => true,
             'YsGroups\\YsGroups' => true,
@@ -57,17 +58,18 @@ class YsGroupsCacheContainer extends Container
     }
 
     /**
-     * Gets the public 'YsGroups\Admin\Admin' shared autowired service.
+     * Gets the public 'YsAdminGroups\Admin\Admin' shared autowired service.
      *
      * @return \YsGroups\Admin\Admin
      */
     protected function getAdminService()
     {
-        return $this->services['YsGroups\\Admin\\Admin'] = new \YsGroups\Admin\Admin(new \YsGroups\Admin\PostStates(), new \YsGroups\Admin\OptionsMenu());
+        return $this->services['YsGroups\\Admin\\Admin'] = new \YsGroups\Admin\Admin(new \YsGroups\Admin\PostStates(),
+            new \YsGroups\Admin\YsAdminGroups());
     }
 
     /**
-     * Gets the public 'YsGroups\Front\Front' shared autowired service.
+     * Gets the public 'YsAdminGroups\Front\Front' shared autowired service.
      *
      * @return \YsGroups\Front\Front
      */
@@ -77,7 +79,7 @@ class YsGroupsCacheContainer extends Container
     }
 
     /**
-     * Gets the public 'YsGroups\Session' shared autowired service.
+     * Gets the public 'YsAdminGroups\Session' shared autowired service.
      *
      * @return \YsGroups\Session
      */
