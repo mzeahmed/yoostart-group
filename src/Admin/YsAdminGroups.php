@@ -176,12 +176,12 @@ class YsAdminGroups
                     false
                 );
 
-                AdminHelpers::addFlash(
+                Helpers::addFlash(
+                    'success',
                     sprintf(
-                        __('Group %s has been successfully created', YS_GROUPS_TEXT_DOMAIN),
+                        __('Group (%s) has been successfully created', YS_GROUPS_TEXT_DOMAIN),
                         $_POST['ys_group_name']
-                    ),
-                    'success'
+                    )
                 );
 
                 wp_safe_redirect($this->groupsIndexScreen, 302, YS_GROUPS_PLUGIN_NAME);

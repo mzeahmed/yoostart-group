@@ -53,12 +53,11 @@ class AdminHelpers
         if ($option_value > 0) {
             $page_object = get_post($option_value);
 
-            if (
-                $page_object && 'page' === $page_object->post_type && ! in_array(
-                    $page_object->post_status,
-                    ['pending', 'trash', 'future', 'auto-draft'],
-                    true
-                )
+            if ($page_object && 'page' === $page_object->post_type && ! in_array(
+                $page_object->post_status,
+                ['pending', 'trash', 'future', 'auto-draft'],
+                true
+            )
             ) {
                 // Valid page is already in place.
                 return $page_object->ID;
@@ -133,22 +132,6 @@ class AdminHelpers
         }
 
         return $page_id;
-    }
-
-    /**
-     * Ajout de message flash en session
-     * Utilisation des classes Bootstrap pour le $type
-     *
-     * @param string $message
-     * @param string $type @see https://getbootstrap.com/docs/5.0/components/alerts/
-     *
-     * @return void
-     * @since 1.0.9
-     */
-    public static function addFlash(string $message, string $type = 'info')
-    {
-        $_SESSION['ys_flash']['message'] = $message;
-        $_SESSION['ys_flash']['type'] = $type;
     }
 
     /**

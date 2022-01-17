@@ -44,7 +44,7 @@
                 <?php $groupList->views(); ?>
 
                 <form id="ys-groups-form" method="get">
-                    <?php $groupList->search_box(__('Search all Groups', YS_GROUPS_TEXT_DOMAIN), 'ys-groups') ?>
+                    <?php $groupList->search_box(__('Search all Groups', YS_GROUPS_TEXT_DOMAIN), 'ys-groups'); ?>
                     <input type="hidden" name="page" value="<?php $pluginPage ?>"/>
                     <?php $groupList->display() ?>
                 </form>

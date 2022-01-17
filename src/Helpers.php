@@ -32,4 +32,21 @@ class Helpers
 
         return $name;
     }
+
+    /**
+     * Ajout de message flash en session
+     * Utilisation des classes Bootstrap pour le $type
+     *
+     * @param string $type @see https://getbootstrap.com/docs/5.0/components/alerts/
+     * @param string $message
+     *
+     * @return void
+     * @since 1.0.9
+     * @since 1.1.0 deplacé de YsGroups\Admin\AdminHelpers() vers YsGroups\Helpers()
+     */
+    public static function addFlash(string $type, string $message)
+    {
+        $_SESSION['ys_flash']['type'] = $type;
+        $_SESSION['ys_flash']['message'] = $message;
+    }
 }

@@ -8,18 +8,6 @@
 ?>
 
 <div class="container ys-group-form-container">
-    <!-- Message flash-->
-    <?php if (isset($_SESSION['ys_flash']['message'])) : ?>
-        <div class="container">
-            <div class="alert alert-<?= $_SESSION['ys_flash']['type'] ?>">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><?php echo $_SESSION['ys_flash']['message'] ?></h4>
-            </div>
-        </div>
-        <?php $_SESSION['ys_flash'] = []; ?>
-    <?php endif; ?>
-    <!-- Message flash-->
-
     <div class="row">
         <div class="col-md-6">
             <form action="<?php $action ?>" method="post" name="ys_group_form" enctype="multipart/form-data">
