@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @package YsAdminGroups\Admin\Metabox
+ * @package AdminGroupsController\Admin\Metabox
  * @since   1.1.0
  */
 

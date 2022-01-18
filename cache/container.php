@@ -20,8 +20,8 @@ class YsGroupsCacheContainer extends Container
     {
         $this->services = $this->privates = [];
         $this->methodMap = [
-            'YsGroups\\Admin\\Admin' => 'getAdminService',
-            'YsGroups\\Front\\Front' => 'getFrontService',
+            'YsGroups\\Controller\\Admin\\Admin' => 'getAdminService',
+            'YsGroups\\Controller\\Front\\Front' => 'getFrontService',
             'YsGroups\\Session' => 'getSessionService',
         ];
 
@@ -41,45 +41,44 @@ class YsGroupsCacheContainer extends Container
     public function getRemovedIds(): array
     {
         return [
-            'YsGroups\\Admin\\GroupListTable' => true,
-            'YsGroups\\Admin\\AdminHelpers' => true,
-            'YsGroups\\Admin\\OnPluginActivation' => true,
-            'YsGroups\\Admin\\PostStates' => true,
-            'YsGroups\\Admin\\YsAdminGroups' => true,
             'YsGroups\\Container' => true,
+            'YsGroups\\Controller\\Admin\\AdminGroups' => true,
+            'YsGroups\\Controller\\Admin\\GroupListTable' => true,
+            'YsGroups\\Controller\\Admin\\MetaBox' => true,
+            'YsGroups\\Controller\\Front\\GroupsController' => true,
+            'YsGroups\\Helpers\\Helpers' => true,
             'YsGroups\\Model\\Db' => true,
             'YsGroups\\Model\\DbSchema' => true,
             'YsGroups\\Model\\Groups' => true,
             'YsGroups\\Model\\GroupsMembers' => true,
             'YsGroups\\Model\\PluginPosts' => true,
-            'YsGroups\\ViewRenderer\\View' => true,
+            'YsGroups\\OnPluginActivation' => true,
             'YsGroups\\YsGroups' => true,
         ];
     }
 
     /**
-     * Gets the public 'YsAdminGroups\Admin\Admin' shared autowired service.
+     * Gets the public 'YsGroups\Controller\Admin\Admin' shared autowired service.
      *
-     * @return \YsGroups\Admin\Admin
+     * @return \YsGroups\Controller\Admin\Admin
      */
     protected function getAdminService()
     {
-        return $this->services['YsGroups\\Admin\\Admin'] = new \YsGroups\Admin\Admin(new \YsGroups\Admin\PostStates(),
-            new \YsGroups\Admin\YsAdminGroups());
+        return $this->services['YsGroups\\Controller\\Admin\\Admin'] = new \YsGroups\Controller\Admin\Admin(new \YsGroups\Controller\Admin\AdminGroups());
     }
 
     /**
-     * Gets the public 'YsAdminGroups\Front\Front' shared autowired service.
+     * Gets the public 'YsGroups\Controller\Front\Front' shared autowired service.
      *
-     * @return \YsGroups\Front\Front
+     * @return \YsGroups\Controller\Front\Front
      */
     protected function getFrontService()
     {
-        return $this->services['YsGroups\\Front\\Front'] = new \YsGroups\Front\Front();
+        return $this->services['YsGroups\\Controller\\Front\\Front'] = new \YsGroups\Controller\Front\Front(new \YsGroups\Controller\Front\GroupsController());
     }
 
     /**
-     * Gets the public 'YsAdminGroups\Session' shared autowired service.
+     * Gets the public 'YsGroups\Session' shared autowired service.
      *
      * @return \YsGroups\Session
      */

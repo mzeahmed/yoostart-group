@@ -1,134 +1,216 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Yoostart Groups\n"
-"POT-Creation-Date: 2021-12-27 01:38+0100\n"
-"PO-Revision-Date: 2021-12-27 01:40+0100\n"
+"POT-Creation-Date: 2022-01-18 00:56+0100\n"
+"PO-Revision-Date: 2022-01-18 00:56+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 2.4.3\n"
 "X-Poedit-Basepath: ..\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
-"X-Poedit-WPHeader: yoostartwp-groups-index.php\n"
+"X-Poedit-WPHeader: yoostartwp-groups.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
-"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: vendor\n"
+"X-Poedit-SearchPathExcluded-2: node_modules\n"
 
-#: src/Admin/GroupListTable.php:62
+#: src/Controller/Admin/AdminGroups.php:41
+#: src/Controller/Admin/AdminGroups.php:42 templates/admin/groups-index.php:11
+msgid "Groups"
+msgstr "Groupes"
+
+#: src/Controller/Admin/AdminGroups.php:89
+#, php-format
+msgid "%s group has been permanently deleted."
+msgid_plural "%s groups have permanently deleted."
+msgstr[0] "Le groupe %s a été définitivement supprimé."
+msgstr[1] "Les groupes %s ont été définitivement supprimés."
+
+#: src/Controller/Admin/AdminGroups.php:141
+#, php-format
+msgid "<strong>Sorry, nonce %s  did not verifyed</strong>"
+msgstr "<strong>Désolé, le nonce %s n'a pas été vérifié</strong>"
+
+#: src/Controller/Admin/AdminGroups.php:182
+#, php-format
+msgid "Group (%s) has been successfully created"
+msgstr "Le groupe (%s) a été créé avec succès"
+
+#: src/Controller/Admin/AdminGroups.php:269
+msgid "Overview"
+msgstr "Aperçu"
+
+#: src/Controller/Admin/AdminGroups.php:272
+msgid ""
+"This page is a convenient way to edit the details associated with one of "
+"your groups."
+msgstr ""
+"Cette page est un moyen pratique de modifier les détails associés à un de "
+"vos régions."
+
+#: src/Controller/Admin/AdminGroups.php:276
+msgid ""
+"The Name and Description box is fixed in place, but you can reposition all "
+"the other boxes using drag and drop, and can minimize or expand them by "
+"clicking the title bar of each box. Use the Screen Options tab to hide or "
+"unhide, or to choose a 1- or 2-column layout for this screen."
+msgstr ""
+"Les deux zones d'éditions que sont le titre et le contenu de l'activité sont "
+"figées, mais vous pouvez déplacer les autres boîtes de saisies par cliquer-"
+"glisser ; vous pouvez aussi les réduire ou les agrandir en cliquant sur la "
+"barre de titre de chaque boîte. Utilisez l'onglet Options Écran pour "
+"afficher des boîtes supplémentaires (élément primaire, secondaire, liens, "
+"type, ID auteur) ou pour sélectionner un affichage écran sur une ou "
+"plusieurs colonnes."
+
+#: src/Controller/Admin/GroupListTable.php:58
 msgid "No groups found"
 msgstr "Aucun groupe trouvé"
 
-#: src/Admin/GroupListTable.php:74
-msgctxt "Column label"
-msgid "Name"
-msgstr "Nom"
-
-#: src/Admin/GroupListTable.php:75
-msgctxt "Column label"
-msgid "Author"
-msgstr "Auteur"
-
-#: src/Admin/GroupListTable.php:76
-msgctxt "Column label"
-msgid "Desccription"
-msgstr "Desccription ( Desccription )"
-
-#: src/Admin/GroupListTable.php:77
-msgctxt "Column label"
-msgid "Created at"
-msgstr "Créé le"
-
-#: src/Admin/GroupListTable.php:78
-msgctxt "Column lable"
-msgid "Status"
-msgstr "Statut"
-
-#: src/Admin/GroupListTable.php:142
-msgctxt "List table row action"
-msgid "Edit"
-msgstr "Modifier"
-
-#: src/Admin/GroupListTable.php:156
-msgctxt "List table row action"
-msgid "Delete"
-msgstr "Supprimer"
-
-#: src/Admin/GroupListTable.php:187
+#: src/Controller/Admin/GroupListTable.php:70
 msgctxt "List table bulk action"
 msgid "Delete"
 msgstr "Supprimer"
 
-#: src/Admin/OnPluginActivation.php:59
+#: src/Controller/Admin/GroupListTable.php:104
+msgctxt "Column label"
+msgid "Name"
+msgstr "Nom"
+
+#: src/Controller/Admin/GroupListTable.php:105
+msgctxt "Column label"
+msgid "Author"
+msgstr "Auteur"
+
+#: src/Controller/Admin/GroupListTable.php:106
+msgctxt "Column label"
+msgid "Description"
+msgstr "Description"
+
+#: src/Controller/Admin/GroupListTable.php:107
+msgctxt "Column label"
+msgid "Created at"
+msgstr "Créé le"
+
+#: src/Controller/Admin/GroupListTable.php:108
+msgctxt "Column lable"
+msgid "Status"
+msgstr "Statut"
+
+#: src/Controller/Admin/GroupListTable.php:172
+msgctxt "List table row action"
+msgid "Edit"
+msgstr "Modifier"
+
+#: src/Controller/Admin/GroupListTable.php:187
+msgctxt "List table row action"
+msgid "Delete"
+msgstr "Supprimer"
+
+#: src/OnPluginActivation.php:62
 msgctxt "Page slug"
 msgid "groups"
 msgstr "groupes"
 
-#: src/Admin/OnPluginActivation.php:60
+#: src/OnPluginActivation.php:63
 msgctxt "Page title"
 msgid "Groups"
 msgstr "Groupes"
-
-#: src/Admin/Options.php:26 src/Admin/Options.php:27
-#: templates/admin/groups-main.php:11 templates/admin/partials/_tab-nav.php:14
-msgid "Groups"
-msgstr "Groupes"
-
-#: src/Admin/Options.php:36 src/Admin/Options.php:37
-msgid "Create group"
-msgstr "Créer un groupe"
 
 #: templates/admin/create-group.php:11
 msgid "Create new group"
 msgstr "Créer un nouveau groupe"
 
+#: templates/admin/delete-confirm.php:11
+msgid "Delete Groups"
+msgstr "Supprimer les groupes"
+
+#: templates/admin/delete-confirm.php:14
+msgid "You are about to delete the following groups:"
+msgstr "Vous êtes sur le point de supprimer les groupes suivants :"
+
+#: templates/admin/delete-confirm.php:22
+msgid "This action cannot be undone"
+msgstr "Cette action est irréversible"
+
+#: templates/admin/delete-confirm.php:27
+msgid "Delete Permanently"
+msgstr "Supprimer définitivement"
+
+#: templates/admin/delete-confirm.php:28
+msgid "Cancel"
+msgstr "Annuler"
+
 #: templates/admin/dependency-notice.php:15
 #, php-format
 msgid ""
-"The main Yoostart plugin is required to run <strong>%s</strong>, please "
-"activate it"
+"The main <strong>Yoostart</strong> plugin is required to run <strong>%s</"
+"strong>, please activate it"
 msgstr ""
-"Le plugin principal Yoostart est nécessaire pour que <strong>%s</strong> "
-"puisse fonctionner, veuillez l’activer"
+"Le plugin principal <strong>Yoostart</strong> est nécessaire pour que "
+"<strong>%s</strong> puisse fonctionner, veuillez l’activer"
+
+#: templates/admin/groups-index.php:15
+msgid "Add new group"
+msgstr "Ajouter un nouveau groupe"
+
+#: templates/admin/groups-index.php:36
+#, php-format
+msgid "Search results for &#8220;%s&#8221;"
+msgstr "Résultats de recherche pour &#8220;%s&#8221;"
+
+#: templates/admin/groups-index.php:47
+msgid "Search all Groups"
+msgstr "Rechercher dans les groupes"
+
+#: templates/admin/metabox/edit-metabox-status.php:17
+msgid "Delete Group"
+msgstr "Supprimer le groupe"
+
+#: templates/admin/metabox/edit-metabox-status.php:21
+msgid "Save Changes"
+msgstr "Sauvegarder les modifications"
 
 #: templates/admin/partials/_form.php:15
 msgid "Unauthorized user"
 msgstr "Utilisateur non autorisé"
 
 #: templates/admin/partials/_form.php:20
+msgid "Cover photo"
+msgstr "Image de couverture"
+
+#: templates/admin/partials/_form.php:25
 msgid "Name"
 msgstr "Nom"
 
-#: templates/admin/partials/_form.php:24
+#: templates/admin/partials/_form.php:30
 msgid "Description"
 msgstr "Description"
 
-#: templates/admin/partials/_form.php:29
+#: templates/admin/partials/_form.php:41
 msgid "Status"
 msgstr "Statut"
 
-#: templates/admin/partials/_form.php:32
+#: templates/admin/partials/_form.php:44
 msgid "Public"
 msgstr "Publique"
 
-#: templates/admin/partials/_form.php:35
+#: templates/admin/partials/_form.php:47
 msgid "Private"
 msgstr "Privé"
 
-#: templates/admin/partials/_form.php:41
+#: templates/admin/partials/_form.php:53
 msgid "Save"
 msgstr "Sauvegarder"
-
-#: templates/admin/partials/_tab-nav.php:18
-msgid "Create new groupe"
-msgstr "Créer un nouveau groupe"
 
 #. Plugin Name of the plugin/theme
 msgid "Yoostart Groups"
@@ -140,12 +222,11 @@ msgid "https://yoostart.com"
 msgstr "https://yoostart.com"
 
 #. Description of the plugin/theme
-#, fuzzy
 msgid ""
-"Plugin de gestion des groupes, à desctination de yoostart.com, nécessite le "
+"Plugin de gestion des groupes, à destination de yoostart.com, nécessite le "
 "plugin yoostartwp"
 msgstr ""
-"Plugin de gestion des groupes, à desctination de yoostart.com, nécessite le "
+"Plugin de gestion des groupes, à destination de yoostart.com, nécessite le "
 "plugin yoostartwp"
 
 #. Author of the plugin/theme
@@ -157,16 +238,3 @@ msgstr "Yoostart"
 #, fuzzy
 msgid "yoostart.com"
 msgstr "yoostart.com"
-
-#, fuzzy
-#~ msgctxt "Page title"
-#~ msgid "Groupes"
-#~ msgstr "Groupes"
-
-#, fuzzy, php-format
-#~ msgid ""
-#~ "Le plugin Yoostart est nécessaire pour le bon fonctionnement de <strong>"
-#~ "%s</strong>, veuillez l'activer"
-#~ msgstr ""
-#~ "Le plugin Yoostart est nécessaire pour le bon fonctionnement de <strong>"
-#~ "%s</strong> , veuillez l’activer"

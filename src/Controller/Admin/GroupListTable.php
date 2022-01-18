@@ -1,6 +1,6 @@
 <?php
 
-namespace YsGroups\Admin;
+namespace YsGroups\Controller\Admin;
 
 use YsGroups\Model\Groups;
 

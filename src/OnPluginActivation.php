@@ -1,9 +1,9 @@
 <?php
 
-namespace YsGroups\Admin;
+namespace YsGroups;
 
-use YsGroups\Admin\AdminHelpers;
 use YsGroups\Model\DbSchema;
+use YsGroups\Helpers\Helpers;
 
 /**
  * @since 1.0.0
@@ -23,13 +23,16 @@ class OnPluginActivation
 
         // Si nous sommes arrivés jusqu'ici, rien n'est encore en marche, réglons le transient maintenant.
         set_transient('', 'yes', MINUTE_IN_SECONDS * 10);
-        AdminHelpers::maybeDefineConstant('YS_GROUPS_INSTALLING', true);
+        Helpers::maybeDefineConstant('YS_GROUPS_INSTALLING', true);
 
         self::createTables();
         self::createPages();
 
         delete_transient('ys_groups_installing');
 
+        /**
+         * @since 1.0.4
+         */
         do_action('ys_groups_installed');
     }
 
@@ -55,16 +58,21 @@ class OnPluginActivation
         $pages = apply_filters(
             'ys_groups_create_pages',
             [
+                // 'groupes' => [
+                //     'name' => _x('groups', 'Page slug', YS_GROUPS_TEXT_DOMAIN),
+                //     'title' => _x('Groups', 'Page title', YS_GROUPS_TEXT_DOMAIN),
+                //     'content' => '<!-- wp:shortcode -->[ys_groups]<!-- /wp:shortcode -->',
+                // ],
                 'groupes' => [
-                    'name' => _x('groups', 'Page slug', YS_GROUPS_TEXT_DOMAIN),
-                    'title' => _x('Groups', 'Page title', YS_GROUPS_TEXT_DOMAIN),
-                    'content' => '<!-- wp:shortcode -->[ys_groupes]<!-- /wp:shortcode -->',
+                    'name' => 'groupes',
+                    'title' => 'Groupes',
+                    'content' => '<!-- wp:shortcode -->[ys_groups]<!-- /wp:shortcode -->',
                 ],
             ]
         );
 
         foreach ($pages as $key => $page) {
-            AdminHelpers::createPage(
+            Helpers::createPage(
                 esc_sql($page['name']),
                 'ys_groups_' . $key . '_page_id',
                 $page['title'],

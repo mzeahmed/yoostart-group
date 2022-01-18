@@ -1,16 +1,16 @@
 <?php
 
-namespace YsGroups\Admin;
+namespace YsGroups\Controller\Admin;
 
-use YsGroups\Helpers;
 use YsGroups\Model\Groups;
-use YsGroups\ViewRenderer\View;
+use YsGroups\Helpers\Helpers;
 use YsGroups\Model\GroupsMembers;
+use YsGroups\Controller\AbstractController;
 
 /**
  * @since 1.0.6
  */
-class YsAdminGroups
+class AdminGroups extends AbstractController
 {
     public string $pluginPage;
     public string $groupsIndexScreen;
@@ -27,7 +27,7 @@ class YsAdminGroups
         $this->action = $this->groupsIndexScreen . '&action=create';
 
         add_action('admin_menu', [$this, 'adminMenu'], 20);
-        add_action('admin_init', [$this, 'createGroupeHandler']);
+        add_action('admin_init', [$this, 'createGroupHandler']);
     }
 
     /**
@@ -57,7 +57,7 @@ class YsAdminGroups
      */
     public function groupsScreen()
     {
-        $doaction = AdminHelpers::listTableCurrentBulkAction();
+        $doaction = Helpers::listTableCurrentBulkAction();
 
         if ('edit' == $doaction && ! empty($_GET['gid'])) {
         } elseif ('delete' == $doaction && ! empty($_GET['gid'])) {
@@ -105,7 +105,7 @@ class YsAdminGroups
          */
         do_action('ys_groups_admin_index', $messages);
 
-        return View::render('admin/groups-index', [
+        return $this->render('admin/groups-index', [
             'groupList' => $groupList,
             'pluginPage' => $this->pluginPage,
         ]);
@@ -118,7 +118,7 @@ class YsAdminGroups
      */
     public function createGroupe(): ?string
     {
-        return View::render('admin/create-group', ['action' => $this->action]);
+        return $this->render('admin/create-group', ['action' => $this->action]);
     }
 
     /**
@@ -127,7 +127,7 @@ class YsAdminGroups
      * @return void
      * @since 1.0.8
      */
-    public function createGroupeHandler()
+    public function createGroupHandler()
     {
         $user = wp_get_current_user();
         $groups = new Groups();
@@ -138,7 +138,7 @@ class YsAdminGroups
                 wp_die(
                     sprintf(
                         esc_html__(
-                            '<strong>Sorry, nonce %s  dit not verify</strong>',
+                            '<strong>Sorry, nonce %s  did not verifyed</strong>',
                             YS_GROUPS_TEXT_DOMAIN
                         ),
                         '_ys_create_group_nonce'
@@ -176,7 +176,7 @@ class YsAdminGroups
                     false
                 );
 
-                Helpers::addFlash(
+                $this->addFlash(
                     'success',
                     sprintf(
                         __('Group (%s) has been successfully created', YS_GROUPS_TEXT_DOMAIN),
@@ -208,7 +208,7 @@ class YsAdminGroups
 
         $base_url = remove_query_arg(['action', 'action2', 'paged', 's', '_wpnonce', 'gid'], $_SERVER['REQUEST_URI']);
 
-        return View::render('admin/delete-confirm', [
+        return $this->render('admin/delete-confirm', [
             'names' => $group_names,
             'group_ids' => $group_ids,
             'base_url' => $base_url,
@@ -237,7 +237,7 @@ class YsAdminGroups
             'error_modified',
         ], $_SERVER['REQUEST_URI']);
 
-        $doaction = AdminHelpers::listTableCurrentBulkAction();
+        $doaction = Helpers::listTableCurrentBulkAction();
 
         /**
          * @param string $doaction action $_GET courrante

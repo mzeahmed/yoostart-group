@@ -1,12 +1,13 @@
 <?php
 
-namespace YsGroups\Admin;
+namespace YsGroups\Helpers;
+
+use YsGroups\Model\Groups;
 
 /**
- * @package YsAdminGroups
- * @since   1.0.0
+ * @since 1.1.0
  */
-class AdminHelpers
+class Helpers
 {
     /**
      * Défini une constante si elle n'est pas défini
@@ -133,6 +134,47 @@ class AdminHelpers
 
         return $page_id;
     }
+
+    /**
+     * Récuperation du nom des groupes en fonction des ids passés en parametres
+     *
+     * @param array|string $gid
+     *
+     * @return array
+     * @since 1.1.0
+     */
+    public static function getGroupsName(array|string $gid): array
+    {
+        $groupsName = (new Groups())->getGroupsName($gid);
+
+        $name = [];
+        foreach ($groupsName as $groupName) {
+            $obj_vars = get_object_vars($groupName);
+
+            foreach ($obj_vars as $var) {
+                $name[] = $var;
+            }
+        }
+
+        return $name;
+    }
+
+    // /**
+    //  * Ajout de message flash en session
+    //  * Utilisation des classes Bootstrap pour le $type
+    //  *
+    //  * @param string $type @see https://getbootstrap.com/docs/5.0/components/alerts/
+    //  * @param string $message
+    //  *
+    //  * @return void
+    //  * @since 1.0.9
+    //  * @since 1.1.0 deplacé de YsGroups\Admin\AdminHelpers() vers YsGroups\Helpers()
+    //  */
+    // public static function addFlash(string $type, string $message)
+    // {
+    //     $_SESSION['ys_flash']['type'] = $type;
+    //     $_SESSION['ys_flash']['message'] = $message;
+    // }
 
     /**
      * Lorsqu'on utilise WP_List_Table, recuperons l'action actuellement sélectionnée.

@@ -2,18 +2,14 @@
 
 namespace YsGroups;
 
-use YsGroups\Model\Groups;
-use YsGroups\ViewRenderer\View;
-use YsGroups\Admin\OnPluginActivation;
-
 /**
- * @package YsAdminGroups
+ * @package AdminGroupsController
  * @since   1.0.0
  */
 class YsGroups
 {
     /**
-     * Instance de YsAdminGroups
+     * Instance de AdminGroupsController
      *
      * @var YsGroups|null
      */
@@ -41,7 +37,7 @@ class YsGroups
     }
 
     /**
-     * S'assure qu'une seule instance de YsAdminGroups est chargée
+     * S'assure qu'une seule instance de AdminGroupsController est chargée
      *
      * @return YsGroups|null
      * @see   yoostart_groups()
@@ -69,45 +65,5 @@ class YsGroups
         });
 
         add_action('plugins_loaded', [$this, 'onPluginsLoaded']);
-        add_action('admin_notices', [$this, 'dependencyNotice']);
-    }
-
-    /**
-     * @return bool|string
-     */
-    public function dependencyNotice(): bool|string
-    {
-        if (! class_exists('Yoostart')) {
-            return View::render('admin/dependency-notice', []);
-        }
-
-        return false;
-    }
-
-    /**
-     * Chargement des css et js du front
-     *
-     * @return void
-     * @since 1.0.6
-     */
-    public function enqueueScripts()
-    {
-        if (str_contains($_SERVER['REQUEST_URI'], 'groups')) {
-            wp_enqueue_style(
-                'ys-group',
-                YS_GROUPS_URL . '/public/css/app.css',
-                [],
-                YS_GROUPS_VERSION,
-                'all'
-            );
-
-            wp_enqueue_script(
-                'ys-group',
-                YS_GROUPS_URL . '/public/js/app.js',
-                [],
-                YS_GROUPS_VERSION,
-                true,
-            );
-        }
     }
 }

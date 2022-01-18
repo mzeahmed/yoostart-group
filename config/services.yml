@@ -6,11 +6,11 @@ services:
         resource: '../src/*'
         exclude: '../src/{constants.php}'
 
-    YsGroups\Admin\Admin:
+    YsGroups\Controller\Admin\Admin:
         public: true
 
     YsGroups\Session:
         public: true
 
-    YsGroups\Front\Front:
+    YsGroups\Controller\Front\Front:
         public: true

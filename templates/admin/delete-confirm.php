@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @package YsAdminGroups\Admin
+ * @package AdminGroupsController\Admin
  * @since   1.1.0
  */
 

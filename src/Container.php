@@ -2,8 +2,8 @@
 
 namespace YsGroups;
 
-use YsGroups\Admin\Admin;
-use YsGroups\Front\Front;
+use YsGroups\Controller\Admin\Admin;
+use YsGroups\Controller\Front\Front;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Dumper\PhpDumper;

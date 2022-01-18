@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @package YsAdminGroups
+ * @package AdminGroupsController
  * @since   1.0.0
  */
 
@@ -12,7 +12,7 @@
         <?php
         printf(
             __(
-                "The main Yoostart plugin is required to run <strong>%s</strong>, please activate it",
+                "The main <strong>Yoostart</strong> plugin is required to run <strong>%s</strong>, please activate it",
                 YS_GROUPS_TEXT_DOMAIN
             ),
             YS_GROUPS_PLUGIN_NAME
