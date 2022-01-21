@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Yoostart Groups\n"
-"POT-Creation-Date: 2022-01-18 00:56+0100\n"
-"PO-Revision-Date: 2022-01-18 00:56+0100\n"
+"POT-Creation-Date: 2022-01-21 01:06+0100\n"
+"PO-Revision-Date: 2022-01-21 01:09+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -23,33 +23,33 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-1: vendor\n"
 "X-Poedit-SearchPathExcluded-2: node_modules\n"
 
-#: src/Controller/Admin/AdminGroups.php:41
-#: src/Controller/Admin/AdminGroups.php:42 templates/admin/groups-index.php:11
+#: src/Controller/Admin/AdminGroups.php:43
+#: src/Controller/Admin/AdminGroups.php:44 templates/admin/groups-index.php:11
 msgid "Groups"
 msgstr "Groupes"
 
-#: src/Controller/Admin/AdminGroups.php:89
+#: src/Controller/Admin/AdminGroups.php:91
 #, php-format
 msgid "%s group has been permanently deleted."
 msgid_plural "%s groups have permanently deleted."
 msgstr[0] "Le groupe %s a été définitivement supprimé."
 msgstr[1] "Les groupes %s ont été définitivement supprimés."
 
-#: src/Controller/Admin/AdminGroups.php:141
+#: src/Controller/Admin/AdminGroups.php:143
 #, php-format
 msgid "<strong>Sorry, nonce %s  did not verifyed</strong>"
 msgstr "<strong>Désolé, le nonce %s n'a pas été vérifié</strong>"
 
-#: src/Controller/Admin/AdminGroups.php:182
+#: src/Controller/Admin/AdminGroups.php:184
 #, php-format
 msgid "Group (%s) has been successfully created"
 msgstr "Le groupe (%s) a été créé avec succès"
 
-#: src/Controller/Admin/AdminGroups.php:269
+#: src/Controller/Admin/AdminGroups.php:271
 msgid "Overview"
 msgstr "Aperçu"
 
-#: src/Controller/Admin/AdminGroups.php:272
+#: src/Controller/Admin/AdminGroups.php:274
 msgid ""
 "This page is a convenient way to edit the details associated with one of "
 "your groups."
@@ -57,7 +57,7 @@ msgstr ""
 "Cette page est un moyen pratique de modifier les détails associés à un de "
 "vos régions."
 
-#: src/Controller/Admin/AdminGroups.php:276
+#: src/Controller/Admin/AdminGroups.php:278
 msgid ""
 "The Name and Description box is fixed in place, but you can reposition all "
 "the other boxes using drag and drop, and can minimize or expand them by "
@@ -75,11 +75,6 @@ msgstr ""
 #: src/Controller/Admin/GroupListTable.php:58
 msgid "No groups found"
 msgstr "Aucun groupe trouvé"
-
-#: src/Controller/Admin/GroupListTable.php:70
-msgctxt "List table bulk action"
-msgid "Delete"
-msgstr "Supprimer"
 
 #: src/Controller/Admin/GroupListTable.php:104
 msgctxt "Column label"
@@ -116,15 +111,62 @@ msgctxt "List table row action"
 msgid "Delete"
 msgstr "Supprimer"
 
-#: src/OnPluginActivation.php:62
-msgctxt "Page slug"
-msgid "groups"
-msgstr "groupes"
+#: src/Controller/Front/GroupsController.php:51
+msgid "&laquo; Prev"
+msgstr "Préc"
 
-#: src/OnPluginActivation.php:63
-msgctxt "Page title"
-msgid "Groups"
-msgstr "Groupes"
+#: src/Controller/Front/GroupsController.php:52
+msgid "Next &raquo;"
+msgstr "Suiv"
+
+#: src/Helpers/Helpers.php:231 src/Helpers/Helpers.php:236
+#: src/Helpers/Helpers.php:241
+msgid "Ago "
+msgstr "Il y a "
+
+#: src/Helpers/Helpers.php:234
+#, php-format
+msgid "%u s ago"
+msgstr "il y a %u s"
+
+#: src/Helpers/Helpers.php:239
+#, php-format
+msgid "%u min ago"
+msgstr "il y a %u min"
+
+#: src/Helpers/Helpers.php:244
+#, php-format
+msgid "%u h go"
+msgstr ""
+
+#: src/Helpers/Helpers.php:246
+msgid "Hier à "
+msgstr ""
+
+#: src/Helpers/Helpers.php:249
+#, php-format
+msgid "Yesterday at %1$u : %2$u"
+msgstr ""
+
+#: src/Helpers/Helpers.php:302
+#, php-format
+msgid "In %s days"
+msgstr "Dans %s jours"
+
+#: src/Helpers/Helpers.php:304
+#, php-format
+msgid "In %sh"
+msgstr ""
+
+#: src/Helpers/Helpers.php:306
+#, php-format
+msgid "In %smin"
+msgstr ""
+
+#: src/Helpers/Helpers.php:308
+#, php-format
+msgid "In %ss"
+msgstr ""
 
 #: templates/admin/create-group.php:11
 msgid "Create new group"
@@ -212,6 +254,25 @@ msgstr "Privé"
 msgid "Save"
 msgstr "Sauvegarder"
 
+#: templates/front/groups.php:19
+#, fuzzy, php-format
+#| msgid "Cover photo"
+msgid "%s cover's photo"
+msgstr "Image de couverture"
+
+#: templates/front/groups.php:26
+#, php-format
+msgid "%s's cover photo"
+msgstr "Image de couverture de %s"
+
+#: templates/front/groups.php:33
+msgid "Join group"
+msgstr "Rejoindre le groupe"
+
+#: templates/front/groups.php:45
+msgid "No group found"
+msgstr "Aucun groupe trouvé"
+
 #. Plugin Name of the plugin/theme
 msgid "Yoostart Groups"
 msgstr "Groupes Yoostart"
@@ -238,3 +299,11 @@ msgstr "Yoostart"
 #, fuzzy
 msgid "yoostart.com"
 msgstr "yoostart.com"
+
+#~ msgctxt "List table bulk action"
+#~ msgid "Delete"
+#~ msgstr "Supprimer"
+
+#~ msgctxt "Page title"
+#~ msgid "Groups"
+#~ msgstr "Groupes"

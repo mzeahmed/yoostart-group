@@ -1,63 +1,102 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+@import "responsive/app.responsive";
 
+// Page de repertoire des groupes
 .ys-groups-groups {
     .ys-groups-list {
-        //display: flex;
-        //flex-wrap: wrap;
-        //justify-content: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-bottom: 55px;
 
-        //.ys-group {
-        //    width: 300px;
-        //    text-align: center;
-        //    margin-bottom: 20px;
-        //}
+        .ys-groups {
+            width: 300px;
+            text-align: center;
+            margin-bottom: 20px;
+
+            .ys-group-content {
+                margin: 0 10px;
+                background: #fff;
+                padding-bottom: 20px;
+                border-radius: 2px;
+                box-shadow: 0 0 10px #dadada;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+
+                .ys-group-cover {
+                    height: 140px;
+                    background-position: center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                }
+
+                .ys-group-avatar {
+                    background-position: center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    width: 70px;
+                    height: 70px;
+                    border-radius: 50%;
+                    margin: 0 auto;
+                    border: solid 1px #4ab8a6;
+                    background-color: #fff;
+                }
+
+                .ys-group-info {
+                    margin-top: -40px;
+
+                    .ys-group-name {
+                        font-weight: 500;
+                        font-size: 14px;
+                        margin-top: 10px;
+                    }
+
+                    .ys-group-status {
+                        font-size: 11px;
+                    }
+
+                    .ys-group-statistics {
+                        .ys-group-data-item {
+                            display: inline-block;
+
+                            span {
+                                color: #fff;
+                                width: 35px;
+                                margin: 5px;
+                                height: 35px;
+                                display: block;
+                                font-size: 20px;
+                                line-height: 35px;
+                                text-align: center;
+                                border-radius: 3px;
+                            }
+                        }
+
+                        .ys-group-data-members {
+                            span {
+                                background-color: #f76697 !important;
+                            }
+                        }
+
+                        .ys-group-data-last-activity {
+                            span {
+                                background-color: #ffc107 !important;
+                            }
+                        }
+                    }
+                }
+
+                .ys-group-join {
+                    margin-top: auto;
+                }
+            }
+        }
     }
 
     .ys-groups-pagination {
         position: absolute;
-        bottom: -45px;
+        bottom: 15px;
     }
-}
-
-.user-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.user-list .user {
-    width: 300px;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.user-list .user-content {
-    margin: 0 10px;
-    background: #fff;
-    padding-bottom: 20px;
-    border-radius: 2px;
-    box-shadow: 0 0 10px #dadada;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.user-list .cover-img {
-    height: 140px;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-.user-list .user-info-core {
-    margin-top: -40px;
-}
-
-.user-list .nom-prenom {
-    font-weight: 500;
-    font-size: 14px;
-}
-
-.user-list .user-see-profile {
-    margin-top: auto;
 }

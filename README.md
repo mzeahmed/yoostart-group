@@ -12,8 +12,10 @@
 
 # Yoostart Groups
 
-Plugin en developpement, ajoutera la fonctionnalitée de gestion des groupes au site [yoostart.com](https://yoostart.com)
-, dépend d'un autre plugin, ne fonctionnera pas seul
+Plugin de gestion des groupes à destination du site [yoostart.com](https://yoostart.com)
+, dépend d'un autre plugin, ne fonctionnera pas seul.
+
+Adopte une architecture MVC pour une meilleure séparation des tâches
 
 ## Prérequis
 
@@ -27,4 +29,4 @@ Plugin en developpement, ajoutera la fonctionnalitée de gestion des groupes au 
 
 * [symfony/dependency-injection](https://symfony.com/doc/current/components/dependency_injection.html)
 
-## Configuration du container de services
+[//]: # (## Configuration du container de services)

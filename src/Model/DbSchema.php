@@ -29,6 +29,7 @@ class DbSchema extends Db
                         description longtext NOT NULL,
                         status varchar(10) NOT NULL DEFAULT 'public',
                         cover_photo varchar(250) NULL,
+                        avatar varchar(250) NULL,
                         created_at datetime NOT NULL,
                         KEY creator_id (creator_id),
                         Key status (status)

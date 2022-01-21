@@ -33,6 +33,8 @@ class Front
                 'all'
             );
 
+            wp_enqueue_style('dashicons');
+
             wp_enqueue_script(
                 'ys-group',
                 YS_GROUPS_URI . '/public/js/app.js',
