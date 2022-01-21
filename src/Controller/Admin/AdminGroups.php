@@ -13,7 +13,9 @@ use YsGroups\Controller\AbstractController;
 class AdminGroups extends AbstractController
 {
     public string $pluginPage;
+
     public string $groupsIndexScreen;
+
     public string $action;
 
     public function __construct()

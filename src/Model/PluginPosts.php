@@ -23,7 +23,7 @@ class PluginPosts extends Db
             $result[] = $this->wpdb->get_var(
                 $this->wpdb->prepare(
                     "SELECT option_value FROM " . $this->prefix . "options WHERE option_name = %s",
-                    'ys_groupes_' . $post . '_page_id'
+                    'ys_groups_' . $post . '_page_id'
                 )
             );
         }

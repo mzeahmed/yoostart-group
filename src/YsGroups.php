@@ -65,5 +65,23 @@ class YsGroups
         });
 
         add_action('plugins_loaded', [$this, 'onPluginsLoaded']);
+        add_filter('body_class', [$this, 'bodyClass']);
+    }
+
+    /**
+     * Ajout de classes CSS dans la balise body
+     *
+     * @param $classes
+     *
+     * @return mixed
+     * @since 1.1.2
+     */
+    public function bodyClass($classes): mixed
+    {
+        if (is_page('Groupes')) {
+            $classes[] = 'ys-groups-groups';
+        }
+
+        return $classes;
     }
 }

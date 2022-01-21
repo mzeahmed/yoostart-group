@@ -58,11 +58,6 @@ class OnPluginActivation
         $pages = apply_filters(
             'ys_groups_create_pages',
             [
-                // 'groupes' => [
-                //     'name' => _x('groups', 'Page slug', YS_GROUPS_TEXT_DOMAIN),
-                //     'title' => _x('Groups', 'Page title', YS_GROUPS_TEXT_DOMAIN),
-                //     'content' => '<!-- wp:shortcode -->[ys_groups]<!-- /wp:shortcode -->',
-                // ],
                 'groupes' => [
                     'name' => 'groupes',
                     'title' => 'Groupes',

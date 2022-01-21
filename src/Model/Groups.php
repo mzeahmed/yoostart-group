@@ -8,19 +8,51 @@ namespace YsGroups\Model;
 class Groups extends Db
 {
     /**
-     * Recupération de tout les groupes
+     * Recupération de tout les groupes sous forme de tableau
      *
      * @param string $orderby
      * @param string $order
      *
-     * @return object|array|null
+     * @return array
      * @since 1.0.7
      */
-    public function getGroups(string $orderby = 'created_at', string $order = 'DESC'): object|array|null
+    public function getGroups(string $orderby = 'created_at', string $order = 'DESC'): array
     {
-        $query = "SELECT * FROM {$this->ys_groups_prefix}groups ORDER BY $orderby $order";
+        $query = "SELECT * FROM {$this->ys_groups_prefix}groups ORDER BY {$orderby} {$order}";
 
         return $this->wpdb->get_results($query, 'ARRAY_A');
+    }
+
+    /**
+     * Pagination des groupes
+     *
+     * @param int $itemsPerPage Nombre de groups par page
+     * @param int $offset
+     *
+     * @return array
+     * @since 1.1.2
+     */
+    public function getPaginatedGroups(int $itemsPerPage, int $offset = 0): array
+    {
+        $query = "SELECT * FROM {$this->ys_groups_prefix}groups 
+                    ORDER BY created_at DESC 
+                    LIMIT {$offset}, {$itemsPerPage}";
+
+        return $this->wpdb->get_results($query, 'ARRAY_A');
+    }
+
+    /**
+     * Recuperation du nombre total des groupes
+     *
+     * @return string|null
+     * @since 1.1.2
+     */
+    public function groupsTotalQuery(): ?string
+    {
+        $query = "SELECT * FROM {$this->ys_groups_prefix}groups";
+        $totalQuery = "SELECT COUNT(1) FROM (${query}) AS combinated_table";
+
+        return $this->wpdb->get_var($totalQuery);
     }
 
     /**

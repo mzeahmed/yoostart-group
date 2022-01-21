@@ -27,7 +27,7 @@ class Front
         if (str_contains($_SERVER['REQUEST_URI'], 'groupes')) {
             wp_enqueue_style(
                 'ys-group',
-                YS_GROUPS_URL . '/public/css/app.css',
+                YS_GROUPS_URI . '/public/css/app.css',
                 [],
                 YS_GROUPS_VERSION,
                 'all'
@@ -35,7 +35,7 @@ class Front
 
             wp_enqueue_script(
                 'ys-group',
-                YS_GROUPS_URL . '/public/js/app.js',
+                YS_GROUPS_URI . '/public/js/app.js',
                 [],
                 YS_GROUPS_VERSION,
                 true,

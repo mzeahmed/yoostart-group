@@ -32,7 +32,7 @@
 
             <?php if (! empty($_REQUEST['s'])) : ?>
                 <span class="subtitle">
-                    <?php printf(
+                    <?php sprintf(
                         __('Search results for &#8220;%s&#8221;', YS_GROUPS_TEXT_DOMAIN),
                         wp_html_excerpt(esc_html(stripslashes($_REQUEST['s'])), 50)
                     ); ?>

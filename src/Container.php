@@ -43,7 +43,8 @@ class Container
             /**
              * creation du fichier de cache du container
              *
-             * @todo supprimmer le fichier '/cache/container.php' à chaque modification du fichier de configuration 'config/services.yaml'
+             * @todo à chaque modification du fichier de configuration 'config/services.yaml'
+             * @todo supprimer le fichier '/cache/container.php'
              * il sera generé automatiquement avec les nouvelles configurations
              */
             $dumper = new PhpDumper($container);

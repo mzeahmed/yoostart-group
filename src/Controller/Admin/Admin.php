@@ -11,6 +11,7 @@ use YsGroups\Controller\AbstractController;
 class Admin extends AbstractController
 {
     public AdminGroups $ysGroups;
+
     public string $page;
 
     /**
@@ -40,7 +41,7 @@ class Admin extends AbstractController
         if (! empty($this->page) && ($this->page === 'ys_options_groups')) {
             wp_enqueue_style(
                 'ys-groups-admin',
-                YS_GROUPS_URL . '/public/css/admin.css',
+                YS_GROUPS_URI . '/public/css/admin.css',
                 [],
                 YS_GROUPS_VERSION,
                 'all'
@@ -48,7 +49,7 @@ class Admin extends AbstractController
 
             wp_enqueue_script(
                 'ys-groups-admin',
-                YS_GROUPS_URL . '/public/js/admin.js',
+                YS_GROUPS_URI . '/public/js/admin.js',
                 [],
                 YS_GROUPS_VERSION,
                 true

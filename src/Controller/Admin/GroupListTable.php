@@ -64,12 +64,12 @@ class GroupListTable extends \WP_List_Table
      * @return array
      * @since 1.0.7
      */
-    protected function get_bulk_actions(): array
-    {
-        return [
-            'delete' => _x('Delete', 'List table bulk action', YS_GROUPS_TEXT_DOMAIN),
-        ];
-    }
+    // protected function get_bulk_actions(): array
+    // {
+    //     return [
+    //         'delete' => _x('Delete', 'List table bulk action', YS_GROUPS_TEXT_DOMAIN),
+    //     ];
+    // }
 
     /**
      * @return void
@@ -100,7 +100,7 @@ class GroupListTable extends \WP_List_Table
     public function get_columns(): array
     {
         return apply_filters('ys_group_list_table_get_columns', [
-            'cb' => '<input type="checkbox"/>',
+            // 'cb' => '<input type="checkbox"/>',
             'name' => _x('Name', 'Column label', YS_GROUPS_TEXT_DOMAIN),
             'creator_id' => _x('Author', 'Column label', YS_GROUPS_TEXT_DOMAIN),
             'description' => _x('Description', 'Column label', YS_GROUPS_TEXT_DOMAIN),
