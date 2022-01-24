@@ -58,6 +58,7 @@ class Container
             $container->get(Admin::class);
             $container->get(Session::class);
             $container->get(Front::class);
+            $container->get(RewriteRules::class);
         } catch (\Exception $e) {
             echo $e->getMessage();
         }

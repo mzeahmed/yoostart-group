@@ -74,7 +74,7 @@
                 <hr>
 
                 <div class="ys-group-join">
-                    <a href="#" class="btn btn-primary">
+                    <a href="<?php echo home_url('groupe/' . $group['slug']) ?>" class="btn btn-primary">
                         <i class="fas fa-sign-in-alt"></i>
                         <?php _e('Join group', YS_GROUPS_TEXT_DOMAIN); ?>
                     </a>

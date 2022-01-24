@@ -20,6 +20,8 @@ class AdminGroups extends AbstractController
 
     public function __construct()
     {
+        parent::__construct();
+
         if (isset($_GET['page'])) {
             $this->pluginPage = wp_unslash($_GET['page']);
             $this->pluginPage = plugin_basename($this->pluginPage);
@@ -87,12 +89,15 @@ class AdminGroups extends AbstractController
 
             if ($deleted > 0) {
                 /* traductions: %s: nombre de groupes supprimés */
-                $messages[] = sprintf(_n(
-                    '%s group has been permanently deleted.',
-                    '%s groups have permanently deleted.',
-                    $deleted,
-                    YS_GROUPS_TEXT_DOMAIN
-                ), number_format_i18n($deleted));
+                $messages[] = sprintf(
+                    _n(
+                        '%s group has been permanently deleted.',
+                        '%s groups have permanently deleted.',
+                        $deleted,
+                        YS_GROUPS_TEXT_DOMAIN
+                    ),
+                    number_format_i18n($deleted)
+                );
             }
         }
 

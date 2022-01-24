@@ -21,6 +21,8 @@ class Admin extends AbstractController
      */
     public function __construct(AdminGroups $ysGroups)
     {
+        parent::__construct();
+
         $this->ysGroups = $ysGroups;
         $this->page = $_GET['page'] ?? '';
 
@@ -94,6 +96,7 @@ class Admin extends AbstractController
      * @param \WP_Post $post
      *
      * @return array
+     * @see   YS_GROUPS_POSTS
      * @since 1.0.5
      */
     public function displayPostStates(array $posts_states, \WP_Post $post): array

@@ -8,6 +8,36 @@ namespace YsGroups\Controller;
 abstract class AbstractController
 {
     /**
+     * Uri de la pages des groupes
+     *
+     * @var string
+     */
+    protected string $groupsDirectoryUri;
+
+    /**
+     * @var \WP_Query
+     */
+    protected \WP_Query $wpQuery;
+
+    /**
+     * @var string|mixed uri courrant
+     */
+    protected string $requestUri;
+
+    /**
+     * @var array|string[] elements de la requete segmentés dans un tableau
+     */
+    protected array $request;
+
+    public function __construct()
+    {
+        $this->groupsDirectoryUri = YS_GROUPS_URL;
+
+        $this->requestUri = $_SERVER['REQUEST_URI'];
+        $this->request = explode('/', $this->requestUri);
+    }
+
+    /**
      * Rendu du template
      *
      * @param string $template
@@ -22,7 +52,7 @@ abstract class AbstractController
 
         ob_start();
         extract($params);
-        require($path);
+        require_once($path);
 
         /**
          * @since 1.1.1
@@ -32,6 +62,36 @@ abstract class AbstractController
         }
 
         return ob_get_contents();
+    }
+
+    /**
+     * Retourne le chemin du template avec possibilité d'envoyer des paramettres
+     *
+     * @param string $template
+     * @param string $varName Nom de la variable
+     * @param array  $params  Tableau des valeurs
+     *
+     * @return string
+     * @example Exemple d'usage :
+     *              $this->locateTemplate('nom-du-template', 'nom_de_la_variable', ['variable1' => $variable1])
+     *          Pour récuperer la variable :
+     *              global $wp_query; extract($wp_query->query_vars);
+     *              echo $nom_de_la_variable['variable1'];
+     *
+     * @since   1.1.4
+     */
+    protected function locateTemplate(string $template, string $varName = '', array $params = []): string
+    {
+        $located = '';
+        $file = $this->getTemplatePath() . $template . '.php';
+
+        if (file_exists($file)) {
+            $located = $file;
+        }
+
+        set_query_var($varName, $params);
+
+        return $located;
     }
 
     /**

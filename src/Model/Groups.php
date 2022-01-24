@@ -102,13 +102,13 @@ class Groups extends Db
     /**
      * Persistance du groupe en bdd
      *
-     * @param int         $author_id
+     * @param int $author_id
      * @param string|null $cover_photo
-     * @param string      $name
-     * @param string      $slug
-     * @param string      $description
-     * @param string      $status
-     * @param string      $created_at
+     * @param string $name
+     * @param string $slug
+     * @param string $description
+     * @param string $status
+     * @param string $created_at
      *
      * @return bool|int
      * @since 1.0.8

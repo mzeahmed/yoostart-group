@@ -57,7 +57,7 @@ class GroupsMembers extends Db
                 'is_admin' => $isAdmin,
                 'modified_at' => $modifiedAt,
                 'is_confirmed' => $isConfirmed,
-                'is_banned' => $isBanned
+                'is_banned' => $isBanned,
             ],
             ['%d', '%d', '%d', '%s', '%s', '%s', '%s']
         );

@@ -12,7 +12,10 @@ class GroupsController extends AbstractController
 {
     public function __construct()
     {
+        parent::__construct();
+
         add_shortcode('ys_groups', [$this, 'groups']);
+        add_filter('template_include', [$this, 'show'], 99);
     }
 
     /**
@@ -58,5 +61,31 @@ class GroupsController extends AbstractController
             'groupsTotal' => $groupsTotal,
             'paginateLinks' => $paginateLinks,
         ]);
+    }
+
+    /**
+     * Affichage d'un groupe
+     *
+     * @since 1.1.3
+     */
+    public function show($template)
+    {
+        $slug = get_query_var('gslug');
+        $feedPosts = [];
+
+        if (! empty($slug)) {
+            $url = $this->groupsDirectoryUri . $slug;
+
+            $template = $this->locateTemplate(
+                'front/single-group',
+                'ys_single_group_var',
+                [
+                    'singleGroupUrl' => $url,
+                    'feedPosts' => $feedPosts,
+                ]
+            );
+        }
+
+        return $template;
     }
 }

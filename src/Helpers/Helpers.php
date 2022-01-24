@@ -70,20 +70,24 @@ class Helpers
         if (strlen($page_content) > 0) {
             // Recherche d'une page existante avec le contenu de page spécifié (généralement un shortcode).
             $shortcode = str_replace(['<!-- wp:shortcode -->', '<!-- /wp:shortcode -->'], '', $page_content);
-            $valid_page_found = $wpdb->get_var($wpdb->prepare(
-                "SELECT ID FROM $wpdb->posts 
+            $valid_page_found = $wpdb->get_var(
+                $wpdb->prepare(
+                    "SELECT ID FROM $wpdb->posts 
                         WHERE post_type='page' AND post_status NOT IN ( 'pending', 'trash', 'future', 'auto-draft' ) 
                         AND post_content LIKE %s LIMIT 1;",
-                "%{$shortcode}%"
-            ));
+                    "%{$shortcode}%"
+                )
+            );
         } else {
             // Recherche d'une page existante avec le slug spécifié
-            $valid_page_found = $wpdb->get_var($wpdb->prepare(
-                "SELECT ID FROM $wpdb->posts 
+            $valid_page_found = $wpdb->get_var(
+                $wpdb->prepare(
+                    "SELECT ID FROM $wpdb->posts 
                         WHERE post_type='page' AND post_status NOT IN ( 'pending', 'trash', 'future', 'auto-draft' )  
                         AND post_name = %s LIMIT 1;",
-                $slug
-            ));
+                    $slug
+                )
+            );
         }
 
         $valid_page_found = apply_filters('ys_groups_create_page_id', $valid_page_found, $slug, $page_content);
@@ -99,22 +103,26 @@ class Helpers
         // Search for a matching valid trashed page.
         if (strlen($page_content) > 0) {
             // Search for an existing page with the specified page content (typically a shortcode).
-            $trashed_page_found = $wpdb->get_var($wpdb->prepare(
-                "SELECT ID FROM $wpdb->posts 
+            $trashed_page_found = $wpdb->get_var(
+                $wpdb->prepare(
+                    "SELECT ID FROM $wpdb->posts 
                         WHERE post_type='page' 
                         AND post_status = 'trash' 
                         AND post_content LIKE %s LIMIT 1;",
-                "%{$page_content}%"
-            ));
+                    "%{$page_content}%"
+                )
+            );
         } else {
             // Search for an existing page with the specified page slug.
-            $trashed_page_found = $wpdb->get_var($wpdb->prepare(
-                "SELECT ID FROM $wpdb->posts 
+            $trashed_page_found = $wpdb->get_var(
+                $wpdb->prepare(
+                    "SELECT ID FROM $wpdb->posts 
                         WHERE post_type='page' 
                         AND post_status = 'trash' 
                         AND post_name = %s LIMIT 1;",
-                $slug
-            ));
+                    $slug
+                )
+            );
         }
 
         if ($trashed_page_found) {

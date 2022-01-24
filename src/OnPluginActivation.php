@@ -63,6 +63,11 @@ class OnPluginActivation
                     'title' => 'Groupes',
                     'content' => '<!-- wp:shortcode -->[ys_groups]<!-- /wp:shortcode -->',
                 ],
+                'groupe' => [
+                    'name' => 'groupe',
+                    'title' => 'Groupe',
+                    'content' => '',
+                ],
             ]
         );
 

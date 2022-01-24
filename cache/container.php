@@ -22,6 +22,7 @@ class YsGroupsCacheContainer extends Container
         $this->methodMap = [
             'YsGroups\\Controller\\Admin\\Admin' => 'getAdminService',
             'YsGroups\\Controller\\Front\\Front' => 'getFrontService',
+            'YsGroups\\RewriteRules' => 'getRewriteRulesService',
             'YsGroups\\Session' => 'getSessionService',
         ];
 
@@ -64,7 +65,9 @@ class YsGroupsCacheContainer extends Container
      */
     protected function getAdminService()
     {
-        return $this->services['YsGroups\\Controller\\Admin\\Admin'] = new \YsGroups\Controller\Admin\Admin(new \YsGroups\Controller\Admin\AdminGroups());
+        return $this->services['YsGroups\\Controller\\Admin\\Admin'] = new \YsGroups\Controller\Admin\Admin(
+            new \YsGroups\Controller\Admin\AdminGroups()
+        );
     }
 
     /**
@@ -74,7 +77,19 @@ class YsGroupsCacheContainer extends Container
      */
     protected function getFrontService()
     {
-        return $this->services['YsGroups\\Controller\\Front\\Front'] = new \YsGroups\Controller\Front\Front(new \YsGroups\Controller\Front\GroupsController());
+        return $this->services['YsGroups\\Controller\\Front\\Front'] = new \YsGroups\Controller\Front\Front(
+            new \YsGroups\Controller\Front\GroupsController()
+        );
+    }
+
+    /**
+     * Gets the public 'YsGroups\RewriteRules' shared autowired service.
+     *
+     * @return \YsGroups\RewriteRules
+     */
+    protected function getRewriteRulesService()
+    {
+        return $this->services['YsGroups\\RewriteRules'] = new \YsGroups\RewriteRules();
     }
 
     /**
