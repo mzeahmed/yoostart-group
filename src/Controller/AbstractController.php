@@ -102,7 +102,7 @@ abstract class AbstractController
      */
     private function getTemplatePath(): ?string
     {
-        return YS_GROUPS_PATH . '/templates/';
+        return YS_GROUPS_PATH . 'templates/';
     }
 
     /**

@@ -71,6 +71,42 @@ class Groups extends Db
     }
 
     /**
+     * Recupere l'ID d'un group en fonction de son slug
+     *
+     * @param string $slug
+     *
+     * @return string|null
+     * @since 1.1.5
+     */
+    public function getGroupIdBySlug(string $slug): ?string
+    {
+        $query = $this->wpdb->prepare(
+            "SELECT id FROM {$this->ys_groups_prefix}groups WHERE slug = %s",
+            $slug
+        );
+
+        return $this->wpdb->get_var($query);
+    }
+
+    /**
+     * Recupere les donnéesd'un group en fonction de son slug
+     *
+     * @param string $slug
+     *
+     * @return array
+     * @since 1.1.5
+     */
+    public function getGroupDatasBySlug(string $slug): array
+    {
+        $query = $this->wpdb->prepare(
+            "SELECT * FROM {$this->ys_groups_prefix}groups WHERE slug = %s",
+            $slug
+        );
+
+        return $this->wpdb->get_results($query, ARRAY_A);
+    }
+
+    /**
      * Recuperation de l'ID du dernier groupe créer
      *
      * @return string|null

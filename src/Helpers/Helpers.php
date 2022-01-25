@@ -180,6 +180,19 @@ class Helpers
     }
 
     /**
+     * Recupere les donnéesd'un group en fonction de son slug
+     *
+     * @param string $slug
+     *
+     * @return array
+     * @since 1.1.5
+     */
+    public static function getGroupDatasBySlug(string $slug): array
+    {
+        return (new Groups())->getGroupDatasBySlug($slug);
+    }
+
+    /**
      * Lorsqu'on utilise WP_List_Table, recuperons l'action actuellement sélectionnée.
      *
      * @return string|null

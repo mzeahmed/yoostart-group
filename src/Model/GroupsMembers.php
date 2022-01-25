@@ -62,4 +62,22 @@ class GroupsMembers extends Db
             ['%d', '%d', '%d', '%s', '%s', '%s', '%s']
         );
     }
+
+    /**
+     * Recupere l'ID de l'administrateur du groupe
+     *
+     * @param int $groupId Id du group
+     *
+     * @return string|null
+     * @since 1.1.5
+     */
+    public function getGroupAdminId(int $groupId): ?string
+    {
+        $query = $this->wpdb->prepare(
+            "SELECT user_id FROM {$this->ys_groups_prefix}groups_members WHERE is_admin = 1 AND group_id=%d",
+            $groupId
+        );
+
+        return $this->wpdb->get_var($query);
+    }
 }

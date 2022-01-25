@@ -28,20 +28,26 @@
                 <?php endif; ?>
                 <div class="ys-group-info">
                     <?php if ($group['avatar'] != null) : ?>
-                        <img
-                            src=""
-                            class="ys-group-avatar"
-                            alt="<?php echo sprintf(__("%s's avatar"), ucfirst($group['name'])) ?>"
-                        >
+                        <a href="<?php echo home_url('groupe/' . $group['slug']) ?>">
+                            <img
+                                src=""
+                                class="ys-group-avatar"
+                                alt="<?php echo sprintf(__("%s's avatar"), ucfirst($group['name'])) ?>"
+                            >
+                        </a>
                     <?php else : ?>
-                        <img
-                            src="<?php echo YS_GROUPS_URI . '/public/img/default-group-avatar.png' ?>"
-                            class="ys-group-avatar"
-                            alt="<?php echo sprintf(__("%s's avatar"), ucfirst($group['name'])) ?>"
-                        >
+                        <a href="<?php echo home_url('groupe/' . $group['slug']) ?>">
+                            <img
+                                src="<?php echo YS_GROUPS_URI . '/public/img/default-group-avatar.png' ?>"
+                                class="ys-group-avatar"
+                                alt="<?php echo sprintf(__("%s's avatar"), ucfirst($group['name'])) ?>"
+                            >
+                        </a>
                     <?php endif; ?>
 
-                    <div class="ys-group-name"><?php echo $group['name'] ?></div>
+                    <div class="ys-group-name">
+                        <a href="<?php echo home_url('groupe/' . $group['slug']) ?>"><?php echo $group['name'] ?></a>
+                    </div>
 
                     <div class="ys-group-status">
                         <?php if ($group['status'] === 'public') : ?>
@@ -74,7 +80,7 @@
                 <hr>
 
                 <div class="ys-group-join">
-                    <a href="<?php echo home_url('groupe/' . $group['slug']) ?>" class="btn btn-primary">
+                    <a href="#" class="btn btn-primary">
                         <i class="fas fa-sign-in-alt"></i>
                         <?php _e('Join group', YS_GROUPS_TEXT_DOMAIN); ?>
                     </a>
