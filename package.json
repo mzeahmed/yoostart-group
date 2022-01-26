@@ -1,12 +1,14 @@
 {
   "name": "yoostartwp-groups",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "assets/js/app.js",
   "author": "Ahmed Mze",
   "license": "MIT",
   "private": true,
   "devDependencies": {
+    "@babel/preset-react": "^7.16.7",
     "@fortawesome/fontawesome-free": "^5.15.4",
+    "@wordpress/scripts": "^19.2.3",
     "bootstrap": "^4.6.0",
     "jquery": "^3.5.1",
     "laravel-mix": "^6.0",
@@ -15,5 +17,9 @@
     "sass": "^1.45",
     "sass-loader": "^12.4",
     "sweetalert2": "^11.3"
+  },
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start"
   }
 }

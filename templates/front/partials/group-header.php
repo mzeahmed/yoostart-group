@@ -18,6 +18,7 @@
             </div>
         </div>
 
+        <!-- Affichage du bouton uniquement pour l'administrateur du group-->
         <?php if ($ysGroupVars['user']->ID == $ysGroupVars['groupAdminId']) : ?>
             <div class="ys-group-action row">
                 <div id="ys_group_actions">

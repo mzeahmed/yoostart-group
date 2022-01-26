@@ -24,7 +24,10 @@ class Front
      */
     public function enqueueScripts()
     {
-        if (str_contains($_SERVER['REQUEST_URI'], 'groupes')) {
+        if (
+            str_contains($_SERVER['REQUEST_URI'], 'groupes')
+            || str_contains($_SERVER['REQUEST_URI'], 'groupe')
+        ) {
             wp_enqueue_style(
                 'ys-group',
                 YS_GROUPS_URI . '/public/css/app.css',
@@ -41,6 +44,19 @@ class Front
                 [],
                 YS_GROUPS_VERSION,
                 true,
+            );
+
+            /**
+             * Chargement des composants React
+             *
+             * @since 1.1.5.1
+             */
+            wp_enqueue_script(
+                'ys-group-react-components',
+                YS_GROUPS_URI . '/build/index.js',
+                ['wp-element'],
+                YS_GROUPS_VERSION,
+                true
             );
         }
     }

@@ -55,7 +55,8 @@ class Helpers
         if ($option_value > 0) {
             $page_object = get_post($option_value);
 
-            if ($page_object && 'page' === $page_object->post_type
+            if (
+                $page_object && 'page' === $page_object->post_type
                 && ! in_array(
                     $page_object->post_status,
                     ['pending', 'trash', 'future', 'auto-draft'],

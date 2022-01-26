@@ -153,7 +153,8 @@ class AdminGroups extends AbstractController
                 );
             }
 
-            if (isset($_POST['ys_group_name'])
+            if (
+                isset($_POST['ys_group_name'])
                 && isset($_POST['ys_group_description'])
                 && isset($_POST['ys_group_status'])
             ) {

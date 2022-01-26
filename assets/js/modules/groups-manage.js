@@ -1,10 +1,10 @@
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 function deleteGroupe (e) {
-  e.preventDefault()
+  e.preventDefault();
 
-  const row = document.querySelector('.ys-group-list-row')
-  const url = this.href
+  const row = document.querySelector('.ys-group-list-row');
+  const url = this.href;
 
   Swal.fire({
     title: 'Êtes-vous sûre de vouloir supprimer ce groupe ?',
@@ -16,25 +16,27 @@ function deleteGroupe (e) {
     confirmButtonText: 'Yes, delete it!'
   }).then((result) => {
     if (result.isConfirmed) {
-
       Swal.fire(
         'Supprimé',
         'Le groupe à bien été supprimé',
         'success'
-      )
+      );
     } else {
-      fetch(url, {
-        method: 'post'
-      })
+      fetch(
+        url,
+        {
+          method: 'post'
+        }
+      )
         .then((response) => response.json())
         .then((data) => console.log(data))
-        .catch((error) => console.log(error))
+        .catch((error) => console.log(error));
     }
-  })
+  });
 }
 
 export function handleClickDelete () {
   document.querySelectorAll('a.js-ys-group-delete').forEach((link) => {
-    link.addEventListener('click', deleteGroupe)
-  })
+    link.addEventListener('click', deleteGroupe);
+  });
 }

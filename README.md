@@ -22,10 +22,13 @@ Adopte une architecture MVC pour une meilleure séparation des tâches
 * [WordPress](https://wordpress.org/) >= 5.6
 * [PHP](https://secure.php.net/manual/en/install.php) >= 8
 * [Node.js](http://nodejs.org/) >= 8.0.0
+
+## Librairies / Packages
+
 * [Laravel Mix](https://laravel-mix.com/)
 * [Sass](https://sass-lang.com/)
-
-## Dépendances PHP
+* [React](https://fr.reactjs.org/)
+  via [@wordpress/element](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-element/)
 
 * [symfony/dependency-injection](https://symfony.com/doc/current/components/dependency_injection.html)
 

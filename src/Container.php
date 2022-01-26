@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\Dumper\PhpDumper;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 /**
- * Container de service pour la mise en place de l'injection de dependanec
+ * Container de service pour la mise en place de l'injection de dependance
  *
  * @since 1.0.7
  */
