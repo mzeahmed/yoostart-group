@@ -31,7 +31,7 @@
                         <a href="<?php echo home_url('groupe/' . $group['slug']) ?>">
                             <img
                                 src=""
-                                class="ys-group-avatar"
+                                class="ys-group-cover-content"
                                 alt="<?php echo sprintf(__("%s's avatar"), ucfirst($group['name'])) ?>"
                             >
                         </a>
@@ -39,7 +39,7 @@
                         <a href="<?php echo home_url('groupe/' . $group['slug']) ?>">
                             <img
                                 src="<?php echo YS_GROUPS_URI . '/public/img/default-group-avatar.png' ?>"
-                                class="ys-group-avatar"
+                                class="ys-group-cover-content"
                                 alt="<?php echo sprintf(__("%s's avatar"), ucfirst($group['name'])) ?>"
                             >
                         </a>

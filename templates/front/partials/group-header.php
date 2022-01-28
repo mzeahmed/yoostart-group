@@ -10,29 +10,46 @@
 
 <div class="ys-group-header w-100">
     <div class="ys-group-cover" style="background-image: url()">
-        <div class="ys-group-avatar row">
-            <div class="avatar-img col-auto align-self-center" id="group_img"></div>
-            <div class="ys-group-details col align-self-center">
-                <div class="ys-group-name"><?php echo ucfirst($ysGroupVars['groupName']) ?></div>
-                <div class="ys-group-status"><?php echo ucfirst($ysGroupVars['groupStatus']) ?></div>
+        <div class="ys-group-cover-content">
+            <div class="ys-group-cover-inner-content d-flex">
+                <div class="ys-group-img" style="background-image: url()">
+                    <div class="editable edit-img">
+                        <div class="editable-content">
+                            <img
+                                src="<?php echo YS_GROUPS_URI . '/public/img/camera.png' ?>"
+                                alt=""
+                                class="icon icon-photo"
+                            >
+                        </div>
+                    </div>
+                </div>
+                <div class="ys-group-details col align-self-center">
+                    <div class="ys-group-name"><?php echo ucfirst($ysGroupVars['groupName']) ?></div>
+
+                    <?php if ($ysGroupVars['groupStatus'] === 'public') : ?>
+                        <div class="ys-group-status"><?php _e('Public group', YS_GROUPS_TEXT_DOMAIN); ?></div>
+                    <?php else : ?>
+                        <div class="ys-group-status"><?php _e('Private group', YS_GROUPS_TEXT_DOMAIN); ?></div>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
 
-        <!-- Affichage du bouton uniquement pour l'administrateur du group-->
         <?php if ($ysGroupVars['user']->ID == $ysGroupVars['groupAdminId']) : ?>
-            <div class="ys-group-action row">
+            <div class="ys-group-action">
                 <div id="ys_group_actions">
                     <div class="editable ys-group-single-action edit-cover">
-                        <img src="" alt="" class="icon icon-photo">
-                        <?php _e('Edit group cover', WPDM_TEXT_DOMAIN); ?>
+                        <div class="editable-content">
+                            <img
+                                src="<?php echo YS_GROUPS_URI . '/public/img/camera.png' ?>"
+                                alt=""
+                                class="icon icon-photo"
+                            >
+                            <?php _e('Edit group cover', YS_GROUPS_TEXT_DOMAIN); ?>
+                        </div>
                     </div>
                 </div>
             </div>
         <?php endif; ?>
-
-    </div>
-
-    <div class="ys-group-menu">
-
     </div>
 </div>

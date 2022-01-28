@@ -78,8 +78,14 @@ class YsGroups
      */
     public function bodyClass($classes): mixed
     {
+        $uriExploded = explode('/', $_SERVER['REQUEST_URI']);
+
         if (is_page('Groupes')) {
             $classes[] = 'ys-groups-groups';
+        }
+
+        if ($uriExploded[1] === 'groupe') {
+            $classes[] = 'ys-groups-single-group';
         }
 
         return $classes;

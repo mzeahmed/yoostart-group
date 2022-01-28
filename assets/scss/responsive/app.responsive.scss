@@ -1,8 +1,24 @@
+@import "../variables";
+
+// Page du repertoire des groupes
 @media screen and(max-width: 768px) {
     .ys-groups-list {
         padding-top: 35px;
     }
     .ys-groups-pagination {
         top: -50px !important;
+    }
+}
+
+// Page d'un groupe
+@media screen and(max-width: 1210px) {
+    .ys-groups-single-group {
+        .ys-group-content {
+            nav {
+                .ys-group-nav-menu, .ys-group-join {
+                    padding-left: unset !important;
+                }
+            }
+        }
     }
 }

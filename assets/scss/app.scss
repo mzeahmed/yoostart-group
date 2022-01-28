@@ -2,7 +2,7 @@
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 @import "responsive/app.responsive";
 
-// Page de repertoire des groupes
+// Page du repertoire des groupes
 .ys-groups-groups {
     .ys-groups-list {
         display: flex;
@@ -32,7 +32,7 @@
                     background-repeat: no-repeat;
                 }
 
-                .ys-group-avatar {
+                .ys-group-cover-content {
                     background-position: center;
                     background-size: cover;
                     background-repeat: no-repeat;
@@ -98,5 +98,116 @@
     .ys-groups-pagination {
         position: absolute;
         bottom: 15px;
+    }
+}
+
+// Page d'un groupe
+.ys-groups-single-group {
+    .ys-group-header {
+        .ys-group-cover {
+            height: 400px;
+
+            .ys-group-cover-content {
+                padding-right: 100px;
+                background: linear-gradient(90deg, #08080885, #3e3e3e85, #ffffff00);
+                height: 100%;
+                width: 100%;
+
+                .ys-group-cover-inner-content {
+                    padding: 135px 0 0 25px;
+
+                    .ys-group-img {
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        background-position: center;
+                        width: 160px;
+                        height: 160px;
+                        background-color: #e8e8e8;
+                        border-radius: 50%;
+                        border: solid 4px $blanc;
+                        position: relative;
+
+                        .editable {
+                            max-width: 35px;
+                            max-height: 35px;
+                            bottom: 0;
+                            right: 0;
+                            position: absolute;
+                            z-index: 1;
+                            background: #efefef;
+                            border-radius: 6px;
+                            cursor: pointer;
+                            color: #323232;
+                            transition: 0.3s all ease-in-out;
+
+                            .editable-content {
+                                padding: 5px;
+                            }
+                        }
+                    }
+                }
+
+                .ys-group-details {
+                    font-size: 25px;
+                    color: $blanc;
+
+                    .ys-group-status {
+                        font-size: 16px;
+                    }
+                }
+            }
+
+            .ys-group-action {
+                position: absolute;
+                top: 450px;
+                right: 40px;
+                background: transparent;
+                z-index: 999;
+
+                .ys-group-single-action {
+                    z-index: 1;
+                    cursor: pointer;
+                    color: #323232;
+                    transition: 0.3s all ease-in-out;
+                    background: #efefef;
+                    margin-left: 15px;
+                    border-radius: 6px;
+                    position: relative;
+
+                    .editable-content {
+                        padding: 5px 10px;
+                        align-items: center;
+                        font-weight: 500;
+                        max-width: unset;
+                        width: unset;
+                        box-shadow: none;
+                        height: unset;
+                        display: flex;
+                    }
+                }
+            }
+        }
+    }
+
+    .ys-group-content {
+        nav {
+            height: 80px;
+
+            .ys-group-nav-menu {
+                padding-left: 225px;
+
+                li {
+                    width: 150px;
+                }
+            }
+
+            .ys-group-join {
+                padding-left: 125px;
+            }
+        }
+
+        main {
+            padding: 35px 0 0;
+        }
     }
 }
