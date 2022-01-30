@@ -2,9 +2,12 @@
 
 namespace YsGroups;
 
+use YsGroups\Services\Session;
+use YsGroups\Services\RewriteRules;
 use YsGroups\Controller\Admin\Admin;
 use YsGroups\Controller\Front\Front;
 use Symfony\Component\Config\FileLocator;
+use YsGroups\Services\NotLoggedInRedirections;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Dumper\PhpDumper;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
@@ -59,6 +62,7 @@ class Container
             $container->get(Session::class);
             $container->get(Front::class);
             $container->get(RewriteRules::class);
+            $container->get(NotLoggedInRedirections::class);
         } catch (\Exception $e) {
             echo $e->getMessage();
         }

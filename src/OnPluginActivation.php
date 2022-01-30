@@ -28,6 +28,10 @@ class OnPluginActivation
         self::createTables();
         self::createPages();
 
+        if (! file_exists(YS_GROUP_UPLOAD_DIR)) {
+            self::createUploadDir();
+        }
+
         delete_transient('ys_groups_installing');
 
         /**
@@ -81,5 +85,32 @@ class OnPluginActivation
                 ! empty($page['post_status']) ? $page['post_status'] : 'publish'
             );
         }
+    }
+
+    /**
+     * Créé le repertoire d'uploads des images
+     *
+     * @return void
+     * @since 1.1.6
+     */
+    public static function createUploadDir()
+    {
+        if (! file_exists(YS_GROUP_UPLOAD_DIR)) {
+            mkdir(YS_GROUP_UPLOAD_DIR, 0755);
+            chmod(YS_GROUP_UPLOAD_DIR, 0755);
+        }
+
+        self::setHtaccess();
+    }
+
+    /**
+     * Protege le repertoire de telechargement avec un .htaccess
+     *
+     * @return void
+     * @since 1.1.6
+     */
+    private static function setHtaccess()
+    {
+        Helpers::blockHTTPAccess(YS_GROUP_UPLOAD_DIR);
     }
 }

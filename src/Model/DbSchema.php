@@ -17,7 +17,7 @@ class DbSchema extends Db
     {
         $charsetCollate = $this->wpdb->get_charset_collate();
         $groups = $this->ys_groups_prefix . 'groups';
-        $groupsMembers = $this->ys_groups_prefix . 'groups_members';
+        $groupsMembers = $this->ys_groups_prefix . 'members';
         $query = [];
 
         // Table ys_group_groups

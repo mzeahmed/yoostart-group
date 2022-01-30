@@ -1,6 +1,6 @@
 <?php
 
-namespace YsGroups;
+namespace YsGroups\Services;
 
 /**
  * @since 1.1.4

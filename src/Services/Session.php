@@ -1,6 +1,6 @@
 <?php
 
-namespace YsGroups;
+namespace YsGroups\Services;
 
 /**
  * Besoin de la session pour les messages flash, on la gere ici

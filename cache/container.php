@@ -22,8 +22,9 @@ class YsGroupsCacheContainer extends Container
         $this->methodMap = [
             'YsGroups\\Controller\\Admin\\Admin' => 'getAdminService',
             'YsGroups\\Controller\\Front\\Front' => 'getFrontService',
-            'YsGroups\\RewriteRules' => 'getRewriteRulesService',
-            'YsGroups\\Session' => 'getSessionService',
+            'YsGroups\\Services\\NotLoggedInRedirections' => 'getNotLoggedInRedirectionsService',
+            'YsGroups\\Services\\RewriteRules' => 'getRewriteRulesService',
+            'YsGroups\\Services\\Session' => 'getSessionService',
         ];
 
         $this->aliases = [];
@@ -65,9 +66,7 @@ class YsGroupsCacheContainer extends Container
      */
     protected function getAdminService()
     {
-        return $this->services['YsGroups\\Controller\\Admin\\Admin'] = new \YsGroups\Controller\Admin\Admin(
-            new \YsGroups\Controller\Admin\AdminGroups()
-        );
+        return $this->services['YsGroups\\Controller\\Admin\\Admin'] = new \YsGroups\Controller\Admin\Admin(new \YsGroups\Controller\Admin\AdminGroups());
     }
 
     /**
@@ -77,28 +76,36 @@ class YsGroupsCacheContainer extends Container
      */
     protected function getFrontService()
     {
-        return $this->services['YsGroups\\Controller\\Front\\Front'] = new \YsGroups\Controller\Front\Front(
-            new \YsGroups\Controller\Front\GroupsController()
-        );
+        return $this->services['YsGroups\\Controller\\Front\\Front'] = new \YsGroups\Controller\Front\Front(new \YsGroups\Controller\Front\GroupsController());
     }
 
     /**
-     * Gets the public 'YsGroups\RewriteRules' shared autowired service.
+     * Gets the public 'YsGroups\Services\NotLoggedInRedirections' shared autowired service.
      *
-     * @return \YsGroups\RewriteRules
+     * @return \YsGroups\Services\NotLoggedInRedirections
+     */
+    protected function getNotLoggedInRedirectionsService()
+    {
+        return $this->services['YsGroups\\Services\\NotLoggedInRedirections'] = new \YsGroups\Services\NotLoggedInRedirections();
+    }
+
+    /**
+     * Gets the public 'YsGroups\Services\RewriteRules' shared autowired service.
+     *
+     * @return \YsGroups\Services\RewriteRules
      */
     protected function getRewriteRulesService()
     {
-        return $this->services['YsGroups\\RewriteRules'] = new \YsGroups\RewriteRules();
+        return $this->services['YsGroups\\Services\\RewriteRules'] = new \YsGroups\Services\RewriteRules();
     }
 
     /**
-     * Gets the public 'YsGroups\Session' shared autowired service.
+     * Gets the public 'YsGroups\Services\Session' shared autowired service.
      *
-     * @return \YsGroups\Session
+     * @return \YsGroups\Services\Session
      */
     protected function getSessionService()
     {
-        return $this->services['YsGroups\\Session'] = new \YsGroups\Session();
+        return $this->services['YsGroups\\Services\\Session'] = new \YsGroups\Services\Session();
     }
 }

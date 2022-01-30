@@ -28,16 +28,6 @@ class GroupsController extends AbstractController
      */
     public function groups(): ?string
     {
-        /**
-         * Interdire l'accés aux utilisateur non connectés
-         *
-         * @since 1.1.2
-         */
-        if (! is_user_logged_in()) {
-            wp_safe_redirect(home_url());
-            die();
-        }
-
         $itemsPerPage = 9;
         $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
         $offset = ($paged * $itemsPerPage) - $itemsPerPage;
@@ -72,11 +62,6 @@ class GroupsController extends AbstractController
      */
     public function show($template)
     {
-        if (! is_user_logged_in()) {
-            wp_safe_redirect(home_url());
-            die();
-        }
-
         $slug = get_query_var('gslug');
         $feedPosts = [];
         $user = wp_get_current_user();

@@ -194,9 +194,10 @@ class Helpers
     }
 
     /**
-     * Lorsqu'on utilise WP_List_Table, recuperons l'action actuellement sélectionnée.
+     * Recuperons l'action actuellement sélectionnée.
      *
      * @return string|null
+     * @see   WP_List_Table
      * @since 1.1.0
      */
     public static function listTableCurrentBulkAction(): ?string
@@ -222,6 +223,7 @@ class Helpers
     public static function timeElapsed(\DateTime $date, bool $isDetails = false): array|string
     {
         $months = [];
+
         for ($i = 1; $i < 13; $i++) {
             $month = date('F', mktime(0, 0, 0, $i));
             $months += [substr($month, 0, 3) => $i];
@@ -330,6 +332,66 @@ class Helpers
             return sprintf(__("In %ss", YS_GROUPS_TEXT_DOMAIN), $sec);
         } else {
             return 0;
+        }
+    }
+
+    /**
+     * Bloque l'accés HTTP vers un repertoire
+     *
+     * @param string $dir
+     * @param string $fileType
+     *
+     * @return void
+     * @since 1.1.6
+     */
+    public static function blockHTTPAccess(string $dir, string $fileType = '*')
+    {
+        $cont = "RewriteEngine On\r\n<Files {$fileType}>\r\nDeny from all\r\n</Files>\r\n";
+        file_put_contents($dir . '/.htaccess', $cont);
+    }
+
+    /**
+     * @param int    $groupId
+     * @param string $type cover_photo ou avatar
+     * @param mixed  $file
+     *
+     * @return void
+     */
+    public static function uploadGroupAttachment(int $groupId, string $type, mixed $file)
+    {
+        if (! function_exists('wp_handle_upload')) {
+            require_once ABSPATH . 'wp-admin/includes/file.php';
+        }
+
+        $uploadedFile = $file;
+        $imgsExt = ['image/png', 'image/jpeg', 'image/jpg', 'application/pdf', 'application/vnd.ms-powerpoint'];
+
+        if ($uploadedFile && in_array($uploadedFile['type'], $imgsExt)) {
+            $filename = basename(sanitize_text_field($uploadedFile['name']));
+            $filenameTmp = $uploadedFile['tmp_name'];
+
+            $uploadFile = wp_upload_bits($filename, null, file_get_contents($filename));
+
+            if ($uploadFile['error']) {
+                $wpFileType = wp_check_filetype($filename);
+                $attachment = [
+                    'post_mime_type' => $wpFileType['type'],
+                    'post_title' => preg_replace('/\.[^.]+$/', '', $filename),
+                    'post_content' => '',
+                    'post_status' => 'inherit',
+                ];
+                $attachmentId = wp_insert_attachment($attachment, $uploadFile['file']);
+
+                if (! is_wp_error($attachmentId)) {
+                    require_once ABSPATH . 'wp-admin/includes/image.php';
+
+                    $attachmentData = wp_generate_attachment_metadata($attachmentId, $uploadFile['file']);
+                    wp_update_attachment_metadata($attachmentId, $attachmentData);
+
+                    if ($groupId) {
+                    }
+                }
+            }
         }
     }
 }

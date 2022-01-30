@@ -9,11 +9,14 @@ services:
     YsGroups\Controller\Admin\Admin:
         public: true
 
-    YsGroups\Session:
-        public: true
-
     YsGroups\Controller\Front\Front:
         public: true
 
-    YsGroups\RewriteRules:
+    YsGroups\Services\RewriteRules:
+        public: true
+
+    YsGroups\Services\Session:
+        public: true
+
+    YsGroups\Services\NotLoggedInRedirections:
         public: true
