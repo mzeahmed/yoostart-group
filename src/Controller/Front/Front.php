@@ -41,7 +41,7 @@ class Front
             wp_enqueue_script(
                 'ys-group',
                 YS_GROUPS_URI . '/public/js/app.js',
-                [],
+                ['wp-element'],
                 YS_GROUPS_VERSION,
                 true,
             );
@@ -51,13 +51,13 @@ class Front
              *
              * @since 1.1.5.1
              */
-            wp_enqueue_script(
-                'ys-group-react-components',
-                YS_GROUPS_URI . '/build/index.js',
-                ['wp-element'],
-                YS_GROUPS_VERSION,
-                true
-            );
+            // wp_enqueue_script(
+            //     'ys-group-react-components',
+            //     YS_GROUPS_URI . '/build/index.js',
+            //     ['wp-element'],
+            //     YS_GROUPS_VERSION,
+            //     true
+            // );
         }
     }
 }

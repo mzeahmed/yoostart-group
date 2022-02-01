@@ -9,7 +9,7 @@
  * Plugin Name:       Yoostart Groups
  * Plugin URI:        https://yoostart.com
  * Description:       Plugin de gestion des groupes, à destination de yoostart.com, nécessite le plugin yoostartwp
- * Version:           1.1.5.3
+ * Version:           1.1.5.4
  * Author:            Yoostart
  * Author URI:        yoostart.com
  * License:           GPL-2.0+

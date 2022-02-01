@@ -1,1 +1,0 @@
-!function(){"use strict";var e=window.wp.element;const{render:t,Component:n,useState:c}=wp.element;t((0,e.createElement)((function(){return(0,e.createElement)("div",{className:"ys-group-feed d-flex justify-content-center"},(0,e.createElement)("h2",null,"Composant React ici"))}),null),document.getElementById("group-feed"))}();
