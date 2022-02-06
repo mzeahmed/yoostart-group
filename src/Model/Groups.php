@@ -124,15 +124,15 @@ class Groups extends Db
      *
      * @param string $slug
      *
-     * @return bool
+     * @return string|null
      * @since 1.0.8
      */
-    public function slugExist(string $slug): bool
+    public function slugExist(string $slug): ?string
     {
         $query = $this->wpdb->prepare("SELECT slug from {$this->ys_groups_prefix}groups WHERE slug = %s", $slug);
-        $result = $this->wpdb->get_results($query);
+        $result = $this->wpdb->get_var($query);
 
-        return (bool)$result;
+        return $result;
     }
 
     /**

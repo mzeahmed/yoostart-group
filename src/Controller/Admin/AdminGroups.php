@@ -158,15 +158,11 @@ class AdminGroups extends AbstractController
                 && isset($_POST['ys_group_description'])
                 && isset($_POST['ys_group_status'])
             ) {
-                $slug = str_replace(' ', '-', $_POST['ys_group_name']);
-
                 $groups->persistGroup(
                     $user->ID,
                     $_POST['ys_group_cover'],
                     sanitize_text_field($_POST['ys_group_name']),
-                    $groups->slugExist($slug) ?
-                        sanitize_text_field($slug . '-' . rand(1, 10)) :
-                        sanitize_text_field($slug),
+                    Helpers::checkGroupSlug(sanitize_title(esc_attr($_POST['ys_group_name']))),
                     sanitize_textarea_field($_POST['ys_group_description']),
                     $_POST['ys_group_status'],
                     wp_date('Y-m-d H:i:s')

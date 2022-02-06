@@ -394,4 +394,31 @@ class Helpers
             }
         }
     }
+
+    /**
+     * Fourni une version unique et nettoyé d'un slug
+     *
+     * @param $slug
+     *
+     * @return string
+     * @since 1.1.6
+     */
+    public static function checkGroupSlug($slug)
+    {
+        $groups = new Groups();
+
+        $slug = sanitize_title($slug);
+
+        if (str_starts_with($slug, 'wp')) {
+            $slug == substr($slug, 2, strlen($slug) - 2);
+        }
+
+        if ($groups->slugExist($slug)) {
+            do {
+                $slug = $slug . '-' . rand();
+            } while ($groups->slugExist($slug));
+        }
+
+        return $slug;
+    }
 }
