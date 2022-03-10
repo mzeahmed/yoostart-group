@@ -28,7 +28,7 @@
                 <?php endif; ?>
                 <div class="ys-group-info">
                     <?php if ($group['avatar'] != null) : ?>
-                        <a href="<?php echo home_url('groupe/' . $group['slug']) ?>">
+                        <a href="<?php echo home_url('groupes/' . $group['slug']) ?>">
                             <img
                                 src=""
                                 class="ys-group-cover-content"
@@ -36,7 +36,7 @@
                             >
                         </a>
                     <?php else : ?>
-                        <a href="<?php echo home_url('groupe/' . $group['slug']) ?>">
+                        <a href="<?php echo home_url('groupes/' . $group['slug']) ?>">
                             <img
                                 src="<?php echo YS_GROUPS_URI . '/public/img/default-group-avatar.png' ?>"
                                 class="ys-group-cover-content"
@@ -46,7 +46,7 @@
                     <?php endif; ?>
 
                     <div class="ys-group-name">
-                        <a href="<?php echo home_url('groupe/' . $group['slug']) ?>"><?php echo $group['name'] ?></a>
+                        <a href="<?php echo home_url('groupes/' . $group['slug']) ?>"><?php echo $group['name'] ?></a>
                     </div>
 
                     <div class="ys-group-status">

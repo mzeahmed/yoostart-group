@@ -18,7 +18,7 @@ class GroupsMembers extends Db
     public function getMembers(int $groupId): object|array|null
     {
         $query = $this->wpdb->prepare(
-            "SELECT user_id FROM {$this->ys_groups_prefix}groups_members WHERE group_id = %d ORDER BY modified_at DESC",
+            "SELECT user_id FROM {$this->ys_groups_prefix}members WHERE group_id = %d ORDER BY modified_at DESC",
             $groupId
         );
 
@@ -49,7 +49,7 @@ class GroupsMembers extends Db
         bool $isBanned
     ): bool|int {
         return $this->wpdb->insert(
-            $this->ys_groups_prefix . 'groups_members',
+            $this->ys_groups_prefix . 'members',
             [
                 'group_id' => $groupId,
                 'user_id' => $userId,
@@ -74,7 +74,7 @@ class GroupsMembers extends Db
     public function getGroupAdminId(int $groupId): ?string
     {
         $query = $this->wpdb->prepare(
-            "SELECT user_id FROM {$this->ys_groups_prefix}groups_members WHERE is_admin = 1 AND group_id=%d",
+            "SELECT user_id FROM {$this->ys_groups_prefix}members WHERE is_admin = 1 AND group_id=%d",
             $groupId
         );
 

@@ -41,7 +41,7 @@ class RewriteRules
     public function insertRewriteRules(array $rules): array
     {
         $newrules = [];
-        $newrules['(groupe)/(.*)'] = 'index.php?pagename=$matches[1]&gslug=$matches[2]';
+        $newrules['(groupes)/(.*)'] = 'index.php?pagename=$matches[1]&gslug=$matches[2]';
 
         return $newrules + $rules;
     }

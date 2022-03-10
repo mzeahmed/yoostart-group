@@ -18,6 +18,8 @@ class GroupsController extends AbstractController
 
         add_shortcode('ys_groups', [$this, 'groups']);
         add_filter('template_include', [$this, 'show'], 100);
+        add_action('template_redirect', [$this, 'ajaxFileUploadHandler']);
+        // add_action('wp_ajax_ajaxFileUploadHandler', [$this, 'ajaxFileUploadHandler']);
     }
 
     /**
@@ -68,10 +70,8 @@ class GroupsController extends AbstractController
 
         if (! empty($slug)) {
             $groupId = (new Groups())->getGroupIdBySlug($slug);
-            // $groupDatas = (new Groups())->getGroupDatasBySlug($slug);
             $groupDatas = Helpers::getGroupDatasBySlug($slug);
             $groupAdminId = (new GroupsMembers())->getGroupAdminId($groupId);
-            $singleGroupUrl = $this->groupsDirectoryUri . $slug;
 
             $data = '';
             foreach ($groupDatas as $v) {
@@ -82,17 +82,45 @@ class GroupsController extends AbstractController
                 'front/single-group',
                 'ysGroupVars',
                 [
-                    // 'singleGroupUrl' => $singleGroupUrl,
-                    'feedPosts' => $feedPosts,
-                    // 'gslug' => $slug,
+                    // 'feedPosts' => $feedPosts,
                     'user' => $user,
                     'groupAdminId' => $groupAdminId,
                     'groupName' => $data['name'],
                     'groupStatus' => $data['status'],
+                    'groupId' => $groupId,
                 ]
             );
         }
 
         return $template;
+    }
+
+    public function ajaxFileUploadHandler()
+    {
+        $slug = get_query_var('gslug');
+
+        if (! empty($slug)) {
+            $groupId = (new Groups())->getGroupIdBySlug($slug);
+
+            if (isset($_POST['ys_group_cover_submit'])) {
+                if (! wp_verify_nonce($_POST['_cover_nonce'], 'ys_group_ajax_nonce')) :?>
+                    <div class="alert alert warning">
+                        <?php sprintf(
+                            esc_html__(
+                                '<strong>Sorry, nonce %s  did not verifyed</strong>',
+                                YS_GROUPS_TEXT_DOMAIN
+                            ),
+                            '_cover_nonce'
+                        ) ?>
+                    </div>
+                <?php endif;
+
+                if ($_FILES['ys_group_cover_file_input']) {
+                    Helpers::uploadFile($groupId, 'cover', $_FILES['ys_group_cover_file_input']);
+                }
+
+                $this->addFlash('success', __('Cover has been successfully updated', YS_GROUPS_TEXT_DOMAIN));
+            }
+        }
     }
 }

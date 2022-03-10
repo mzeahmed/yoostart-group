@@ -1,42 +1,33 @@
-import Swal from 'sweetalert2';
+export default function fileUploadHandler () {
+  let button = document.querySelector('button.ys-group-update-cover');
+  let form = document.getElementById('ys-group-cover-form');
 
-function deleteGroupe (e) {
-  e.preventDefault();
+  const data = new FormData();
 
-  const row = document.querySelector('.ys-group-list-row');
-  const url = this.href;
+  data.append('_cover_nonce', ys_group_ajaxurl._cover_nonce);
+  data.append('action', 'ajaxFileUploadHandler');
 
-  Swal.fire({
-    title: 'Êtes-vous sûre de vouloir supprimer ce groupe ?',
-    text: '',
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, delete it!'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      Swal.fire(
-        'Supprimé',
-        'Le groupe à bien été supprimé',
-        'success'
-      );
-    } else {
-      fetch(
-        url,
-        {
-          method: 'post'
-        }
-      )
-        .then((response) => response.json())
-        .then((data) => console.log(data))
-        .catch((error) => console.log(error));
-    }
+  button.addEventListener('click', async function (e) {
+    e.preventDefault();
+
+    await fetch(ys_group_ajaxurl.ajax_url, {
+      method: 'POST',
+      credentials: 'same-origin',
+      // headers: {
+      //   'Content-type': 'application/x-www-form-urlencoded'
+      // },
+      body: data
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        let parsed = JSON.parse(data);
+        console.log(parsed);
+        // resetFormData(form);
+      })
+      .catch((error) => console.log(error));
   });
 }
 
-export function handleClickDelete () {
-  document.querySelectorAll('a.js-ys-group-delete').forEach((link) => {
-    link.addEventListener('click', deleteGroupe);
-  });
+function resetFormData (form) {
+  document.querySelector(form).reset();
 }

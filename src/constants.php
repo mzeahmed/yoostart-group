@@ -16,10 +16,14 @@ define('YS_GROUPS_PATH', dirname(YS_GROUPS_PLUGIN_FILE) . DIRECTORY_SEPARATOR);
 define('YS_GROUPS_URI', dirname(plugin_dir_url(__FILE__)));
 define('YS_GROUPS_URL', home_url('groupes/'));
 
-define('YS_GROUP_UPLOAD_DIR', $uploadDir['basedir'] . '/yoostartwp-groups/');
-define('YS_GROUP_UPLOAD_BASE_URL', $uploadDir['baseurl']);
+define('YS_GROUPS_UPLOAD_DIR', $uploadDir['basedir'] . '/yoostartwp-groups/');
+define('YS_GROUPS_UPLOAD_BASE_URL', $uploadDir['baseurl']);
 
 define('YS_GROUPS_DB_PREFIX', $wpdb->prefix . 'ys_group_');
+
+// Postmeta contenant le nom des images
+define('YS_GROUP_AVATAR_POSTMETA', 'ys_group_avatar_image');
+define('YS_GROUP_COVER_POSTMETA', 'ys_group_cover_image');
 
 // Rajouter le nom des pages nécessaires
 const YS_GROUPS_POSTS = [

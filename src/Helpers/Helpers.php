@@ -3,6 +3,7 @@
 namespace YsGroups\Helpers;
 
 use YsGroups\Model\Groups;
+use YsGroups\OnPluginActivation;
 use YsGroups\Controller\AbstractController;
 
 /**
@@ -351,18 +352,36 @@ class Helpers
     }
 
     /**
+     * @param string $postMetaKey
      * @param int    $groupId
-     * @param string $type cover_photo ou avatar
      * @param mixed  $file
+     *
+     * @param string $type cover_photo ou avatar
      *
      * @return void
      */
-    public static function uploadGroupAttachment(int $groupId, string $type, mixed $file)
+    public static function uploadGroupFile(string $postMetaKey, int $groupId, mixed $file, string $type)
     {
         if (! function_exists('wp_handle_upload')) {
             require_once ABSPATH . 'wp-admin/includes/file.php';
         }
 
+        if (! file_exists(YS_GROUPS_UPLOAD_DIR)) {
+            OnPluginActivation::createUploadDir();
+        }
+
+        $groupUploadDir = YS_GROUPS_UPLOAD_DIR . $groupId . DIRECTORY_SEPARATOR;
+
+        $type === 'avatar'
+            ? $groupUploadDir = YS_GROUPS_UPLOAD_DIR . $groupId . '/avatar/'
+            : $groupUploadDir = YS_GROUPS_UPLOAD_DIR . $groupId . '/cover-image/';
+
+        if (! file_exists($groupUploadDir)) {
+            mkdir($groupUploadDir, 0755);
+            chmod($groupUploadDir, 0755);
+        }
+
+        $postMetaKey = $postMetaKey ?? sanitize_text_field(esc_html($postMetaKey));
         $uploadedFile = $file;
         $imgsExt = ['image/png', 'image/jpeg', 'image/jpg', 'application/pdf', 'application/vnd.ms-powerpoint'];
 
@@ -370,9 +389,9 @@ class Helpers
             $filename = basename(sanitize_text_field($uploadedFile['name']));
             $filenameTmp = $uploadedFile['tmp_name'];
 
-            $uploadFile = wp_upload_bits($filename, null, file_get_contents($filename));
+            $uploadFile = wp_upload_bits($filename, null, file_get_contents($filenameTmp));
 
-            if ($uploadFile['error']) {
+            if (! $uploadFile['error']) {
                 $wpFileType = wp_check_filetype($filename);
                 $attachment = [
                     'post_mime_type' => $wpFileType['type'],
@@ -388,11 +407,51 @@ class Helpers
                     $attachmentData = wp_generate_attachment_metadata($attachmentId, $uploadFile['file']);
                     wp_update_attachment_metadata($attachmentId, $attachmentData);
 
-                    if ($groupId) {
+                    if ($postMetaKey) {
+                        $oldAttId = (get_post_meta($groupId, $postMetaKey, true) ?? null);
+
+                        if ($oldAttId) {
+                            $deletAtt = wp_delete_attachment($oldAttId);
+
+                            if (! $deletAtt) {
+                                return __('The old image could not be deleted', YS_GROUPS_TEXT_DOMAIN);
+                            }
+                        }
+                        update_post_meta($groupId, $postMetaKey, $attachmentId);
                     }
+                } else {
+                    return __('The file couldn\'t be added', YS_GROUPS_TEXT_DOMAIN);
                 }
+            } else {
+                return __('The file could not be uploaded', YS_GROUPS_TEXT_DOMAIN);
             }
+        } else {
+            return __('File format error. Please try again', YS_GROUPS_TEXT_DOMAIN);
         }
+
+        return true;
+    }
+
+    /**
+     * @param int    $groupId
+     * @param string $type
+     * @param array  $file
+     *
+     * @since 1.1.6
+     */
+    public static function uploadFile(int $groupId, string $type, array $file)
+    {
+        OnPluginActivation::createUploadDir();
+
+        $groupIdUploadDir = YS_GROUPS_UPLOAD_DIR . $groupId . '/' . $type . '/';
+
+        if (! file_exists($groupIdUploadDir)) {
+            wp_mkdir_p($groupIdUploadDir);
+        }
+
+        $name = basename($file['name']);
+
+        move_uploaded_file($file['tmp_name'], $groupIdUploadDir . $name);
     }
 
     /**
@@ -403,7 +462,7 @@ class Helpers
      * @return string
      * @since 1.1.6
      */
-    public static function checkGroupSlug($slug)
+    public static function checkGroupSlug($slug): string
     {
         $groups = new Groups();
 

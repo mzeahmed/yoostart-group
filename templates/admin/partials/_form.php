@@ -17,11 +17,6 @@
                 <?php wp_nonce_field($action, '_ys_create_group_nonce') ?>
 
                 <div class="form-group">
-                    <label for="ys_group_cover"><?php _e('Cover photo', YS_GROUPS_TEXT_DOMAIN); ?></label>
-                    <input type="file" class="form-control-file" name="ys_group_cover" id="ys_group_cover">
-                </div>
-
-                <div class="form-group">
                     <label for="ys_group_name"><?php _e('Name', YS_GROUPS_TEXT_DOMAIN); ?></label>
                     <input type="text" class="form-control" name="ys_group_name" id="ys_group_name" required>
                 </div>
@@ -29,11 +24,11 @@
                 <div class="form-group">
                     <label for="ys_group_description"><?php _e('Description', YS_GROUPS_TEXT_DOMAIN); ?></label>
                     <textarea
-                            class="form-control"
-                            name="ys_group_description"
-                            id="ys_group_description"
-                            is="textarea-autogrow"
-                            required
+                        class="form-control"
+                        name="ys_group_description"
+                        id="ys_group_description"
+                        is="textarea-autogrow"
+                        required
                     ></textarea>
                 </div>
 

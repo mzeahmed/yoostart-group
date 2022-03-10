@@ -1,4 +1,4 @@
-@import "~bootstrap/dist/css/bootstrap.min.css";
+//@import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 @import "responsive/app.responsive";
 
@@ -183,6 +183,49 @@
                         box-shadow: none;
                         height: unset;
                         display: flex;
+
+                        button {
+                            border: none !important;
+                            background: unset !important;
+                        }
+                    }
+                }
+
+                .form-edit {
+                    opacity: 1;
+                    visibility: visible;
+
+                    .popup {
+                        transform: translate(-50%, 0) scale(1);
+                        overflow-y: auto;
+                        background: #fff;
+                        box-shadow: 0 0 10px #3b3a3a;
+                        border-radius: 10px;
+                        width: 600px;
+
+                        .popup-content {
+                            .popup-title {
+                                text-align: center;
+                                margin: 0;
+                                padding: 20px 40px 10px;
+                                font-size: 20px;
+                            }
+
+                            .popup-image {
+                                height: 200px;
+                                background-position: center;
+                                background-size: cover;
+                                background-repeat: no-repeat;
+                            }
+
+                            form {
+                                .popup-choose-file {
+                                    position: relative;
+                                    padding-bottom: 10px;
+                                    cursor: pointer;
+                                }
+                            }
+                        }
                     }
                 }
             }

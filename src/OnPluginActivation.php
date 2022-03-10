@@ -28,7 +28,7 @@ class OnPluginActivation
         self::createTables();
         self::createPages();
 
-        if (! file_exists(YS_GROUP_UPLOAD_DIR)) {
+        if (! file_exists(YS_GROUPS_UPLOAD_DIR)) {
             self::createUploadDir();
         }
 
@@ -95,9 +95,9 @@ class OnPluginActivation
      */
     public static function createUploadDir()
     {
-        if (! file_exists(YS_GROUP_UPLOAD_DIR)) {
-            mkdir(YS_GROUP_UPLOAD_DIR, 0755);
-            chmod(YS_GROUP_UPLOAD_DIR, 0755);
+        if (! file_exists(YS_GROUPS_UPLOAD_DIR)) {
+            mkdir(YS_GROUPS_UPLOAD_DIR, 0755);
+            chmod(YS_GROUPS_UPLOAD_DIR, 0755);
         }
 
         self::setHtaccess();
@@ -111,6 +111,6 @@ class OnPluginActivation
      */
     private static function setHtaccess()
     {
-        Helpers::blockHTTPAccess(YS_GROUP_UPLOAD_DIR);
+        Helpers::blockHTTPAccess(YS_GROUPS_UPLOAD_DIR);
     }
 }

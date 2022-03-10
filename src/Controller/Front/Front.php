@@ -46,18 +46,14 @@ class Front
                 true,
             );
 
-            /**
-             * Chargement des composants React
-             *
-             * @since 1.1.5.1
-             */
-            // wp_enqueue_script(
-            //     'ys-group-react-components',
-            //     YS_GROUPS_URI . '/build/index.js',
-            //     ['wp-element'],
-            //     YS_GROUPS_VERSION,
-            //     true
-            // );
+            wp_localize_script(
+                'ys-group',
+                'ys_group_ajaxurl',
+                [
+                    'ajax_url' => admin_url('admin-ajax.php'),
+                    '_cover_nonce' => wp_create_nonce('ys_group_ajax_nonce'),
+                ],
+            );
         }
     }
 }

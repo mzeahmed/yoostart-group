@@ -139,7 +139,6 @@ class Groups extends Db
      * Persistance du groupe en bdd
      *
      * @param int $author_id
-     * @param string|null $cover_photo
      * @param string $name
      * @param string $slug
      * @param string $description
@@ -151,7 +150,6 @@ class Groups extends Db
      */
     public function persistGroup(
         int $author_id,
-        ?string $cover_photo,
         string $name,
         string $slug,
         string $description,
@@ -163,7 +161,6 @@ class Groups extends Db
                 $this->ys_groups_prefix . 'groups',
                 [
                     'creator_id' => $author_id,
-                    'cover_photo' => $cover_photo,
                     'name' => $name,
                     'slug' => $slug,
                     'description' => $description,
