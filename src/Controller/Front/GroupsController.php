@@ -2,8 +2,10 @@
 
 namespace YsGroups\Controller\Front;
 
+use WP_User;
 use YsGroups\Model\Groups;
 use YsGroups\Helpers\Helpers;
+use YsGroups\Services\Mailer;
 use YsGroups\Model\GroupsMembers;
 use YsGroups\Controller\AbstractController;
 
@@ -19,6 +21,7 @@ class GroupsController extends AbstractController
         add_shortcode('ys_groups', [$this, 'groups']);
         add_filter('template_include', [$this, 'show'], 100);
         add_action('template_redirect', [$this, 'ajaxFileUploadHandler']);
+        add_action('wp', [$this, 'joinGroupHandler']);
         // add_action('wp_ajax_ajaxFileUploadHandler', [$this, 'ajaxFileUploadHandler']);
     }
 
@@ -66,12 +69,13 @@ class GroupsController extends AbstractController
     {
         $slug = get_query_var('gslug');
         $feedPosts = [];
-        $user = wp_get_current_user();
 
         if (! empty($slug)) {
             $groupId = (new Groups())->getGroupIdBySlug($slug);
             $groupDatas = Helpers::getGroupDatasBySlug($slug);
             $groupAdminId = (new GroupsMembers())->getGroupAdminId($groupId);
+            $isMember = Helpers::isGroupMember($groupId, wp_get_current_user()->ID);
+            $action = home_url('/groupes/' . $slug . '/');
 
             $data = '';
             foreach ($groupDatas as $v) {
@@ -83,11 +87,12 @@ class GroupsController extends AbstractController
                 'ysGroupVars',
                 [
                     // 'feedPosts' => $feedPosts,
-                    'user' => $user,
                     'groupAdminId' => $groupAdminId,
                     'groupName' => $data['name'],
                     'groupStatus' => $data['status'],
                     'groupId' => $groupId,
+                    'isMember' => $isMember,
+                    'action' => $action,
                 ]
             );
         }
@@ -120,6 +125,66 @@ class GroupsController extends AbstractController
                 }
 
                 $this->addFlash('success', __('Cover has been successfully updated', YS_GROUPS_TEXT_DOMAIN));
+            }
+        }
+    }
+
+    public function joinGroupHandler()
+    {
+        $slug = get_query_var('gslug');
+        $groupsMembers = new GroupsMembers();
+        $groupId = (new Groups())->getGroupIdBySlug($slug);
+        $mailer = new Mailer();
+        $groupDatas = Helpers::getGroupDatasBySlug($slug);
+
+        if (isset($_POST['_ys_join_group_nonce'])) {
+            if (! wp_verify_nonce($_POST['_ys_join_group_nonce'], home_url('/groupes/' . $slug . '/'))) {
+                wp_die(
+                    sprintf(
+                        esc_html__(
+                            'Sorry, nonce %s  did not verifyed',
+                            YS_GROUPS_TEXT_DOMAIN
+                        ),
+                        '_ys_join_group_nonce'
+                    )
+                );
+            }
+
+            $groupAdminId = (new GroupsMembers())->getGroupAdminId($groupId);
+            $sender = new WP_User($groupAdminId);
+
+            $data = '';
+            foreach ($groupDatas as $v) {
+                $data = $v;
+            }
+
+            if (! Helpers::isGroupMember($groupId, wp_get_current_user()->ID)) {
+                $groupsMembers->persistMember(
+                    $groupId,
+                    wp_get_current_user()->ID,
+                    null,
+                    false,
+                    wp_date('Y-m-d H:i:s'),
+                    false,
+                    false
+                );
+
+                $this->addFlash(
+                    'success',
+                    __(
+                        'Your request has been sent, it will be validated by the group administrator',
+                        YS_GROUPS_TEXT_DOMAIN
+                    )
+                );
+
+                wp_safe_redirect(wp_get_referer());
+
+                $mailer->joinGroupRequestMail($sender->user_email, $sender->first_name, $data['name']);
+            } else {
+                $this->addFlash(
+                    'warning',
+                    __('You are already member', YS_GROUPS_TEXT_DOMAIN)
+                );
             }
         }
     }

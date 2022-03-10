@@ -22,6 +22,7 @@ class YsGroupsCacheContainer extends Container
         $this->methodMap = [
             'YsGroups\\Controller\\Admin\\Admin' => 'getAdminService',
             'YsGroups\\Controller\\Front\\Front' => 'getFrontService',
+            'YsGroups\\Services\\Mailer' => 'getMailerService',
             'YsGroups\\Services\\NotLoggedInRedirections' => 'getNotLoggedInRedirectionsService',
             'YsGroups\\Services\\RewriteRules' => 'getRewriteRulesService',
             'YsGroups\\Services\\Session' => 'getSessionService',
@@ -77,6 +78,16 @@ class YsGroupsCacheContainer extends Container
     protected function getFrontService()
     {
         return $this->services['YsGroups\\Controller\\Front\\Front'] = new \YsGroups\Controller\Front\Front(new \YsGroups\Controller\Front\GroupsController());
+    }
+
+    /**
+     * Gets the public 'YsGroups\Services\Mailer' shared autowired service.
+     *
+     * @return \YsGroups\Services\Mailer
+     */
+    protected function getMailerService()
+    {
+        return $this->services['YsGroups\\Services\\Mailer'] = new \YsGroups\Services\Mailer();
     }
 
     /**

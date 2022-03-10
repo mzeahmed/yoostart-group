@@ -2,6 +2,9 @@
 
 namespace YsGroups;
 
+use Exception;
+use YsGroupsCacheContainer;
+use YsGroups\Services\Mailer;
 use YsGroups\Services\Session;
 use YsGroups\Services\RewriteRules;
 use YsGroups\Controller\Admin\Admin;
@@ -26,7 +29,7 @@ class Container
     {
         if (file_exists(dirname(__DIR__) . '/cache/container.php')) {
             require_once dirname(__DIR__) . '/cache/container.php';
-            $container = new \YsGroupsCacheContainer();
+            $container = new YsGroupsCacheContainer();
         } else {
             $container = new ContainerBuilder();
 
@@ -37,7 +40,7 @@ class Container
             );
             try {
                 $loader->load('services.yml');
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 echo $e->getMessage();
             }
 
@@ -63,7 +66,8 @@ class Container
             $container->get(Front::class);
             $container->get(RewriteRules::class);
             $container->get(NotLoggedInRedirections::class);
-        } catch (\Exception $e) {
+            $container->get(Mailer::class);
+        } catch (Exception $e) {
             echo $e->getMessage();
         }
     }

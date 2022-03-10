@@ -20,3 +20,6 @@ services:
 
     YsGroups\Services\NotLoggedInRedirections:
         public: true
+
+    YsGroups\Services\Mailer:
+        public: true

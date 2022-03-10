@@ -125,7 +125,9 @@ class AdminGroups extends AbstractController
      */
     public function createGroupe(): ?string
     {
-        return $this->render('admin/create-group', ['action' => $this->action]);
+        return $this->render('admin/create-group', [
+            'action' => $this->action,
+        ]);
     }
 
     /**
@@ -145,7 +147,7 @@ class AdminGroups extends AbstractController
                 wp_die(
                     sprintf(
                         esc_html__(
-                            '<strong>Sorry, nonce %s  did not verifyed</strong>',
+                            'Sorry, nonce %s  did not verifyed',
                             YS_GROUPS_TEXT_DOMAIN
                         ),
                         '_ys_create_group_nonce'

@@ -32,7 +32,7 @@
                     <?php _e('Invite member', YS_GROUPS_TEXT_DOMAIN) ?>
                 </a>
             </li>
-            <?php if ($ysGroupVars['user']->ID == $ysGroupVars['groupAdminId']) : ?>
+            <?php if (wp_get_current_user()->ID == $ysGroupVars['groupAdminId']) : ?>
                 <li class="nav-item ys-group-manage-li">
                     <a class="nav-link" href="">
                         <i class="fas fa-cog"></i>
@@ -42,11 +42,6 @@
             <?php endif; ?>
         </ul>
 
-        <div class="ys-group-join">
-            <a class="btn btn-primary" href="">
-                <i class="fas fa-sign-in-alt"></i>
-                <?php _e('Join group', YS_GROUPS_TEXT_DOMAIN) ?>
-            </a>
-        </div>
+        <?php include '_join-group-form.php'; ?>
     </div>
 </nav>

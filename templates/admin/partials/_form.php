@@ -3,6 +3,7 @@
 /**
  * @package AdminGroupsController\Admin
  * @since   1.0.7
+ * @see     createGroupe()
  */
 
 ?>

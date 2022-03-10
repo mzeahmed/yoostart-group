@@ -34,7 +34,7 @@
             </div>
         </div>
 
-        <?php if ($ysGroupVars['user']->ID == $ysGroupVars['groupAdminId']) : ?>
+        <?php if (wp_get_current_user()->ID == $ysGroupVars['groupAdminId']) : ?>
             <div class="ys-group-action">
                 <div class="editable ys-group-single-action edit-cover" data-action="ys_group_get_cover_form"
                      data-toggle="tooltip" data-placement="top"

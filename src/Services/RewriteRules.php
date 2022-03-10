@@ -12,7 +12,6 @@ class RewriteRules
         add_action('wp_loaded', [$this, 'flushRules']);
         add_filter('rewrite_rules_array', [$this, 'insertRewriteRules']);
         add_filter('query_vars', [$this, 'insertQueryVars']);
-        // dump(get_option('rewrite_rules'));
     }
 
     /**

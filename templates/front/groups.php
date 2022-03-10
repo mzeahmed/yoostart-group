@@ -79,7 +79,7 @@
 
                 <hr>
 
-                <div class="ys-group-join">
+                <div class="ys-join-group">
                     <a href="#" class="btn btn-primary">
                         <i class="fas fa-sign-in-alt"></i>
                         <?php _e('Join group', YS_GROUPS_TEXT_DOMAIN); ?>

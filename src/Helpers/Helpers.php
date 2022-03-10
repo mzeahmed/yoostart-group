@@ -2,9 +2,11 @@
 
 namespace YsGroups\Helpers;
 
+use DateTime;
+use Exception;
 use YsGroups\Model\Groups;
 use YsGroups\OnPluginActivation;
-use YsGroups\Controller\AbstractController;
+use YsGroups\Model\GroupsMembers;
 
 /**
  * @since 1.1.0
@@ -215,13 +217,13 @@ class Helpers
     /**
      * Calcul du temps écoulé
      *
-     * @param \DateTime $date
+     * @param DateTime $date
      * @param bool      $isDetails retourne un array avec les details si set a true
      *
      * @return array|string temps écoulé
      * @since 1.1.2
      */
-    public static function timeElapsed(\DateTime $date, bool $isDetails = false): array|string
+    public static function timeElapsed(DateTime $date, bool $isDetails = false): array|string
     {
         $months = [];
 
@@ -305,16 +307,16 @@ class Helpers
     /**
      * Calcul du temps restant entre maintenant et une date à venir
      *
-     * @param \DateTime $date
+     * @param DateTime $date
      *
      * @return int|string
-     * @throws \Exception
+     * @throws Exception
      * @since 1.1.2
      */
-    public static function timeRemaining(\DateTime $date): int|string
+    public static function timeRemaining(DateTime $date): int|string
     {
-        $now = new \DateTime();
-        $futureDate = new \DateTime($date);
+        $now = new DateTime();
+        $futureDate = new DateTime($date);
 
         $interval = $futureDate->diff($now);
 
@@ -358,7 +360,7 @@ class Helpers
      *
      * @param string $type cover_photo ou avatar
      *
-     * @return void
+     * @return bool|string|void
      */
     public static function uploadGroupFile(string $postMetaKey, int $groupId, mixed $file, string $type)
     {
@@ -469,7 +471,7 @@ class Helpers
         $slug = sanitize_title($slug);
 
         if (str_starts_with($slug, 'wp')) {
-            $slug == substr($slug, 2, strlen($slug) - 2);
+            $slug = substr($slug, 2, strlen($slug) - 2);
         }
 
         if ($groups->slugExist($slug)) {
@@ -479,5 +481,17 @@ class Helpers
         }
 
         return $slug;
+    }
+
+    /**
+     * @param int $groupId
+     * @param int $userId
+     *
+     * @return bool
+     * @since 1.1.7
+     */
+    public static function isGroupMember(int $groupId, int $userId): bool
+    {
+        return (new GroupsMembers())->isGroupMember($groupId, $userId);
     }
 }

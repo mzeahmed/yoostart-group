@@ -64,6 +64,30 @@ class GroupsMembers extends Db
     }
 
     /**
+     * Confirmation de la demande d'adhesion à un groupe
+     *
+     * @param int $groupId
+     * @param int $userId
+     *
+     * @return bool|int
+     */
+    public function confirmMemberGroupJoin(int $groupId, int $userId): bool|int
+    {
+        return $this->wpdb->update(
+            $this->ys_groups_prefix . 'members',
+            [
+                'modified_at' => wp_date('Y-m-d H:i:s'),
+                'is_confirmed' => true,
+            ],
+            [
+                'group_id' => $groupId,
+                'user_id' => $userId,
+            ],
+            ['%d', '%d']
+        );
+    }
+
+    /**
      * Recupere l'ID de l'administrateur du groupe
      *
      * @param int $groupId Id du group
@@ -79,5 +103,31 @@ class GroupsMembers extends Db
         );
 
         return $this->wpdb->get_var($query);
+    }
+
+    /**
+     * Teste si l'utilisateur est membre ou ps
+     *
+     * @param int $grouId
+     * @param int $userId
+     *
+     * @return bool
+     * @since 1.1.7
+     */
+    public function isGroupMember(int $grouId, int $userId): bool
+    {
+        $query = $this->wpdb->prepare(
+            "SELECT user_id FROM {$this->ys_groups_prefix}members WHERE group_id = %d AND user_id = %d",
+            $grouId,
+            $userId
+        );
+
+        $result = $this->wpdb->get_var($query);
+
+        if ($result == $userId) {
+            return true;
+        }
+
+        return false;
     }
 }

@@ -2,6 +2,8 @@
 
 namespace YsGroups\Services;
 
+use WP_Query;
+
 /**
  * Classe pour gerer les redirections des urls interdite aux visisteurs
  *
@@ -12,17 +14,11 @@ class NotLoggedInRedirections
     /**
      * @var string|mixed Uri courant
      */
-    public string $requestUri;
-
-    /**
-     * @var array|string[] elements de la requete segmentés dans un tableau
-     */
-    public array $explodedRequestUri;
+    private string $requestUri;
 
     public function __construct()
     {
         $this->requestUri = $_SERVER['REQUEST_URI'];
-        $this->explodedRequestUri = explode('/', $this->requestUri);
 
         add_action('template_redirect', [$this, 'redirectGroupsDirectory']);
         add_action('template_redirect', [$this, 'redirectSingleGroup']);
@@ -46,7 +42,9 @@ class NotLoggedInRedirections
      */
     public function redirectSingleGroup()
     {
-        if (! is_user_logged_in() && $this->explodedRequestUri[1] === 'groupe') {
+        $slug = get_query_var('gslug');
+
+        if (! is_user_logged_in() && ! empty($slug)) {
             wp_safe_redirect(home_url());
             die();
         }
