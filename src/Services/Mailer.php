@@ -12,11 +12,15 @@ class Mailer
      * @param string          $requestSenderName
      * @param string          $groupName
      *
-     * @return void
+     * @return bool|mixed|void
      */
     public function joinGroupRequestMail(array|string $to, string $requestSenderName, string $groupName)
     {
-        $message = "You have a request by " . $requestSenderName . " to join group: " . $groupName;
+        $message = sprintf(
+            __('You have a request by %s to join group: ' . ucfirst('%s')),
+            $requestSenderName,
+            $groupName
+        );
 
         return wp_mail($to, __('join group request'), $message);
     }
