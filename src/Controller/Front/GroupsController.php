@@ -100,6 +100,9 @@ class GroupsController extends AbstractController
         return $template;
     }
 
+    /**
+     * @return void
+     */
     public function ajaxFileUploadHandler()
     {
         $slug = get_query_var('gslug');
@@ -129,6 +132,9 @@ class GroupsController extends AbstractController
         }
     }
 
+    /**
+     * @return void
+     */
     public function joinGroupHandler()
     {
         $slug = get_query_var('gslug');
@@ -151,7 +157,8 @@ class GroupsController extends AbstractController
             }
 
             $groupAdminId = (new GroupsMembers())->getGroupAdminId($groupId);
-            $sender = new WP_User($groupAdminId);
+            $groupAdmin = new WP_User($groupAdminId);
+            $sender = wp_get_current_user();
 
             $data = '';
             foreach ($groupDatas as $v) {
@@ -179,7 +186,7 @@ class GroupsController extends AbstractController
 
                 wp_safe_redirect(wp_get_referer());
 
-                $mailer->joinGroupRequestMail($sender->user_email, $sender->first_name, $data['name']);
+                $mailer->joinGroupRequestMail($groupAdmin->user_email, $sender->display_name, $data['name']);
             } else {
                 $this->addFlash(
                     'warning',
