@@ -23,3 +23,6 @@ services:
 
     YsGroups\Services\Mailer:
         public: true
+
+    YsGroups\Api\YsGroupsRestApi:
+        public: true

@@ -7,6 +7,24 @@ namespace YsGroups\Model;
  */
 class DbSchema extends Db
 {
+    private string $charsetCollate;
+
+    private string $groups;
+
+    private string $groupsMembers;
+
+    private array $query;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->charsetCollate = $this->wpdb->get_charset_collate();
+        $this->groups = $this->ys_groups_prefix . 'groups';
+        $this->groupsMembers = $this->ys_groups_prefix . 'members';
+        $this->query = [];
+    }
+
     /**
      * Creation des tables en base de données
      *
@@ -15,13 +33,8 @@ class DbSchema extends Db
      */
     public function createTables()
     {
-        $charsetCollate = $this->wpdb->get_charset_collate();
-        $groups = $this->ys_groups_prefix . 'groups';
-        $groupsMembers = $this->ys_groups_prefix . 'members';
-        $query = [];
-
         // Table ys_group_groups
-        $query[] = "CREATE TABLE {$groups} (
+        $this->query[] = "CREATE TABLE {$this->groups} (
                         id bigint(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                         creator_id bigint(20) NOT NULL,
                         name varchar(100) NOT NULL,
@@ -33,10 +46,10 @@ class DbSchema extends Db
                         created_at datetime NOT NULL,
                         KEY creator_id (creator_id),
                         Key status (status)
-                    ) {$charsetCollate};";
+                    ) {$this->charsetCollate};";
 
         // Table ys_group_groups_members
-        $query[] = "CREATE TABLE {$groupsMembers} (
+        $this->query[] = "CREATE TABLE {$this->groupsMembers} (
                         id bigint(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                         group_id bigint(20) NOT NULL,
                         user_id bigint(20) NOT NULL,
@@ -50,8 +63,25 @@ class DbSchema extends Db
                         KEY user_id (user_id),
                         KEY inviter_id (inviter_id),
                         KEY is_confirmed (is_confirmed)
-                    ) {$charsetCollate};";
+                    ) {$this->charsetCollate};";
 
-        dbDelta($query);
+        dbDelta($this->query);
+    }
+
+    /**
+     * Modification de la table ys_feed_posts
+     *
+     * @return void
+     * @since 1.2.0
+     */
+    public function alterTables()
+    {
+        $feedPosts = $this->wpdb->get_row("SELECT * FROM {$this->prefix}ys_feed_posts");
+
+        if (! isset($feedPosts->group_id)) {
+            $this->wpdb->query(
+                "ALTER TABLE {$this->prefix}ys_feed_posts ADD group_id bigint(20) NULL AFTER `user_id`;"
+            );
+        }
     }
 }

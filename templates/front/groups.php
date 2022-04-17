@@ -62,7 +62,7 @@
                             class="ys-group-data-item ys-group-data-last-activity"
                             data-toggle="tooltip"
                             data-placement="bottom"
-                            title="<?php echo sprintf(__('Last activity on %s', YS_GROUPS_TEXT_DOMAIN), '10/10/21') ?>"
+                            title="<?php printf(__('Last activity on %s', YS_GROUPS_TEXT_DOMAIN), '10/10/21') ?>"
                         >
                             <span class="dashicons dashicons-clock"></span>
                         </div>
@@ -70,7 +70,10 @@
                             class="ys-group-data-item ys-group-data-members"
                             data-toggle="tooltip"
                             data-placement="bottom"
-                            title="<?php echo sprintf(__('%s members', YS_GROUPS_TEXT_DOMAIN), '10') ?>"
+                            title="<?php printf(
+                                __('%s members', YS_GROUPS_TEXT_DOMAIN),
+                                count(\YsGroups\Helpers\Helpers::getMembers($group['id']))
+                            ) ?>"
                         >
                             <span class="dashicons dashicons-groups"></span>
                         </div>
@@ -79,12 +82,24 @@
 
                 <hr>
 
-                <div class="ys-join-group">
-                    <a href="#" class="btn btn-primary">
-                        <i class="fas fa-sign-in-alt"></i>
-                        <?php _e('Join group', YS_GROUPS_TEXT_DOMAIN); ?>
-                    </a>
-                </div>
+                <!--                <div class="ys-join-group">-->
+                <!--                    <a href="#" class="btn btn-primary">-->
+                <!--                        <i class="fas fa-sign-in-alt"></i>-->
+                <!--                        --><?php //_e('Join group', YS_GROUPS_TEXT_DOMAIN); ?>
+                <!--                    </a>-->
+                <!--                </div>-->
+
+                <?php //if (! $ysGroupVars['isMember']) :  ?>
+                <!--                <div class="ys-join-group">-->
+                <!--                    <form action="" method="post" name="ys_join_group_form">-->
+                <!--                        --><?php //wp_nonce_field(home_url('/groupes/'), '_ys_directory_join_group_nonce') ?>
+                <!--                        <button type="submit" class="btn btn-primary">-->
+                <!--                            <i class="fas fa-sign-in-alt"></i>-->
+                <!--                            --><?php //_e('Join group', YS_GROUPS_TEXT_DOMAIN) ?>
+                <!--                        </button>-->
+                <!--                    </form>-->
+                <!--                </div>-->
+                <?php //endif; ?>
             </div>
         </div>
     <?php endforeach; ?>

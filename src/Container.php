@@ -2,9 +2,11 @@
 
 namespace YsGroups;
 
+use Exception;
 use YsGroupsCacheContainer;
 use YsGroups\Services\Mailer;
 use YsGroups\Services\Session;
+use YsGroups\Api\YsGroupsRestApi;
 use YsGroups\Services\RewriteRules;
 use YsGroups\Controller\Admin\Admin;
 use YsGroups\Controller\Front\Front;
@@ -36,7 +38,7 @@ class Container
             );
             try {
                 $loader->load('services.yml');
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 echo $e->getMessage();
             }
 
@@ -63,7 +65,8 @@ class Container
             $container->get(RewriteRules::class);
             $container->get(NotLoggedInRedirections::class);
             $container->get(Mailer::class);
-        } catch (\Exception $e) {
+            $container->get(YsGroupsRestApi::class);
+        } catch (Exception $e) {
             echo $e->getMessage();
         }
     }

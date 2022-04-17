@@ -4,6 +4,7 @@ namespace YsGroups\Controller\Front;
 
 use WP_User;
 use YsGroups\Model\Groups;
+use YsGroups\Model\FeedPost;
 use YsGroups\Helpers\Helpers;
 use YsGroups\Services\Mailer;
 use YsGroups\Model\GroupsMembers;
@@ -67,6 +68,8 @@ class GroupsController extends AbstractController
      */
     public function show($template)
     {
+        dump((new FeedPost())->getFeedPosts());
+
         $slug = get_query_var('gslug');
         $feedPosts = [];
 
@@ -143,15 +146,15 @@ class GroupsController extends AbstractController
         $mailer = new Mailer();
         $groupDatas = Helpers::getGroupDatasBySlug($slug);
 
-        if (isset($_POST['_ys_join_group_nonce'])) {
-            if (! wp_verify_nonce($_POST['_ys_join_group_nonce'], home_url('/groupes/' . $slug . '/'))) {
+        if (isset($_POST['_ys_single_join_group_nonce'])) {
+            if (! wp_verify_nonce($_POST['_ys_single_join_group_nonce'], home_url('/groupes/' . $slug . '/'))) {
                 wp_die(
                     sprintf(
                         esc_html__(
                             'Sorry, nonce %s  did not verifyed',
                             YS_GROUPS_TEXT_DOMAIN
                         ),
-                        '_ys_join_group_nonce'
+                        '_ys_single_join_group_nonce'
                     )
                 );
             }

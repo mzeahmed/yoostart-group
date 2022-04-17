@@ -25,7 +25,7 @@ class OnPluginActivation
         set_transient('', 'yes', MINUTE_IN_SECONDS * 10);
         Helpers::maybeDefineConstant('YS_GROUPS_INSTALLING', true);
 
-        self::createTables();
+        self::updateSchema();
         self::createPages();
 
         if (! file_exists(YS_GROUPS_UPLOAD_DIR)) {
@@ -46,9 +46,10 @@ class OnPluginActivation
      * @return void
      * @since 1.0.4
      */
-    private static function createTables()
+    private static function updateSchema()
     {
         (new DbSchema())->createTables();
+        (new DbSchema())->alterTables();
     }
 
     /**

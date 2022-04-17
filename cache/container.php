@@ -20,6 +20,7 @@ class YsGroupsCacheContainer extends Container
     {
         $this->services = $this->privates = [];
         $this->methodMap = [
+            'YsGroups\\Api\\YsGroupsRestApi' => 'getYsGroupsRestApiService',
             'YsGroups\\Controller\\Admin\\Admin' => 'getAdminService',
             'YsGroups\\Controller\\Front\\Front' => 'getFrontService',
             'YsGroups\\Services\\Mailer' => 'getMailerService',
@@ -44,6 +45,8 @@ class YsGroupsCacheContainer extends Container
     public function getRemovedIds(): array
     {
         return [
+            'Psr\\Container\\ContainerInterface' => true,
+            'Symfony\\Component\\DependencyInjection\\ContainerInterface' => true,
             'YsGroups\\Container' => true,
             'YsGroups\\Controller\\Admin\\AdminGroups' => true,
             'YsGroups\\Controller\\Admin\\GroupListTable' => true,
@@ -52,12 +55,23 @@ class YsGroupsCacheContainer extends Container
             'YsGroups\\Helpers\\Helpers' => true,
             'YsGroups\\Model\\Db' => true,
             'YsGroups\\Model\\DbSchema' => true,
+            'YsGroups\\Model\\FeedPost' => true,
             'YsGroups\\Model\\Groups' => true,
             'YsGroups\\Model\\GroupsMembers' => true,
             'YsGroups\\Model\\PluginPosts' => true,
             'YsGroups\\OnPluginActivation' => true,
             'YsGroups\\YsGroups' => true,
         ];
+    }
+
+    /**
+     * Gets the public 'YsGroups\Api\YsGroupsRestApi' shared autowired service.
+     *
+     * @return \YsGroups\Api\YsGroupsRestApi
+     */
+    protected function getYsGroupsRestApiService()
+    {
+        return $this->services['YsGroups\\Api\\YsGroupsRestApi'] = new \YsGroups\Api\YsGroupsRestApi();
     }
 
     /**

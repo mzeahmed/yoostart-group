@@ -218,7 +218,7 @@ class Helpers
      * Calcul du temps écoulé
      *
      * @param DateTime $date
-     * @param bool      $isDetails retourne un array avec les details si set a true
+     * @param bool     $isDetails retourne un array avec les details si set a true
      *
      * @return array|string temps écoulé
      * @since 1.1.2
@@ -493,5 +493,15 @@ class Helpers
     public static function isGroupMember(int $groupId, int $userId): bool
     {
         return (new GroupsMembers())->isGroupMember($groupId, $userId);
+    }
+
+    /**
+     * @param int $groupId
+     *
+     * @return array|object|null
+     */
+    public static function getMembers(int $groupId): object|array|null
+    {
+        return (new GroupsMembers())->getMembers($groupId);
     }
 }

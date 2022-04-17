@@ -55,7 +55,7 @@ class RewriteRules
      */
     public function insertQueryVars(array $qvars): array
     {
-        array_push($qvars, 'gslug');
+        $qvars[] = 'gslug';
 
         return $qvars;
     }
