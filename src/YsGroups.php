@@ -2,6 +2,8 @@
 
 namespace YsGroups;
 
+use YsGroups\Controller\Admin\CustomPostType;
+
 /**
  * @package AdminGroupsController
  * @since   1.0.0
@@ -21,19 +23,40 @@ class YsGroups
     }
 
     /**
-     * Lorsque WP a fini de charger tous les plugins, on déclenche le hook `ys_groups_loaded`.
-     *
-     * Cela permet de s'assurer que `ys_groups_loaded` n'est appelé
-     * qu'après que tous les autres plugins aient été chargés,
-     * afin d'éviter les problèmes causés par les noms des répertoires de plugins
-     * qui changent l'ordre de chargement.
-     *
      * @return void
      * @since 1.0.0
      */
-    public function onPluginsLoaded()
+    private function initHooks()
     {
-        do_action('ys_groups_loaded');
+        register_activation_hook(YS_GROUPS_PLUGIN_FILE, [OnPluginActivation::class, 'activation']);
+
+        add_action('init', function () {
+            load_plugin_textdomain(YS_GROUPS_TEXT_DOMAIN, false, YS_GROUPS_PATH . 'languages');
+        });
+
+        add_action('plugins_loaded', [$this, 'onPluginsLoaded']);
+        add_filter('body_class', [$this, 'bodyClass']);
+
+        /**
+         * @since 1.2.1
+         */
+        add_action('init', [CustomPostType::class, 'customPostTypeInit']);
+
+        /**
+         * @since 1.2.1
+         */
+        add_action('init', [CustomPostType::class, 'customTaxonomy']);
+
+        /**
+         * Refresh des permaliens à l'activation du plugin
+         *
+         * @since 1.2.1
+         */
+        register_activation_hook(YS_GROUPS_PLUGIN_FILE, function () {
+            CustomPostType::customPostTypeInit();
+
+            flush_rewrite_rules();
+        });
     }
 
     /**
@@ -53,19 +76,19 @@ class YsGroups
     }
 
     /**
+     * Lorsque WP a fini de charger tous les plugins, on déclenche le hook `ys_groups_loaded`.
+     *
+     * Cela permet de s'assurer que `ys_groups_loaded` n'est appelé
+     * qu'après que tous les autres plugins aient été chargés,
+     * afin d'éviter les problèmes causés par les noms des répertoires de plugins
+     * qui changent l'ordre de chargement.
+     *
      * @return void
      * @since 1.0.0
      */
-    private function initHooks()
+    public function onPluginsLoaded()
     {
-        register_activation_hook(YS_GROUPS_PLUGIN_FILE, [OnPluginActivation::class, 'activation']);
-
-        add_action('init', function () {
-            load_plugin_textdomain(YS_GROUPS_TEXT_DOMAIN, false, YS_GROUPS_PATH . 'languages');
-        });
-
-        add_action('plugins_loaded', [$this, 'onPluginsLoaded']);
-        add_filter('body_class', [$this, 'bodyClass']);
+        do_action('ys_groups_loaded');
     }
 
     /**

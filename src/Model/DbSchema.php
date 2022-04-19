@@ -7,12 +7,36 @@ namespace YsGroups\Model;
  */
 class DbSchema extends Db
 {
+    /**
+     * @var string
+     */
     private string $charsetCollate;
 
+    /**
+     * @var string
+     */
     private string $groups;
 
+    /**
+     * @var string
+     */
     private string $groupsMembers;
 
+    /**
+     * @var string
+     * @since 1.2.0
+     */
+    private string $groupsPosts;
+
+    /**
+     * @var string
+     * @since 1.2.0
+     */
+    private string $groupsPostsComments;
+
+    /**
+     * @var array
+     */
     private array $query;
 
     public function __construct()
@@ -22,6 +46,8 @@ class DbSchema extends Db
         $this->charsetCollate = $this->wpdb->get_charset_collate();
         $this->groups = $this->ys_groups_prefix . 'groups';
         $this->groupsMembers = $this->ys_groups_prefix . 'members';
+        $this->groupsPosts = $this->ys_groups_prefix . 'posts';
+        $this->groupsPostsComments = $this->ys_groups_prefix . 'posts_comments';
         $this->query = [];
     }
 
@@ -65,23 +91,25 @@ class DbSchema extends Db
                         KEY is_confirmed (is_confirmed)
                     ) {$this->charsetCollate};";
 
+        // Table ys_group_posts
+        $this->query[] = "CREATE TABLE {$this->groupsPosts} (
+                        id bigint(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                        author_id bigint(20) NOT NULL,
+                        content longtext NOT NULL,
+                        attached_media varchar(250) NULL,
+                        status varchar(250) NOT NULL DEFAULT 'public',
+                        created_at datetime NOT NULL
+                    ) {$this->charsetCollate};";
+
+        // Table ys_group_posts_comments
+        $this->query[] = "CREATE TABLE {$this->groupsPostsComments} (
+                        id bigint(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                        author_id bigint(20) NOT NULL,
+                        post_id bigint(20) NOT NULL,
+                        content longtext NOT NULL,
+                        created_at datetime NOT NULL
+                    ) {$this->charsetCollate};";
+
         dbDelta($this->query);
-    }
-
-    /**
-     * Modification de la table ys_feed_posts
-     *
-     * @return void
-     * @since 1.2.0
-     */
-    public function alterTables()
-    {
-        $feedPosts = $this->wpdb->get_row("SELECT * FROM {$this->prefix}ys_feed_posts");
-
-        if (! isset($feedPosts->group_id)) {
-            $this->wpdb->query(
-                "ALTER TABLE {$this->prefix}ys_feed_posts ADD group_id bigint(20) NULL AFTER `user_id`;"
-            );
-        }
     }
 }

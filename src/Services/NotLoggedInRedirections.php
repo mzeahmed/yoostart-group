@@ -2,8 +2,6 @@
 
 namespace YsGroups\Services;
 
-use WP_Query;
-
 /**
  * Classe pour gerer les redirections des urls interdite aux visisteurs
  *

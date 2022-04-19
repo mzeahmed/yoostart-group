@@ -4,7 +4,6 @@ namespace YsGroups\Controller\Front;
 
 use WP_User;
 use YsGroups\Model\Groups;
-use YsGroups\Model\FeedPost;
 use YsGroups\Helpers\Helpers;
 use YsGroups\Services\Mailer;
 use YsGroups\Model\GroupsMembers;
@@ -68,10 +67,10 @@ class GroupsController extends AbstractController
      */
     public function show($template)
     {
-        dump((new FeedPost())->getFeedPosts());
+        // dump((new GroupsPosts())->getPaginatedFeedPosts());
 
         $slug = get_query_var('gslug');
-        $feedPosts = [];
+        // $feedPosts = [];
 
         if (! empty($slug)) {
             $groupId = (new Groups())->getGroupIdBySlug($slug);

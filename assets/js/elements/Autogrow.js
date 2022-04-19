@@ -18,6 +18,7 @@ function debounce (callback, delay) {
 }
 
 /**
+ * Extension automatique des champs de type textarea
  * @since 1.0.9
  */
 class Autogrow extends HTMLTextAreaElement {
@@ -59,4 +60,4 @@ class Autogrow extends HTMLTextAreaElement {
 /**
  * @example useage <textarea is="textarea-autogrow"></textarea>
  */
-customElements.define('textarea-autogrow', Autogrow, {extends: 'textarea'});
+customElements.define('textarea-autogrow', Autogrow, { extends: 'textarea' });

@@ -2,9 +2,7 @@
 
 namespace YsGroups\Api;
 
-use WP_REST_Server;
-use WP_REST_Response;
-use YsGroups\Model\FeedPost;
+use YsGroups\Model\GroupsPosts;
 
 class YsGroupsRestApi
 {
@@ -22,22 +20,28 @@ class YsGroupsRestApi
             'ys-groups/v1',
             '/feed-posts',
             [
-                'method' => WP_REST_Server::READABLE,
-                'callback' => [$this, 'feedPosts'],
+                'method' => \WP_REST_Server::READABLE,
+                'callback' => [$this, 'groupPosts'],
                 'permission_calback' => '__return true',
             ]
         );
     }
 
     /**
-     * @param $request
+     * @param \WP_REST_Request $request
      *
-     * @return WP_REST_Response
+     * @return \WP_REST_Response
      * @since 1.2.0
      */
-    public function feedPosts($request): WP_REST_Response
+    public function groupPosts(\WP_REST_Request $request): \WP_REST_Response
     {
-        $response = (new FeedPost())->getFeedPosts();
+        $response = (new GroupsPosts())->getPosts();
+
+        if (empty($response)) {
+            return new \WP_REST_Response([
+                'Message' => __('No post found', YS_GROUPS_TEXT_DOMAIN),
+            ], 400);
+        }
 
         return rest_ensure_response($response);
     }

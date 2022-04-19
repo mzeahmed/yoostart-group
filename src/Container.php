@@ -66,6 +66,7 @@ class Container
             $container->get(NotLoggedInRedirections::class);
             $container->get(Mailer::class);
             $container->get(YsGroupsRestApi::class);
+            // $container->get(CustomPostType::class);
         } catch (Exception $e) {
             echo $e->getMessage();
         }

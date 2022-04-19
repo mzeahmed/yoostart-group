@@ -49,7 +49,6 @@ class OnPluginActivation
     private static function updateSchema()
     {
         (new DbSchema())->createTables();
-        (new DbSchema())->alterTables();
     }
 
     /**
@@ -68,11 +67,6 @@ class OnPluginActivation
                     'title' => 'Groupes',
                     'content' => '<!-- wp:shortcode -->[ys_groups]<!-- /wp:shortcode -->',
                 ],
-                // 'groupe' => [
-                //     'name' => 'groupe',
-                //     'title' => 'Groupe',
-                //     'content' => '',
-                // ],
             ]
         );
 
