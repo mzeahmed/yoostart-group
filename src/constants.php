@@ -22,8 +22,11 @@ define('YS_GROUPS_UPLOAD_BASE_URL', $uploadDir['baseurl']);
 define('YS_GROUPS_DB_PREFIX', $wpdb->prefix . 'ys_group_');
 
 // Postmeta contenant le nom des images
-define('YS_GROUP_AVATAR_POSTMETA', 'ys_group_avatar_image');
-define('YS_GROUP_COVER_POSTMETA', 'ys_group_cover_image');
+const YS_GROUP_AVATAR_POSTMETA = 'ys_group_avatar_image';
+const YS_GROUP_COVER_POSTMETA = 'ys_group_cover_image';
+
+// Term meta
+const YS_GROUP_MEMBER_USER = 'ys_group_member_user';
 
 // Rajouter le nom des pages nécessaires
 const YS_GROUPS_POSTS = [

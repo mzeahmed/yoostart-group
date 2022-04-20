@@ -38,22 +38,13 @@ class YsGroups
         add_filter('body_class', [$this, 'bodyClass']);
 
         /**
-         * @since 1.2.1
-         */
-        add_action('init', [CustomPostType::class, 'customPostTypeInit']);
-
-        /**
-         * @since 1.2.1
-         */
-        add_action('init', [CustomPostType::class, 'customTaxonomy']);
-
-        /**
          * Refresh des permaliens à l'activation du plugin
          *
          * @since 1.2.1
          */
         register_activation_hook(YS_GROUPS_PLUGIN_FILE, function () {
-            CustomPostType::customPostTypeInit();
+            // CustomPostType::registerCPT();
+            (new CustomPostType())->registerCPT();
 
             flush_rewrite_rules();
         });

@@ -1,6 +1,7 @@
 import 'bootstrap/dist/js/bootstrap.bundle';
 import './elements/Autogrow';
-
-import {handleClickDelete} from './modules/groups-manage';
+import removeField from './modules/remove-field';
 
 // handleClickDelete()
+
+removeField();

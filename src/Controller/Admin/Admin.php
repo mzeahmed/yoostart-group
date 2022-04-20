@@ -40,7 +40,12 @@ class Admin extends AbstractController
      */
     public function enqueueScripts()
     {
-        if (! empty($this->page) && ($this->page === 'ys_options_groups')) {
+        global $current_screen;
+
+        if (
+            (! empty($this->page) && ($this->page === 'ys_options_groups'))
+            || $current_screen->taxonomy === 'ys_group_member'
+        ) {
             wp_enqueue_style(
                 'ys-groups-admin',
                 YS_GROUPS_URI . '/public/css/admin.css',
