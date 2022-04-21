@@ -4,6 +4,10 @@ namespace YsGroups\Controller\Admin;
 
 use YsGroups\Model\PluginPosts;
 use YsGroups\Controller\AbstractController;
+use YsGroups\Controller\Admin\Metaboxs\StatusMetaBox;
+use YsGroups\Controller\Admin\Metaboxs\YsGroupIdMetaBox;
+use YsGroups\Controller\Admin\Metaboxs\GroupAdminMetabox;
+use YsGroups\Controller\Admin\Metaboxs\CoverPhotoMetaBox;
 
 /**
  * @since 1.0.6
@@ -12,18 +16,50 @@ class Admin extends AbstractController
 {
     public AdminGroups $ysGroups;
 
+    public YsGroupCPT $ysGroupCPT;
+
+    public YsGroupPostCPT $ysGroupPostCPT;
+
+    public StatusMetaBox $metabox;
+
+    public GroupAdminMetabox $groupAdminMetabox;
+
+    public CoverPhotoMetaBox $coverPhotoMetaBox;
+
+    public YsGroupIdMetaBox $ysGroupIdMetaBox;
+
     public string $page;
 
     /**
-     * @param AdminGroups $ysGroups
+     * @param AdminGroups       $ysGroups
+     * @param YsGroupCPT        $ysGroupCPT
+     * @param StatusMetaBox     $metaBox
+     * @param GroupAdminMetabox $groupAdminMetabox
+     * @param CoverPhotoMetaBox $coverPhotoMetaBox
+     * @param YsGroupPostCPT    $ysGroupPostCPT
+     * @param YsGroupIdMetaBox  $ysGroupIdMetaBox
      *
      * @since 1.0.6
      */
-    public function __construct(AdminGroups $ysGroups)
-    {
+    public function __construct(
+        AdminGroups $ysGroups,
+        YsGroupCPT $ysGroupCPT,
+        StatusMetaBox $metaBox,
+        GroupAdminMetabox $groupAdminMetabox,
+        CoverPhotoMetaBox $coverPhotoMetaBox,
+        YsGroupPostCPT $ysGroupPostCPT,
+        YsGroupIdMetaBox $ysGroupIdMetaBox
+    ) {
         parent::__construct();
 
         $this->ysGroups = $ysGroups;
+        $this->ysGroupCPT = $ysGroupCPT;
+        $this->metabox = $metaBox;
+        $this->groupAdminMetabox = $groupAdminMetabox;
+        $this->coverPhotoMetaBox = $coverPhotoMetaBox;
+        $this->ysGroupPostCPT = $ysGroupPostCPT;
+        $this->ysGroupIdMetaBox = $ysGroupIdMetaBox;
+
         $this->page = $_GET['page'] ?? '';
 
         add_action('admin_enqueue_scripts', [$this, 'enqueueScripts']);
@@ -45,6 +81,8 @@ class Admin extends AbstractController
         if (
             (! empty($this->page) && ($this->page === 'ys_options_groups'))
             || $current_screen->taxonomy === 'ys_group_member'
+            || $current_screen->post_type === 'ys-group-post'
+            || $current_screen->post_type === 'ys-group'
         ) {
             wp_enqueue_style(
                 'ys-groups-admin',

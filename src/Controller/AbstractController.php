@@ -38,6 +38,48 @@ abstract class AbstractController
     }
 
     /**
+     * Chargement des templates des custom post type
+     *
+     * @param string $template
+     * @param string $varName
+     * @param array  $params
+     *
+     * @return string
+     * @example Exemple d'usage :
+     *              $this->locateTemplate('nom-du-template', 'nom_de_la_variable', ['variable1' => $variable1])
+     *          Pour récuperer la variable :
+     *              global $wp_query; extract($wp_query->query_vars);
+     *              echo $nom_de_la_variable['variable1'];
+     * @since   1.2.3
+     */
+    protected function template(string $template, string $varName = '', array $params = []): string
+    {
+        $ysGPt = 'ys-group';
+        $located = '';
+
+        if (is_single() && get_post_type() === $ysGPt) {
+            $located = $this->getTemplatePath() . $template . '-' . $ysGPt . '.php';
+        } elseif (is_post_type_archive($ysGPt)) {
+            $located = $this->getTemplatePath() . $template . '-' . $ysGPt . '.php';
+        }
+
+        set_query_var($varName, $params);
+
+        return $located;
+    }
+
+    /**
+     * Récupére le chemin du dossier des templates
+     *
+     * @return string|null
+     * @since 1.0.0
+     */
+    private function getTemplatePath(): ?string
+    {
+        return YS_GROUPS_PATH . 'templates/';
+    }
+
+    /**
      * Rendu du template
      *
      * @param string $template
@@ -92,17 +134,6 @@ abstract class AbstractController
         set_query_var($varName, $params);
 
         return $located;
-    }
-
-    /**
-     * Récupére le chemin du dossier des templates
-     *
-     * @return string|null
-     * @since 1.0.0
-     */
-    private function getTemplatePath(): ?string
-    {
-        return YS_GROUPS_PATH . 'templates/';
     }
 
     /**

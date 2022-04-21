@@ -22,7 +22,6 @@ class YsGroupsCacheContainer extends Container
         $this->methodMap = [
             'YsGroups\\Api\\YsGroupsRestApi' => 'getYsGroupsRestApiService',
             'YsGroups\\Controller\\Admin\\Admin' => 'getAdminService',
-            'YsGroups\\Controller\\Admin\\CustomPostType' => 'getCustomPostTypeService',
             'YsGroups\\Controller\\Front\\Front' => 'getFrontService',
             'YsGroups\\Services\\Mailer' => 'getMailerService',
             'YsGroups\\Services\\NotLoggedInRedirections' => 'getNotLoggedInRedirectionsService',
@@ -51,7 +50,13 @@ class YsGroupsCacheContainer extends Container
             'YsGroups\\Container' => true,
             'YsGroups\\Controller\\Admin\\AdminGroups' => true,
             'YsGroups\\Controller\\Admin\\GroupListTable' => true,
-            'YsGroups\\Controller\\Admin\\MetaBox' => true,
+            'YsGroups\\Controller\\Admin\\Metaboxs\\CoverPhotoMetaBox' => true,
+            'YsGroups\\Controller\\Admin\\Metaboxs\\GroupAdminMetabox' => true,
+            'YsGroups\\Controller\\Admin\\Metaboxs\\StatusMetaBox' => true,
+            'YsGroups\\Controller\\Admin\\Metaboxs\\YsGroupIdMetaBox' => true,
+            'YsGroups\\Controller\\Admin\\YsGroupCPT' => true,
+            'YsGroups\\Controller\\Admin\\YsGroupPostCPT' => true,
+            'YsGroups\\Controller\\Front\\GroupPostsController' => true,
             'YsGroups\\Controller\\Front\\GroupsController' => true,
             'YsGroups\\Helpers\\Helpers' => true,
             'YsGroups\\Model\\Db' => true,
@@ -82,17 +87,7 @@ class YsGroupsCacheContainer extends Container
      */
     protected function getAdminService()
     {
-        return $this->services['YsGroups\\Controller\\Admin\\Admin'] = new \YsGroups\Controller\Admin\Admin(new \YsGroups\Controller\Admin\AdminGroups());
-    }
-
-    /**
-     * Gets the public 'YsGroups\Controller\Admin\CustomPostType' shared autowired service.
-     *
-     * @return \YsGroups\Controller\Admin\CustomPostType
-     */
-    protected function getCustomPostTypeService()
-    {
-        return $this->services['YsGroups\\Controller\\Admin\\CustomPostType'] = new \YsGroups\Controller\Admin\CustomPostType();
+        return $this->services['YsGroups\\Controller\\Admin\\Admin'] = new \YsGroups\Controller\Admin\Admin(new \YsGroups\Controller\Admin\AdminGroups(), new \YsGroups\Controller\Admin\YsGroupCPT(), new \YsGroups\Controller\Admin\Metaboxs\StatusMetaBox(), new \YsGroups\Controller\Admin\Metaboxs\GroupAdminMetabox(), new \YsGroups\Controller\Admin\Metaboxs\CoverPhotoMetaBox(), new \YsGroups\Controller\Admin\YsGroupPostCPT(), new \YsGroups\Controller\Admin\Metaboxs\YsGroupIdMetaBox());
     }
 
     /**

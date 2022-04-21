@@ -4,13 +4,15 @@
  * @since 1.1.4
  */
 
+defined('ABSPATH') || die;
+
 global $wp_query;
 extract($wp_query->query_vars);
 
-?>
+require YOOSTART_PLUGIN_DIR_PATH . 'public/partials/template-parts/user-header.php';
+require YS_GROUPS_PATH . 'templates/front/partials/_group-header.php';
 
-<?php require YOOSTART_PLUGIN_DIR_PATH . 'public/partials/template-parts/user-header.php'; ?>
-<?php require YS_GROUPS_PATH . 'templates/front/partials/_group-header.php'; ?>
+?>
 
 <div class="ys-group-content ">
     <div class="ys-group-inner-content">

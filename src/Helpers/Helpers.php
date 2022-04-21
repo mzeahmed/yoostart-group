@@ -484,13 +484,13 @@ class Helpers
     }
 
     /**
-     * @param int $groupId
-     * @param int $userId
+     * @param  $groupId
+     * @param  $userId
      *
      * @return bool
      * @since 1.1.7
      */
-    public static function isGroupMember(int $groupId, int $userId): bool
+    public static function isGroupMember($groupId, $userId): bool
     {
         return (new GroupsMembers())->isGroupMember($groupId, $userId);
     }

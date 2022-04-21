@@ -26,6 +26,3 @@ services:
 
     YsGroups\Api\YsGroupsRestApi:
         public: true
-
-    YsGroups\Controller\Admin\CustomPostType:
-        public: true

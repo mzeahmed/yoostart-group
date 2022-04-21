@@ -18,7 +18,7 @@ class YsGroupsRestApi
     {
         register_rest_route(
             'ys-groups/v1',
-            '/feed-posts',
+            '/posts',
             [
                 'method' => \WP_REST_Server::READABLE,
                 'callback' => [$this, 'groupPosts'],
@@ -35,7 +35,15 @@ class YsGroupsRestApi
      */
     public function groupPosts(\WP_REST_Request $request): \WP_REST_Response
     {
-        $response = (new GroupsPosts())->getPosts();
+        $itemsPerPage = 9;
+        $paged = (get_query_var('paged') ? get_query_var('paged') : 1);
+        $offset = ($paged * $itemsPerPage) - $itemsPerPage;
+
+        $response = (new GroupsPosts())->getPostsByGroupId(1, $itemsPerPage, $offset);
+
+        $postsTotal = (new GroupsPosts())->groupPostsTotalQuery(1);
+        $currentPage = max(1, get_query_var('paged'));
+        $totalPages = ceil($postsTotal / $itemsPerPage);
 
         if (empty($response)) {
             return new \WP_REST_Response([

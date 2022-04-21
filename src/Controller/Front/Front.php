@@ -27,6 +27,7 @@ class Front
         if (
             str_contains($_SERVER['REQUEST_URI'], 'groupes')
             || str_contains($_SERVER['REQUEST_URI'], 'groupe')
+            || (is_single() && get_post_type() == 'ys-group')
         ) {
             wp_enqueue_style(
                 'ys-group',

@@ -108,17 +108,17 @@ class GroupsMembers extends Db
     /**
      * Teste si l'utilisateur est membre ou ps
      *
-     * @param int $grouId
+     * @param int $groupId
      * @param int $userId
      *
      * @return bool
      * @since 1.1.7
      */
-    public function isGroupMember(int $grouId, int $userId): bool
+    public function isGroupMember(int $groupId, int $userId): bool
     {
         $query = $this->wpdb->prepare(
             "SELECT user_id FROM {$this->ys_groups_prefix}members WHERE group_id = %d AND user_id = %d",
-            $grouId,
+            $groupId,
             $userId
         );
 

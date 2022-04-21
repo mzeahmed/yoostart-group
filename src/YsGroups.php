@@ -2,7 +2,8 @@
 
 namespace YsGroups;
 
-use YsGroups\Controller\Admin\CustomPostType;
+use YsGroups\Controller\Admin\YsGroupCPT;
+use YsGroups\Controller\Admin\YsGroupPostCPT;
 
 /**
  * @package AdminGroupsController
@@ -43,8 +44,8 @@ class YsGroups
          * @since 1.2.1
          */
         register_activation_hook(YS_GROUPS_PLUGIN_FILE, function () {
-            // CustomPostType::registerCPT();
-            (new CustomPostType())->registerCPT();
+            (new YsGroupPostCPT())->registerPostType();
+            (new YsGroupCPT())->registerPostType();
 
             flush_rewrite_rules();
         });

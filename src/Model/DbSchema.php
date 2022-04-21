@@ -94,6 +94,7 @@ class DbSchema extends Db
         // Table ys_group_posts
         $this->query[] = "CREATE TABLE {$this->groupsPosts} (
                         id bigint(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                        group_id bigint(20) NOT NULL,
                         author_id bigint(20) NOT NULL,
                         content longtext NOT NULL,
                         attached_media varchar(250) NULL,

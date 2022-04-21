@@ -11,7 +11,6 @@ use YsGroups\Services\RewriteRules;
 use YsGroups\Controller\Admin\Admin;
 use YsGroups\Controller\Front\Front;
 use Symfony\Component\Config\FileLocator;
-use YsGroups\Controller\Admin\CustomPostType;
 use YsGroups\Services\NotLoggedInRedirections;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Dumper\PhpDumper;
@@ -67,7 +66,6 @@ class Container
             $container->get(NotLoggedInRedirections::class);
             $container->get(Mailer::class);
             $container->get(YsGroupsRestApi::class);
-            $container->get(CustomPostType::class);
         } catch (Exception $e) {
             echo $e->getMessage();
         }

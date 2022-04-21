@@ -6,6 +6,7 @@ use WP_User;
 use YsGroups\Model\Groups;
 use YsGroups\Helpers\Helpers;
 use YsGroups\Services\Mailer;
+use YsGroups\Model\GroupsPosts;
 use YsGroups\Model\GroupsMembers;
 use YsGroups\Controller\AbstractController;
 
@@ -19,10 +20,27 @@ class GroupsController extends AbstractController
         parent::__construct();
 
         add_shortcode('ys_groups', [$this, 'groups']);
-        add_filter('template_include', [$this, 'show'], 100);
+        // add_filter('template_include', [$this, 'show'], 100, 1);
         add_action('template_redirect', [$this, 'ajaxFileUploadHandler']);
         add_action('wp', [$this, 'joinGroupHandler']);
+        add_filter('template_include', [$this, 'single'], 99);
         // add_action('wp_ajax_ajaxFileUploadHandler', [$this, 'ajaxFileUploadHandler']);
+    }
+
+    /**
+     * @return string|null
+     */
+    public function single(): ?string
+    {
+        $postMeta = get_post_meta(get_the_ID(), YS_GROUP_STATUS_META_KEY);
+
+        return $this->template(
+            'front/single',
+            'ysGroupMeta',
+            [
+                'postMeta' => $postMeta,
+            ]
+        );
     }
 
     /**
@@ -67,15 +85,13 @@ class GroupsController extends AbstractController
      */
     public function show($template)
     {
-        // dump((new GroupsPosts())->getPaginatedFeedPosts());
-
         $slug = get_query_var('gslug');
-        // $feedPosts = [];
 
         if (! empty($slug)) {
-            $groupId = (new Groups())->getGroupIdBySlug($slug);
+            // Group
+            $groupId = intval((new Groups())->getGroupIdBySlug($slug));
             $groupDatas = Helpers::getGroupDatasBySlug($slug);
-            $groupAdminId = (new GroupsMembers())->getGroupAdminId($groupId);
+            $groupAdminId = intval((new GroupsMembers())->getGroupAdminId($groupId));
             $isMember = Helpers::isGroupMember($groupId, wp_get_current_user()->ID);
             $action = home_url('/groupes/' . $slug . '/');
 
@@ -84,17 +100,39 @@ class GroupsController extends AbstractController
                 $data = $v;
             }
 
+            // Posts
+            $itemsPerPage = 9;
+            $paged = (get_query_var('paged') ? get_query_var('paged') : 1);
+            $offset = ($paged * $itemsPerPage) - $itemsPerPage;
+
+            $paginatedPosts = (new GroupsPosts())->getPostsByGroupId($groupId, $itemsPerPage, $offset);
+
+            $postsTotal = (new GroupsPosts())->groupPostsTotalQuery($groupId);
+            $currentPage = max(1, get_query_var('paged'));
+            $totalPages = ceil($postsTotal / $itemsPerPage);
+
+            $paginateLinks = paginate_links([
+                'base' => get_pagenum_link(1) . '%_%',
+                'format' => 'page/%#%/',
+                'current' => $currentPage,
+                'total' => $totalPages,
+                'prev_text' => __('&laquo; Prev', YS_GROUPS_TEXT_DOMAIN),
+                'next_text' => __('Next &raquo;', YS_GROUPS_TEXT_DOMAIN),
+                'type' => 'list',
+            ]);
+
             $template = $this->locateTemplate(
                 'front/single-group',
                 'ysGroupVars',
                 [
-                    // 'feedPosts' => $feedPosts,
                     'groupAdminId' => $groupAdminId,
                     'groupName' => $data['name'],
                     'groupStatus' => $data['status'],
                     'groupId' => $groupId,
                     'isMember' => $isMember,
                     'action' => $action,
+                    'paginatedPosts' => $paginatedPosts,
+                    // 'paginateLinks' => $paginateLinks,
                 ]
             );
         }

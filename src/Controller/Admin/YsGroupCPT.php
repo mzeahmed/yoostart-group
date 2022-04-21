@@ -7,7 +7,7 @@ use YsGroups\Controller\AbstractController;
 /**
  * @since 1.2.1
  */
-class CustomPostType extends AbstractController
+class YsGroupCPT extends AbstractController
 {
     private array $args;
 
@@ -19,12 +19,12 @@ class CustomPostType extends AbstractController
         parent::__construct();
 
         $this->args = [
-            'name' => YS_GROUP_MEMBER_USER,
-            'id' => YS_GROUP_MEMBER_USER,
+            'name' => YS_GROUP_MEMBER_USER_TERM_META_KEY,
+            'id' => YS_GROUP_MEMBER_USER_TERM_META_KEY,
         ];
 
-        add_action('init', [$this, 'registerCPT']);
-        add_action('init', [$this, 'registerCT']);
+        add_action('init', [$this, 'registerPostType']);
+        add_action('init', [$this, 'registerTaxonomy']);
 
         add_action('ys_group_member_add_form_fields', [$this, 'addFormField']);
         add_action('ys_group_member_edit_form_fields', [$this, 'editFormField'], 10, 2);
@@ -34,21 +34,23 @@ class CustomPostType extends AbstractController
 
         add_action('created_ys_group_member', [$this, 'saveYsGroupMemberField']);
         add_action('edited_ys_group_member', [$this, 'saveYsGroupMemberField']);
+
+        add_filter('use_block_editor_for_post_type', [$this, 'disableGutenberg'], 10, 2);
     }
 
     /**
-     * Enregistrement du post type ys-groups
+     * Enregistrement du post type ys-group
      *
      * @return void
      * @since 1.2.1
      */
-    public function registerCPT()
+    public function registerPostType()
     {
         $labels = [
             'name' => __('Groups', YS_GROUPS_TEXT_DOMAIN),
             'singular_name' => __('Group', YS_GROUPS_TEXT_DOMAIN),
             'menu_name' => __('Groups', YS_GROUPS_TEXT_DOMAIN),
-            'all items' => __('All groups', YS_GROUPS_TEXT_DOMAIN),
+            'all_items' => __('All groups', YS_GROUPS_TEXT_DOMAIN),
             // 'add_new_item' => __('Add new group', YS_GROUPS_TEXT_DOMAIN),
             'add_new' => __('Create group', YS_GROUPS_TEXT_DOMAIN),
             'new_item' => __('New group', YS_GROUPS_TEXT_DOMAIN),
@@ -82,12 +84,12 @@ class CustomPostType extends AbstractController
             'menu_position' => 20,
             'exclude_from_search' => true,
             'publicly_queryable' => true,
-            'query_var' => 'ys-group',
+            'query_var' => 'ys_group',
             'capability_type' => 'post',
             'capabilities' => $capabilities,
         ];
 
-        register_post_type('ys-groups', $args);
+        register_post_type('ys-group', $args);
     }
 
     /**
@@ -96,7 +98,7 @@ class CustomPostType extends AbstractController
      * @return void
      * @since 1.2.1
      */
-    public function registerCT()
+    public function registerTaxonomy()
     {
         $labels = [
             'name' => _x('Members', 'Taxonomy General Name', YS_GROUPS_TEXT_DOMAIN),
@@ -122,39 +124,38 @@ class CustomPostType extends AbstractController
             'show_tagcloud' => false,
         ];
 
-        register_taxonomy('ys_group_member', 'ys-groups', $args);
+        register_taxonomy('ys_group_member', 'ys-group', $args);
     }
 
     /**
+     * Champs page de création
+     *
      * @param $taxonomy | ys_group_member
+     * @wp-hook {$taxonomy}_add_form_fields
      *
      * @return string|null
      * @since 1.2.2
      */
     public function addFormField($taxonomy): ?string
     {
-        // $args = [
-        //     'name' => YS_GROUP_MEMBER_USER,
-        //     'id' => YS_GROUP_MEMBER_USER,
-        // ];
-
-        // dump($taxonomy);
-
         return $this->render('admin/custom-fields/taxonomies/ys-group-member-add', [
             'args' => $this->args,
         ]);
     }
 
     /**
+     * Champs page d'édition
+     *
      * @param $term
      * @param $taxonomy
+     * @wp-hook {$taxonomy}_edit_form_fields
      *
      * @return string|null
      * @since 1.2.2
      */
     public function editFormField($term, $taxonomy): ?string
     {
-        $userId = get_term_meta($term->term_id, YS_GROUP_MEMBER_USER, true);
+        $userId = get_term_meta($term->term_id, YS_GROUP_MEMBER_USER_TERM_META_KEY, true);
         $user = get_userdata($userId);
 
         $args = ['fields' => ['ID', 'display_name'],];
@@ -172,8 +173,9 @@ class CustomPostType extends AbstractController
     /**
      * @param $columns
      *
+     * @wp-hook manage_edit-{$taxonomy}_columns
      * @return array
-     * @since 1.2.2
+     * @since   1.2.2
      */
     public function manageColumns($columns): array
     {
@@ -191,20 +193,19 @@ class CustomPostType extends AbstractController
      * @param $column
      * @param $termId
      *
+     * @wp-hook manage_{$taxonomy}_custom_column
      * @return void
-     * @since 1.2.2
+     * @since   1.2.2
      */
     public function showMetaValue($deprecated, $column, $termId)
     {
         /**
          * Valeur de la meta, ID de l'utilisateur lié à la taxonomie
          */
-        $value = get_term_meta($termId, YS_GROUP_MEMBER_USER, true);
+        $value = get_term_meta($termId, YS_GROUP_MEMBER_USER_TERM_META_KEY, true);
         $user = get_userdata($value);
 
         $userSlug = get_user_meta($value, YS_USER_SLUG);
-
-        // dump($userSlug[0], home_url('/profil/' . $userSlug[0]));
 
         if ($column === 'ys_group_member') :?>
             <a href="<?php echo home_url('/profil/' . $userSlug[0]); ?>" target="_blank">
@@ -214,15 +215,38 @@ class CustomPostType extends AbstractController
     }
 
     /**
+     * Persistance du champs personnamisé
+     *
      * @param $termId
      *
      * @return void
-     * @since 1.2.2
+     * @since   1.2.2
+     * @wp-hook created_{$taxonomy}
+     * @wp-hook edited_{$taxonomy}
      */
     public function saveYsGroupMemberField($termId)
     {
-        if (isset($_POST[YS_GROUP_MEMBER_USER])) {
-            update_term_meta($termId, YS_GROUP_MEMBER_USER, $_POST[YS_GROUP_MEMBER_USER]);
+        if (isset($_POST[YS_GROUP_MEMBER_USER_TERM_META_KEY])) {
+            update_term_meta($termId, YS_GROUP_MEMBER_USER_TERM_META_KEY, $_POST[YS_GROUP_MEMBER_USER_TERM_META_KEY]);
         }
+    }
+
+    /**
+     * Desctaivation de Gutenberg pour les custom post type
+     *
+     * @param $status
+     * @param $postType
+     *
+     * @return false|mixed
+     */
+    public function disableGutenberg($status, $postType): mixed
+    {
+        $disabledpostTypes = ['ys-group', 'ys-group-post'];
+
+        if (in_array($postType, $disabledpostTypes, true)) {
+            $status = false;
+        }
+
+        return $status;
     }
 }

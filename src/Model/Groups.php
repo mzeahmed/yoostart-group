@@ -16,11 +16,27 @@ class Groups extends Db
      * @return array
      * @since 1.0.7
      */
-    public function getGroups(string $orderby = 'created_at', string $order = 'DESC'): array
-    {
-        $query = "SELECT * FROM {$this->ys_groups_prefix}groups ORDER BY {$orderby} {$order}";
+    // public function getGroups(string $orderby = 'created_at', string $order = 'DESC'): array
+    // {
+    //     $query = "SELECT * FROM {$this->ys_groups_prefix}groups ORDER BY {$orderby} {$order}";
+    //
+    //     return $this->wpdb->get_results($query, 'ARRAY_A');
+    // }
 
-        return $this->wpdb->get_results($query, 'ARRAY_A');
+    /**
+     * Récuperation des publications
+     *
+     * @param int $limit
+     *
+     * @return array
+     */
+    public function getGroups(int $limit = -1): array
+    {
+        return get_posts([
+            'post_type' => 'ys-group',
+            'numberposts' => $limit,
+            'post_status' => 'publish',
+        ]);
     }
 
     /**
@@ -130,9 +146,8 @@ class Groups extends Db
     public function slugExist(string $slug): ?string
     {
         $query = $this->wpdb->prepare("SELECT slug from {$this->ys_groups_prefix}groups WHERE slug = %s", $slug);
-        $result = $this->wpdb->get_var($query);
 
-        return $result;
+        return $this->wpdb->get_var($query);
     }
 
     /**

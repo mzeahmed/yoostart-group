@@ -32,26 +32,26 @@
                     <?php _e('Invite member', YS_GROUPS_TEXT_DOMAIN) ?>
                 </a>
             </li>
-            <?php if (wp_get_current_user()->ID == $ysGroupVars['groupAdminId']) : ?>
-                <li class="nav-item ys-group-manage-li">
-                    <a class="nav-link" href="">
-                        <i class="fas fa-cog"></i>
-                        <?php _e('Group manage', YS_GROUPS_TEXT_DOMAIN) ?>
-                    </a>
-                </li>
-            <?php endif; ?>
+            <?php //if (wp_get_current_user()->ID == $ysGroupVars['groupAdminId']) : ?>
+            <li class="nav-item ys-group-manage-li">
+                <a class="nav-link" href="">
+                    <i class="fas fa-cog"></i>
+                    <?php _e('Group manage', YS_GROUPS_TEXT_DOMAIN) ?>
+                </a>
+            </li>
+            <?php //endif; ?>
         </ul>
 
-        <?php if (! $ysGroupVars['isMember']) : ?>
-            <div class="ys-join-group">
-                <form action="<?php $ysGroupVars['action'] ?>" method="post" name="ys_join_group_form">
-                    <?php wp_nonce_field($ysGroupVars['action'], '_ys_single_join_group_nonce') ?>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-sign-in-alt"></i>
-                        <?php _e('Join group', YS_GROUPS_TEXT_DOMAIN) ?>
-                    </button>
-                </form>
-            </div>
-        <?php endif; ?>
+        <?php //if (! $ysGroupVars['isMember']) : ?>
+        <div class="ys-join-group">
+            <!--                <form action="--><?php //$ysGroupVars['action'] ?><!--" method="post" name="ys_join_group_form">-->
+            <!--                    --><?php //wp_nonce_field($ysGroupVars['action'], '_ys_single_join_group_nonce') ?>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-sign-in-alt"></i>
+                <?php _e('Join group', YS_GROUPS_TEXT_DOMAIN) ?>
+            </button>
+            </form>
+        </div>
+        <?php //endif; ?>
     </div>
 </nav>

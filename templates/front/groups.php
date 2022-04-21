@@ -5,8 +5,12 @@
  * @since   1.1.0
  */
 
-?>
+defined('ABSPATH') || die;
 
+global $wp;
+
+?>
+<div id="ys_groups" data-request="<?php echo home_url($wp->request) ?>"></div>
 <div class="ys-groups-list">
     <?php foreach ($paginatedGroups as $group) : ?>
         <div class="ys-groups">
