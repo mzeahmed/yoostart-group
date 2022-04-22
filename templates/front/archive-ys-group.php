@@ -6,15 +6,22 @@
 
 defined('ABSPATH') || die;
 
-require YOOSTART_PLUGIN_DIR_PATH . 'public/partials/template-parts/user-header.php';
+require YOOSTART_PLUGIN_DIR_PATH . 'public/partials/template-parts/user-header.php'; ?>
 
-if (have_posts()) :
-    while (have_posts()) :
-        the_post(); ?>
-        <h1><?php the_title() ?></h1>
-        <?php dump(wp_get_current_user()->display_name);
-        the_content() ?>
-    <?php endwhile;
-endif;
+<?php if (have_posts()) : ?>
+    <div class="container">
+        <div class="ys-groups-list">
+            <?php while (have_posts()) : ?>
+                <?php the_post(); ?>
+                <div class="ys-groups">
+                    <div class="ys-group-content">
+                        <h1><?php the_title() ?></h1>
+                        <?php the_content() ?>
+                    </div>
+                </div>
+            <?php endwhile; ?>
+        </div>
+    </div>
+<?php endif; ?>
 
-get_footer();
+<?php get_footer(); ?>

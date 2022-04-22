@@ -4,6 +4,9 @@ namespace YsGroups\Controller\Admin;
 
 use YsGroups\Controller\AbstractController;
 
+/**
+ * @since 1.2.4
+ */
 class YsGroupPostCPT extends AbstractController
 {
     public function __construct()
@@ -11,8 +14,17 @@ class YsGroupPostCPT extends AbstractController
         parent::__construct();
 
         add_action('init', [$this, 'registerPostType']);
+
+        add_filter('manage_ys-group-post_posts_columns', [$this, 'manageCustomColumns']);
+        add_action('manage_ys-group-post_posts_custom_column', [$this, 'showMetaValue'], 10, 3);
+
+        add_filter('manage_edit-ys-group-post_sortable_columns', [$this, 'sortableColumn']);
     }
 
+    /**
+     * @return void
+     * @since 1.2.4
+     */
     public function registerPostType()
     {
         $labels = [
@@ -27,11 +39,6 @@ class YsGroupPostCPT extends AbstractController
             'view_item' => __('View post', YS_GROUPS_TEXT_DOMAIN),
             'not_found' => __('No post found', YS_GROUPS_TEXT_DOMAIN),
         ];
-
-        // $rewrite = [
-        //     'slug' => _x('group-post', YS_GROUPS_TEXT_DOMAIN),
-        //     'with_front' => true,
-        // ];
 
         $capabilities = [];
 
@@ -58,5 +65,58 @@ class YsGroupPostCPT extends AbstractController
         ];
 
         register_post_type('ys-group-post', $args);
+    }
+
+    /**
+     * @param $columns
+     *
+     * @wp-hook manage_{$post_type}_posts_columns
+     * @return array|null
+     * @since   1.2.4
+     */
+    public function manageCustomColumns($columns): ?array
+    {
+        $columns['ys-group-post'] = __('Group title', YS_GROUPS_TEXT_DOMAIN);
+
+        return $columns;
+    }
+
+    /**
+     * Affichage du titre du groupe lié au post
+     *
+     * @param $column
+     * @param $postId
+     *
+     * @wp-hook manage_{$post_type}posts_custom_column
+     * @return void
+     * @since   1.2.4
+     */
+    public function showMetaValue($column, $postId)
+    {
+        $groupId = get_post_meta($postId, YS_GROUP_ID_META_KEY, true);
+
+        $group = get_post($groupId);
+
+        if ($column === 'ys-group-post') {
+            if (! empty($groupId)) {
+                echo $group->post_title;
+            }
+        }
+    }
+
+    /**
+     * Permet de trier la colonne
+     *
+     * @param $columns
+     *
+     * @wp-hook manage_{$screen->id}_sortable_column
+     * @return mixed
+     * @since   1.2.4
+     */
+    public function sortableColumn($columns): mixed
+    {
+        $columns['ys-group-post'] = 'ys-group-post';
+
+        return $columns;
     }
 }

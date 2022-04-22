@@ -7,7 +7,7 @@
  */
 
 defined('ABSPATH') || die;
-
+// dump(carbon_get_post_meta(get_the_ID(), YS_GROUP_COVER_PHOTO_META_KEY));
 global $wp_query;
 extract($wp_query->query_vars);
 

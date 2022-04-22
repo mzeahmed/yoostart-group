@@ -95,7 +95,7 @@ class YsGroups
     {
         $group_slug = get_query_var('gslug');
 
-        if (is_page('Groupes')) {
+        if (is_page('Groupes') || (is_archive() && get_post_type() == 'ys-group')) {
             $classes[] = 'ys-groups-groups';
         }
 

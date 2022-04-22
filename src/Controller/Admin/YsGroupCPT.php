@@ -51,13 +51,16 @@ class YsGroupCPT extends AbstractController
             'singular_name' => __('Group', YS_GROUPS_TEXT_DOMAIN),
             'menu_name' => __('Groups', YS_GROUPS_TEXT_DOMAIN),
             'all_items' => __('All groups', YS_GROUPS_TEXT_DOMAIN),
-            // 'add_new_item' => __('Add new group', YS_GROUPS_TEXT_DOMAIN),
-            'add_new' => __('Create group', YS_GROUPS_TEXT_DOMAIN),
+            'add_new_item' => __('Add new group', YS_GROUPS_TEXT_DOMAIN),
+            'add_new' => __('Add new group', YS_GROUPS_TEXT_DOMAIN),
             'new_item' => __('New group', YS_GROUPS_TEXT_DOMAIN),
             'edit_item' => __('Edit group', YS_GROUPS_TEXT_DOMAIN),
             'update_item' => __('Update group', YS_GROUPS_TEXT_DOMAIN),
             'view_item' => __('View group', YS_GROUPS_TEXT_DOMAIN),
             'not_found' => __('No group found', YS_GROUPS_TEXT_DOMAIN),
+            'featured_image' => __('Avatar', YS_GROUPS_TEXT_DOMAIN),
+            'set_featured_image' => __('Add avatar', YS_GROUPS_TEXT_DOMAIN),
+            'remove_featured_image' => __('Remove avatar', YS_GROUPS_TEXT_DOMAIN),
         ];
 
         $rewrite = [

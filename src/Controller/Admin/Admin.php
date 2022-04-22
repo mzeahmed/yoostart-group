@@ -95,7 +95,7 @@ class Admin extends AbstractController
             wp_enqueue_script(
                 'ys-groups-admin',
                 YS_GROUPS_URI . '/public/js/admin.js',
-                [],
+                ['jquery'],
                 YS_GROUPS_VERSION,
                 true
             );

@@ -9,10 +9,10 @@
 ?>
 
 <div class="ys-group-header w-100">
-    <div class="ys-group-cover" style="background-image: url()">
+    <div class="ys-group-cover" style="background-image: url(<?php echo $ysGroupMeta['coverImageUrl'] ?>">
         <div class="ys-group-cover-content">
             <div class="ys-group-cover-inner-content d-flex">
-                <div class="ys-group-img" style="background-image: url()">
+                <div class="ys-group-img" style="background-image: url(<?php echo get_the_post_thumbnail_url(); ?>)">
                     <div class="editable edit-img" title="<?php _e('Edit group avatar', YS_GROUPS_TEXT_DOMAIN); ?>">
                         <div class="editable-content">
                             <img

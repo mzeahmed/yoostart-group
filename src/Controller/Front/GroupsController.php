@@ -24,23 +24,55 @@ class GroupsController extends AbstractController
         add_action('template_redirect', [$this, 'ajaxFileUploadHandler']);
         add_action('wp', [$this, 'joinGroupHandler']);
         add_filter('template_include', [$this, 'single'], 99);
+        add_filter('template_include', [$this, 'archive']);
         // add_action('wp_ajax_ajaxFileUploadHandler', [$this, 'ajaxFileUploadHandler']);
     }
 
     /**
-     * @return string|null
+     * @param $template
+     *
+     * @return string
+     * @since 1.2.3
      */
-    public function single(): ?string
+    public function single($template): string
     {
         $postMeta = get_post_meta(get_the_ID(), YS_GROUP_STATUS_META_KEY);
+        $coverImageId = carbon_get_post_meta(get_the_ID(), YS_GROUP_COVER_PHOTO_META_KEY);
+        $coverImageUrl = wp_get_attachment_image_url($coverImageId);
 
-        return $this->template(
-            'front/single',
-            'ysGroupMeta',
-            [
-                'postMeta' => $postMeta,
-            ]
-        );
+        // dump($coverImageId, $coverImageUrl);
+
+        if (is_single() && get_post_type() == 'ys-group') {
+            $template = $this->template(
+                'front/single',
+                'ysGroupMeta',
+                [
+                    'postMeta' => $postMeta,
+                    'coverImageUrl' => $coverImageUrl,
+                ]
+            );
+        }
+
+        return $template;
+    }
+
+    /**
+     * @param $template
+     *
+     * @return string
+     * @since 1.2.4
+     */
+    public function archive($template): string
+    {
+        if (is_post_type_archive('ys-group')) {
+            $template = $this->template(
+                'front/archive',
+                '',
+                []
+            );
+        }
+
+        return $template;
     }
 
     /**
