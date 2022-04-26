@@ -96,8 +96,8 @@ class GroupsController extends AbstractController
             'format' => 'page/%#%/',
             'current' => $currentPage,
             'total' => $totalPages,
-            'prev_text' => __('&laquo; Prev', YS_GROUPS_TEXT_DOMAIN),
-            'next_text' => __('Next &raquo;', YS_GROUPS_TEXT_DOMAIN),
+            'prev_text' => __('&laquo; Prev', YS_GROUP_TEXT_DOMAIN),
+            'next_text' => __('Next &raquo;', YS_GROUP_TEXT_DOMAIN),
             'type' => 'list',
         ]);
 
@@ -146,8 +146,8 @@ class GroupsController extends AbstractController
                 'format' => 'page/%#%/',
                 'current' => $currentPage,
                 'total' => $totalPages,
-                'prev_text' => __('&laquo; Prev', YS_GROUPS_TEXT_DOMAIN),
-                'next_text' => __('Next &raquo;', YS_GROUPS_TEXT_DOMAIN),
+                'prev_text' => __('&laquo; Prev', YS_GROUP_TEXT_DOMAIN),
+                'next_text' => __('Next &raquo;', YS_GROUP_TEXT_DOMAIN),
                 'type' => 'list',
             ]);
 
@@ -186,7 +186,7 @@ class GroupsController extends AbstractController
                         <?php sprintf(
                             esc_html__(
                                 '<strong>Sorry, nonce %s  did not verifyed</strong>',
-                                YS_GROUPS_TEXT_DOMAIN
+                                YS_GROUP_TEXT_DOMAIN
                             ),
                             '_cover_nonce'
                         ) ?>
@@ -197,7 +197,7 @@ class GroupsController extends AbstractController
                     Helpers::uploadFile($groupId, 'cover', $_FILES['ys_group_cover_file_input']);
                 }
 
-                $this->addFlash('success', __('Cover has been successfully updated', YS_GROUPS_TEXT_DOMAIN));
+                $this->addFlash('success', __('Cover has been successfully updated', YS_GROUP_TEXT_DOMAIN));
             }
         }
     }
@@ -219,7 +219,7 @@ class GroupsController extends AbstractController
                     sprintf(
                         esc_html__(
                             'Sorry, nonce %s  did not verifyed',
-                            YS_GROUPS_TEXT_DOMAIN
+                            YS_GROUP_TEXT_DOMAIN
                         ),
                         '_ys_single_join_group_nonce'
                     )
@@ -250,7 +250,7 @@ class GroupsController extends AbstractController
                     'success',
                     __(
                         'Your request has been sent, it will be validated by the group administrator',
-                        YS_GROUPS_TEXT_DOMAIN
+                        YS_GROUP_TEXT_DOMAIN
                     )
                 );
 
@@ -260,7 +260,7 @@ class GroupsController extends AbstractController
             } else {
                 $this->addFlash(
                     'warning',
-                    __('You are already member', YS_GROUPS_TEXT_DOMAIN)
+                    __('You are already member', YS_GROUP_TEXT_DOMAIN)
                 );
             }
         }

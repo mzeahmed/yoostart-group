@@ -28,23 +28,23 @@ class YsGroupPostCPT extends AbstractController
     public function registerPostType(): void
     {
         $labels = [
-            'name' => __('Group posts', YS_GROUPS_TEXT_DOMAIN),
-            'singular_name' => __('Group post', YS_GROUPS_TEXT_DOMAIN),
-            'menu_name' => __('Group posts', YS_GROUPS_TEXT_DOMAIN),
-            'all_items' => __('All group posts', YS_GROUPS_TEXT_DOMAIN),
-            'add_new' => __('Create new group post', YS_GROUPS_TEXT_DOMAIN),
-            'new_item' => __('New group post', YS_GROUPS_TEXT_DOMAIN),
-            'edit_tem' => __('Edit group post', YS_GROUPS_TEXT_DOMAIN),
-            'update_item' => __('Update group  post', YS_GROUPS_TEXT_DOMAIN),
-            'view_item' => __('View group post', YS_GROUPS_TEXT_DOMAIN),
-            'not_found' => __('No group post found', YS_GROUPS_TEXT_DOMAIN),
+            'name' => __('Group posts', YS_GROUP_TEXT_DOMAIN),
+            'singular_name' => __('Group post', YS_GROUP_TEXT_DOMAIN),
+            'menu_name' => __('Group posts', YS_GROUP_TEXT_DOMAIN),
+            'all_items' => __('All group posts', YS_GROUP_TEXT_DOMAIN),
+            'add_new' => __('Create new group post', YS_GROUP_TEXT_DOMAIN),
+            'new_item' => __('New group post', YS_GROUP_TEXT_DOMAIN),
+            'edit_tem' => __('Edit group post', YS_GROUP_TEXT_DOMAIN),
+            'update_item' => __('Update group  post', YS_GROUP_TEXT_DOMAIN),
+            'view_item' => __('View group post', YS_GROUP_TEXT_DOMAIN),
+            'not_found' => __('No group post found', YS_GROUP_TEXT_DOMAIN),
         ];
 
         $capabilities = [];
 
         $args = [
-            'label' => __('groups posts', YS_GROUPS_TEXT_DOMAIN),
-            'description' => __('Yoostart group posts', YS_GROUPS_TEXT_DOMAIN),
+            'label' => __('groups posts', YS_GROUP_TEXT_DOMAIN),
+            'description' => __('Yoostart group posts', YS_GROUP_TEXT_DOMAIN),
             'labels' => $labels,
             'supports' => ['title', 'editor', 'thumbnail', 'custom-fields', 'comments'],
             'taxonomies' => [],
@@ -76,7 +76,7 @@ class YsGroupPostCPT extends AbstractController
      */
     public function manageCustomColumns($columns): ?array
     {
-        $columns['ys-group-post'] = __('Group title', YS_GROUPS_TEXT_DOMAIN);
+        $columns['ys-group-post'] = __('Group title', YS_GROUP_TEXT_DOMAIN);
 
         return $columns;
     }

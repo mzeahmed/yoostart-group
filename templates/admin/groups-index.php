@@ -8,11 +8,11 @@
 ?>
 
 <div class="wrap">
-    <h1 class="wp-heading-inline"><?php echo get_bloginfo('name') . ' - ' . __('Groups', YS_GROUPS_TEXT_DOMAIN); ?></h1>
+    <h1 class="wp-heading-inline"><?php echo get_bloginfo('name') . ' - ' . __('Groups', YS_GROUP_TEXT_DOMAIN); ?></h1>
 
     <?php if (is_user_logged_in() && user_can(wp_get_current_user(), 'manage_options')) : ?>
         <a class="page-title-action" href="?page=ys_options_groups&action=create">
-            <?php _e('Add new group', YS_GROUPS_TEXT_DOMAIN); ?>
+            <?php _e('Add new group', YS_GROUP_TEXT_DOMAIN); ?>
         </a>
     <?php endif; ?>
 
@@ -33,7 +33,7 @@
             <?php if (! empty($_REQUEST['s'])) : ?>
                 <span class="subtitle">
                     <?php sprintf(
-                        __('Search results for &#8220;%s&#8221;', YS_GROUPS_TEXT_DOMAIN),
+                        __('Search results for &#8220;%s&#8221;', YS_GROUP_TEXT_DOMAIN),
                         wp_html_excerpt(esc_html(stripslashes($_REQUEST['s'])), 50)
                     ); ?>
                 </span>
@@ -44,7 +44,7 @@
                 <?php $groupList->views(); ?>
 
                 <form id="ys-groups-form" method="get">
-                    <?php $groupList->search_box(__('Search all Groups', YS_GROUPS_TEXT_DOMAIN), 'ys-groups'); ?>
+                    <?php $groupList->search_box(__('Search all Groups', YS_GROUP_TEXT_DOMAIN), 'ys-groups'); ?>
                     <input type="hidden" name="page" value="<?php $pluginPage ?>"/>
                     <?php $groupList->display() ?>
                 </form>

@@ -83,7 +83,7 @@ class YsGroupsMemberTermMeta extends AbstractController
             unset($columns['description']);
         }
 
-        $columns['ys_group_member'] = __('User', YS_GROUPS_TEXT_DOMAIN);
+        $columns['ys_group_member'] = __('User', YS_GROUP_TEXT_DOMAIN);
 
         return $columns;
     }

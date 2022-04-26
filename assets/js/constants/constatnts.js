@@ -1,0 +1,1 @@
+export const YS_GROUP_TEXT_DOMAIN = window.ys_group_config.text_domain;

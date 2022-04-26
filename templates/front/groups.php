@@ -24,7 +24,7 @@ global $wp;
                     >
                 <?php else : ?>
                     <img
-                        src="<?php echo YS_GROUPS_URI . '/public/img/default-group-cover.png' ?>"
+                        src="<?php echo YS_GROUP_URI . '/public/img/default-group-cover.png' ?>"
                         loading="lazy"
                         class="cover-img ys-group-cover"
                         alt="<?php echo sprintf(__("%s's cover"), ucfirst($group['name'])) ?>"
@@ -42,7 +42,7 @@ global $wp;
                     <?php else : ?>
                         <a href="<?php echo home_url('groupes/' . $group['slug']) ?>">
                             <img
-                                src="<?php echo YS_GROUPS_URI . '/public/img/default-group-avatar.png' ?>"
+                                src="<?php echo YS_GROUP_URI . '/public/img/default-group-avatar.png' ?>"
                                 class="ys-group-cover-content"
                                 alt="<?php echo sprintf(__("%s's avatar"), ucfirst($group['name'])) ?>"
                             >
@@ -55,9 +55,9 @@ global $wp;
 
                     <div class="ys-group-status">
                         <?php if ($group['status'] === 'public') : ?>
-                            <i class="fas fa-globe-africa"></i> <?php _e('Public group', YS_GROUPS_TEXT_DOMAIN) ?>
+                            <i class="fas fa-globe-africa"></i> <?php _e('Public group', YS_GROUP_TEXT_DOMAIN) ?>
                         <?php else : ?>
-                            <?php _e('Private group', YS_GROUPS_TEXT_DOMAIN) ?>
+                            <?php _e('Private group', YS_GROUP_TEXT_DOMAIN) ?>
                         <?php endif; ?>
                     </div>
 
@@ -66,7 +66,7 @@ global $wp;
                             class="ys-group-data-item ys-group-data-last-activity"
                             data-toggle="tooltip"
                             data-placement="bottom"
-                            title="<?php printf(__('Last activity on %s', YS_GROUPS_TEXT_DOMAIN), '10/10/21') ?>"
+                            title="<?php printf(__('Last activity on %s', YS_GROUP_TEXT_DOMAIN), '10/10/21') ?>"
                         >
                             <span class="dashicons dashicons-clock"></span>
                         </div>
@@ -75,7 +75,7 @@ global $wp;
                             data-toggle="tooltip"
                             data-placement="bottom"
                             title="<?php printf(
-                                __('%s members', YS_GROUPS_TEXT_DOMAIN),
+                                __('%s members', YS_GROUP_TEXT_DOMAIN),
                                 count(\YsGroups\Helpers\Helpers::getMembers($group['id']))
                             ) ?>"
                         >
@@ -114,6 +114,6 @@ global $wp;
             <?php echo $paginateLinks; ?>
         </div>
     <?php else : ?>
-        <?php _e('No group found', YS_GROUPS_TEXT_DOMAIN) ?>
+        <?php _e('No group found', YS_GROUP_TEXT_DOMAIN) ?>
     <?php endif; ?>
 </div>

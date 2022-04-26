@@ -36,33 +36,33 @@ class YsGroupCPT extends AbstractController
     public function registerPostType(): void
     {
         $labels = [
-            'name' => __('Groups', YS_GROUPS_TEXT_DOMAIN),
-            'singular_name' => __('Group', YS_GROUPS_TEXT_DOMAIN),
-            'add_new ' => _x('Add new', 'ys-group', YS_GROUPS_TEXT_DOMAIN),
-            'add_new_item' => __('Create new group', YS_GROUPS_TEXT_DOMAIN),
-            'edit_item' => __('Edit group', YS_GROUPS_TEXT_DOMAIN),
-            'view_item' => __('View group', YS_GROUPS_TEXT_DOMAIN),
-            'not_found' => __('No group found', YS_GROUPS_TEXT_DOMAIN),
-            'all_items' => __('All groups', YS_GROUPS_TEXT_DOMAIN),
-            'insert_into_item ' => __('Insert into group', YS_GROUPS_TEXT_DOMAIN),
-            'update_item' => __('Update group', YS_GROUPS_TEXT_DOMAIN),
-            'set_featured_image' => __('Add avatar', YS_GROUPS_TEXT_DOMAIN),
-            'remove_featured_image' => __('Remove avatar', YS_GROUPS_TEXT_DOMAIN),
-            'menu_name' => __('Groups', YS_GROUPS_TEXT_DOMAIN),
-            'new_item' => __('New group', YS_GROUPS_TEXT_DOMAIN),
-            'featured_image' => __('Avatar', YS_GROUPS_TEXT_DOMAIN),
+            'name' => __('Groups', YS_GROUP_TEXT_DOMAIN),
+            'singular_name' => __('Group', YS_GROUP_TEXT_DOMAIN),
+            'add_new ' => _x('Add new', 'ys-group', YS_GROUP_TEXT_DOMAIN),
+            'add_new_item' => __('Create new group', YS_GROUP_TEXT_DOMAIN),
+            'edit_item' => __('Edit group', YS_GROUP_TEXT_DOMAIN),
+            'view_item' => __('View group', YS_GROUP_TEXT_DOMAIN),
+            'not_found' => __('No group found', YS_GROUP_TEXT_DOMAIN),
+            'all_items' => __('All groups', YS_GROUP_TEXT_DOMAIN),
+            'insert_into_item ' => __('Insert into group', YS_GROUP_TEXT_DOMAIN),
+            'update_item' => __('Update group', YS_GROUP_TEXT_DOMAIN),
+            'set_featured_image' => __('Add avatar', YS_GROUP_TEXT_DOMAIN),
+            'remove_featured_image' => __('Remove avatar', YS_GROUP_TEXT_DOMAIN),
+            'menu_name' => __('Groups', YS_GROUP_TEXT_DOMAIN),
+            'new_item' => __('New group', YS_GROUP_TEXT_DOMAIN),
+            'featured_image' => __('Avatar', YS_GROUP_TEXT_DOMAIN),
         ];
 
         $rewrite = [
-            'slug' => _x('group', YS_GROUPS_TEXT_DOMAIN),
+            'slug' => _x('group', YS_GROUP_TEXT_DOMAIN),
             'with_front' => true,
         ];
 
         $capabilities = [];
 
         $args = [
-            'label' => __('groups', YS_GROUPS_TEXT_DOMAIN),
-            'description' => __('Yoostart groups', YS_GROUPS_TEXT_DOMAIN),
+            'label' => __('groups', YS_GROUP_TEXT_DOMAIN),
+            'description' => __('Yoostart groups', YS_GROUP_TEXT_DOMAIN),
             'labels' => $labels,
             'supports' => ['title', 'editor', 'thumbnail', 'custom-fields'],
             'taxonomies' => ['ys_group_member'],
@@ -94,16 +94,16 @@ class YsGroupCPT extends AbstractController
     public function registerTaxonomy(): void
     {
         $labels = [
-            'name' => _x('Members', 'Taxonomy General Name', YS_GROUPS_TEXT_DOMAIN),
-            'singular_name' => _x('Member', 'Taxonomy Singular Name', YS_GROUPS_TEXT_DOMAIN),
-            'menu_name' => __('Members', YS_GROUPS_TEXT_DOMAIN),
-            'all_items' => __('All members', YS_GROUPS_TEXT_DOMAIN),
-            'new_item_name' => __('Add new member', YS_GROUPS_TEXT_DOMAIN),
-            'add_new_item' => __('Add new member', YS_GROUPS_TEXT_DOMAIN),
-            'edit_item' => __('Edit member', YS_GROUPS_TEXT_DOMAIN),
-            'update_item' => __('Updit member', YS_GROUPS_TEXT_DOMAIN),
-            'view_item' => __('View member', YS_GROUPS_TEXT_DOMAIN),
-            'not_found' => __('No group member found', YS_GROUPS_TEXT_DOMAIN),
+            'name' => _x('Members', 'Taxonomy General Name', YS_GROUP_TEXT_DOMAIN),
+            'singular_name' => _x('Member', 'Taxonomy Singular Name', YS_GROUP_TEXT_DOMAIN),
+            'menu_name' => __('Members', YS_GROUP_TEXT_DOMAIN),
+            'all_items' => __('All members', YS_GROUP_TEXT_DOMAIN),
+            'new_item_name' => __('Add new member', YS_GROUP_TEXT_DOMAIN),
+            'add_new_item' => __('Add new member', YS_GROUP_TEXT_DOMAIN),
+            'edit_item' => __('Edit member', YS_GROUP_TEXT_DOMAIN),
+            'update_item' => __('Updit member', YS_GROUP_TEXT_DOMAIN),
+            'view_item' => __('View member', YS_GROUP_TEXT_DOMAIN),
+            'not_found' => __('No group member found', YS_GROUP_TEXT_DOMAIN),
         ];
 
         $args = [
@@ -147,7 +147,7 @@ class YsGroupCPT extends AbstractController
     public function archivePageTitle(string $description)
     {
         if (is_post_type_archive('ys-group')) {
-            $description = __('Groups', YS_GROUPS_TEXT_DOMAIN) . ' - ' . get_bloginfo('name');
+            $description = __('Groups', YS_GROUP_TEXT_DOMAIN) . ' - ' . get_bloginfo('name');
         }
 
         return $description;

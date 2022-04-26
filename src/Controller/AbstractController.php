@@ -31,7 +31,7 @@ abstract class AbstractController
 
     public function __construct()
     {
-        $this->groupsDirectoryUri = YS_GROUPS_URL;
+        $this->groupsDirectoryUri = YS_GROUP_URL;
 
         $this->requestUri = $_SERVER['REQUEST_URI'];
         $this->request = explode('/', $this->requestUri);
@@ -76,7 +76,7 @@ abstract class AbstractController
      */
     private function getTemplatePath(): ?string
     {
-        return YS_GROUPS_PATH . 'templates/';
+        return YS_GROUP_PATH . 'templates/';
     }
 
     /**

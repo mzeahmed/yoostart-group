@@ -55,7 +55,7 @@ class GroupListTable extends \WP_List_Table
      */
     public function no_items()
     {
-        _e('No groups found', YS_GROUPS_TEXT_DOMAIN);
+        _e('No groups found', YS_GROUP_TEXT_DOMAIN);
     }
 
     /**
@@ -101,11 +101,11 @@ class GroupListTable extends \WP_List_Table
     {
         return apply_filters('ys_group_list_table_get_columns', [
             // 'cb' => '<input type="checkbox"/>',
-            'name' => _x('Name', 'Column label', YS_GROUPS_TEXT_DOMAIN),
-            'creator_id' => _x('Author', 'Column label', YS_GROUPS_TEXT_DOMAIN),
-            'description' => _x('Description', 'Column label', YS_GROUPS_TEXT_DOMAIN),
-            'created_at' => _x('Created at', 'Column label', YS_GROUPS_TEXT_DOMAIN),
-            'status' => _x('Status', 'Column lable', YS_GROUPS_TEXT_DOMAIN),
+            'name' => _x('Name', 'Column label', YS_GROUP_TEXT_DOMAIN),
+            'creator_id' => _x('Author', 'Column label', YS_GROUP_TEXT_DOMAIN),
+            'description' => _x('Description', 'Column label', YS_GROUP_TEXT_DOMAIN),
+            'created_at' => _x('Created at', 'Column label', YS_GROUP_TEXT_DOMAIN),
+            'status' => _x('Status', 'Column lable', YS_GROUP_TEXT_DOMAIN),
         ]);
     }
 
@@ -169,7 +169,7 @@ class GroupListTable extends \WP_List_Table
             esc_url(
                 wp_nonce_url(add_query_arg($edit_query_args, 'admin.php'), 'edit' . $item['id'])
             ),
-            _x('Edit', 'List table row action', YS_GROUPS_TEXT_DOMAIN)
+            _x('Edit', 'List table row action', YS_GROUP_TEXT_DOMAIN)
         );
 
         $delete_query_args = [
@@ -184,7 +184,7 @@ class GroupListTable extends \WP_List_Table
                 wp_nonce_url(add_query_arg($delete_query_args, 'admin.php'), 'delete' . $item['id'])
             ),
             $item['id'],
-            _x('Delete', 'List table row action', YS_GROUPS_TEXT_DOMAIN)
+            _x('Delete', 'List table row action', YS_GROUP_TEXT_DOMAIN)
         );
 
         return sprintf(

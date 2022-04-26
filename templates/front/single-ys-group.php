@@ -17,11 +17,11 @@ require YOOSTART_PLUGIN_DIR_PATH . 'public/partials/template-parts/user-header.p
     while (have_posts()) :
         the_post(); ?>
 
-        <?php require YS_GROUPS_PATH . 'templates/front/partials/_group-header.php' ?>
+        <?php require YS_GROUP_PATH . 'templates/front/partials/_group-header.php' ?>
 
         <div class="ys-group-content">
             <div class="ys-group-inner-content">
-                <?php require YS_GROUPS_PATH . 'templates/front/partials/_group-nav.php'; ?>
+                <?php require YS_GROUP_PATH . 'templates/front/partials/_group-nav.php'; ?>
 
                 <!-- Message flash-->
                 <?php if (isset($_SESSION['ys_flash']['message'])) : ?>
@@ -38,7 +38,7 @@ require YOOSTART_PLUGIN_DIR_PATH . 'public/partials/template-parts/user-header.p
                 <main class="ys-group-main-content container">
                     <div class="row d-flex justify-content-center">
                         <div class="col-md-8">
-                            <!-- Affichage du feed du group, un autre custom post type ou autre -->
+                            <!-- Affichage du feed du group -->
                             <div id="group_posts" data-group-id="<?= get_the_ID() ?>"></div>
                         </div>
                     </div>

@@ -13,7 +13,7 @@
         <div class="modal-content popup-content">
             <div class="modal-header">
                 <h5 class="modal-title popup-title" id="ysCoverFormModal">
-                    <?php _e("Edit group cover image", YS_GROUPS_TEXT_DOMAIN); ?>
+                    <?php _e("Edit group cover image", YS_GROUP_TEXT_DOMAIN); ?>
                 </h5>
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -29,7 +29,7 @@
                     <div class="text-center p4">
                         <div class="popup-choose-file">
                             <label for="ys_group_cover_file_input">
-                                <?php _e('Choose photo', YS_GROUPS_TEXT_DOMAIN); ?>
+                                <?php _e('Choose photo', YS_GROUP_TEXT_DOMAIN); ?>
                             </label>
                             <input type="file" id="ys_group_cover_file_input" name="ys_group_cover_file_input"
                                    class="popup-choose-file-field cover-input">
@@ -39,7 +39,7 @@
                             type="submit"
                             name="ys_group_cover_submit"
                             class="btn btn-primary ys-group-update-cover ys-group-update-image"
-                            value="<?php _e('Update', YS_GROUPS_TEXT_DOMAIN); ?>"
+                            value="<?php _e('Update', YS_GROUP_TEXT_DOMAIN); ?>"
                         >
                     </div>
                 </form>
@@ -50,8 +50,8 @@
 
 <script>
   const openBtn = document.querySelectorAll('[data-modal-target]');
-  const closeBtn = document.querySelectorAll("[data-modal-close]");
-  const overlay = document.getElementById("overlay");
+  const closeBtn = document.querySelectorAll('[data-modal-close]');
+  const overlay = document.getElementById('overlay');
   const nextbtn = document.querySelector('.nextbtn');
   const currentParagraph = document.querySelector('.current');
   const nextParagraph = document.querySelector('.next');
@@ -72,7 +72,7 @@
   });
 
   closeBtn.forEach((btn) => {
-    const modal = btn.closest(".modal");
+    const modal = btn.closest('.modal');
     btn.addEventListener('click', (() => {
       closeModal(modal);
     }));

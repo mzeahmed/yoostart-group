@@ -32,9 +32,9 @@ class Front
         ) {
             wp_enqueue_style(
                 'ys-group',
-                YS_GROUPS_URI . '/public/css/app.css',
+                YS_GROUP_URI . '/public/css/app.css',
                 [],
-                YS_GROUPS_VERSION,
+                YS_GROUP_VERSION,
                 'all'
             );
 
@@ -42,9 +42,9 @@ class Front
 
             wp_enqueue_script(
                 'ys-group',
-                YS_GROUPS_URI . '/public/js/app.js',
+                YS_GROUP_URI . '/public/js/app.js',
                 ['wp-element', 'wp-i18n'],
-                YS_GROUPS_VERSION,
+                YS_GROUP_VERSION,
                 true,
             );
 
@@ -55,6 +55,8 @@ class Front
                 'ajax_url' => admin_url('admin-ajax.php'),
                 '_cover_nonce' => wp_create_nonce('ys_group_ajax_nonce'),
                 'rest_url' => rest_url(),
+                'current_user' => get_ys_user_details(get_current_user_id()),
+                'text_domain' => YS_GROUP_TEXT_DOMAIN,
             ];
 
             wp_localize_script(

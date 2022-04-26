@@ -42,8 +42,8 @@ class AdminGroups extends AbstractController
     {
         $hook = add_submenu_page(
             'ys_options',
-            __('Groups', YS_GROUPS_TEXT_DOMAIN),
-            __('Groups', YS_GROUPS_TEXT_DOMAIN),
+            __('Groups', YS_GROUP_TEXT_DOMAIN),
+            __('Groups', YS_GROUP_TEXT_DOMAIN),
             'manage_options',
             'ys_options_groups',
             [$this, 'groupsScreen'],
@@ -94,7 +94,7 @@ class AdminGroups extends AbstractController
                         '%s group has been permanently deleted.',
                         '%s groups have permanently deleted.',
                         $deleted,
-                        YS_GROUPS_TEXT_DOMAIN
+                        YS_GROUP_TEXT_DOMAIN
                     ),
                     number_format_i18n($deleted)
                 );
@@ -148,7 +148,7 @@ class AdminGroups extends AbstractController
                     sprintf(
                         esc_html__(
                             'Sorry, nonce %s  did not verifyed',
-                            YS_GROUPS_TEXT_DOMAIN
+                            YS_GROUP_TEXT_DOMAIN
                         ),
                         '_ys_create_group_nonce'
                     )
@@ -184,12 +184,12 @@ class AdminGroups extends AbstractController
                 $this->addFlash(
                     'success',
                     sprintf(
-                        __('Group (%s) has been successfully created', YS_GROUPS_TEXT_DOMAIN),
+                        __('Group (%s) has been successfully created', YS_GROUP_TEXT_DOMAIN),
                         $_POST['ys_group_name']
                     )
                 );
 
-                wp_safe_redirect($this->groupsIndexScreen, 302, YS_GROUPS_PLUGIN_NAME);
+                wp_safe_redirect($this->groupsIndexScreen, 302, YS_GROUP_PLUGIN_NAME);
             }
         }
     }
@@ -271,15 +271,15 @@ class AdminGroups extends AbstractController
 
             get_current_screen()->add_help_tab([
                 'id' => 'ys-group-edit-overview',
-                'title' => __('Overview', YS_GROUPS_TEXT_DOMAIN),
+                'title' => __('Overview', YS_GROUP_TEXT_DOMAIN),
                 'content' =>
                     '<p>' . __(
                         'This page is a convenient way to edit the details associated with one of your groups.',
-                        YS_GROUPS_TEXT_DOMAIN
+                        YS_GROUP_TEXT_DOMAIN
                     ) . '</p>' .
                     '<p>' . __(
                         'The Name and Description box is fixed in place, but you can reposition all the other boxes using drag and drop, and can minimize or expand them by clicking the title bar of each box. Use the Screen Options tab to hide or unhide, or to choose a 1- or 2-column layout for this screen.',
-                        YS_GROUPS_TEXT_DOMAIN
+                        YS_GROUP_TEXT_DOMAIN
                     ) . '</p>',
             ]);
         }

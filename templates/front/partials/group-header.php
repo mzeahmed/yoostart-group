@@ -16,7 +16,7 @@
                     <div class="editable edit-img">
                         <div class="editable-content">
                             <img
-                                src="<?php echo YS_GROUPS_URI . '/public/img/camera.png' ?>"
+                                src="<?php echo YS_GROUP_URI . '/public/img/camera.png' ?>"
                                 alt=""
                                 class="icon icon-photo"
                             >
@@ -27,9 +27,9 @@
                     <div class="ys-group-name"><?php echo ucfirst($ysGroupVars['groupName']) ?></div>
 
                     <?php if ($ysGroupVars['groupStatus'] === 'public') : ?>
-                        <div class="ys-group-status"><?php _e('Public group', YS_GROUPS_TEXT_DOMAIN); ?></div>
+                        <div class="ys-group-status"><?php _e('Public group', YS_GROUP_TEXT_DOMAIN); ?></div>
                     <?php else : ?>
-                        <div class="ys-group-status"><?php _e('Private group', YS_GROUPS_TEXT_DOMAIN); ?></div>
+                        <div class="ys-group-status"><?php _e('Private group', YS_GROUP_TEXT_DOMAIN); ?></div>
                     <?php endif; ?>
                 </div>
             </div>
@@ -41,11 +41,11 @@
                     <div class="editable ys-group-single-action edit-cover">
                         <div class="editable-content">
                             <img
-                                src="<?php echo YS_GROUPS_URI . '/public/img/camera.png' ?>"
+                                src="<?php echo YS_GROUP_URI . '/public/img/camera.png' ?>"
                                 alt=""
                                 class="icon icon-photo"
                             >
-                            <?php _e('Edit group cover', YS_GROUPS_TEXT_DOMAIN); ?>
+                            <?php _e('Edit group cover', YS_GROUP_TEXT_DOMAIN); ?>
                         </div>
                     </div>
                 </div>

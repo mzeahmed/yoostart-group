@@ -37,7 +37,7 @@ $theQuery = new \WP_Query([
                             >
                         <?php else : ?>
                             <img
-                                src="<?php echo YS_GROUPS_URI . '/public/img/default-group-cover.png' ?>"
+                                src="<?php echo YS_GROUP_URI . '/public/img/default-group-cover.png' ?>"
                                 loading="lazy"
                                 class="cover-img ys-group-cover"
                                 alt="<?php printf(__("%s group cover's photo"), ucfirst('')) ?>"
@@ -52,7 +52,7 @@ $theQuery = new \WP_Query([
                             <?php else : ?>
                                 <a href="<?php the_permalink(); ?>">
                                     <img
-                                        src="<?php echo YS_GROUPS_URI . '/public/img/default-group-avatar.png' ?>"
+                                        src="<?php echo YS_GROUP_URI . '/public/img/default-group-avatar.png' ?>"
                                         class="ys-group-cover-content"
                                         alt="<?php printf(__("%s's avatar"), ucfirst(the_title())) ?>"
                                     >
@@ -66,9 +66,9 @@ $theQuery = new \WP_Query([
                             <div class="ys-group-status">
                                 <?php if ($groupStatus === 'public') : ?>
                                     <i class="fas fa-globe-africa"></i>
-                                    <?php _e('Public group', YS_GROUPS_TEXT_DOMAIN) ?>
+                                    <?php _e('Public group', YS_GROUP_TEXT_DOMAIN) ?>
                                 <?php else : ?>
-                                    <?php _e('Private group', YS_GROUPS_TEXT_DOMAIN) ?>
+                                    <?php _e('Private group', YS_GROUP_TEXT_DOMAIN) ?>
                                 <?php endif; ?>
                             </div>
 
@@ -79,7 +79,7 @@ $theQuery = new \WP_Query([
                                     data-placement="bottom"
                                     title="
                                     <?php printf(
-                                        __('Last activity on %s', YS_GROUPS_TEXT_DOMAIN),
+                                        __('Last activity on %s', YS_GROUP_TEXT_DOMAIN),
                                         '10/10/21'
                                     ) ?>
                                         "
@@ -93,12 +93,12 @@ $theQuery = new \WP_Query([
                                     title="
                                     <?php if ($groupMembersCount <= 1) :
                                         printf(
-                                            __('%s member', YS_GROUPS_TEXT_DOMAIN),
+                                            __('%s member', YS_GROUP_TEXT_DOMAIN),
                                             $groupMembersCount
                                         );
                                     else :
                                         printf(
-                                            __('%s members', YS_GROUPS_TEXT_DOMAIN),
+                                            __('%s members', YS_GROUP_TEXT_DOMAIN),
                                             $groupMembersCount
                                         );
                                     endif; ?>
@@ -121,14 +121,14 @@ $theQuery = new \WP_Query([
                 'format' => 'page/%#%/',
                 'current' => max(1, get_query_var('paged')),
                 'total' => $theQuery->max_num_pages,
-                'prev_text' => __('&laquo; Prev', YS_GROUPS_TEXT_DOMAIN),
-                'next_text' => __('Next &raquo;', YS_GROUPS_TEXT_DOMAIN),
+                'prev_text' => __('&laquo; Prev', YS_GROUP_TEXT_DOMAIN),
+                'next_text' => __('Next &raquo;', YS_GROUP_TEXT_DOMAIN),
                 'type' => 'list',
             ]); ?>
         </div>
     </div>
 <?php else : ?>
-    <?php _e('No group found', YS_GROUPS_TEXT_DOMAIN) ?>
+    <?php _e('No group found', YS_GROUP_TEXT_DOMAIN) ?>
 <?php endif; ?>
 
 <?php wp_reset_postdata();

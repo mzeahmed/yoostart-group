@@ -36,6 +36,6 @@ class Db
 
         $this->wpdb = $wpdb;
         $this->prefix = $this->wpdb->prefix;
-        $this->ys_groups_prefix = YS_GROUPS_DB_PREFIX;
+        $this->ys_groups_prefix = YS_GROUP_DB_PREFIX;
     }
 }

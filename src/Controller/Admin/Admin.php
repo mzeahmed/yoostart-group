@@ -92,17 +92,17 @@ class Admin extends AbstractController
         ) {
             wp_enqueue_style(
                 'ys-groups-admin',
-                YS_GROUPS_URI . '/public/css/admin.css',
+                YS_GROUP_URI . '/public/css/admin.css',
                 [],
-                YS_GROUPS_VERSION,
+                YS_GROUP_VERSION,
                 'all'
             );
 
             wp_enqueue_script(
                 'ys-groups-admin',
-                YS_GROUPS_URI . '/public/js/admin.js',
+                YS_GROUP_URI . '/public/js/admin.js',
                 ['jquery'],
-                YS_GROUPS_VERSION,
+                YS_GROUP_VERSION,
                 true
             );
 
@@ -145,12 +145,12 @@ class Admin extends AbstractController
      * @param \WP_Post $post
      *
      * @return array
-     * @see   YS_GROUPS_POSTS
+     * @see   YS_GROUP_POSTS
      * @since 1.0.5
      */
     public function displayPostStates(array $posts_states, \WP_Post $post): array
     {
-        $postIds = (new PluginPosts())->getPostsId(YS_GROUPS_POSTS);
+        $postIds = (new PluginPosts())->getPostsId(YS_GROUP_POSTS);
 
         foreach ($postIds as $id) {
             if ($id == $post->ID) {

@@ -26,7 +26,7 @@ class GroupIdMetaBox extends AbstractController
         if ($postType == 'ys-group-post' && current_user_can('publish_posts', $post)) {
             add_meta_box(
                 YS_GROUP_ID_META_KEY . '_postbox',
-                __('Group', YS_GROUPS_TEXT_DOMAIN),
+                __('Group', YS_GROUP_TEXT_DOMAIN),
                 [$this, 'renderGroupIdBox'],
                 'ys-group-post',
                 'normal',

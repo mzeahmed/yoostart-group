@@ -13,9 +13,9 @@
         printf(
             __(
                 "The main <strong>Yoostart</strong> plugin is required to run <strong>%s</strong>, please activate it",
-                YS_GROUPS_TEXT_DOMAIN
+                YS_GROUP_TEXT_DOMAIN
             ),
-            YS_GROUPS_PLUGIN_NAME
+            YS_GROUP_PLUGIN_NAME
         )
         ?>
     </p>

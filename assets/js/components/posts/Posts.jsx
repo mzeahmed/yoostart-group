@@ -3,6 +3,8 @@ import PostHeader from './PostHeader';
 import PostContent from './PostContent';
 import moment from 'moment/moment';
 import { __ } from '@wordpress/i18n';
+import NewPostForm from '../forms/NewPostForm';
+import { YS_GROUP_TEXT_DOMAIN } from '../../constants/constatnts';
 
 const { useState, useEffect } = wp.element;
 
@@ -29,6 +31,7 @@ function Posts () {
   if (posts) {
     return (
       <div className="ys-group-posts">
+        <NewPostForm/>
         {posts.map((post) => (
           <div className="post">
             <PostHeader
@@ -49,7 +52,7 @@ function Posts () {
   } else {
     return (
       <div className="ys-group-posts">
-        <p className="post">{__('No post for now', 'yoostartwp-groups')}</p>
+        <p className="post">{__('No post for now', YS_GROUP_TEXT_DOMAIN)}</p>
       </div>
     );
   }

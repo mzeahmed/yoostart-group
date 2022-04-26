@@ -61,7 +61,7 @@ class YsGroupPostRestController
         if (! current_user_can('read')) {
             return new \WP_Error(
                 'rest_forbidden',
-                esc_html__('You cannot view the post resource', YS_GROUPS_TEXT_DOMAIN),
+                esc_html__('You cannot view the post resource', YS_GROUP_TEXT_DOMAIN),
                 ['status' => $this->authorizationStatusCode()]
             );
         }
@@ -148,7 +148,7 @@ class YsGroupPostRestController
 
         if (empty($data)) {
             return new \WP_REST_Response([
-                'Message' => __('No post found', YS_GROUPS_TEXT_DOMAIN),
+                'Message' => __('No post found', YS_GROUP_TEXT_DOMAIN),
             ], 404);
         }
 

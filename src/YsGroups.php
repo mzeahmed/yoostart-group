@@ -32,7 +32,7 @@ class YsGroups
         register_activation_hook(YS_GROUPS_PLUGIN_FILE, [OnPluginActivation::class, 'activation']);
 
         add_action('init', function () {
-            load_plugin_textdomain(YS_GROUPS_TEXT_DOMAIN, false, YS_GROUPS_PATH . 'languages');
+            load_plugin_textdomain(YS_GROUP_TEXT_DOMAIN, false, YS_GROUP_PATH . 'languages');
         });
 
         add_action('plugins_loaded', [$this, 'onPluginsLoaded']);

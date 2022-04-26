@@ -1,4 +1,4 @@
-import Posts from './groupPosts/Posts';
+import Posts from './posts/Posts';
 
 const App = () => {
   return (

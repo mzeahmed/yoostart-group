@@ -1,4 +1,5 @@
 import { __ } from '@wordpress/i18n';
+import { YS_GROUP_TEXT_DOMAIN } from '../../../constants/constatnts';
 
 const { useState } = wp.element;
 
@@ -17,7 +18,7 @@ export default function Content ({ content }) {
         <button
           className="read-more"
           onClick={() => setShowMore(!showMore)}>
-          {showMore ? __('Read less', 'yoostartwp-groups') : __('Read more', 'yoostartwp-groups')}
+          {showMore ? __('Read less', YS_GROUP_TEXT_DOMAIN) : __('Read more', YS_GROUP_TEXT_DOMAIN)}
         </button>
       </>
     );

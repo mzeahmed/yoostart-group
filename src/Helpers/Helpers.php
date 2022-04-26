@@ -255,25 +255,25 @@ class Helpers
         $outputDetails = [];
 
         if ($secondsPassed < 60) {
-            $outputDetails['text'] = __("Ago ", YS_GROUPS_TEXT_DOMAIN);
+            $outputDetails['text'] = __("Ago ", YS_GROUP_TEXT_DOMAIN);
             $outputDetails['time'] = $secondsPassed;
             $outputDetails['unite'] = "s";
-            $output = sprintf(__('%u s ago', YS_GROUPS_TEXT_DOMAIN), $secondsPassed);
+            $output = sprintf(__('%u s ago', YS_GROUP_TEXT_DOMAIN), $secondsPassed);
         } elseif ($minutesPassed < 60) {
-            $outputDetails['text'] = __("Ago ", YS_GROUPS_TEXT_DOMAIN);
+            $outputDetails['text'] = __("Ago ", YS_GROUP_TEXT_DOMAIN);
             $outputDetails['time'] = $minutesPassed;
             $outputDetails['unite'] = "min";
-            $output = sprintf(__('%u min ago', YS_GROUPS_TEXT_DOMAIN), '');
+            $output = sprintf(__('%u min ago', YS_GROUP_TEXT_DOMAIN), '');
         } elseif ($hoursPassed < 24) {
-            $outputDetails['text'] = __("Ago ", YS_GROUPS_TEXT_DOMAIN);
+            $outputDetails['text'] = __("Ago ", YS_GROUP_TEXT_DOMAIN);
             $outputDetails['time'] = $hoursPassed;
             $outputDetails['unite'] = "h";
-            $output = sprintf(__('%u h go', YS_GROUPS_TEXT_DOMAIN), '');
+            $output = sprintf(__('%u h go', YS_GROUP_TEXT_DOMAIN), '');
         } elseif ($daysPassed < 2) {
-            $outputDetails['text'] = __("Hier à ", YS_GROUPS_TEXT_DOMAIN);
+            $outputDetails['text'] = __("Hier à ", YS_GROUP_TEXT_DOMAIN);
             $outputDetails['time'] = $dateHour . ":" . $dateMinute;
             $outputDetails['unite'] = "";
-            $output = sprintf(__('Yesterday at %1$u : %2$u', YS_GROUPS_TEXT_DOMAIN), $dateHour, $dateMinute);
+            $output = sprintf(__('Yesterday at %1$u : %2$u', YS_GROUP_TEXT_DOMAIN), $dateHour, $dateMinute);
         } else {
             if ($currentYear != $dateYear) {
                 foreach ($months as $monthName => $monthNumber) {
@@ -326,13 +326,13 @@ class Helpers
         $sec = $interval->format('%s');
 
         if ($days > 0) {
-            return sprintf(__('In %s days', YS_GROUPS_TEXT_DOMAIN), $days);
+            return sprintf(__('In %s days', YS_GROUP_TEXT_DOMAIN), $days);
         } elseif ($hours > 0) {
-            return sprintf(__("In %sh", YS_GROUPS_TEXT_DOMAIN), $hours);
+            return sprintf(__("In %sh", YS_GROUP_TEXT_DOMAIN), $hours);
         } elseif ($min > 0) {
-            return sprintf(__("In %smin", YS_GROUPS_TEXT_DOMAIN), $min);
+            return sprintf(__("In %smin", YS_GROUP_TEXT_DOMAIN), $min);
         } elseif ($sec > 0) {
-            return sprintf(__("In %ss", YS_GROUPS_TEXT_DOMAIN), $sec);
+            return sprintf(__("In %ss", YS_GROUP_TEXT_DOMAIN), $sec);
         } else {
             return 0;
         }
@@ -368,15 +368,15 @@ class Helpers
             require_once ABSPATH . 'wp-admin/includes/file.php';
         }
 
-        if (! file_exists(YS_GROUPS_UPLOAD_DIR)) {
+        if (! file_exists(YS_GROUP_UPLOAD_DIR)) {
             OnPluginActivation::createUploadDir();
         }
 
-        $groupUploadDir = YS_GROUPS_UPLOAD_DIR . $groupId . DIRECTORY_SEPARATOR;
+        $groupUploadDir = YS_GROUP_UPLOAD_DIR . $groupId . DIRECTORY_SEPARATOR;
 
         $type === 'avatar'
-            ? $groupUploadDir = YS_GROUPS_UPLOAD_DIR . $groupId . '/avatar/'
-            : $groupUploadDir = YS_GROUPS_UPLOAD_DIR . $groupId . '/cover-image/';
+            ? $groupUploadDir = YS_GROUP_UPLOAD_DIR . $groupId . '/avatar/'
+            : $groupUploadDir = YS_GROUP_UPLOAD_DIR . $groupId . '/cover-image/';
 
         if (! file_exists($groupUploadDir)) {
             mkdir($groupUploadDir, 0755);
@@ -416,19 +416,19 @@ class Helpers
                             $deletAtt = wp_delete_attachment($oldAttId);
 
                             if (! $deletAtt) {
-                                return __('The old image could not be deleted', YS_GROUPS_TEXT_DOMAIN);
+                                return __('The old image could not be deleted', YS_GROUP_TEXT_DOMAIN);
                             }
                         }
                         update_post_meta($groupId, $postMetaKey, $attachmentId);
                     }
                 } else {
-                    return __('The file couldn\'t be added', YS_GROUPS_TEXT_DOMAIN);
+                    return __('The file couldn\'t be added', YS_GROUP_TEXT_DOMAIN);
                 }
             } else {
-                return __('The file could not be uploaded', YS_GROUPS_TEXT_DOMAIN);
+                return __('The file could not be uploaded', YS_GROUP_TEXT_DOMAIN);
             }
         } else {
-            return __('File format error. Please try again', YS_GROUPS_TEXT_DOMAIN);
+            return __('File format error. Please try again', YS_GROUP_TEXT_DOMAIN);
         }
 
         return true;
@@ -445,7 +445,7 @@ class Helpers
     {
         OnPluginActivation::createUploadDir();
 
-        $groupIdUploadDir = YS_GROUPS_UPLOAD_DIR . $groupId . '/' . $type . '/';
+        $groupIdUploadDir = YS_GROUP_UPLOAD_DIR . $groupId . '/' . $type . '/';
 
         if (! file_exists($groupIdUploadDir)) {
             wp_mkdir_p($groupIdUploadDir);

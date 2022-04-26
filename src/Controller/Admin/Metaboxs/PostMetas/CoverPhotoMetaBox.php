@@ -14,13 +14,13 @@ class CoverPhotoMetaBox
 
     public function registerCoverPhotoMetaKey()
     {
-        Container::make('post_meta', __('Cover photo', YS_GROUPS_TEXT_DOMAIN))
+        Container::make('post_meta', __('Cover photo', YS_GROUP_TEXT_DOMAIN))
             ->where('post_type', '=', 'ys-group')
             ->add_fields([
                 Field::make(
                     'image',
                     YS_GROUP_COVER_PHOTO_META_KEY,
-                    __('Choose an image of 1900px width ', YS_GROUPS_TEXT_DOMAIN)
+                    __('Choose an image of 1900px width ', YS_GROUP_TEXT_DOMAIN)
                 )
                     ->set_visible_in_rest_api(),
             ])
