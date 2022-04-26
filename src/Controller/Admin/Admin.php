@@ -1,14 +1,14 @@
 <?php
 
-namespace YsGroups\Controller\Admin;
+namespace YsGroup\Controller\Admin;
 
-use YsGroups\Model\PluginPosts;
-use YsGroups\Controller\AbstractController;
-use YsGroups\Controller\Admin\Metaboxs\PostMetas\StatusMetaBox;
-use YsGroups\Controller\Admin\Metaboxs\PostMetas\GroupIdMetaBox;
-use YsGroups\Controller\Admin\Metaboxs\PostMetas\GroupAdminMetabox;
-use YsGroups\Controller\Admin\Metaboxs\PostMetas\CoverPhotoMetaBox;
-use YsGroups\Controller\Admin\Metaboxs\TermMetas\YsGroupsMemberTermMeta;
+use YsGroup\Model\PluginPosts;
+use YsGroup\Controller\AbstractController;
+use YsGroup\Controller\Admin\Metaboxs\PostMetas\StatusMetaBox;
+use YsGroup\Controller\Admin\Metaboxs\PostMetas\GroupIdMetaBox;
+use YsGroup\Controller\Admin\Metaboxs\PostMetas\GroupAdminMetabox;
+use YsGroup\Controller\Admin\Metaboxs\PostMetas\CoverPhotoMetaBox;
+use YsGroup\Controller\Admin\Metaboxs\TermMetas\YsGroupsMemberTermMeta;
 
 /**
  * @since 1.0.6

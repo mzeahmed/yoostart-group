@@ -1,9 +1,9 @@
 <?php
 
-namespace YsGroups;
+namespace YsGroup;
 
-use YsGroups\Model\DbSchema;
-use YsGroups\Helpers\Helpers;
+use YsGroup\Model\DbSchema;
+use YsGroup\Helpers\Helpers;
 
 /**
  * @since 1.0.0

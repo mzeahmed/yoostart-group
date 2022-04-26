@@ -1,18 +1,17 @@
 <?php
 
-namespace YsGroups;
+namespace YsGroup;
 
-use Exception;
 use YsGroupsCacheContainer;
-use YsGroups\Services\Mailer;
-use YsGroups\Services\Session;
-use YsGroups\Services\RestApi;
-use YsGroups\Services\RewriteRules;
-use YsGroups\Controller\Admin\Admin;
-use YsGroups\Controller\Front\Front;
-use YsGroups\Services\FixSomeErrors;
+use YsGroup\Services\Mailer;
+use YsGroup\Services\Session;
+use YsGroup\Services\RestApi;
+use YsGroup\Services\RewriteRules;
+use YsGroup\Controller\Admin\Admin;
+use YsGroup\Controller\Front\Front;
+use YsGroup\Services\FixSomeErrors;
 use Symfony\Component\Config\FileLocator;
-use YsGroups\Services\NotLoggedInRedirections;
+use YsGroup\Services\NotLoggedInRedirections;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Dumper\PhpDumper;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
@@ -24,7 +23,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
  */
 class Container
 {
-    public static function load()
+    public static function load(): void
     {
         if (file_exists(dirname(__DIR__) . '/cache/container.php')) {
             require_once dirname(__DIR__) . '/cache/container.php';
@@ -39,7 +38,7 @@ class Container
             );
             try {
                 $loader->load('services.yml');
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 echo $e->getMessage();
             }
 
@@ -68,7 +67,7 @@ class Container
             $container->get(Mailer::class);
             $container->get(RestApi::class);
             $container->get(FixSomeErrors::class);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             echo $e->getMessage();
         }
     }

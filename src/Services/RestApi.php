@@ -1,8 +1,8 @@
 <?php
 
-namespace YsGroups\Services;
+namespace YsGroup\Services;
 
-use YsGroups\Controller\Api\YsGroupPostRestController;
+use YsGroup\Controller\Api\YsGroupPostRestController;
 
 class RestApi
 {

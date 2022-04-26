@@ -1,6 +1,6 @@
 <?php
 
-namespace YsGroups\Services;
+namespace YsGroup\Services;
 
 /**
  * Besoin de la session pour les messages flash, on la gere ici
@@ -20,7 +20,7 @@ class Session
      * @return void
      * @since 1.0.9
      */
-    public function sessionStart()
+    public function sessionStart(): void
     {
         if (! session_id()) {
             session_start();
@@ -31,7 +31,7 @@ class Session
      * @return void
      * @since 1.0.9
      */
-    public function sessionDestroy()
+    public function sessionDestroy(): void
     {
         session_destroy();
     }

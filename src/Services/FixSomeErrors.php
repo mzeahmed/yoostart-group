@@ -1,6 +1,6 @@
 <?php
 
-namespace YsGroups\Services;
+namespace YsGroup\Services;
 
 class FixSomeErrors
 {

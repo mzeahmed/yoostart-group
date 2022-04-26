@@ -1,22 +1,22 @@
 <?php
 
-namespace YsGroups;
+namespace YsGroup;
 
-use YsGroups\Controller\Admin\YsGroupCPT;
-use YsGroups\Controller\Admin\YsGroupPostCPT;
+use YsGroup\Controller\Admin\YsGroupCPT;
+use YsGroup\Controller\Admin\YsGroupPostCPT;
 
 /**
  * @package AdminGroupsController
  * @since   1.0.0
  */
-class YsGroups
+class YsGroup
 {
     /**
      * Instance de AdminGroupsController
      *
-     * @var YsGroups|null
+     * @var YsGroup|null
      */
-    protected static ?YsGroups $instance = null;
+    protected static ?YsGroup $instance = null;
 
     public function __construct()
     {
@@ -29,7 +29,7 @@ class YsGroups
      */
     private function initHooks(): void
     {
-        register_activation_hook(YS_GROUPS_PLUGIN_FILE, [OnPluginActivation::class, 'activation']);
+        register_activation_hook(YS_GROUP_PLUGIN_FILE, [OnPluginActivation::class, 'activation']);
 
         add_action('init', function () {
             load_plugin_textdomain(YS_GROUP_TEXT_DOMAIN, false, YS_GROUP_PATH . 'languages');
@@ -43,7 +43,7 @@ class YsGroups
          *
          * @since 1.2.1
          */
-        register_activation_hook(YS_GROUPS_PLUGIN_FILE, function () {
+        register_activation_hook(YS_GROUP_PLUGIN_FILE, function () {
             (new YsGroupPostCPT())->registerPostType();
             (new YsGroupCPT())->registerPostType();
 
@@ -54,11 +54,11 @@ class YsGroups
     /**
      * S'assure qu'une seule instance de AdminGroupsController est chargée
      *
-     * @return YsGroups|null
-     * @see   yoostart_groups()
+     * @return YsGroup|null
+     * @see   yoostart_group()
      * @since 1.0.0
      */
-    public static function getInstance(): ?YsGroups
+    public static function getInstance(): ?YsGroup
     {
         if (is_null(self::$instance)) {
             self::$instance = new self();
@@ -80,7 +80,7 @@ class YsGroups
      */
     public function onPluginsLoaded()
     {
-        do_action('ys_groups_loaded');
+        do_action('ys_group_loaded');
     }
 
     /**

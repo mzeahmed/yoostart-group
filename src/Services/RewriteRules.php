@@ -1,6 +1,6 @@
 <?php
 
-namespace YsGroups\Services;
+namespace YsGroup\Services;
 
 /**
  * @since 1.1.4
@@ -19,7 +19,7 @@ class RewriteRules
      *
      * @since 1.1.4
      */
-    public function flushRules()
+    public function flushRules(): void
     {
         $rules = get_option('rewrite_rules');
 

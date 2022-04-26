@@ -1,12 +1,12 @@
 <?php
 
-namespace YsGroups\Helpers;
+namespace YsGroup\Helpers;
 
 use DateTime;
 use Exception;
-use YsGroups\Model\Groups;
-use YsGroups\OnPluginActivation;
-use YsGroups\Model\GroupsMembers;
+use YsGroup\Model\Groups;
+use YsGroup\OnPluginActivation;
+use YsGroup\Model\GroupsMembers;
 
 /**
  * @since 1.1.0
@@ -22,7 +22,7 @@ class Helpers
      * @return void
      * @since 1.0.0
      */
-    public static function maybeDefineConstant(string $name, mixed $value)
+    public static function maybeDefineConstant(string $name, mixed $value): void
     {
         if (! defined($name)) {
             define($name, $value);

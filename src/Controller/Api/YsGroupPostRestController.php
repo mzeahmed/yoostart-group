@@ -1,6 +1,6 @@
 <?php
 
-namespace YsGroups\Controller\Api;
+namespace YsGroup\Controller\Api;
 
 class YsGroupPostRestController
 {

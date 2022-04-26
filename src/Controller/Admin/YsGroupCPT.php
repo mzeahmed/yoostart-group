@@ -1,8 +1,8 @@
 <?php
 
-namespace YsGroups\Controller\Admin;
+namespace YsGroup\Controller\Admin;
 
-use YsGroups\Controller\AbstractController;
+use YsGroup\Controller\AbstractController;
 
 /**
  * @since 1.2.1

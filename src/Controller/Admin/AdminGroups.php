@@ -1,11 +1,11 @@
 <?php
 
-namespace YsGroups\Controller\Admin;
+namespace YsGroup\Controller\Admin;
 
-use YsGroups\Model\Groups;
-use YsGroups\Helpers\Helpers;
-use YsGroups\Model\GroupsMembers;
-use YsGroups\Controller\AbstractController;
+use YsGroup\Model\Groups;
+use YsGroup\Helpers\Helpers;
+use YsGroup\Model\GroupsMembers;
+use YsGroup\Controller\AbstractController;
 
 /**
  * @since 1.0.6

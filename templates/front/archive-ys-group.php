@@ -24,7 +24,7 @@ $theQuery = new \WP_Query([
                 $groupStatus = get_post_meta(get_the_ID(), YS_GROUP_STATUS_META_KEY);
                 $coverImageId = intval(carbon_get_post_meta(get_the_ID(), YS_GROUP_COVER_PHOTO_META_KEY));
                 $coverImageUrl = wp_get_attachment_image_url($coverImageId);
-                $groupMembersCount = \YsGroups\Helpers\Helpers::getGroupMembersCount(get_the_ID())
+                $groupMembersCount = \YsGroup\Helpers\Helpers::getGroupMembersCount(get_the_ID())
                 ?>
                 <div class="ys-groups">
                     <div class="ys-group-content">

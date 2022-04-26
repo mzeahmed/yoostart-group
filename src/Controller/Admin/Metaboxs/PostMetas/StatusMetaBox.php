@@ -1,8 +1,8 @@
 <?php
 
-namespace YsGroups\Controller\Admin\Metaboxs\PostMetas;
+namespace YsGroup\Controller\Admin\Metaboxs\PostMetas;
 
-use YsGroups\Controller\AbstractController;
+use YsGroup\Controller\AbstractController;
 
 /**
  * @since 1.1.0

@@ -1,6 +1,6 @@
 <?php
 
-namespace YsGroups\Controller\Admin\Metaboxs\PostMetas;
+namespace YsGroup\Controller\Admin\Metaboxs\PostMetas;
 
 use Carbon_Fields\Field;
 use Carbon_Fields\Container;

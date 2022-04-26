@@ -3,45 +3,45 @@
 /**
  * @link              yoostart.com
  * @since             1.0.0
- * @package           YsGroups
+ * @package           YsGroup
  *
  * @wordpress-plugin
- * Plugin Name:       Yoostart Groups
+ * Plugin Name:       Yoostart Group
  * Plugin URI:        https://yoostart.com
  * Description:       Plugin de gestion des groupes, à destination de yoostart.com, nécessite le plugin yoostartwp
- * Version:           1.2.6.1
+ * Version:           1.2.6.2
  * Author:            Yoostart
  * Author URI:        yoostart.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       yoostartwp-groups
+ * Text Domain:       yoostart-group
  * Domain Path:       /languages
  */
 
 defined('ABSPATH') || die;
 
-if (! defined('YS_GROUPS_PLUGIN_FILE')) {
-    define('YS_GROUPS_PLUGIN_FILE', __FILE__);
+if (! defined('YS_GROUP_PLUGIN_FILE')) {
+    define('YS_GROUP_PLUGIN_FILE', __FILE__);
 }
 
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/src/constants.php';
 
 /**
- * @return YsGroups\YsGroups|null
+ * @return \YsGroup\YsGroup|null
  * @since 1.0.0
  */
-function yoostart_groups(): ?YsGroups\YsGroups
+function yoostart_group(): ?YsGroup\YsGroup
 {
-    return YsGroups\YsGroups::getInstance();
+    return \YsGroup\YsGroup::getInstance();
 }
 
-yoostart_groups();
+yoostart_group();
 
 add_action('after_setup_theme', function () {
     \Carbon_Fields\Carbon_Fields::boot();
 });
 
-add_action('ys_groups_loaded', function () {
-    YsGroups\Container::load();
+add_action('ys_group_loaded', function () {
+    \YsGroup\Container::load();
 });

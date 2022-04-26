@@ -1,9 +1,9 @@
 <?php
 
-namespace YsGroups\Controller\Admin\Metaboxs\PostMetas;
+namespace YsGroup\Controller\Admin\Metaboxs\PostMetas;
 
-use YsGroups\Model\Groups;
-use YsGroups\Controller\AbstractController;
+use YsGroup\Model\Groups;
+use YsGroup\Controller\AbstractController;
 
 class GroupIdMetaBox extends AbstractController
 {

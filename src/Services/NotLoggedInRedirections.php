@@ -1,6 +1,6 @@
 <?php
 
-namespace YsGroups\Services;
+namespace YsGroup\Services;
 
 /**
  * Classe pour gerer les redirections des urls interdite aux visisteurs
@@ -26,7 +26,7 @@ class NotLoggedInRedirections
      * @return void
      * @since 1.1.5
      */
-    public function redirectGroupsDirectory()
+    public function redirectGroupsDirectory(): void
     {
         if (! is_user_logged_in() && $this->requestUri === '/groupes/') {
             wp_safe_redirect(home_url());
@@ -38,7 +38,7 @@ class NotLoggedInRedirections
      * @return void
      * @since 1.1.5
      */
-    public function redirectSingleGroup()
+    public function redirectSingleGroup(): void
     {
         $slug = get_query_var('gslug');
 

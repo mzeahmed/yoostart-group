@@ -1,6 +1,6 @@
 <?php
 
-namespace YsGroups\Controller\Front;
+namespace YsGroup\Controller\Front;
 
 /**
  * @since 1.0.9

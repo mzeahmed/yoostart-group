@@ -1,6 +1,6 @@
 <?php
 
-namespace YsGroups\Model;
+namespace YsGroup\Model;
 
 /**
  * @since 1.2.0

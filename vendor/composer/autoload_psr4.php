@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'YsGroups\\' => array($baseDir . '/src'),
+    'YsGroup\\' => array($baseDir . '/src'),
 );

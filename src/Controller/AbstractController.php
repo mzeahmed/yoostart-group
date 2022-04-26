@@ -1,6 +1,6 @@
 <?php
 
-namespace YsGroups\Controller;
+namespace YsGroup\Controller;
 
 /**
  * @since 1.1.0

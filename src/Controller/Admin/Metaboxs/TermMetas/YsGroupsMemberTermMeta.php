@@ -1,8 +1,8 @@
 <?php
 
-namespace YsGroups\Controller\Admin\Metaboxs\TermMetas;
+namespace YsGroup\Controller\Admin\Metaboxs\TermMetas;
 
-use YsGroups\Controller\AbstractController;
+use YsGroup\Controller\AbstractController;
 
 class YsGroupsMemberTermMeta extends AbstractController
 {

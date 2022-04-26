@@ -1,8 +1,8 @@
 <?php
 
-namespace YsGroups\Controller\Admin;
+namespace YsGroup\Controller\Admin;
 
-use YsGroups\Model\Groups;
+use YsGroup\Model\Groups;
 
 class GroupListTable extends \WP_List_Table
 {

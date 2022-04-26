@@ -1,14 +1,14 @@
 <?php
 
-namespace YsGroups\Controller\Front;
+namespace YsGroup\Controller\Front;
 
 use WP_User;
-use YsGroups\Model\Groups;
-use YsGroups\Helpers\Helpers;
-use YsGroups\Services\Mailer;
-use YsGroups\Model\GroupsPosts;
-use YsGroups\Model\GroupsMembers;
-use YsGroups\Controller\AbstractController;
+use YsGroup\Model\Groups;
+use YsGroup\Helpers\Helpers;
+use YsGroup\Services\Mailer;
+use YsGroup\Model\GroupsPosts;
+use YsGroup\Model\GroupsMembers;
+use YsGroup\Controller\AbstractController;
 
 /**
  * @since 1.1.0

@@ -1,8 +1,8 @@
 <?php
 
-namespace YsGroups\Controller\Front;
+namespace YsGroup\Controller\Front;
 
-use YsGroups\Controller\AbstractController;
+use YsGroup\Controller\AbstractController;
 
 class GroupPostsController extends AbstractController
 {

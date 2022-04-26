@@ -5,14 +5,14 @@ if (! function_exists('get_plugin_data')) {
 }
 
 global $wpdb;
-$plugin_data = get_plugin_data(YS_GROUPS_PLUGIN_FILE);
+$plugin_data = get_plugin_data(YS_GROUP_PLUGIN_FILE);
 $uploadDir = wp_upload_dir();
 
 define('YS_GROUP_VERSION', $plugin_data['Version']);
 define('YS_GROUP_PLUGIN_NAME', $plugin_data['Name']);
 define('YS_GROUP_TEXT_DOMAIN', $plugin_data['TextDomain']);
 
-define('YS_GROUP_PATH', dirname(YS_GROUPS_PLUGIN_FILE) . DIRECTORY_SEPARATOR);
+define('YS_GROUP_PATH', dirname(YS_GROUP_PLUGIN_FILE) . DIRECTORY_SEPARATOR);
 define('YS_GROUP_URI', dirname(plugin_dir_url(__FILE__)));
 define('YS_GROUP_URL', home_url('groupes/'));
 
