@@ -35,3 +35,50 @@ const YS_GROUPS_POSTS = [
     'groupes',
     'groupe',
 ];
+
+function myspace_get_posts_by_tag(WP_REST_Request $request)
+{
+    // get slug and page number
+    $slug = $request['slug'];
+    $page = $request['page'];
+
+    // get tag -> more info here: https://www.coditty.com/code/wordpress-rest-api-get-posts-by-tag
+    $term = get_term_by('slug', $slug, 'post_tag');
+
+    $args = [
+        'tag__in' => $term->term_id,
+        'posts_per_page' => $posts_per_page,
+        'paged' => $page,
+        'orderby' => 'date',
+        'order' => 'desc',
+    ];
+    // use WP_Query to get the results with pagination
+    $query = new WP_Query($args);
+
+    // if no posts found return
+    if (empty($query->posts)) {
+        return new WP_Error('no_posts', __('No post found'), ['status' => 404]);
+    }
+
+    // set max number of pages and total num of posts
+    $max_pages = $query->max_num_pages;
+    $total = $query->found_posts;
+
+    $posts = $query->posts;
+
+    // prepare data for output
+    $controller = new WP_REST_Posts_Controller('post');
+
+    foreach ($posts as $post) {
+        $response = $controller->prepare_item_for_response($post, $request);
+        $data[] = $controller->prepare_response_for_collection($response);
+    }
+
+    // set headers and return response
+    $response = new WP_REST_Response($data, 200);
+
+    $response->header('X-WP-Total', $total);
+    $response->header('X-WP-TotalPages', $max_pages);
+
+    return $response;
+}

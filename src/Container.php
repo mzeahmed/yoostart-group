@@ -6,10 +6,11 @@ use Exception;
 use YsGroupsCacheContainer;
 use YsGroups\Services\Mailer;
 use YsGroups\Services\Session;
-use YsGroups\Api\YsGroupsRestApi;
+use YsGroups\Services\RestApi;
 use YsGroups\Services\RewriteRules;
 use YsGroups\Controller\Admin\Admin;
 use YsGroups\Controller\Front\Front;
+use YsGroups\Services\FixSomeErrors;
 use Symfony\Component\Config\FileLocator;
 use YsGroups\Services\NotLoggedInRedirections;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -65,7 +66,8 @@ class Container
             $container->get(RewriteRules::class);
             $container->get(NotLoggedInRedirections::class);
             $container->get(Mailer::class);
-            $container->get(YsGroupsRestApi::class);
+            $container->get(RestApi::class);
+            $container->get(FixSomeErrors::class);
         } catch (Exception $e) {
             echo $e->getMessage();
         }

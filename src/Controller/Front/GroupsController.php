@@ -40,8 +40,6 @@ class GroupsController extends AbstractController
         $coverImageId = carbon_get_post_meta(get_the_ID(), YS_GROUP_COVER_PHOTO_META_KEY);
         $coverImageUrl = wp_get_attachment_image_url($coverImageId);
 
-        // dump($coverImageId, $coverImageUrl);
-
         if (is_single() && get_post_type() == 'ys-group') {
             $template = $this->template(
                 'front/single',

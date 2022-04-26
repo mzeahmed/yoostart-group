@@ -1,26 +1,13 @@
 import 'bootstrap/dist/js/bootstrap.bundle';
 import './elements/Autogrow';
-import GroupFeed from './components/GroupFeed';
+import App from './components/App';
+import moment from 'moment/moment';
 
-// fileUploadHandler();
-
-let groups = document.querySelector('#ys_groups');
-let url = groups.dataset.request;
-
-console.log(groups);
-console.log(url);
-
-fetch(url, {
-  method: 'GET'
-
-}).then((response) => response.json())
-  .then((data) => {
-    console.log(data);
-  }).catch((e) => console.log(e));
+moment.locale('fr');
 
 const { render, Component, useState } = wp.element;
 
 render(
-  <GroupFeed/>,
-  document.getElementById('group-feed')
+  <App/>,
+  document.getElementById('group_posts')
 );

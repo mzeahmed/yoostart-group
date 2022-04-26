@@ -64,7 +64,8 @@
   }));
 
   openBtn.forEach((btn) => {
-    const modal = document.querySelector(btn.dataset.modalTarget); //Checks the target of our data-modal-target. could have also used '.modal'
+    //Checks the target of our data-modal-target. could have also used '.modal'
+    const modal = document.querySelector(btn.dataset.modalTarget);
     btn.addEventListener('click', (() => {
       openModal(modal);
     }));

@@ -8,27 +8,12 @@ namespace YsGroups\Model;
 class Groups extends Db
 {
     /**
-     * Recupération de tout les groupes sous forme de tableau
-     *
-     * @param string $orderby
-     * @param string $order
-     *
-     * @return array
-     * @since 1.0.7
-     */
-    // public function getGroups(string $orderby = 'created_at', string $order = 'DESC'): array
-    // {
-    //     $query = "SELECT * FROM {$this->ys_groups_prefix}groups ORDER BY {$orderby} {$order}";
-    //
-    //     return $this->wpdb->get_results($query, 'ARRAY_A');
-    // }
-
-    /**
      * Récuperation des publications
      *
      * @param int $limit
      *
      * @return array
+     * @since 1.2.4
      */
     public function getGroups(int $limit = -1): array
     {
@@ -37,6 +22,21 @@ class Groups extends Db
             'numberposts' => $limit,
             'post_status' => 'publish',
         ]);
+    }
+
+    /**
+     * Recuperation du total de membres d'un groupe
+     *
+     * @param $groupId
+     *
+     * @return int|void
+     * @since 1.2.5
+     */
+    public function getGroupMembersCount($groupId)
+    {
+        $users = wp_get_post_terms($groupId, 'ys_group_member');
+
+        return count($users);
     }
 
     /**

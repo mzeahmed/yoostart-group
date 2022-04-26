@@ -29,14 +29,14 @@
             <li class="nav-item ys-group-invite-li">
                 <a class="nav-link" href="">
                     <i class="fas fa-paper-plane"></i>
-                    <?php _e('Invite member', YS_GROUPS_TEXT_DOMAIN) ?>
+                    <?php _e('Invite a member', YS_GROUPS_TEXT_DOMAIN) ?>
                 </a>
             </li>
             <?php //if (wp_get_current_user()->ID == $ysGroupVars['groupAdminId']) : ?>
             <li class="nav-item ys-group-manage-li">
                 <a class="nav-link" href="">
                     <i class="fas fa-cog"></i>
-                    <?php _e('Group manage', YS_GROUPS_TEXT_DOMAIN) ?>
+                    <?php _e('Group settings', YS_GROUPS_TEXT_DOMAIN) ?>
                 </a>
             </li>
             <?php //endif; ?>
@@ -48,9 +48,9 @@
             <!--                    --><?php //wp_nonce_field($ysGroupVars['action'], '_ys_single_join_group_nonce') ?>
             <button type="submit" class="btn btn-primary">
                 <i class="fas fa-sign-in-alt"></i>
-                <?php _e('Join group', YS_GROUPS_TEXT_DOMAIN) ?>
+                <?php _e('Join the group', YS_GROUPS_TEXT_DOMAIN) ?>
             </button>
-            </form>
+            <!--            </form>-->
         </div>
         <?php //endif; ?>
     </div>

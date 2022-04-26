@@ -43,18 +43,24 @@ class Front
             wp_enqueue_script(
                 'ys-group',
                 YS_GROUPS_URI . '/public/js/app.js',
-                ['wp-element'],
+                ['wp-element', 'wp-i18n'],
                 YS_GROUPS_VERSION,
                 true,
             );
 
+            /**
+             * Variables dont on besoin d'envoyer à javascript, React etc...
+             */
+            $config = [
+                'ajax_url' => admin_url('admin-ajax.php'),
+                '_cover_nonce' => wp_create_nonce('ys_group_ajax_nonce'),
+                'rest_url' => rest_url(),
+            ];
+
             wp_localize_script(
                 'ys-group',
-                'ys_group_ajaxurl',
-                [
-                    'ajax_url' => admin_url('admin-ajax.php'),
-                    '_cover_nonce' => wp_create_nonce('ys_group_ajax_nonce'),
-                ],
+                'ys_group_config',
+                $config
             );
         }
     }

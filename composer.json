@@ -21,7 +21,6 @@
   "license": "proprietary",
   "require": {
     "php": ">=8.0",
-    "htmlburger/carbon-fields": "^3.3",
     "symfony/config": "^5.4",
     "symfony/dependency-injection": "^5.4",
     "symfony/yaml": "^5.4"

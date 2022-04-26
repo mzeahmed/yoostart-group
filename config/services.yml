@@ -24,5 +24,8 @@ services:
     YsGroups\Services\Mailer:
         public: true
 
-    YsGroups\Api\YsGroupsRestApi:
+    YsGroups\Services\RestApi:
+        public: true
+
+    YsGroups\Services\FixSomeErrors:
         public: true

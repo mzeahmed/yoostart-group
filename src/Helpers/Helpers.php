@@ -504,4 +504,14 @@ class Helpers
     {
         return (new GroupsMembers())->getMembers($groupId);
     }
+
+    /**
+     * @param $groupId
+     *
+     * @return int|void
+     */
+    public static function getGroupMembersCount($groupId)
+    {
+        return (new Groups())->getGroupMembersCount($groupId);
+    }
 }

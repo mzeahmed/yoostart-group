@@ -35,9 +35,13 @@ require YOOSTART_PLUGIN_DIR_PATH . 'public/partials/template-parts/user-header.p
                 <?php endif; ?>
                 <!-- Message flash-->
 
-                <main class="ys-group-main-content">
-                    <!-- Affichage du feed du group, un autre custom post type ou autre -->
-                    <div id="group-feed"></div>
+                <main class="ys-group-main-content container">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-8">
+                            <!-- Affichage du feed du group, un autre custom post type ou autre -->
+                            <div id="group_posts" data-group-id="<?= get_the_ID() ?>"></div>
+                        </div>
+                    </div>
                 </main>
 
             </div>

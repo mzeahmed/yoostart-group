@@ -9,8 +9,6 @@ use YsGroups\Controller\AbstractController;
  */
 class YsGroupCPT extends AbstractController
 {
-    private array $args;
-
     /**
      * @since 1.2.2
      */
@@ -18,24 +16,15 @@ class YsGroupCPT extends AbstractController
     {
         parent::__construct();
 
-        $this->args = [
-            'name' => YS_GROUP_MEMBER_USER_TERM_META_KEY,
-            'id' => YS_GROUP_MEMBER_USER_TERM_META_KEY,
-        ];
-
         add_action('init', [$this, 'registerPostType']);
         add_action('init', [$this, 'registerTaxonomy']);
 
-        add_action('ys_group_member_add_form_fields', [$this, 'addFormField']);
-        add_action('ys_group_member_edit_form_fields', [$this, 'editFormField'], 10, 2);
-
-        add_filter('manage_edit-ys_group_member_columns', [$this, 'manageColumns']);
-        add_action('manage_ys_group_member_custom_column', [$this, 'showMetaValue'], 10, 3);
-
-        add_action('created_ys_group_member', [$this, 'saveYsGroupMemberField']);
-        add_action('edited_ys_group_member', [$this, 'saveYsGroupMemberField']);
-
         add_filter('use_block_editor_for_post_type', [$this, 'disableGutenberg'], 10, 2);
+
+        /**
+         * @todo à paufinern, ne fonctionne pas
+         */
+        add_filter('get_the_archive_description', [$this, 'archivePageTitle'], 10);
     }
 
     /**
@@ -44,23 +33,24 @@ class YsGroupCPT extends AbstractController
      * @return void
      * @since 1.2.1
      */
-    public function registerPostType()
+    public function registerPostType(): void
     {
         $labels = [
             'name' => __('Groups', YS_GROUPS_TEXT_DOMAIN),
             'singular_name' => __('Group', YS_GROUPS_TEXT_DOMAIN),
-            'menu_name' => __('Groups', YS_GROUPS_TEXT_DOMAIN),
-            'all_items' => __('All groups', YS_GROUPS_TEXT_DOMAIN),
-            'add_new_item' => __('Add new group', YS_GROUPS_TEXT_DOMAIN),
-            'add_new' => __('Add new group', YS_GROUPS_TEXT_DOMAIN),
-            'new_item' => __('New group', YS_GROUPS_TEXT_DOMAIN),
+            'add_new ' => _x('Add new', 'ys-group', YS_GROUPS_TEXT_DOMAIN),
+            'add_new_item' => __('Create new group', YS_GROUPS_TEXT_DOMAIN),
             'edit_item' => __('Edit group', YS_GROUPS_TEXT_DOMAIN),
-            'update_item' => __('Update group', YS_GROUPS_TEXT_DOMAIN),
             'view_item' => __('View group', YS_GROUPS_TEXT_DOMAIN),
             'not_found' => __('No group found', YS_GROUPS_TEXT_DOMAIN),
-            'featured_image' => __('Avatar', YS_GROUPS_TEXT_DOMAIN),
+            'all_items' => __('All groups', YS_GROUPS_TEXT_DOMAIN),
+            'insert_into_item ' => __('Insert into group', YS_GROUPS_TEXT_DOMAIN),
+            'update_item' => __('Update group', YS_GROUPS_TEXT_DOMAIN),
             'set_featured_image' => __('Add avatar', YS_GROUPS_TEXT_DOMAIN),
             'remove_featured_image' => __('Remove avatar', YS_GROUPS_TEXT_DOMAIN),
+            'menu_name' => __('Groups', YS_GROUPS_TEXT_DOMAIN),
+            'new_item' => __('New group', YS_GROUPS_TEXT_DOMAIN),
+            'featured_image' => __('Avatar', YS_GROUPS_TEXT_DOMAIN),
         ];
 
         $rewrite = [
@@ -101,7 +91,7 @@ class YsGroupCPT extends AbstractController
      * @return void
      * @since 1.2.1
      */
-    public function registerTaxonomy()
+    public function registerTaxonomy(): void
     {
         $labels = [
             'name' => _x('Members', 'Taxonomy General Name', YS_GROUPS_TEXT_DOMAIN),
@@ -131,110 +121,6 @@ class YsGroupCPT extends AbstractController
     }
 
     /**
-     * Champs page de création
-     *
-     * @param $taxonomy | ys_group_member
-     * @wp-hook {$taxonomy}_add_form_fields
-     *
-     * @return string|null
-     * @since 1.2.2
-     */
-    public function addFormField($taxonomy): ?string
-    {
-        return $this->render('admin/custom-fields/taxonomies/ys-group-member-add', [
-            'args' => $this->args,
-        ]);
-    }
-
-    /**
-     * Champs page d'édition
-     *
-     * @param $term
-     * @param $taxonomy
-     * @wp-hook {$taxonomy}_edit_form_fields
-     *
-     * @return string|null
-     * @since 1.2.2
-     */
-    public function editFormField($term, $taxonomy): ?string
-    {
-        $userId = get_term_meta($term->term_id, YS_GROUP_MEMBER_USER_TERM_META_KEY, true);
-        $user = get_userdata($userId);
-
-        $args = ['fields' => ['ID', 'display_name'],];
-        $users = get_users($args);
-
-        $this->args['selected'] = $user->ID;
-
-        return $this->render('admin/custom-fields/taxonomies/ys-group-member-edit', [
-            'user' => $user,
-            'users' => $users,
-            'args' => $this->args,
-        ]);
-    }
-
-    /**
-     * @param $columns
-     *
-     * @wp-hook manage_edit-{$taxonomy}_columns
-     * @return array
-     * @since   1.2.2
-     */
-    public function manageColumns($columns): array
-    {
-        if (isset($columns['description'])) {
-            unset($columns['description']);
-        }
-
-        $columns['ys_group_member'] = __('User', YS_GROUPS_TEXT_DOMAIN);
-
-        return $columns;
-    }
-
-    /**
-     * @param $deprecated
-     * @param $column
-     * @param $termId
-     *
-     * @wp-hook manage_{$taxonomy}_custom_column
-     * @return void
-     * @since   1.2.2
-     */
-    public function showMetaValue($deprecated, $column, $termId)
-    {
-        /**
-         * Valeur de la meta, ID de l'utilisateur lié à la taxonomie
-         */
-        $value = get_term_meta($termId, YS_GROUP_MEMBER_USER_TERM_META_KEY, true);
-        $user = get_userdata($value);
-
-        $userSlug = get_user_meta($value, YS_USER_SLUG);
-
-        if ($column === 'ys_group_member') :?>
-            <a href="<?php echo home_url('/profil/' . $userSlug[0]); ?>" target="_blank">
-                <?php echo $user->display_name ?>
-            </a>
-        <?php endif;
-    }
-
-    /**
-     * Persistance du champs personnamisé
-     *
-     * @param $termId
-     *
-     * @return void
-     * @since   1.2.2
-     * @wp-hook created_{$taxonomy}
-     * @wp-hook edited_{$taxonomy}
-     */
-    public function saveYsGroupMemberField($termId)
-    {
-        if (isset($_POST[YS_GROUP_MEMBER_USER_TERM_META_KEY])) {
-            update_term_meta($termId, YS_GROUP_MEMBER_USER_TERM_META_KEY, $_POST[YS_GROUP_MEMBER_USER_TERM_META_KEY]);
-        }
-    }
-
-    /**
      * Desctaivation de Gutenberg pour les custom post type
      *
      * @param $status
@@ -251,5 +137,19 @@ class YsGroupCPT extends AbstractController
         }
 
         return $status;
+    }
+
+    /**
+     * @param string $description
+     *
+     * @return string
+     */
+    public function archivePageTitle(string $description)
+    {
+        if (is_post_type_archive('ys-group')) {
+            $description = __('Groups', YS_GROUPS_TEXT_DOMAIN) . ' - ' . get_bloginfo('name');
+        }
+
+        return $description;
     }
 }

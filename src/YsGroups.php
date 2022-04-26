@@ -27,7 +27,7 @@ class YsGroups
      * @return void
      * @since 1.0.0
      */
-    private function initHooks()
+    private function initHooks(): void
     {
         register_activation_hook(YS_GROUPS_PLUGIN_FILE, [OnPluginActivation::class, 'activation']);
 

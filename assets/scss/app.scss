@@ -1,6 +1,7 @@
 //@import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 @import "responsive/app.responsive";
+@import "react-components/posts";
 
 // Page du repertoire des groupes
 .ys-groups-groups {
@@ -28,11 +29,12 @@
                 .ys-group-cover {
                     height: 140px;
                     background-position: center;
-                    background-size: cover;
+                    object-fit: cover;
                     background-repeat: no-repeat;
                 }
 
-                .ys-group-cover-content {
+                .ys-group-cover-content,
+                .attachment-post-thumbnail {
                     background-position: center;
                     background-size: cover;
                     background-repeat: no-repeat;
@@ -93,6 +95,11 @@
                 }
             }
         }
+    }
+
+    // Boutons de pagination
+    .page-numbers {
+        text-align: center;
     }
 
     .ys-groups-pagination {

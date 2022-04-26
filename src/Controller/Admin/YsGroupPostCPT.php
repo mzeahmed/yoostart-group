@@ -25,19 +25,19 @@ class YsGroupPostCPT extends AbstractController
      * @return void
      * @since 1.2.4
      */
-    public function registerPostType()
+    public function registerPostType(): void
     {
         $labels = [
             'name' => __('Group posts', YS_GROUPS_TEXT_DOMAIN),
             'singular_name' => __('Group post', YS_GROUPS_TEXT_DOMAIN),
             'menu_name' => __('Group posts', YS_GROUPS_TEXT_DOMAIN),
             'all_items' => __('All group posts', YS_GROUPS_TEXT_DOMAIN),
-            'add_new' => __('Create new post', YS_GROUPS_TEXT_DOMAIN),
+            'add_new' => __('Create new group post', YS_GROUPS_TEXT_DOMAIN),
             'new_item' => __('New group post', YS_GROUPS_TEXT_DOMAIN),
-            'edit_tem' => __('Edit post', YS_GROUPS_TEXT_DOMAIN),
-            'update_item' => __('Update post', YS_GROUPS_TEXT_DOMAIN),
-            'view_item' => __('View post', YS_GROUPS_TEXT_DOMAIN),
-            'not_found' => __('No post found', YS_GROUPS_TEXT_DOMAIN),
+            'edit_tem' => __('Edit group post', YS_GROUPS_TEXT_DOMAIN),
+            'update_item' => __('Update group  post', YS_GROUPS_TEXT_DOMAIN),
+            'view_item' => __('View group post', YS_GROUPS_TEXT_DOMAIN),
+            'not_found' => __('No group post found', YS_GROUPS_TEXT_DOMAIN),
         ];
 
         $capabilities = [];

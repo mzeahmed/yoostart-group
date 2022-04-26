@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Yoostart Groups\n"
-"POT-Creation-Date: 2022-01-21 01:06+0100\n"
-"PO-Revision-Date: 2022-01-21 01:09+0100\n"
+"POT-Creation-Date: 2022-04-25 20:23+0200\n"
+"PO-Revision-Date: 2022-04-25 20:28+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -23,33 +23,42 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-1: vendor\n"
 "X-Poedit-SearchPathExcluded-2: node_modules\n"
 
-#: src/Controller/Admin/AdminGroups.php:43
-#: src/Controller/Admin/AdminGroups.php:44 templates/admin/groups-index.php:11
+#: public/js/app.js:1555
+msgctxt "text direction"
+msgid "ltr"
+msgstr ""
+
+#: src/Controller/Admin/AdminGroups.php:45
+#: src/Controller/Admin/AdminGroups.php:46
+#: src/Controller/Admin/YsGroupCPT.php:39
+#: src/Controller/Admin/YsGroupCPT.php:51
+#: src/Controller/Admin/YsGroupCPT.php:150 templates/admin/groups-index.php:11
 msgid "Groups"
 msgstr "Groupes"
 
-#: src/Controller/Admin/AdminGroups.php:91
+#: src/Controller/Admin/AdminGroups.php:94
 #, php-format
 msgid "%s group has been permanently deleted."
 msgid_plural "%s groups have permanently deleted."
 msgstr[0] "Le groupe %s a été définitivement supprimé."
 msgstr[1] "Les groupes %s ont été définitivement supprimés."
 
-#: src/Controller/Admin/AdminGroups.php:143
+#: src/Controller/Admin/AdminGroups.php:150
+#: src/Controller/Front/GroupsController.php:221
 #, php-format
-msgid "<strong>Sorry, nonce %s  did not verifyed</strong>"
-msgstr "<strong>Désolé, le nonce %s n'a pas été vérifié</strong>"
+msgid "Sorry, nonce %s  did not verifyed"
+msgstr "Désolé, le nonce %s n'a pas été vérifié"
 
-#: src/Controller/Admin/AdminGroups.php:184
+#: src/Controller/Admin/AdminGroups.php:187
 #, php-format
 msgid "Group (%s) has been successfully created"
 msgstr "Le groupe (%s) a été créé avec succès"
 
-#: src/Controller/Admin/AdminGroups.php:271
+#: src/Controller/Admin/AdminGroups.php:274
 msgid "Overview"
 msgstr "Aperçu"
 
-#: src/Controller/Admin/AdminGroups.php:274
+#: src/Controller/Admin/AdminGroups.php:277
 msgid ""
 "This page is a convenient way to edit the details associated with one of "
 "your groups."
@@ -57,7 +66,7 @@ msgstr ""
 "Cette page est un moyen pratique de modifier les détails associés à un de "
 "vos régions."
 
-#: src/Controller/Admin/AdminGroups.php:278
+#: src/Controller/Admin/AdminGroups.php:281
 msgid ""
 "The Name and Description box is fixed in place, but you can reposition all "
 "the other boxes using drag and drop, and can minimize or expand them by "
@@ -111,66 +120,313 @@ msgctxt "List table row action"
 msgid "Delete"
 msgstr "Supprimer"
 
-#: src/Controller/Front/GroupsController.php:51
+#: src/Controller/Admin/Metaboxs/PostMetas/CoverPhotoMetaBox.php:17
+msgid "Cover photo"
+msgstr "Image de couverture"
+
+#: src/Controller/Admin/Metaboxs/PostMetas/CoverPhotoMetaBox.php:23
+msgid "Choose an image of 1900px width "
+msgstr "Choisissez une image de 1900px de largeur "
+
+#: src/Controller/Admin/Metaboxs/PostMetas/GroupIdMetaBox.php:29
+#: src/Controller/Admin/YsGroupCPT.php:40
+msgid "Group"
+msgstr "Groupe"
+
+#: src/Controller/Admin/Metaboxs/TermMetas/YsGroupsMemberTermMeta.php:86
+#: templates/admin/custom-fields/taxonomies/ys-group-member-add.php:10
+#: templates/admin/custom-fields/taxonomies/ys-group-member-edit.php:12
+msgid "User"
+msgstr "Utilisateur"
+
+#: src/Controller/Admin/YsGroupCPT.php:41
+msgctxt "ys-group"
+msgid "Add new"
+msgstr "Ajouter un nouveau"
+
+#: src/Controller/Admin/YsGroupCPT.php:42 templates/admin/create-group.php:11
+msgid "Create new group"
+msgstr "Créer un nouveau groupe"
+
+#: src/Controller/Admin/YsGroupCPT.php:43
+msgid "Edit group"
+msgstr "Modifier le groupe"
+
+#: src/Controller/Admin/YsGroupCPT.php:44
+msgid "View group"
+msgstr "Voir le groupe"
+
+#: src/Controller/Admin/YsGroupCPT.php:45
+#: templates/front/archive-ys-group.php:131 templates/front/groups.php:117
+msgid "No group found"
+msgstr "Aucun groupe trouvé"
+
+#: src/Controller/Admin/YsGroupCPT.php:46
+msgid "All groups"
+msgstr "Tous les groupes"
+
+#: src/Controller/Admin/YsGroupCPT.php:47
+msgid "Insert into group"
+msgstr "Insérer dans le groupe"
+
+#: src/Controller/Admin/YsGroupCPT.php:48
+#, fuzzy
+#| msgid "Create new group"
+msgid "Update group"
+msgstr "Créer un nouveau groupe"
+
+#: src/Controller/Admin/YsGroupCPT.php:49
+msgid "Add avatar"
+msgstr ""
+
+#: src/Controller/Admin/YsGroupCPT.php:50
+msgid "Remove avatar"
+msgstr ""
+
+#: src/Controller/Admin/YsGroupCPT.php:52
+#, fuzzy
+#| msgid "Add new group"
+msgid "New group"
+msgstr "Ajouter un nouveau groupe"
+
+#: src/Controller/Admin/YsGroupCPT.php:53
+msgid "Avatar"
+msgstr ""
+
+#: src/Controller/Admin/YsGroupCPT.php:64
+msgid "groups"
+msgstr "groupes"
+
+#: src/Controller/Admin/YsGroupCPT.php:65
+#, fuzzy
+#| msgid "Yoostart Groups"
+msgid "Yoostart groups"
+msgstr "Groupes Yoostart"
+
+#: src/Controller/Admin/YsGroupCPT.php:97
+msgctxt "Taxonomy General Name"
+msgid "Members"
+msgstr ""
+
+#: src/Controller/Admin/YsGroupCPT.php:98
+msgctxt "Taxonomy Singular Name"
+msgid "Member"
+msgstr ""
+
+#: src/Controller/Admin/YsGroupCPT.php:99
+#: templates/front/partials/_group-nav.php:26
+msgid "Members"
+msgstr ""
+
+#: src/Controller/Admin/YsGroupCPT.php:100
+msgid "All members"
+msgstr ""
+
+#: src/Controller/Admin/YsGroupCPT.php:101
+#: src/Controller/Admin/YsGroupCPT.php:102
+#, fuzzy
+#| msgid "Add new group"
+msgid "Add new member"
+msgstr "Ajouter un nouveau groupe"
+
+#: src/Controller/Admin/YsGroupCPT.php:103
+msgid "Edit member"
+msgstr ""
+
+#: src/Controller/Admin/YsGroupCPT.php:104
+msgid "Updit member"
+msgstr ""
+
+#: src/Controller/Admin/YsGroupCPT.php:105
+msgid "View member"
+msgstr ""
+
+#: src/Controller/Admin/YsGroupCPT.php:106
+#, fuzzy
+#| msgid "No group found"
+msgid "No group member found"
+msgstr "Aucun groupe trouvé"
+
+#: src/Controller/Admin/YsGroupPostCPT.php:31
+#: src/Controller/Admin/YsGroupPostCPT.php:33
+#, fuzzy
+#| msgid "Groups"
+msgid "Group posts"
+msgstr "Groupes"
+
+#: src/Controller/Admin/YsGroupPostCPT.php:32
+#, fuzzy
+#| msgid "Groups"
+msgid "Group post"
+msgstr "Groupes"
+
+#: src/Controller/Admin/YsGroupPostCPT.php:34
+msgid "All group posts"
+msgstr ""
+
+#: src/Controller/Admin/YsGroupPostCPT.php:35
+#, fuzzy
+#| msgid "Create new group"
+msgid "Create new group post"
+msgstr "Créer un nouveau groupe"
+
+#: src/Controller/Admin/YsGroupPostCPT.php:36
+#, fuzzy
+#| msgid "No group found"
+msgid "New group post"
+msgstr "Aucun groupe trouvé"
+
+#: src/Controller/Admin/YsGroupPostCPT.php:37
+msgid "Edit group post"
+msgstr ""
+
+#: src/Controller/Admin/YsGroupPostCPT.php:38
+msgid "Update group  post"
+msgstr ""
+
+#: src/Controller/Admin/YsGroupPostCPT.php:39
+msgid "View group post"
+msgstr ""
+
+#: src/Controller/Admin/YsGroupPostCPT.php:40
+#, fuzzy
+#| msgid "No groups found"
+msgid "No group post found"
+msgstr "Aucun groupe trouvé"
+
+#: src/Controller/Admin/YsGroupPostCPT.php:46
+msgid "groups posts"
+msgstr ""
+
+#: src/Controller/Admin/YsGroupPostCPT.php:47
+#, fuzzy
+#| msgid "Yoostart Groups"
+msgid "Yoostart group posts"
+msgstr "Groupes Yoostart"
+
+#: src/Controller/Admin/YsGroupPostCPT.php:79
+msgid "Group title"
+msgstr ""
+
+#: src/Controller/Api/YsGroupPostRestController.php:64
+msgid "You cannot view the post resource"
+msgstr ""
+
+#: src/Controller/Api/YsGroupPostRestController.php:149 src/constants.php:60
+msgid "No post found"
+msgstr "Aucun post trouvé"
+
+#: src/Controller/Front/GroupsController.php:99
+#: src/Controller/Front/GroupsController.php:149
+#: templates/front/archive-ys-group.php:124
 msgid "&laquo; Prev"
 msgstr "Préc"
 
-#: src/Controller/Front/GroupsController.php:52
+#: src/Controller/Front/GroupsController.php:100
+#: src/Controller/Front/GroupsController.php:150
+#: templates/front/archive-ys-group.php:125
 msgid "Next &raquo;"
 msgstr "Suiv"
 
-#: src/Helpers/Helpers.php:231 src/Helpers/Helpers.php:236
-#: src/Helpers/Helpers.php:241
+#: src/Controller/Front/GroupsController.php:188
+#, php-format
+msgid "<strong>Sorry, nonce %s  did not verifyed</strong>"
+msgstr "<strong>Désolé, le nonce %s n'a pas été vérifié</strong>"
+
+#: src/Controller/Front/GroupsController.php:200
+#, fuzzy
+#| msgid "Group (%s) has been successfully created"
+msgid "Cover has been successfully updated"
+msgstr "Le groupe (%s) a été créé avec succès"
+
+#: src/Controller/Front/GroupsController.php:252
+msgid ""
+"Your request has been sent, it will be validated by the group administrator"
+msgstr ""
+
+#: src/Controller/Front/GroupsController.php:263
+msgid "You are already member"
+msgstr ""
+
+#: src/Helpers/Helpers.php:258 src/Helpers/Helpers.php:263
+#: src/Helpers/Helpers.php:268
 msgid "Ago "
 msgstr "Il y a "
 
-#: src/Helpers/Helpers.php:234
+#: src/Helpers/Helpers.php:261
 #, php-format
 msgid "%u s ago"
 msgstr "il y a %u s"
 
-#: src/Helpers/Helpers.php:239
+#: src/Helpers/Helpers.php:266
 #, php-format
 msgid "%u min ago"
 msgstr "il y a %u min"
 
-#: src/Helpers/Helpers.php:244
+#: src/Helpers/Helpers.php:271
 #, php-format
 msgid "%u h go"
 msgstr ""
 
-#: src/Helpers/Helpers.php:246
+#: src/Helpers/Helpers.php:273
 msgid "Hier à "
 msgstr ""
 
-#: src/Helpers/Helpers.php:249
+#: src/Helpers/Helpers.php:276
 #, php-format
 msgid "Yesterday at %1$u : %2$u"
 msgstr ""
 
-#: src/Helpers/Helpers.php:302
+#: src/Helpers/Helpers.php:329
 #, php-format
 msgid "In %s days"
 msgstr "Dans %s jours"
 
-#: src/Helpers/Helpers.php:304
+#: src/Helpers/Helpers.php:331
 #, php-format
 msgid "In %sh"
 msgstr ""
 
-#: src/Helpers/Helpers.php:306
+#: src/Helpers/Helpers.php:333
 #, php-format
 msgid "In %smin"
 msgstr ""
 
-#: src/Helpers/Helpers.php:308
+#: src/Helpers/Helpers.php:335
 #, php-format
 msgid "In %ss"
 msgstr ""
 
-#: templates/admin/create-group.php:11
-msgid "Create new group"
-msgstr "Créer un nouveau groupe"
+#: src/Helpers/Helpers.php:419
+msgid "The old image could not be deleted"
+msgstr ""
+
+#: src/Helpers/Helpers.php:425
+msgid "The file couldn't be added"
+msgstr ""
+
+#: src/Helpers/Helpers.php:428
+msgid "The file could not be uploaded"
+msgstr ""
+
+#: src/Helpers/Helpers.php:431
+msgid "File format error. Please try again"
+msgstr ""
+
+#: src/Services/Mailer.php:20
+#, php-format
+msgid "You have a request by %s to join group: "
+msgstr ""
+
+#: src/Services/Mailer.php:25
+#, fuzzy
+#| msgid "Join group"
+msgid "join group request"
+msgstr "Rejoindre le groupe"
+
+#: templates/admin/custom-fields/taxonomies/ys-group-member-edit.php:18
+msgid "User associated to this taxonomy"
+msgstr "Utilisateur associé à cette taxonomie"
 
 #: templates/admin/delete-confirm.php:11
 msgid "Delete Groups"
@@ -214,64 +470,152 @@ msgstr "Résultats de recherche pour &#8220;%s&#8221;"
 msgid "Search all Groups"
 msgstr "Rechercher dans les groupes"
 
-#: templates/admin/metabox/edit-metabox-status.php:17
-msgid "Delete Group"
-msgstr "Supprimer le groupe"
+#: templates/admin/metabox/cover-photo-metabox.php:22
+msgid "Remove image"
+msgstr ""
 
-#: templates/admin/metabox/edit-metabox-status.php:21
-msgid "Save Changes"
-msgstr "Sauvegarder les modifications"
+#: templates/admin/metabox/cover-photo-metabox.php:32
+msgid "set listing image"
+msgstr ""
 
-#: templates/admin/partials/_form.php:15
-msgid "Unauthorized user"
-msgstr "Utilisateur non autorisé"
+#: templates/admin/metabox/cover-photo-metabox.php:35
+msgid "Choose an image"
+msgstr ""
 
-#: templates/admin/partials/_form.php:20
-msgid "Cover photo"
-msgstr "Image de couverture"
+#: templates/admin/metabox/cover-photo-metabox.php:36
+#: templates/admin/metabox/cover-photo-metabox.php:38
+msgid "Set listing image"
+msgstr ""
 
-#: templates/admin/partials/_form.php:25
-msgid "Name"
-msgstr "Nom"
+#: templates/admin/metabox/group-id-metabox.php:13
+msgid "Select group"
+msgstr "Sélectionner un groupe"
 
-#: templates/admin/partials/_form.php:30
-msgid "Description"
-msgstr "Description"
+#: templates/admin/metabox/status-metabox.php:12
+msgid "Choose group status"
+msgstr ""
 
-#: templates/admin/partials/_form.php:41
-msgid "Status"
-msgstr "Statut"
-
-#: templates/admin/partials/_form.php:44
+#: templates/admin/metabox/status-metabox.php:15
+#: templates/admin/partials/_form.php:40
 msgid "Public"
 msgstr "Publique"
 
-#: templates/admin/partials/_form.php:47
+#: templates/admin/metabox/status-metabox.php:19
+#: templates/admin/partials/_form.php:43
 msgid "Private"
 msgstr "Privé"
 
-#: templates/admin/partials/_form.php:53
+#: templates/admin/partials/_form.php:16
+msgid "Unauthorized user"
+msgstr "Utilisateur non autorisé"
+
+#: templates/admin/partials/_form.php:21
+msgid "Name"
+msgstr "Nom"
+
+#: templates/admin/partials/_form.php:26
+msgid "Description"
+msgstr "Description"
+
+#: templates/admin/partials/_form.php:37
+msgid "Status"
+msgstr "Statut"
+
+#: templates/admin/partials/_form.php:49
 msgid "Save"
 msgstr "Sauvegarder"
 
-#: templates/front/groups.php:19
-#, fuzzy, php-format
-#| msgid "Cover photo"
-msgid "%s cover's photo"
-msgstr "Image de couverture"
-
-#: templates/front/groups.php:26
+#: templates/front/archive-ys-group.php:36
+#: templates/front/archive-ys-group.php:43
 #, php-format
-msgid "%s's cover photo"
+msgid "%s group cover's photo"
+msgstr "Photo de couverture du groupe %s"
+
+#: templates/front/archive-ys-group.php:57 templates/front/groups.php:39
+#: templates/front/groups.php:47
+#, php-format
+msgid "%s's avatar"
+msgstr "Avatar de %s"
+
+#: templates/front/archive-ys-group.php:69 templates/front/groups.php:58
+#: templates/front/partials/_group-header.php:29
+#: templates/front/partials/group-header.php:30
+msgid "Public group"
+msgstr "Groupe publique"
+
+#: templates/front/archive-ys-group.php:71 templates/front/groups.php:60
+#: templates/front/partials/_group-header.php:31
+#: templates/front/partials/group-header.php:32
+msgid "Private group"
+msgstr "Groupe Privé"
+
+#: templates/front/archive-ys-group.php:82 templates/front/groups.php:69
+#, php-format
+msgid "Last activity on %s"
+msgstr "Dernière activité le: %s"
+
+#: templates/front/archive-ys-group.php:96
+#, php-format
+msgid "%s member"
+msgstr "%s membre"
+
+#: templates/front/archive-ys-group.php:101 templates/front/groups.php:78
+#, php-format
+msgid "%s members"
+msgstr "%s membres"
+
+#: templates/front/groups.php:23
+#, php-format
+msgid "%s cover's photo"
 msgstr "Image de couverture de %s"
 
-#: templates/front/groups.php:33
-msgid "Join group"
-msgstr "Rejoindre le groupe"
+#: templates/front/groups.php:30
+#, php-format
+msgid "%s's cover"
+msgstr "Couverture de %s"
 
-#: templates/front/groups.php:45
-msgid "No group found"
-msgstr "Aucun groupe trouvé"
+#: templates/front/partials/_cover-form-modal.php:16
+msgid "Edit group cover image"
+msgstr "Modifier l’image de couverture du groupe"
+
+#: templates/front/partials/_cover-form-modal.php:32
+msgid "Choose photo"
+msgstr "Choisir une photo"
+
+#: templates/front/partials/_cover-form-modal.php:42
+msgid "Update"
+msgstr "Mettre à jour"
+
+#: templates/front/partials/_group-header.php:16
+msgid "Edit group avatar"
+msgstr "Modifier l’avatar du groupe"
+
+#: templates/front/partials/_group-header.php:41
+msgid "Edit group cover photo"
+msgstr "Modifier la photo de couverture du groupe"
+
+#: templates/front/partials/_group-header.php:49
+#: templates/front/partials/group-header.php:48
+msgid "Edit group cover"
+msgstr "Modifier la couverture du groupe"
+
+#: templates/front/partials/_group-nav.php:20
+msgid "Home"
+msgstr "Accueil"
+
+#: templates/front/partials/_group-nav.php:32
+msgid "Invite a member"
+msgstr "Inviter un membre"
+
+#: templates/front/partials/_group-nav.php:39
+msgid "Group settings"
+msgstr "Réglages de groupe"
+
+#: templates/front/partials/_group-nav.php:51
+#, fuzzy
+#| msgid "Join group"
+msgid "Join the group"
+msgstr "Rejoindre le groupe"
 
 #. Plugin Name of the plugin/theme
 msgid "Yoostart Groups"
@@ -299,6 +643,9 @@ msgstr "Yoostart"
 #, fuzzy
 msgid "yoostart.com"
 msgstr "yoostart.com"
+
+#~ msgid "Save Changes"
+#~ msgstr "Sauvegarder les modifications"
 
 #~ msgctxt "List table bulk action"
 #~ msgid "Delete"

@@ -4,10 +4,11 @@ namespace YsGroups\Controller\Admin;
 
 use YsGroups\Model\PluginPosts;
 use YsGroups\Controller\AbstractController;
-use YsGroups\Controller\Admin\Metaboxs\StatusMetaBox;
-use YsGroups\Controller\Admin\Metaboxs\YsGroupIdMetaBox;
-use YsGroups\Controller\Admin\Metaboxs\GroupAdminMetabox;
-use YsGroups\Controller\Admin\Metaboxs\CoverPhotoMetaBox;
+use YsGroups\Controller\Admin\Metaboxs\PostMetas\StatusMetaBox;
+use YsGroups\Controller\Admin\Metaboxs\PostMetas\GroupIdMetaBox;
+use YsGroups\Controller\Admin\Metaboxs\PostMetas\GroupAdminMetabox;
+use YsGroups\Controller\Admin\Metaboxs\PostMetas\CoverPhotoMetaBox;
+use YsGroups\Controller\Admin\Metaboxs\TermMetas\YsGroupsMemberTermMeta;
 
 /**
  * @since 1.0.6
@@ -26,18 +27,21 @@ class Admin extends AbstractController
 
     public CoverPhotoMetaBox $coverPhotoMetaBox;
 
-    public YsGroupIdMetaBox $ysGroupIdMetaBox;
+    public GroupIdMetaBox $ysGroupIdMetaBox;
+
+    public YsGroupsMemberTermMeta $ysGroupsMemberTermMeta;
 
     public string $page;
 
     /**
-     * @param AdminGroups       $ysGroups
-     * @param YsGroupCPT        $ysGroupCPT
-     * @param StatusMetaBox     $metaBox
-     * @param GroupAdminMetabox $groupAdminMetabox
-     * @param CoverPhotoMetaBox $coverPhotoMetaBox
-     * @param YsGroupPostCPT    $ysGroupPostCPT
-     * @param YsGroupIdMetaBox  $ysGroupIdMetaBox
+     * @param AdminGroups            $ysGroups
+     * @param YsGroupCPT             $ysGroupCPT
+     * @param StatusMetaBox          $metaBox
+     * @param GroupAdminMetabox      $groupAdminMetabox
+     * @param CoverPhotoMetaBox      $coverPhotoMetaBox
+     * @param YsGroupPostCPT         $ysGroupPostCPT
+     * @param GroupIdMetaBox         $ysGroupIdMetaBox
+     * @param YsGroupsMemberTermMeta $ysGroupsMemberTermMeta
      *
      * @since 1.0.6
      */
@@ -48,7 +52,8 @@ class Admin extends AbstractController
         GroupAdminMetabox $groupAdminMetabox,
         CoverPhotoMetaBox $coverPhotoMetaBox,
         YsGroupPostCPT $ysGroupPostCPT,
-        YsGroupIdMetaBox $ysGroupIdMetaBox
+        GroupIdMetaBox $ysGroupIdMetaBox,
+        YsGroupsMemberTermMeta $ysGroupsMemberTermMeta
     ) {
         parent::__construct();
 
@@ -59,6 +64,7 @@ class Admin extends AbstractController
         $this->coverPhotoMetaBox = $coverPhotoMetaBox;
         $this->ysGroupPostCPT = $ysGroupPostCPT;
         $this->ysGroupIdMetaBox = $ysGroupIdMetaBox;
+        $this->ysGroupsMemberTermMeta = $ysGroupsMemberTermMeta;
 
         $this->page = $_GET['page'] ?? '';
 
