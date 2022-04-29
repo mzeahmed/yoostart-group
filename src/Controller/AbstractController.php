@@ -42,7 +42,7 @@ abstract class AbstractController
      *
      * @param string $template
      * @param string $varName
-     * @param array  $params
+     * @param array $params
      *
      * @return string
      * @example Exemple d'usage :
@@ -83,7 +83,7 @@ abstract class AbstractController
      * Rendu du template
      *
      * @param string $template
-     * @param array  $params
+     * @param array $params
      *
      * @return string|null
      * @since 1.0.0
@@ -99,7 +99,7 @@ abstract class AbstractController
         /**
          * @since 1.1.1
          */
-        if (! is_admin()) {
+        if (!is_admin()) {
             return ob_get_clean();
         }
 
@@ -111,7 +111,7 @@ abstract class AbstractController
      *
      * @param string $template
      * @param string $varName Nom de la variable
-     * @param array  $params  Tableau des valeurs
+     * @param array $params Tableau des valeurs
      *
      * @return string
      * @example Exemple d'usage :
@@ -145,7 +145,7 @@ abstract class AbstractController
      *
      * @return void
      */
-    protected function addFlash(string $type, string $message)
+    protected function addFlash(string $type, string $message): void
     {
         $_SESSION['ys_flash']['type'] = $type;
         $_SESSION['ys_flash']['message'] = $message;

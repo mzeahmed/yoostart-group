@@ -1,12 +1,15 @@
-import { getPosts } from '../../services/PostService';
-import PostHeader from './PostHeader';
-import PostContent from './PostContent';
-import moment from 'moment/moment';
-import { __ } from '@wordpress/i18n';
-import NewPostForm from '../forms/NewPostForm';
-import { YS_GROUP_TEXT_DOMAIN } from '../../constants/constatnts';
+import PostHeader from './header/PostHeader'
+import PostContent from './content/PostContent'
+import moment from 'moment/moment'
+import { __ } from '@wordpress/i18n'
+import NewPostForm from '../forms/NewPostForm'
+import { YS_GROUP_TEXT_DOMAIN } from '../../constants/constatnts'
 
-const { useState, useEffect } = wp.element;
+const group_id = document.getElementById('group_posts').dataset.groupId
+const base_rest_url = window.ys_group_config.rest_url
+const groupPostsEndpoint = base_rest_url + 'ys-group/v1/posts?_ys_group_id_meta_key=' + group_id
+
+const { useState, useEffect } = wp.element
 
 /**
  * Affichage des publications
@@ -16,19 +19,45 @@ const { useState, useEffect } = wp.element;
  * @since 1.2.5
  */
 function Posts () {
-  const [posts, setPosts] = useState([]);
-  const [isMounted, setIsMounted] = useState(false);
+  const [isPending, setIsPending] = useState(false)
+  const [error, setError] = useState(null)
+  const [posts, setPosts] = useState([])
 
   useEffect(() => {
-    !isMounted && getPosts()
-      .then((jsonPosts) => {
-        console.log(jsonPosts);
-        setPosts(jsonPosts);
-        setIsMounted(true);
-      });
-  }, [isMounted]);
+    fetch(groupPostsEndpoint)
+      .then((res) => {
+        if (!res.ok) {
+          throw Error(__('Could not fetch the data for that resource', YS_GROUP_TEXT_DOMAIN))
+        }
+        return res.json()
+      })
+      .then((data) => {
+          setIsPending(true)
+          setPosts(data)
+          setError(null)
+        }
+      )
+      .catch((error) => {
+        setIsPending(true)
+        setError(error.message)
+      })
+  }, [])
 
-  if (posts) {
+  if (error) {
+    return (
+      <>
+        <NewPostForm/>
+
+        <div className="ys-group-posts">
+          <p className="post">{__('No post for now', YS_GROUP_TEXT_DOMAIN)}</p>
+        </div>
+      </>
+    )
+  } else if (!isPending) {
+    return (
+      <div className="ys-group-posts-loader">{__('Loading...', YS_GROUP_TEXT_DOMAIN)}</div>
+    )
+  } else {
     return (
       <div className="ys-group-posts">
         <NewPostForm/>
@@ -48,14 +77,8 @@ function Posts () {
           </div>
         ))}
       </div>
-    );
-  } else {
-    return (
-      <div className="ys-group-posts">
-        <p className="post">{__('No post for now', YS_GROUP_TEXT_DOMAIN)}</p>
-      </div>
-    );
+    )
   }
 }
 
-export default Posts;
+export default Posts

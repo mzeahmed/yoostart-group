@@ -2,8 +2,8 @@
 
 namespace YsGroup;
 
-use YsGroup\Model\DbSchema;
 use YsGroup\Helpers\Helpers;
+use YsGroup\Model\DbSchema;
 
 /**
  * @since 1.0.0
@@ -14,7 +14,7 @@ class OnPluginActivation
      * @return void
      * @since 1.0.0
      */
-    public static function activation()
+    public static function activation(): void
     {
         // Vérifie si nous ne sommes pas déjà en train d'exécuter cette action
         if ('yes' === get_transient('ys_groups_installing')) {
@@ -28,7 +28,7 @@ class OnPluginActivation
         self::updateSchema();
         self::createPages();
 
-        if (! file_exists(YS_GROUP_UPLOAD_DIR)) {
+        if (!file_exists(YS_GROUP_UPLOAD_DIR)) {
             self::createUploadDir();
         }
 
@@ -46,7 +46,7 @@ class OnPluginActivation
      * @return void
      * @since 1.0.4
      */
-    private static function updateSchema()
+    private static function updateSchema(): void
     {
         (new DbSchema())->createTables();
     }
@@ -57,7 +57,7 @@ class OnPluginActivation
      * @return void
      * @since 1.0.0
      */
-    private static function createPages()
+    private static function createPages(): void
     {
         $pages = apply_filters(
             'ys_groups_create_pages',
@@ -77,7 +77,7 @@ class OnPluginActivation
                 $page['title'],
                 $page['content'],
                 0,
-                ! empty($page['post_status']) ? $page['post_status'] : 'publish'
+                !empty($page['post_status']) ? $page['post_status'] : 'publish'
             );
         }
     }
@@ -88,9 +88,9 @@ class OnPluginActivation
      * @return void
      * @since 1.1.6
      */
-    public static function createUploadDir()
+    public static function createUploadDir(): void
     {
-        if (! file_exists(YS_GROUP_UPLOAD_DIR)) {
+        if (!file_exists(YS_GROUP_UPLOAD_DIR)) {
             mkdir(YS_GROUP_UPLOAD_DIR, 0755);
             chmod(YS_GROUP_UPLOAD_DIR, 0755);
         }
@@ -104,7 +104,7 @@ class OnPluginActivation
      * @return void
      * @since 1.1.6
      */
-    private static function setHtaccess()
+    private static function setHtaccess(): void
     {
         Helpers::blockHTTPAccess(YS_GROUP_UPLOAD_DIR);
     }

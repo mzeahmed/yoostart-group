@@ -1,6 +1,6 @@
-const group_id = document.getElementById('group_posts').dataset.groupId;
-const base_rest_url = window.ys_group_config.rest_url;
-const groupPostsEndpoint = base_rest_url + 'ys-group/v1/posts?_ys_group_id_meta_key=' + group_id;
+const group_id = document.getElementById('group_posts').dataset.groupId
+const base_rest_url = window.ys_group_config.rest_url
+const groupPostsEndpoint = base_rest_url + 'ys-group/v1/posts?_ys_group_id_meta_key=' + group_id
 
 /**
  * Récuperation des publications
@@ -9,10 +9,11 @@ const groupPostsEndpoint = base_rest_url + 'ys-group/v1/posts?_ys_group_id_meta_
  */
 export async function getPosts () {
   try {
-    const response = await fetch(groupPostsEndpoint);
-    return await response.json();
+    const response = await fetch(groupPostsEndpoint)
+    // console.log(response.status)
+    return await response.json()
   } catch (error) {
-    return [];
+    return [error]
   }
 }
 

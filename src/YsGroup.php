@@ -78,7 +78,7 @@ class YsGroup
      * @return void
      * @since 1.0.0
      */
-    public function onPluginsLoaded()
+    public function onPluginsLoaded(): void
     {
         do_action('ys_group_loaded');
     }
