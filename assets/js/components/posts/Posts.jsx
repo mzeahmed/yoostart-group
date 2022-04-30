@@ -1,9 +1,10 @@
-import PostHeader from './header/PostHeader'
-import PostContent from './content/PostContent'
-import moment from 'moment/moment'
 import { __ } from '@wordpress/i18n'
-import NewPostForm from '../forms/NewPostForm'
 import { YS_GROUP_TEXT_DOMAIN } from '../../constants/constatnts'
+import NewPostForm from '../forms/NewPostForm'
+import PostHeader from './header/PostHeader'
+import moment from 'moment/moment'
+import PostContent from './content/PostContent'
+import PostFooter from './footer/PostFooter'
 
 const group_id = document.getElementById('group_posts').dataset.groupId
 const base_rest_url = window.ys_group_config.rest_url
@@ -55,7 +56,7 @@ function Posts () {
     )
   } else if (!isPending) {
     return (
-      <div className="ys-group-posts-loader">{__('Loading...', YS_GROUP_TEXT_DOMAIN)}</div>
+      <div className="ys-group-posts-loader text-center">{__('Loading...', YS_GROUP_TEXT_DOMAIN)}</div>
     )
   } else {
     return (
@@ -74,6 +75,7 @@ function Posts () {
               postFeaturedImage={post.featured_image.thumbnail}
               postTitle={post.title}
             />
+            <PostFooter postId={post.id}/>
           </div>
         ))}
       </div>

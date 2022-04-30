@@ -1,5 +1,6 @@
-import { __ } from '@wordpress/i18n';
-import { YS_GROUP_TEXT_DOMAIN } from '../../constants/constatnts';
+import { __ } from '@wordpress/i18n'
+import { YS_GROUP_TEXT_DOMAIN } from '../../constants/constatnts'
+import PostFeaturedMedias from '../partials/PostFeaturedMedias'
 
 export default function NewPostFormModal () {
   return (
@@ -21,18 +22,8 @@ export default function NewPostFormModal () {
                   <textarea className="form-control" name="" id="" rows="10" is="textarea-autogrow"></textarea>
                 </div>
               </div>
-              <div className="modal-post-featured-medias">
-                <div className="ys-group-featured-image">
-                  <span><i className="fas fa-image"></i></span>
-                  <input type="file" className="ys-group-post-featured-img-file"/>
-                </div>
-                <div className="ys-group-featured-video">
-                  <span><i className="fas fa-video"></i></span>
-                  <input type="text" className="ys-group-post-featured-video-file" placeholder={
-                    __('Youtube video URL', YS_GROUP_TEXT_DOMAIN)
-                  }/>
-                </div>
-              </div>
+
+              <PostFeaturedMedias/>
             </form>
           </div>
           <div className="modal-footer">
@@ -43,5 +34,5 @@ export default function NewPostFormModal () {
         </div>
       </div>
     </div>
-  );
+  )
 }

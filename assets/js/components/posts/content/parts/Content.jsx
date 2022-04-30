@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n'
-import { YS_GROUP_TEXT_DOMAIN } from '../../../constants/constatnts'
+import { YS_GROUP_TEXT_DOMAIN } from '../../../../constants/constatnts'
 
 const { useState } = wp.element
 

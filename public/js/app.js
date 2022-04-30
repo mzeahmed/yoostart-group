@@ -1933,6 +1933,43 @@ var App = function App() {
 
 /***/ }),
 
+/***/ "./assets/js/components/forms/CommentFom.jsx":
+/*!***************************************************!*\
+  !*** ./assets/js/components/forms/CommentFom.jsx ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ CommentFom)
+/* harmony export */ });
+/* harmony import */ var _constants_constatnts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../constants/constatnts */ "./assets/js/constants/constatnts.js");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/i18n/build-module/index.js");
+/* harmony import */ var _partials_PostFeaturedMedias__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../partials/PostFeaturedMedias */ "./assets/js/components/partials/PostFeaturedMedias.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+function CommentFom(_ref) {
+  var postId = _ref.postId;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+    action: "",
+    encType: "multipart/form-data",
+    id: "post_".concat(postId, "_comment_form"),
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("textarea", {
+      name: "text_post_".concat(postId),
+      id: "text_post_".concat(postId),
+      is: "textarea-autogrow",
+      placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Your comment', _constants_constatnts__WEBPACK_IMPORTED_MODULE_0__.YS_GROUP_TEXT_DOMAIN)
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_partials_PostFeaturedMedias__WEBPACK_IMPORTED_MODULE_2__["default"], {})]
+  });
+}
+
+/***/ }),
+
 /***/ "./assets/js/components/forms/NewPostForm.jsx":
 /*!****************************************************!*\
   !*** ./assets/js/components/forms/NewPostForm.jsx ***!
@@ -2001,51 +2038,53 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/i18n/build-module/index.js");
 /* harmony import */ var _constants_constatnts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../constants/constatnts */ "./assets/js/constants/constatnts.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _partials_PostFeaturedMedias__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../partials/PostFeaturedMedias */ "./assets/js/components/partials/PostFeaturedMedias.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
 
 function NewPostFormModal() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
     className: "modal fade",
     id: "newPostFormModal",
     tabIndex: "-1",
     role: "dialog",
     "aria-labelledby": "newPostFormModalLabel",
     "aria-hidden": "true",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "modal-dialog",
       role: "document",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         className: "modal-content",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "modal-header",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h5", {
             className: "modal-title",
             id: "exampleModalLabel",
             children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Publish post', _constants_constatnts__WEBPACK_IMPORTED_MODULE_1__.YS_GROUP_TEXT_DOMAIN)
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
             type: "button",
             className: "close",
             "data-dismiss": "modal",
             "aria-label": "Close",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
               "aria-hidden": "true",
               children: "\xD7"
             })
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "modal-body",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
             action: "",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
               className: "modal-post-head"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
               className: "modal-post-content",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                 className: "form-group",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("textarea", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("textarea", {
                   className: "form-control",
                   name: "",
                   id: "",
@@ -2053,35 +2092,11 @@ function NewPostFormModal() {
                   is: "textarea-autogrow"
                 })
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-              className: "modal-post-featured-medias",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                className: "ys-group-featured-image",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
-                    className: "fas fa-image"
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                  type: "file",
-                  className: "ys-group-post-featured-img-file"
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                className: "ys-group-featured-video",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
-                    className: "fas fa-video"
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                  type: "text",
-                  className: "ys-group-post-featured-video-file",
-                  placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Youtube video URL', _constants_constatnts__WEBPACK_IMPORTED_MODULE_1__.YS_GROUP_TEXT_DOMAIN)
-                })]
-              })]
-            })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_partials_PostFeaturedMedias__WEBPACK_IMPORTED_MODULE_2__["default"], {})]
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "modal-footer",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
             type: "button",
             className: "btn btn-primary",
             children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Publish', _constants_constatnts__WEBPACK_IMPORTED_MODULE_1__.YS_GROUP_TEXT_DOMAIN)
@@ -2089,6 +2104,54 @@ function NewPostFormModal() {
         })]
       })
     })
+  });
+}
+
+/***/ }),
+
+/***/ "./assets/js/components/partials/PostFeaturedMedias.jsx":
+/*!**************************************************************!*\
+  !*** ./assets/js/components/partials/PostFeaturedMedias.jsx ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ PostFeaturedMedias)
+/* harmony export */ });
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/i18n/build-module/index.js");
+/* harmony import */ var _constants_constatnts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../constants/constatnts */ "./assets/js/constants/constatnts.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+function PostFeaturedMedias() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    className: "post-featured-medias",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "ys-group-featured-image",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
+          className: "fas fa-image"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+        type: "file",
+        className: "ys-group-post-featured-img-file"
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "ys-group-featured-video",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
+          className: "fas fa-video"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+        type: "text",
+        className: "ys-group-post-featured-video-file",
+        placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Youtube video URL', _constants_constatnts__WEBPACK_IMPORTED_MODULE_1__.YS_GROUP_TEXT_DOMAIN)
+      })]
+    })]
   });
 }
 
@@ -2105,14 +2168,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _header_PostHeader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./header/PostHeader */ "./assets/js/components/posts/header/PostHeader.jsx");
-/* harmony import */ var _content_PostContent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./content/PostContent */ "./assets/js/components/posts/content/PostContent.jsx");
-/* harmony import */ var moment_moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment/moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment_moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment_moment__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/i18n/build-module/index.js");
-/* harmony import */ var _forms_NewPostForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../forms/NewPostForm */ "./assets/js/components/forms/NewPostForm.jsx");
-/* harmony import */ var _constants_constatnts__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../constants/constatnts */ "./assets/js/constants/constatnts.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/i18n/build-module/index.js");
+/* harmony import */ var _constants_constatnts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../constants/constatnts */ "./assets/js/constants/constatnts.js");
+/* harmony import */ var _forms_NewPostForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../forms/NewPostForm */ "./assets/js/components/forms/NewPostForm.jsx");
+/* harmony import */ var _header_PostHeader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./header/PostHeader */ "./assets/js/components/posts/header/PostHeader.jsx");
+/* harmony import */ var moment_moment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! moment/moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment_moment__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(moment_moment__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _content_PostContent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./content/PostContent */ "./assets/js/components/posts/content/PostContent.jsx");
+/* harmony import */ var _footer_PostFooter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./footer/PostFooter */ "./assets/js/components/posts/footer/PostFooter.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2124,6 +2188,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -2167,7 +2232,7 @@ function Posts() {
   useEffect(function () {
     fetch(groupPostsEndpoint).then(function (res) {
       if (!res.ok) {
-        throw Error((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Could not fetch the data for that resource', _constants_constatnts__WEBPACK_IMPORTED_MODULE_5__.YS_GROUP_TEXT_DOMAIN));
+        throw Error((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Could not fetch the data for that resource', _constants_constatnts__WEBPACK_IMPORTED_MODULE_1__.YS_GROUP_TEXT_DOMAIN));
       }
 
       return res.json();
@@ -2182,35 +2247,37 @@ function Posts() {
   }, []);
 
   if (error) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_forms_NewPostForm__WEBPACK_IMPORTED_MODULE_4__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_forms_NewPostForm__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
         className: "ys-group-posts",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
           className: "post",
-          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('No post for now', _constants_constatnts__WEBPACK_IMPORTED_MODULE_5__.YS_GROUP_TEXT_DOMAIN)
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('No post for now', _constants_constatnts__WEBPACK_IMPORTED_MODULE_1__.YS_GROUP_TEXT_DOMAIN)
         })
       })]
     });
   } else if (!isPending) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-      className: "ys-group-posts-loader",
-      children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Loading...', _constants_constatnts__WEBPACK_IMPORTED_MODULE_5__.YS_GROUP_TEXT_DOMAIN)
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+      className: "ys-group-posts-loader text-center",
+      children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Loading...', _constants_constatnts__WEBPACK_IMPORTED_MODULE_1__.YS_GROUP_TEXT_DOMAIN)
     });
   } else {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
       className: "ys-group-posts",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_forms_NewPostForm__WEBPACK_IMPORTED_MODULE_4__["default"], {}), posts.map(function (post) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_forms_NewPostForm__WEBPACK_IMPORTED_MODULE_2__["default"], {}), posts.map(function (post) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
           className: "post",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_header_PostHeader__WEBPACK_IMPORTED_MODULE_0__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_header_PostHeader__WEBPACK_IMPORTED_MODULE_3__["default"], {
             authorAvatar: post.author.avatar_image,
             authorFullname: post.author.fullname,
-            postDate: moment_moment__WEBPACK_IMPORTED_MODULE_2___default()(post.date).fromNow(),
+            postDate: moment_moment__WEBPACK_IMPORTED_MODULE_4___default()(post.date).fromNow(),
             profilUrl: post.author.profile_url
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_content_PostContent__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_content_PostContent__WEBPACK_IMPORTED_MODULE_5__["default"], {
             content: post.content,
             postFeaturedImage: post.featured_image.thumbnail,
             postTitle: post.title
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_footer_PostFooter__WEBPACK_IMPORTED_MODULE_6__["default"], {
+            postId: post.id
           })]
         });
       })]
@@ -2233,8 +2300,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ PostContent)
 /* harmony export */ });
-/* harmony import */ var _parts_FeaturedImage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../parts/FeaturedImage */ "./assets/js/components/posts/parts/FeaturedImage.jsx");
-/* harmony import */ var _parts_Content__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../parts/Content */ "./assets/js/components/posts/parts/Content.jsx");
+/* harmony import */ var _parts_FeaturedImage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./parts/FeaturedImage */ "./assets/js/components/posts/content/parts/FeaturedImage.jsx");
+/* harmony import */ var _parts_Content__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./parts/Content */ "./assets/js/components/posts/content/parts/Content.jsx");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
@@ -2251,6 +2318,228 @@ function PostContent(_ref) {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_parts_FeaturedImage__WEBPACK_IMPORTED_MODULE_0__["default"], {
       postFeaturedImage: postFeaturedImage,
       postTitle: postTitle
+    })]
+  });
+}
+
+/***/ }),
+
+/***/ "./assets/js/components/posts/content/parts/Content.jsx":
+/*!**************************************************************!*\
+  !*** ./assets/js/components/posts/content/parts/Content.jsx ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Content)
+/* harmony export */ });
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/i18n/build-module/index.js");
+/* harmony import */ var _constants_constatnts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../constants/constatnts */ "./assets/js/constants/constatnts.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+var useState = wp.element.useState;
+function Content(_ref) {
+  var content = _ref.content;
+
+  var _useState = useState(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      showMore = _useState2[0],
+      setShowMore = _useState2[1];
+
+  if (content.length < 150) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "content",
+      children: content
+    });
+  } else {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "content",
+        children: showMore ? content : "".concat(content.substring(0, 150)) + " ..."
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+        className: "read-more",
+        onClick: function onClick() {
+          return setShowMore(!showMore);
+        },
+        children: showMore ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Read less', _constants_constatnts__WEBPACK_IMPORTED_MODULE_1__.YS_GROUP_TEXT_DOMAIN) : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Read more', _constants_constatnts__WEBPACK_IMPORTED_MODULE_1__.YS_GROUP_TEXT_DOMAIN)
+      })]
+    });
+  }
+}
+
+/***/ }),
+
+/***/ "./assets/js/components/posts/content/parts/FeaturedImage.jsx":
+/*!********************************************************************!*\
+  !*** ./assets/js/components/posts/content/parts/FeaturedImage.jsx ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ FeaturedImage)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+function FeaturedImage(_ref) {
+  var postFeaturedImage = _ref.postFeaturedImage,
+      postTitle = _ref.postTitle;
+
+  if (postFeaturedImage) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+      className: "featured-image",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
+        src: postFeaturedImage,
+        alt: "Image de ".concat(postTitle)
+      })
+    });
+  }
+}
+
+/***/ }),
+
+/***/ "./assets/js/components/posts/footer/PostFooter.jsx":
+/*!**********************************************************!*\
+  !*** ./assets/js/components/posts/footer/PostFooter.jsx ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ PostFooter)
+/* harmony export */ });
+/* harmony import */ var _parts_Activities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./parts/Activities */ "./assets/js/components/posts/footer/parts/Activities.jsx");
+/* harmony import */ var _parts_Reacts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./parts/Reacts */ "./assets/js/components/posts/footer/parts/Reacts.jsx");
+/* harmony import */ var _parts_Comment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./parts/Comment */ "./assets/js/components/posts/footer/parts/Comment.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+function PostFooter(_ref) {
+  var postId = _ref.postId;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    className: "ys-group-post-footer",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_parts_Activities__WEBPACK_IMPORTED_MODULE_0__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_parts_Reacts__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_parts_Comment__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      postId: postId
+    })]
+  });
+}
+
+/***/ }),
+
+/***/ "./assets/js/components/posts/footer/parts/Activities.jsx":
+/*!****************************************************************!*\
+  !*** ./assets/js/components/posts/footer/parts/Activities.jsx ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Activities)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+function Activities() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+    className: "post-activities",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+      className: "likes",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("i", {
+        className: "fas fa-heart"
+      })
+    })
+  });
+}
+
+/***/ }),
+
+/***/ "./assets/js/components/posts/footer/parts/Comment.jsx":
+/*!*************************************************************!*\
+  !*** ./assets/js/components/posts/footer/parts/Comment.jsx ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Comment)
+/* harmony export */ });
+/* harmony import */ var _forms_CommentFom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../forms/CommentFom */ "./assets/js/components/forms/CommentFom.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+function Comment(_ref) {
+  var postId = _ref.postId;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    className: "post-comment-form",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_forms_CommentFom__WEBPACK_IMPORTED_MODULE_0__["default"], {
+      postId: postId
+    })
+  });
+}
+
+/***/ }),
+
+/***/ "./assets/js/components/posts/footer/parts/Reacts.jsx":
+/*!************************************************************!*\
+  !*** ./assets/js/components/posts/footer/parts/Reacts.jsx ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Reacts)
+/* harmony export */ });
+/* harmony import */ var _constants_constatnts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../constants/constatnts */ "./assets/js/constants/constatnts.js");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/i18n/build-module/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+function Reacts() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    className: "post-reacts d-flex",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "like",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
+        className: "far fa-heart"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+        className: "like-text",
+        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Like', _constants_constatnts__WEBPACK_IMPORTED_MODULE_0__.YS_GROUP_TEXT_DOMAIN)
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "comment",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
+        className: "far fa-comment-alt"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+        className: "comment-text",
+        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Comment', _constants_constatnts__WEBPACK_IMPORTED_MODULE_0__.YS_GROUP_TEXT_DOMAIN)
+      })]
     })]
   });
 }
@@ -2305,99 +2594,6 @@ function PostHeader(_ref) {
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PostHeader);
-
-/***/ }),
-
-/***/ "./assets/js/components/posts/parts/Content.jsx":
-/*!******************************************************!*\
-  !*** ./assets/js/components/posts/parts/Content.jsx ***!
-  \******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Content)
-/* harmony export */ });
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/i18n/build-module/index.js");
-/* harmony import */ var _constants_constatnts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../constants/constatnts */ "./assets/js/constants/constatnts.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
-var useState = wp.element.useState;
-function Content(_ref) {
-  var content = _ref.content;
-
-  var _useState = useState(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      showMore = _useState2[0],
-      setShowMore = _useState2[1];
-
-  if (content.length < 150) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      className: "content",
-      children: content
-    });
-  } else {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        className: "content",
-        children: showMore ? content : "".concat(content.substring(0, 150)) + " ..."
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-        className: "read-more",
-        onClick: function onClick() {
-          return setShowMore(!showMore);
-        },
-        children: showMore ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Read less', _constants_constatnts__WEBPACK_IMPORTED_MODULE_1__.YS_GROUP_TEXT_DOMAIN) : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Read more', _constants_constatnts__WEBPACK_IMPORTED_MODULE_1__.YS_GROUP_TEXT_DOMAIN)
-      })]
-    });
-  }
-}
-
-/***/ }),
-
-/***/ "./assets/js/components/posts/parts/FeaturedImage.jsx":
-/*!************************************************************!*\
-  !*** ./assets/js/components/posts/parts/FeaturedImage.jsx ***!
-  \************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ FeaturedImage)
-/* harmony export */ });
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-function FeaturedImage(_ref) {
-  var postFeaturedImage = _ref.postFeaturedImage,
-      postTitle = _ref.postTitle;
-
-  if (postFeaturedImage) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-      className: "featured-image",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
-        src: postFeaturedImage,
-        alt: "Image de ".concat(postTitle)
-      })
-    });
-  }
-}
 
 /***/ }),
 

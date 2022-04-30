@@ -1,81 +1,56 @@
+@import "../variables";
+
 .ys-group-new-post-form {
-    background: #fff;
-    box-shadow: 0 1px 3px #a7a5a5;
-    margin-bottom: 20px;
-    padding: 10px;
-    border-radius: 7px;
-    position: relative;
+  background: $blanc;
+  box-shadow: 0 1px 3px #a7a5a5;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 7px;
+  position: relative;
 
-    .user-avatar {
-        .avatar {
-            img {
-                width: 45px;
-                height: 45px;
-                border-radius: 50%;
-            }
-        }
+  .user-avatar {
+    .avatar {
+      img {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+      }
     }
+  }
 
-    .post-input {
-        padding: 5px 10px 5px 20px;
-        width: 100%;
-        background: #f7f7f7;
-        border-radius: 25px;
-        font-size: 16px;
-        font-weight: 500;
-        letter-spacing: 1px;
-        transition: 0.3s all ease-in-out;
-        cursor: pointer;
-        color: #6d6d6d;
+  .post-input {
+    padding: 5px 10px 5px 20px;
+    width: 100%;
+    background: #f7f7f7;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: 0.3s all ease-in-out;
+    cursor: pointer;
+    color: #6d6d6d;
 
-        .modal-dialog {
-            margin-top: 25%;
+    .modal-dialog {
+      margin-top: 250px;
 
-            .modal-content {
-                border: none;
+      .modal-content {
+        border: none;
 
-                .modal-body {
-                    .modal-post-content {
-                        padding: 10px 20px;
-                        position: relative;
-                    }
-
-                    .modal-post-featured-medias {
-                        display: flex;
-                        position: relative;
-                        width: 100%;
-                        padding: 0 20px;
-
-                        .ys-group-featured-video {
-                            border-left: solid 1px #d2d2d2 !important;
-                        }
-
-                        .ys-group-featured-image, .ys-group-featured-video {
-                            width: 50%;
-                            text-align: center;
-                            padding: 10px 0 0;
-                            cursor: pointer;
-                            margin-top: 10px;
-                            position: relative;
-                            transition: 0.3s all ease-in-out;
-
-                            i {
-                                font-size: 35px;
-                                transition: 0.3s all ease-in-out;
-                                cursor: pointer;
-                            }
-                        }
-                    }
-                }
-
-                .modal-footer {
-                    border: none;
-
-                    button {
-                        width: 100%;
-                    }
-                }
-            }
+        .modal-body {
+          .modal-post-content {
+            padding: 10px 20px;
+            position: relative;
+          }
         }
+
+        .modal-footer {
+          border: none;
+
+          button {
+            width: 100%;
+          }
+        }
+      }
     }
+  }
 }

@@ -18,7 +18,7 @@
   }
 }
 .ys-group-new-post-form {
-  background: #fff;
+  background: #ffffff;
   box-shadow: 0 1px 3px #a7a5a5;
   margin-bottom: 20px;
   padding: 10px;
@@ -43,7 +43,7 @@
   color: #6d6d6d;
 }
 .ys-group-new-post-form .post-input .modal-dialog {
-  margin-top: 25%;
+  margin-top: 250px;
 }
 .ys-group-new-post-form .post-input .modal-dialog .modal-content {
   border: none;
@@ -52,16 +52,53 @@
   padding: 10px 20px;
   position: relative;
 }
-.ys-group-new-post-form .post-input .modal-dialog .modal-content .modal-body .modal-post-featured-medias {
+.ys-group-new-post-form .post-input .modal-dialog .modal-content .modal-footer {
+  border: none;
+}
+.ys-group-new-post-form .post-input .modal-dialog .modal-content .modal-footer button {
+  width: 100%;
+}
+
+.ys-group-post-footer .post-activities {
+  display: flex;
+}
+.ys-group-post-footer .post-activities .likes {
+  flex: 0 1 50%;
+  padding: 5px 10px 5px;
+}
+.ys-group-post-footer .post-reacts {
+  border-top: 1px solid #e5e5e5;
+  padding: 10px 10px 0;
+}
+.ys-group-post-footer .post-reacts .like, .ys-group-post-footer .post-reacts .comment {
+  flex: 0 1 50%;
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
+  margin: 0 5px;
+  padding: 5px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 16px;
+}
+.ys-group-post-footer .post-reacts .like i, .ys-group-post-footer .post-reacts .comment i {
+  margin-right: 7px;
+}
+.ys-group-post-footer .post-comment-form form textarea {
+  height: 90px;
+  min-height: auto;
+  margin-bottom: 10px;
+}
+
+.post-featured-medias {
   display: flex;
   position: relative;
   width: 100%;
   padding: 0 20px;
 }
-.ys-group-new-post-form .post-input .modal-dialog .modal-content .modal-body .modal-post-featured-medias .ys-group-featured-video {
+.post-featured-medias .ys-group-featured-video {
   border-left: solid 1px #d2d2d2 !important;
 }
-.ys-group-new-post-form .post-input .modal-dialog .modal-content .modal-body .modal-post-featured-medias .ys-group-featured-image, .ys-group-new-post-form .post-input .modal-dialog .modal-content .modal-body .modal-post-featured-medias .ys-group-featured-video {
+.post-featured-medias .ys-group-featured-image, .post-featured-medias .ys-group-featured-video {
   width: 50%;
   text-align: center;
   padding: 10px 0 0;
@@ -70,20 +107,18 @@
   position: relative;
   transition: 0.3s all ease-in-out;
 }
-.ys-group-new-post-form .post-input .modal-dialog .modal-content .modal-body .modal-post-featured-medias .ys-group-featured-image i, .ys-group-new-post-form .post-input .modal-dialog .modal-content .modal-body .modal-post-featured-medias .ys-group-featured-video i {
+.post-featured-medias .ys-group-featured-image i, .post-featured-medias .ys-group-featured-video i {
   font-size: 35px;
   transition: 0.3s all ease-in-out;
   cursor: pointer;
+  color: #1d3058;
 }
-.ys-group-new-post-form .post-input .modal-dialog .modal-content .modal-footer {
-  border: none;
-}
-.ys-group-new-post-form .post-input .modal-dialog .modal-content .modal-footer button {
-  width: 100%;
+.post-featured-medias .ys-group-featured-image input, .post-featured-medias .ys-group-featured-video input {
+  display: none;
 }
 
 .ys-group-posts .post {
-  background: #fff;
+  background: #ffffff;
   box-shadow: 0 1px 3px #a7a5a5;
   margin-bottom: 20px;
   padding: 10px;
@@ -136,7 +171,7 @@
 }
 .ys-groups-groups .ys-groups-list .ys-groups .ys-group-content {
   margin: 0 10px;
-  background: #fff;
+  background: #ffffff;
   padding-bottom: 20px;
   border-radius: 2px;
   box-shadow: 0 0 10px #dadada;
@@ -161,7 +196,7 @@
   border-radius: 50%;
   margin: 0 auto;
   border: solid 1px #4ab8a6;
-  background-color: #fff;
+  background-color: #ffffff;
 }
 .ys-groups-groups .ys-groups-list .ys-groups .ys-group-content .ys-group-info {
   margin-top: -40px;
@@ -178,7 +213,7 @@
   display: inline-block;
 }
 .ys-groups-groups .ys-groups-list .ys-groups .ys-group-content .ys-group-info .ys-group-statistics .ys-group-data-item span {
-  color: #fff;
+  color: #ffffff;
   width: 35px;
   margin: 5px;
   height: 35px;
@@ -289,7 +324,7 @@
 .ys-groups-single-group .ys-group-header .ys-group-cover .ys-group-action .form-edit .popup {
   transform: translate(-50%, 0) scale(1);
   overflow-y: auto;
-  background: #fff;
+  background: #ffffff;
   box-shadow: 0 0 10px #3b3a3a;
   border-radius: 10px;
   width: 600px;

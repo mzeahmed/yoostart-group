@@ -2,262 +2,263 @@
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 @import "responsive/app.responsive";
 @import "react-components/posts";
+@import "variables";
 
 // Page du repertoire des groupes
 .ys-groups-groups {
-    .ys-groups-list {
+  .ys-groups-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 55px;
+
+    .ys-groups {
+      width: 300px;
+      text-align: center;
+      margin-bottom: 20px;
+
+      .ys-group-content {
+        margin: 0 10px;
+        background: $blanc;
+        padding-bottom: 20px;
+        border-radius: 2px;
+        box-shadow: 0 0 10px #dadada;
+        height: 100%;
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding-bottom: 55px;
+        flex-direction: column;
 
-        .ys-groups {
-            width: 300px;
-            text-align: center;
-            margin-bottom: 20px;
-
-            .ys-group-content {
-                margin: 0 10px;
-                background: #fff;
-                padding-bottom: 20px;
-                border-radius: 2px;
-                box-shadow: 0 0 10px #dadada;
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-
-                .ys-group-cover {
-                    height: 140px;
-                    background-position: center;
-                    object-fit: cover;
-                    background-repeat: no-repeat;
-                }
-
-                .ys-group-cover-content,
-                .attachment-post-thumbnail {
-                    background-position: center;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    width: 70px;
-                    height: 70px;
-                    border-radius: 50%;
-                    margin: 0 auto;
-                    border: solid 1px #4ab8a6;
-                    background-color: #fff;
-                }
-
-                .ys-group-info {
-                    margin-top: -40px;
-
-                    .ys-group-name {
-                        font-weight: 500;
-                        font-size: 14px;
-                        margin-top: 10px;
-                    }
-
-                    .ys-group-status {
-                        font-size: 11px;
-                    }
-
-                    .ys-group-statistics {
-                        .ys-group-data-item {
-                            display: inline-block;
-
-                            span {
-                                color: #fff;
-                                width: 35px;
-                                margin: 5px;
-                                height: 35px;
-                                display: block;
-                                font-size: 20px;
-                                line-height: 35px;
-                                text-align: center;
-                                border-radius: 3px;
-                            }
-                        }
-
-                        .ys-group-data-members {
-                            span {
-                                background-color: #f76697 !important;
-                            }
-                        }
-
-                        .ys-group-data-last-activity {
-                            span {
-                                background-color: #ffc107 !important;
-                            }
-                        }
-                    }
-                }
-
-                .ys-join-group {
-                    margin-top: auto;
-                }
-            }
+        .ys-group-cover {
+          height: 140px;
+          background-position: center;
+          object-fit: cover;
+          background-repeat: no-repeat;
         }
-    }
 
-    // Boutons de pagination
-    .page-numbers {
-        text-align: center;
-    }
+        .ys-group-cover-content,
+        .attachment-post-thumbnail {
+          background-position: center;
+          background-size: cover;
+          background-repeat: no-repeat;
+          width: 70px;
+          height: 70px;
+          border-radius: 50%;
+          margin: 0 auto;
+          border: solid 1px $bleu_turquoise;
+          background-color: $blanc;
+        }
 
-    .ys-groups-pagination {
-        position: absolute;
-        bottom: 15px;
+        .ys-group-info {
+          margin-top: -40px;
+
+          .ys-group-name {
+            font-weight: 500;
+            font-size: 14px;
+            margin-top: 10px;
+          }
+
+          .ys-group-status {
+            font-size: 11px;
+          }
+
+          .ys-group-statistics {
+            .ys-group-data-item {
+              display: inline-block;
+
+              span {
+                color: $blanc;
+                width: 35px;
+                margin: 5px;
+                height: 35px;
+                display: block;
+                font-size: 20px;
+                line-height: 35px;
+                text-align: center;
+                border-radius: 3px;
+              }
+            }
+
+            .ys-group-data-members {
+              span {
+                background-color: #f76697 !important;
+              }
+            }
+
+            .ys-group-data-last-activity {
+              span {
+                background-color: #ffc107 !important;
+              }
+            }
+          }
+        }
+
+        .ys-join-group {
+          margin-top: auto;
+        }
+      }
     }
+  }
+
+  // Boutons de pagination
+  .page-numbers {
+    text-align: center;
+  }
+
+  .ys-groups-pagination {
+    position: absolute;
+    bottom: 15px;
+  }
 }
 
 // Page d'un groupe
 .ys-groups-single-group {
-    .ys-group-header {
-        .ys-group-cover {
-            height: 400px;
+  .ys-group-header {
+    .ys-group-cover {
+      height: 400px;
 
-            .ys-group-cover-content {
-                padding-right: 100px;
-                background: linear-gradient(90deg, #08080885, #3e3e3e85, #ffffff00);
-                height: 100%;
-                width: 100%;
+      .ys-group-cover-content {
+        padding-right: 100px;
+        background: linear-gradient(90deg, #08080885, #3e3e3e85, #ffffff00);
+        height: 100%;
+        width: 100%;
 
-                .ys-group-cover-inner-content {
-                    padding: 135px 0 0 25px;
+        .ys-group-cover-inner-content {
+          padding: 135px 0 0 25px;
 
-                    .ys-group-img {
-                        background-repeat: no-repeat;
-                        background-size: contain;
-                        background-position: center;
-                        width: 160px;
-                        height: 160px;
-                        background-color: #e8e8e8;
-                        border-radius: 50%;
-                        border: solid 4px $blanc;
-                        position: relative;
+          .ys-group-img {
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            width: 160px;
+            height: 160px;
+            background-color: #e8e8e8;
+            border-radius: 50%;
+            border: solid 4px $blanc;
+            position: relative;
 
-                        .editable {
-                            max-width: 35px;
-                            max-height: 35px;
-                            bottom: 0;
-                            right: 0;
-                            position: absolute;
-                            z-index: 1;
-                            background: #efefef;
-                            border-radius: 6px;
-                            cursor: pointer;
-                            color: #323232;
-                            transition: 0.3s all ease-in-out;
+            .editable {
+              max-width: 35px;
+              max-height: 35px;
+              bottom: 0;
+              right: 0;
+              position: absolute;
+              z-index: 1;
+              background: #efefef;
+              border-radius: 6px;
+              cursor: pointer;
+              color: #323232;
+              transition: 0.3s all ease-in-out;
 
-                            .editable-content {
-                                padding: 5px;
-                            }
-                        }
-                    }
-                }
-
-                .ys-group-details {
-                    font-size: 25px;
-                    color: $blanc;
-
-                    .ys-group-status {
-                        font-size: 16px;
-                    }
-                }
+              .editable-content {
+                padding: 5px;
+              }
             }
-
-            .ys-group-action {
-                position: absolute;
-                top: 450px;
-                right: 40px;
-                background: transparent;
-                z-index: 999;
-
-                .ys-group-single-action {
-                    z-index: 1;
-                    cursor: pointer;
-                    color: #323232;
-                    transition: 0.3s all ease-in-out;
-                    background: #efefef;
-                    margin-left: 15px;
-                    border-radius: 6px;
-                    position: relative;
-
-                    .editable-content {
-                        padding: 5px 10px;
-                        align-items: center;
-                        font-weight: 500;
-                        max-width: unset;
-                        width: unset;
-                        box-shadow: none;
-                        height: unset;
-                        display: flex;
-
-                        button {
-                            border: none !important;
-                            background: unset !important;
-                        }
-                    }
-                }
-
-                .form-edit {
-                    opacity: 1;
-                    visibility: visible;
-
-                    .popup {
-                        transform: translate(-50%, 0) scale(1);
-                        overflow-y: auto;
-                        background: #fff;
-                        box-shadow: 0 0 10px #3b3a3a;
-                        border-radius: 10px;
-                        width: 600px;
-
-                        .popup-content {
-                            .popup-title {
-                                text-align: center;
-                                margin: 0;
-                                padding: 20px 40px 10px;
-                                font-size: 20px;
-                            }
-
-                            .popup-image {
-                                height: 200px;
-                                background-position: center;
-                                background-size: cover;
-                                background-repeat: no-repeat;
-                            }
-
-                            form {
-                                .popup-choose-file {
-                                    position: relative;
-                                    padding-bottom: 10px;
-                                    cursor: pointer;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+          }
         }
+
+        .ys-group-details {
+          font-size: 25px;
+          color: $blanc;
+
+          .ys-group-status {
+            font-size: 16px;
+          }
+        }
+      }
+
+      .ys-group-action {
+        position: absolute;
+        top: 450px;
+        right: 40px;
+        background: transparent;
+        z-index: 999;
+
+        .ys-group-single-action {
+          z-index: 1;
+          cursor: pointer;
+          color: #323232;
+          transition: 0.3s all ease-in-out;
+          background: #efefef;
+          margin-left: 15px;
+          border-radius: 6px;
+          position: relative;
+
+          .editable-content {
+            padding: 5px 10px;
+            align-items: center;
+            font-weight: 500;
+            max-width: unset;
+            width: unset;
+            box-shadow: none;
+            height: unset;
+            display: flex;
+
+            button {
+              border: none !important;
+              background: unset !important;
+            }
+          }
+        }
+
+        .form-edit {
+          opacity: 1;
+          visibility: visible;
+
+          .popup {
+            transform: translate(-50%, 0) scale(1);
+            overflow-y: auto;
+            background: $blanc;
+            box-shadow: 0 0 10px #3b3a3a;
+            border-radius: 10px;
+            width: 600px;
+
+            .popup-content {
+              .popup-title {
+                text-align: center;
+                margin: 0;
+                padding: 20px 40px 10px;
+                font-size: 20px;
+              }
+
+              .popup-image {
+                height: 200px;
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+              }
+
+              form {
+                .popup-choose-file {
+                  position: relative;
+                  padding-bottom: 10px;
+                  cursor: pointer;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .ys-group-content {
+    nav {
+      height: 80px;
+
+      .ys-group-nav-menu {
+        padding-left: 225px;
+
+        li {
+          width: 150px;
+        }
+      }
+
+      .ys-join-group {
+        padding-left: 125px;
+      }
     }
 
-    .ys-group-content {
-        nav {
-            height: 80px;
-
-            .ys-group-nav-menu {
-                padding-left: 225px;
-
-                li {
-                    width: 150px;
-                }
-            }
-
-            .ys-join-group {
-                padding-left: 125px;
-            }
-        }
-
-        main {
-            padding: 35px 0 0;
-        }
+    main {
+      padding: 35px 0 0;
     }
+  }
 }
