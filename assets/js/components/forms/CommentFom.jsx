@@ -1,6 +1,6 @@
 import { YS_GROUP_TEXT_DOMAIN } from '../../constants/constatnts'
 import { __ } from '@wordpress/i18n'
-import PostFeaturedMedias from '../partials/PostFeaturedMedias'
+import PostFeaturedMedias from '../FeaturedMedias/PostFeaturedMedias'
 
 export default function CommentFom ({ postId }) {
   return (

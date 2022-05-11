@@ -1,20 +1,20 @@
-import { __ } from '@wordpress/i18n'
-import { YS_GROUP_TEXT_DOMAIN } from '../../../constants/constatnts'
-import Comment from './parts/Comment'
+import { __ } from '@wordpress/i18n';
+import { YS_GROUP_TEXT_DOMAIN } from '../../../constants/constatnts';
+import Comment from './parts/Comment';
 
-const { useState, useEffect } = wp.element
+const { useState } = wp.element;
 
 export default function PostFooter ({ postId }) {
-  const [isShowed, setIsSohwed] = useState(false)
+  const [isShowed, setIsSohwed] = useState(false);
 
   const handleClick = () => {
-    setIsSohwed((currentIsShowed) => !currentIsShowed)
-  }
+    setIsSohwed((currentIsShowed) => !currentIsShowed);
+  };
 
-  let form
+  let form;
 
   if (isShowed) {
-    form = Comment({ postId })
+    form = Comment({ postId });
   }
 
   return (
@@ -38,5 +38,5 @@ export default function PostFooter ({ postId }) {
 
       {form}
     </div>
-  )
+  );
 }
