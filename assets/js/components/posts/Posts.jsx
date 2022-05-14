@@ -23,7 +23,7 @@ function Posts () {
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
   const [posts, setPosts] = useState([]);
-
+  
   useEffect(() => {
     fetch(groupPostsEndpoint)
       .then((res) => {

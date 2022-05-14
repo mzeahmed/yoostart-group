@@ -30,17 +30,17 @@ $theQuery = new \WP_Query([
                     <div class="ys-group-content">
                         <?php if ($coverImageId != null) : ?>
                             <img
-                                src="<?php echo $coverImageUrl ?>"
-                                loading="lazy"
-                                class="cover-img ys-group-cover"
-                                alt="<?php printf(__("%s group cover's photo"), ucfirst(the_title())) ?>"
+                                    src="<?php echo $coverImageUrl ?>"
+                                    loading="lazy"
+                                    class="cover-img ys-group-cover"
+                                    alt="<?php printf(__("%s group cover's photo"), ucfirst(the_title())) ?>"
                             >
                         <?php else : ?>
                             <img
-                                src="<?php echo YS_GROUP_URI . '/public/img/default-group-cover.png' ?>"
-                                loading="lazy"
-                                class="cover-img ys-group-cover"
-                                alt="<?php printf(__("%s group cover's photo"), ucfirst('')) ?>"
+                                    src="<?php echo YS_GROUP_FRONT_IMG_URI . 'default-group-cover.png' ?>"
+                                    loading="lazy"
+                                    class="cover-img ys-group-cover"
+                                    alt="<?php printf(__("%s group cover's photo"), ucfirst('')) ?>"
                             >
                         <?php endif; ?>
 
@@ -52,9 +52,9 @@ $theQuery = new \WP_Query([
                             <?php else : ?>
                                 <a href="<?php the_permalink(); ?>">
                                     <img
-                                        src="<?php echo YS_GROUP_URI . '/public/img/default-group-avatar.png' ?>"
-                                        class="ys-group-cover-content"
-                                        alt="<?php printf(__("%s's avatar"), ucfirst(the_title())) ?>"
+                                            src="<?php echo YS_GROUP_FRONT_IMG_URI . 'default-group-avatar.png' ?>"
+                                            class="ys-group-cover-content"
+                                            alt="<?php printf(__("%s's avatar"), ucfirst(the_title())) ?>"
                                     >
                                 </a>
                             <?php endif; ?>
@@ -74,34 +74,34 @@ $theQuery = new \WP_Query([
 
                             <div class="ys-group-statistics">
                                 <div
-                                    class="ys-group-data-item ys-group-data-last-activity"
-                                    data-toggle="tooltip"
-                                    data-placement="bottom"
-                                    title="
+                                        class="ys-group-data-item ys-group-data-last-activity"
+                                        data-toggle="tooltip"
+                                        data-placement="bottom"
+                                        title="
                                     <?php printf(
-                                        __('Last activity on %s', YS_GROUP_TEXT_DOMAIN),
-                                        '10/10/21'
-                                    ) ?>
+                                            __('Last activity on %s', YS_GROUP_TEXT_DOMAIN),
+                                            '10/10/21'
+                                        ) ?>
                                         "
                                 >
                                     <span class="dashicons dashicons-clock"></span>
                                 </div>
                                 <div
-                                    class="ys-group-data-item ys-group-data-members"
-                                    data-toggle="tooltip"
-                                    data-placement="bottom"
-                                    title="
+                                        class="ys-group-data-item ys-group-data-members"
+                                        data-toggle="tooltip"
+                                        data-placement="bottom"
+                                        title="
                                     <?php if ($groupMembersCount <= 1) :
-                                        printf(
-                                            __('%s member', YS_GROUP_TEXT_DOMAIN),
-                                            $groupMembersCount
-                                        );
-                                    else :
-                                        printf(
-                                            __('%s members', YS_GROUP_TEXT_DOMAIN),
-                                            $groupMembersCount
-                                        );
-                                    endif; ?>
+                                            printf(
+                                                __('%s member', YS_GROUP_TEXT_DOMAIN),
+                                                $groupMembersCount
+                                            );
+                                        else :
+                                            printf(
+                                                __('%s members', YS_GROUP_TEXT_DOMAIN),
+                                                $groupMembersCount
+                                            );
+                                        endif; ?>
                                     "
                                 >
                                     <span class="dashicons dashicons-groups"></span>
@@ -128,7 +128,11 @@ $theQuery = new \WP_Query([
         </div>
     </div>
 <?php else : ?>
-    <?php _e('No group found', YS_GROUP_TEXT_DOMAIN) ?>
+    <div class="container">
+        <div class="ys-groups-list">
+            <div class="text-center pt-4"><?php _e('No group found', YS_GROUP_TEXT_DOMAIN) ?></div>
+        </div>
+    </div>
 <?php endif; ?>
 
 <?php wp_reset_postdata();

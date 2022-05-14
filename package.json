@@ -1,35 +1,22 @@
 {
-  "name": "yoostart-group",
-  "version": "1.0.0",
-  "main": "assets/js/app.js",
-  "author": "Ahmed Mze",
-  "license": "MIT",
-  "private": true,
   "devDependencies": {
-    "@babel/plugin-proposal-object-rest-spread": "^7.17.3",
-    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-    "@babel/plugin-syntax-nullish-coalescing-operator": "^7.8.3",
     "@babel/preset-react": "^7.16.7",
     "@fortawesome/fontawesome-free": "^5.15.4",
+    "@symfony/webpack-encore": "^2.1.0",
     "@wordpress/i18n": "^4.7.0",
-    "@wordpress/scripts": "^19.2.3",
     "bootstrap": "^4.6.0",
-    "cross-env": "^7.0.3",
+    "file-loader": "^6.2.0",
     "jquery": "^3.5.1",
-    "laravel-mix": "^6.0",
     "moment": "^2.29.3",
-    "postcss": "^8.4",
-    "resolve-url-loader": "^4.0",
     "sass": "^1.45",
     "sass-loader": "^12.4",
-    "sweetalert2": "^11.3"
+    "sweetalert2": "^11.3",
+    "webpack-notifier": "^1.15.0"
   },
   "scripts": {
-    "dev": "npm run development",
-    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "watch": "npm run development -- --watch",
-    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "prod": "npm run production",
-    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    "dev-server": "encore dev-server",
+    "dev": "encore dev",
+    "watch": "encore dev --watch",
+    "build": "encore production --progress"
   }
 }

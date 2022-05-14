@@ -32,7 +32,7 @@ class Front
         ) {
             wp_enqueue_style(
                 'ys-group',
-                YS_GROUP_URI . '/public/css/app.css',
+                YS_GROUP_URI . '/public/build/app_css.css',
                 [],
                 YS_GROUP_VERSION,
                 'all'
@@ -42,7 +42,7 @@ class Front
 
             wp_enqueue_script(
                 'ys-group',
-                YS_GROUP_URI . '/public/js/app.js',
+                YS_GROUP_URI . '/public/build/app_js.js',
                 ['wp-element', 'wp-i18n'],
                 YS_GROUP_VERSION,
                 true,

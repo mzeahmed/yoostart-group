@@ -77,23 +77,26 @@ class GroupPostsCrudController
     }
 
     /**
-     * {wp-json/ys-group/v1/posts/create}
+     * Url à appeler {wp-json/ys-group/v1/posts/create}
      *
      * @param \WP_REST_Request $request
      * @return \WP_REST_Response
      */
     public static function createPost(\WP_REST_Request $request): \WP_REST_Response
     {
-        $post['title'] = substr($request->get_param('content'), 0, 5);
-        $post['content'] = sanitize_text_field($request->get_param('content'));
+        $post['post_title'] = substr($request->get_param('content'), 0, 5);
+        $post['post_content'] = sanitize_text_field($request->get_param('content'));
+        $post['post_status'] = 'publish';
+        $post['post_type'] = 'ys-group-post';
 
         $newPostId = wp_insert_post($post);
 
-        $response['status'] = 200;
         if (!is_wp_error($newPostId)) {
+            $response['status'] = 200;
             $response['success'] = true;
             $response['data'] = get_post($newPostId);
         } else {
+            $response['status'] = 200;
             $response['success'] = false;
             $response['message'] = __('No post found!', YS_GROUP_TEXT_DOMAIN);
         }

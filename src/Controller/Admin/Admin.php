@@ -2,12 +2,11 @@
 
 namespace YsGroup\Controller\Admin;
 
-use YsGroup\Model\PluginPosts;
 use YsGroup\Controller\AbstractController;
-use YsGroup\Controller\Admin\Metaboxs\PostMetas\StatusMetaBox;
-use YsGroup\Controller\Admin\Metaboxs\PostMetas\GroupIdMetaBox;
-use YsGroup\Controller\Admin\Metaboxs\PostMetas\GroupAdminMetabox;
 use YsGroup\Controller\Admin\Metaboxs\PostMetas\CoverPhotoMetaBox;
+use YsGroup\Controller\Admin\Metaboxs\PostMetas\GroupAdminMetabox;
+use YsGroup\Controller\Admin\Metaboxs\PostMetas\GroupIdMetaBox;
+use YsGroup\Controller\Admin\Metaboxs\PostMetas\StatusMetaBox;
 use YsGroup\Controller\Admin\Metaboxs\TermMetas\YsGroupsMemberTermMeta;
 
 /**
@@ -34,13 +33,13 @@ class Admin extends AbstractController
     public string $page;
 
     /**
-     * @param AdminGroups            $ysGroups
-     * @param YsGroupCPT             $ysGroupCPT
-     * @param StatusMetaBox          $metaBox
-     * @param GroupAdminMetabox      $groupAdminMetabox
-     * @param CoverPhotoMetaBox      $coverPhotoMetaBox
-     * @param YsGroupPostCPT         $ysGroupPostCPT
-     * @param GroupIdMetaBox         $ysGroupIdMetaBox
+     * @param AdminGroups $ysGroups
+     * @param YsGroupCPT $ysGroupCPT
+     * @param StatusMetaBox $metaBox
+     * @param GroupAdminMetabox $groupAdminMetabox
+     * @param CoverPhotoMetaBox $coverPhotoMetaBox
+     * @param YsGroupPostCPT $ysGroupPostCPT
+     * @param GroupIdMetaBox $ysGroupIdMetaBox
      * @param YsGroupsMemberTermMeta $ysGroupsMemberTermMeta
      *
      * @since 1.0.6
@@ -70,7 +69,7 @@ class Admin extends AbstractController
 
         add_action('admin_enqueue_scripts', [$this, 'enqueueScripts']);
         add_action('admin_notices', [$this, 'dependencyNotice']);
-        add_filter('display_post_states', [$this, 'displayPostStates'], 10, 2);
+        // add_filter('display_post_states', [$this, 'displayPostStates'], 10, 2);
         add_action('admin_init', [$this, 'redirectIfMainPluginNotActiv']);
     }
 
@@ -85,7 +84,7 @@ class Admin extends AbstractController
         global $current_screen;
 
         if (
-            (! empty($this->page) && ($this->page === 'ys_options_groups'))
+            (!empty($this->page) && ($this->page === 'ys_options_groups'))
             || $current_screen->taxonomy === 'ys_group_member'
             || $current_screen->post_type === 'ys-group-post'
             || $current_screen->post_type === 'ys-group'
@@ -117,7 +116,7 @@ class Admin extends AbstractController
      */
     public function dependencyNotice(): ?string
     {
-        if (! class_exists('Yoostart')) {
+        if (!class_exists('Yoostart')) {
             return $this->render('admin/dependency-notice', []);
         }
 
@@ -132,7 +131,7 @@ class Admin extends AbstractController
      */
     public function redirectIfMainPluginNotActiv()
     {
-        if ((! empty($this->page) && ($this->page === 'ys_options_groups')) && ! class_exists('Yoostart')) {
+        if ((!empty($this->page) && ($this->page === 'ys_options_groups')) && !class_exists('Yoostart')) {
             wp_safe_redirect(admin_url('plugins.php'));
             die();
         }
@@ -141,23 +140,23 @@ class Admin extends AbstractController
     /**
      * Affiche le nom du plugin à coté des pages créés par le plugin
      *
-     * @param array    $posts_states
-     * @param \WP_Post $post
-     *
-     * @return array
-     * @see   YS_GROUP_POSTS
-     * @since 1.0.5
+     * // * @param array $posts_states
+     * // * @param \WP_Post $post
+     * // *
+     * // * @return array
+     * // * @see   YS_GROUP_POSTS
+     * // * @since 1.0.5
      */
-    public function displayPostStates(array $posts_states, \WP_Post $post): array
-    {
-        $postIds = (new PluginPosts())->getPostsId(YS_GROUP_POSTS);
-
-        foreach ($postIds as $id) {
-            if ($id == $post->ID) {
-                $posts_states[] = 'Yoostart Groups';
-            }
-        }
-
-        return $posts_states;
-    }
+    // public function displayPostStates(array $posts_states, \WP_Post $post): array
+    // {
+    //     $postIds = (new PluginPosts())->getPostsId(YS_GROUP_POSTS);
+    //
+    //     foreach ($postIds as $id) {
+    //         if ($id == $post->ID) {
+    //             $posts_states[] = 'Yoostart Groups';
+    //         }
+    //     }
+    //
+    //     return $posts_states;
+    // }
 }

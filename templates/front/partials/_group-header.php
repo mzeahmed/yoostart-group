@@ -16,9 +16,9 @@
                     <div class="editable edit-img" title="<?php _e('Edit group avatar', YS_GROUP_TEXT_DOMAIN); ?>">
                         <div class="editable-content">
                             <img
-                                src="<?php echo YS_GROUP_URI . '/public/img/camera.png' ?>"
-                                alt=""
-                                class="icon icon-photo"
+                                    src="<?php echo YS_GROUP_FRONT_IMG_URI . 'camera.png' ?>"
+                                    alt=""
+                                    class="icon icon-photo"
                             >
                         </div>
                     </div>
@@ -41,9 +41,9 @@
                  title="<?php _e('Edit group cover photo', YS_GROUP_TEXT_DOMAIN) ?>">
                 <div class="editable-content">
                     <img
-                        src="<?php echo YS_GROUP_URI . '/public/img/camera.png' ?>"
-                        alt=""
-                        class="icon icon-photo"
+                            src="<?php echo YS_GROUP_FRONT_IMG_URI . 'camera.png' ?>"
+                            alt=""
+                            class="icon icon-photo"
                     >
                     <button type="button" data-toggle="modal" data-target="#ysCoverFormModal">
                         <?php _e('Edit group cover', YS_GROUP_TEXT_DOMAIN); ?>

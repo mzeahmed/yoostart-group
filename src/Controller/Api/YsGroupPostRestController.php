@@ -27,7 +27,7 @@ class YsGroupPostRestController
      */
     public function registerRoutes(): void
     {
-        /** Route de recuperation des posts */
+        // GET
         register_rest_route(
             $this->namespace,
             $this->resourceName,
@@ -38,7 +38,7 @@ class YsGroupPostRestController
             ],
         );
 
-        /** Route de creation de post */
+        // POST
         register_rest_route(
             $this->namespace,
             $this->resourceName . '/create',

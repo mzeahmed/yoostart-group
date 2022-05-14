@@ -95,13 +95,13 @@ class YsGroup
     {
         $group_slug = get_query_var('gslug');
 
-        if (is_page('Groupes') || (is_archive() && get_post_type() == 'ys-group')) {
+        if (/*is_page('Groupes') ||*/ (is_archive() && get_post_type() == 'ys-group')) {
             $classes[] = 'ys-groups-groups';
         }
 
-        if (isset($group_slug)) {
-            $classes[] = 'ys-groups-single-group';
-        }
+        // if (isset($group_slug)) {
+        //     $classes[] = 'ys-groups-single-group';
+        // }
 
         return $classes;
     }

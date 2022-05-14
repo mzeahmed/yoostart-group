@@ -20,3 +20,7 @@ export default function useFetch (url) {
 
   return data;
 }
+
+export default function postData (url) {
+
+}

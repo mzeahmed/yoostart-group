@@ -3,6 +3,12 @@ import NewPostFormModal from '../modals/NewPostFormModal';
 
 const currentUser = window.ys_group_config.current_user;
 
+const { useState } = wp.element;
+
+const [title, setTitle] = useState('');
+const [content, setContent] = useState('');
+const [author, setAuhthor] = useState('');
+
 export default function NewPostForm ({ currentUserAvatarUrl, currentUserProfilUrl, currentUserFirstname }) {
   return (
     <div className="ys-group-new-post-form" id="ys_group_post_form">

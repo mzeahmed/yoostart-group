@@ -17,27 +17,27 @@ class OnPluginActivation
     public static function activation(): void
     {
         // Vérifie si nous ne sommes pas déjà en train d'exécuter cette action
-        if ('yes' === get_transient('ys_groups_installing')) {
+        if ('yes' === get_transient('ys_group_installing')) {
             return;
         }
 
         // Si nous sommes arrivés jusqu'ici, rien n'est encore en marche, réglons le transient maintenant.
         set_transient('', 'yes', MINUTE_IN_SECONDS * 10);
-        Helpers::maybeDefineConstant('YS_GROUPS_INSTALLING', true);
+        Helpers::maybeDefineConstant('YS_GROUP_INSTALLING', true);
 
-        self::updateSchema();
-        self::createPages();
+        // self::updateSchema();
+        // self::createPages();
 
-        if (!file_exists(YS_GROUP_UPLOAD_DIR)) {
-            self::createUploadDir();
-        }
+        // if (!file_exists(YS_GROUP_UPLOAD_DIR)) {
+        //     self::createUploadDir();
+        // }
 
-        delete_transient('ys_groups_installing');
+        delete_transient('ys_group_installing');
 
         /**
          * @since 1.0.4
          */
-        do_action('ys_groups_installed');
+        do_action('ys_group_installed');
     }
 
     /**
