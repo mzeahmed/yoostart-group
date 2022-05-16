@@ -1,33 +1,40 @@
 import { __ } from '@wordpress/i18n';
-import { YS_GROUP_CREATE_POST_ENDPONT, YS_GROUP_TEXT_DOMAIN } from '../../constants/constants';
+import { CURRENT_USER, YS_GROUP_TEXT_DOMAIN } from '../../constants/constants';
 import PostFeaturedMedias from '../FeaturedMedias/PostFeaturedMedias';
 
-const { useState, useRef } = wp.element;
+const { useState } = wp.element;
 
 export default function NewPostFormModal () {
-  const [textarea, setTextarea] = useState(__('Post something', YS_GROUP_TEXT_DOMAIN));
-  const [content, setContent] = useState('');
-  const form = useRef(null);
+  const [inputs, setInputs] = useState({});
 
   let handleChange = (event) => {
-    setTextarea(event.target.value);
+    const content = event.target.name;
+    const value = event.target.value;
+
+    setInputs((values) => ({
+      ...values,
+      [content]: value
+    }));
   };
 
   let handleSubmit = async (e) => {
     e.preventDefault();
 
-    // fetch
-    const data = new FormData(form.current);
-    fetch(YS_GROUP_CREATE_POST_ENDPONT, {
-      method: 'POST',
-      body: data
-    })
-      .then((res) => {
-        res.json();
-      })
-      .then((result) => {
-        setContent(result.content);
-      });
+    console.log(inputs);
+
+    // fetch(YS_GROUP_CREATE_POST_ENDPONT, {
+    //   method: 'POST',
+    //   body: JSON.stringify({
+    //     content: content
+    //   })
+    // })
+    //   .then((res) => {
+    //     res.json();
+    //   })
+    //   .then((result) => {
+    //     console.log(result);
+    //     setContent('');
+    //   });
   };
 
   return (
@@ -36,26 +43,28 @@ export default function NewPostFormModal () {
       <div className="modal-dialog" role="document">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title" id="exampleModalLabel">{__('Publish post', YS_GROUP_TEXT_DOMAIN)}</h5>
+            <h5 className="modal-title" id="newPostFormModaLabel">{__('Publish post', YS_GROUP_TEXT_DOMAIN)}</h5>
             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form ref={form} onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <div className="modal-body">
               <div className="modal-post-head"></div>
               <div className="modal-post-content">
                 <div className="form-group">
                   <textarea
                     className="form-control"
-                    placeholder={textarea}
+                    name="content"
+                    value={inputs.content}
+                    placeholder={CURRENT_USER['firstname'] + ' ' + __('publish something', YS_GROUP_TEXT_DOMAIN)}
                     onChange={handleChange}
                     is="textarea-autogrow"
                   ></textarea>
                 </div>
               </div>
 
-              <PostFeaturedMedias/>
+              <PostFeaturedMedias handleChange={handleChange} inputs={inputs}/>
             </div>
 
             <div className="modal-footer">

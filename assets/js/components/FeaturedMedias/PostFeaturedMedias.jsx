@@ -4,7 +4,7 @@ import FileInput from './inputs/FileInput';
 
 const { useState } = wp.element;
 
-export default function PostFeaturedMedias () {
+export default function PostFeaturedMedias ({ handleChange, inputs }) {
   const [isFile, setIsFile] = useState(false);
   const [isText, setIsText] = useState(false);
 
@@ -31,9 +31,9 @@ export default function PostFeaturedMedias () {
   let textInput;
 
   if (isFile) {
-    fileInput = FileInput();
+    fileInput = FileInput({ handleChange, inputs });
   } else if (isText) {
-    textInput = TextInput();
+    textInput = TextInput({ handleChange, inputs });
   }
 
   return (
