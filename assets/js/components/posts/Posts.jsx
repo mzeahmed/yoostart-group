@@ -1,14 +1,10 @@
 import { __ } from '@wordpress/i18n';
-import { YS_GROUP_TEXT_DOMAIN } from '../../constants/constatnts';
-import NewPostForm from '../forms/NewPostForm';
 import PostHeader from './header/PostHeader';
 import moment from 'moment/moment';
 import PostContent from './content/PostContent';
 import PostFooter from './footer/PostFooter';
-
-const group_id = document.getElementById('group_posts').dataset.groupId;
-const base_rest_url = window.ys_group_config.rest_url;
-const groupPostsEndpoint = base_rest_url + 'ys-group/v1/posts?_ys_group_id_meta_key=' + group_id;
+import NewPostForm from '../forms/NewPostForm';
+import { YS_GROUP_POSTS_ENDPOINT, YS_GROUP_TEXT_DOMAIN } from '../../constants/constants';
 
 const { useState, useEffect } = wp.element;
 
@@ -23,9 +19,9 @@ function Posts () {
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
   const [posts, setPosts] = useState([]);
-  
+
   useEffect(() => {
-    fetch(groupPostsEndpoint)
+    fetch(YS_GROUP_POSTS_ENDPOINT)
       .then((res) => {
         if (!res.ok) {
           throw Error(__('Could not fetch the data for that resource', YS_GROUP_TEXT_DOMAIN));

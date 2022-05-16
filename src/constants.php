@@ -10,7 +10,7 @@ global $wpdb;
 $plugin_data = get_plugin_data(YS_GROUP_PLUGIN_FILE);
 $uploadDir = wp_upload_dir();
 
-define('DS', DIRECTORY_SEPARATOR);
+const DS = DIRECTORY_SEPARATOR;
 
 define('YS_GROUP_VERSION', $plugin_data['Version']);
 define('YS_GROUP_PLUGIN_NAME', $plugin_data['Name']);
@@ -20,7 +20,7 @@ define('YS_GROUP_PATH', dirname(YS_GROUP_PLUGIN_FILE) . DS);
 define('YS_GROUP_URI', dirname(plugin_dir_url(__FILE__)));
 define('YS_GROUP_URL', home_url('group/'));
 
-define('YS_GROUP_FRONT_IMG_URI', YS_GROUP_URI . DS . 'public' . DS . 'build' . DS . 'images' . DS);
+const YS_GROUP_FRONT_IMG_URI = YS_GROUP_URI . DS . 'public' . DS . 'build' . DS . 'images' . DS;
 
 define('YS_GROUP_UPLOAD_DIR', $uploadDir['basedir'] . DS . 'yoostartwp-groups' . DS);
 define('YS_GROUP_UPLOAD_BASE_URL', $uploadDir['baseurl']);

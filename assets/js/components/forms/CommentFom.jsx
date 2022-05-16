@@ -1,6 +1,6 @@
-import { YS_GROUP_TEXT_DOMAIN } from '../../constants/constatnts'
-import { __ } from '@wordpress/i18n'
-import PostFeaturedMedias from '../FeaturedMedias/PostFeaturedMedias'
+import { YS_GROUP_TEXT_DOMAIN } from '../../constants/constants';
+import { __ } from '@wordpress/i18n';
+import PostFeaturedMedias from '../FeaturedMedias/PostFeaturedMedias';
 
 export default function CommentFom ({ postId }) {
   return (
@@ -13,5 +13,5 @@ export default function CommentFom ({ postId }) {
 
       <PostFeaturedMedias/>
     </form>
-  )
+  );
 }

@@ -1,13 +1,10 @@
 import { __ } from '@wordpress/i18n';
 import NewPostFormModal from '../modals/NewPostFormModal';
+// import { useState } from 'react';
 
 const currentUser = window.ys_group_config.current_user;
 
 const { useState } = wp.element;
-
-const [title, setTitle] = useState('');
-const [content, setContent] = useState('');
-const [author, setAuhthor] = useState('');
 
 export default function NewPostForm ({ currentUserAvatarUrl, currentUserProfilUrl, currentUserFirstname }) {
   return (

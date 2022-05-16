@@ -1,13 +1,11 @@
 import 'bootstrap/dist/js/bootstrap.bundle';
+import moment from 'moment/moment';
 import './elements/Autogrow';
 import App from './components/App';
-import moment from 'moment/moment';
 
 moment.locale('fr');
 
 const { render } = wp.element;
-
-window.alert('Ca fonctionne');
 
 render(
   <App/>,
@@ -15,7 +13,7 @@ render(
 );
 
 /** test */
-//fetch('https://yoostart.com.local/wp-json/jwt-auth/v1/token', {
+// fetch('https://yoostart.com.local/wp-json/jwt-auth/v1/token', {
 //  method: 'POST',
 //  headers: {
 //    'Content-Type': 'application/json',
