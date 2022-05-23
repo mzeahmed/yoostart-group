@@ -1,8 +1,6 @@
-import TextInput from './inputs/TextInput';
+import { useState } from 'react';
 import FileInput from './inputs/FileInput';
-// import { useState } from 'react';
-
-const { useState } = wp.element;
+import TextInput from './inputs/TextInput';
 
 export default function PostFeaturedMedias ({ handleChange, inputs }) {
   const [isFile, setIsFile] = useState(false);

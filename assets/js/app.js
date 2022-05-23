@@ -1,11 +1,11 @@
-import 'bootstrap/dist/js/bootstrap.bundle';
+import 'bootstrap/dist/js/bootstrap';
 import moment from 'moment/moment';
-import './elements/Autogrow';
+import 'popper.js/dist/popper';
+import { render } from 'react-dom';
 import App from './components/App';
+import './elements/Autogrow';
 
 moment.locale('fr');
-
-const { render } = wp.element;
 
 render(
   <App/>,

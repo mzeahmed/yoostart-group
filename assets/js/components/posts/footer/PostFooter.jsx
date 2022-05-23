@@ -1,9 +1,7 @@
 import { __ } from '@wordpress/i18n';
+import { useState } from 'react';
 import { YS_GROUP_TEXT_DOMAIN } from '../../../constants/constants';
 import Comment from './parts/Comment';
-// import { useState } from 'react';
-
-const { useState } = wp.element;
 
 export default function PostFooter ({ postId }) {
   const [isShowed, setIsSohwed] = useState(false);

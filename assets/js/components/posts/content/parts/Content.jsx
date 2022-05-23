@@ -1,8 +1,6 @@
 import { __ } from '@wordpress/i18n';
+import { useState } from 'react';
 import { YS_GROUP_TEXT_DOMAIN } from '../../../../constants/constants';
-// import { useState } from 'react';
-
-const { useState } = wp.element;
 
 export default function Content ({ content }) {
   const [showMore, setShowMore] = useState(false);

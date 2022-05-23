@@ -1,12 +1,11 @@
 import { __ } from '@wordpress/i18n';
-import PostHeader from './header/PostHeader';
 import moment from 'moment/moment';
+import { useEffect, useState } from 'react';
+import { YS_GROUP_POSTS_ENDPOINT, YS_GROUP_TEXT_DOMAIN } from '../../constants/constants';
+import NewPostForm from '../forms/NewPostForm';
 import PostContent from './content/PostContent';
 import PostFooter from './footer/PostFooter';
-import NewPostForm from '../forms/NewPostForm';
-import { YS_GROUP_POSTS_ENDPOINT, YS_GROUP_TEXT_DOMAIN } from '../../constants/constants';
-
-const { useState, useEffect } = wp.element;
+import PostHeader from './header/PostHeader';
 
 /**
  * Affichage des publications

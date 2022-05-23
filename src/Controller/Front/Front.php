@@ -22,7 +22,7 @@ class Front
      * @return void
      * @since 1.1.0
      */
-    public function enqueueScripts()
+    public function enqueueScripts(): void
     {
         if (
             str_contains($_SERVER['REQUEST_URI'], 'groupes')

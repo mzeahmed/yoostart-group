@@ -91,12 +91,11 @@ class GroupPostsCrudController
 
         $newPostId = wp_insert_post($post);
 
+        $response['status'] = 200;
         if (!is_wp_error($newPostId)) {
-            $response['status'] = 200;
             $response['success'] = true;
             $response['data'] = get_post($newPostId);
         } else {
-            $response['status'] = 200;
             $response['success'] = false;
             $response['message'] = __('No post found!', YS_GROUP_TEXT_DOMAIN);
         }
