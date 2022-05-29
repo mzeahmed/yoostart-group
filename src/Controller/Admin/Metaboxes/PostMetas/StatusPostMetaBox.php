@@ -1,13 +1,13 @@
 <?php
 
-namespace YsGroup\Controller\Admin\Metaboxs\PostMetas;
+namespace YsGroup\Controller\Admin\Metaboxes\PostMetas;
 
 use YsGroup\Controller\AbstractController;
 
 /**
  * @since 1.1.0
  */
-class StatusMetaBox extends AbstractController
+class StatusPostMetaBox extends AbstractController
 {
     public function __construct()
     {
@@ -18,12 +18,12 @@ class StatusMetaBox extends AbstractController
     }
 
     /**
-     * @param string   $postType
+     * @param string $postType
      * @param \WP_Post $post
      *
      * @return void
      */
-    public function addStatusMetabox(string $postType, \WP_Post $post)
+    public function addStatusMetabox(string $postType, \WP_Post $post): void
     {
         if ($postType == 'ys-group' && current_user_can('publish_posts', $post)) {
             add_meta_box(
@@ -52,7 +52,7 @@ class StatusMetaBox extends AbstractController
     /**
      * Persistance de la meta en bdd
      *
-     * @param int      $postId
+     * @param int $postId
      * @param \WP_Post $post
      *
      * @return void
@@ -60,8 +60,8 @@ class StatusMetaBox extends AbstractController
     public function saveStatusMetaKey(int $postId, \WP_Post $post)
     {
         if (
-            ! isset($_POST['_ys_group_status_nonce'])
-            && ! wp_verify_nonce($_POST['_ys_group_status_nonce'], '_ys_group_status_nonce')
+            !isset($_POST['_ys_group_status_nonce'])
+            && !wp_verify_nonce($_POST['_ys_group_status_nonce'], '_ys_group_status_nonce')
         ) {
             return;
         }

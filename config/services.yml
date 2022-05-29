@@ -1,31 +1,31 @@
 services:
-    _defaults:
-        autowire: true
+  _defaults:
+    autowire: true
 
-    YsGroup\:
-        resource: '../src/*'
-        exclude: '../src/{constants.php}'
+  YsGroup\:
+    resource: '../src/*'
+    exclude: '../src/{constants.php}'
 
-    YsGroup\Controller\Admin\Admin:
-        public: true
+  YsGroup\Controller\Admin\Admin:
+    public: true
 
-    YsGroup\Controller\Front\Front:
-        public: true
+  YsGroup\Controller\Front\Front:
+    public: true
 
-    YsGroup\Services\RewriteRules:
-        public: true
+  YsGroup\Services\RewriteRules:
+    public: true
 
-    YsGroup\Services\Session:
-        public: true
+  YsGroup\Services\Session:
+    public: true
 
-    YsGroup\Services\NotLoggedInRedirections:
-        public: true
+  YsGroup\Services\NotLoggedInRedirections:
+    public: true
 
-    YsGroup\Services\Mailer:
-        public: true
+  YsGroup\Services\Mailer:
+    public: true
 
-    YsGroup\Services\RestApi:
-        public: true
+  YsGroup\Services\RestApi:
+    public: true
 
-    YsGroup\Services\FixSomeErrors:
-        public: true
+  YsGroup\Services\FixSomeErrors:
+    public: true

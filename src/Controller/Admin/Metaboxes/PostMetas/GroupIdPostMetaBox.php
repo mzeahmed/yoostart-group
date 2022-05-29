@@ -1,11 +1,14 @@
 <?php
 
-namespace YsGroup\Controller\Admin\Metaboxs\PostMetas;
+namespace YsGroup\Controller\Admin\Metaboxes\PostMetas;
 
 use YsGroup\Model\Groups;
 use YsGroup\Controller\AbstractController;
 
-class GroupIdMetaBox extends AbstractController
+/**
+ *
+ */
+class GroupIdPostMetaBox extends AbstractController
 {
     public function __construct()
     {
@@ -16,12 +19,12 @@ class GroupIdMetaBox extends AbstractController
     }
 
     /**
-     * @param string   $postType
+     * @param string $postType
      * @param \WP_Post $post
      *
      * @return void
      */
-    public function addGroupIdMetabox(string $postType, \WP_Post $post)
+    public function addGroupIdMetabox(string $postType, \WP_Post $post): void
     {
         if ($postType == 'ys-group-post' && current_user_can('publish_posts', $post)) {
             add_meta_box(
@@ -54,7 +57,7 @@ class GroupIdMetaBox extends AbstractController
     /**
      * Persistance de la meta en bdd
      *
-     * @param int      $postId
+     * @param int $postId
      * @param \WP_Post $post
      *
      * @return void
@@ -62,8 +65,8 @@ class GroupIdMetaBox extends AbstractController
     public function saveGroupIdMetakey(int $postId, \WP_Post $post): void
     {
         if (
-            ! isset($_POST['_ys_group_id_nonce'])
-            && ! wp_verify_nonce($_POST['_ys_group_id_nonce'], '_ys_group_id_nonce')
+            !isset($_POST['_ys_group_id_nonce'])
+            && !wp_verify_nonce($_POST['_ys_group_id_nonce'], '_ys_group_id_nonce')
         ) {
             return;
         }

@@ -3,11 +3,11 @@
 namespace YsGroup\Controller\Admin;
 
 use YsGroup\Controller\AbstractController;
-use YsGroup\Controller\Admin\Metaboxs\PostMetas\CoverPhotoMetaBox;
-use YsGroup\Controller\Admin\Metaboxs\PostMetas\GroupAdminMetabox;
-use YsGroup\Controller\Admin\Metaboxs\PostMetas\GroupIdMetaBox;
-use YsGroup\Controller\Admin\Metaboxs\PostMetas\StatusMetaBox;
-use YsGroup\Controller\Admin\Metaboxs\TermMetas\YsGroupsMemberTermMeta;
+use YsGroup\Controller\Admin\Metaboxes\PostMetas\GroupAdminMetabox;
+use YsGroup\Controller\Admin\Metaboxes\PostMetas\StatusPostMetaBox;
+use YsGroup\Controller\Admin\Metaboxes\PostMetas\GroupIdPostMetaBox;
+use YsGroup\Controller\Admin\Metaboxes\PostMetas\CoverPhotoPostMetaBox;
+use YsGroup\Controller\Admin\Metaboxes\TermMetas\YsGroupsMemberTermMeta;
 
 /**
  * @since 1.0.6
@@ -20,13 +20,13 @@ class Admin extends AbstractController
 
     public YsGroupPostCPT $ysGroupPostCPT;
 
-    public StatusMetaBox $metabox;
+    public StatusPostMetaBox $metabox;
 
     public GroupAdminMetabox $groupAdminMetabox;
 
-    public CoverPhotoMetaBox $coverPhotoMetaBox;
+    public CoverPhotoPostMetaBox $coverPhotoMetaBox;
 
-    public GroupIdMetaBox $ysGroupIdMetaBox;
+    public GroupIdPostMetaBox $ysGroupIdMetaBox;
 
     public YsGroupsMemberTermMeta $ysGroupsMemberTermMeta;
 
@@ -35,11 +35,11 @@ class Admin extends AbstractController
     /**
      * @param AdminGroups $ysGroups
      * @param YsGroupCPT $ysGroupCPT
-     * @param StatusMetaBox $metaBox
+     * @param StatusPostMetaBox $metaBox
      * @param GroupAdminMetabox $groupAdminMetabox
-     * @param CoverPhotoMetaBox $coverPhotoMetaBox
+     * @param CoverPhotoPostMetaBox $coverPhotoMetaBox
      * @param YsGroupPostCPT $ysGroupPostCPT
-     * @param GroupIdMetaBox $ysGroupIdMetaBox
+     * @param GroupIdPostMetaBox $ysGroupIdMetaBox
      * @param YsGroupsMemberTermMeta $ysGroupsMemberTermMeta
      *
      * @since 1.0.6
@@ -47,11 +47,11 @@ class Admin extends AbstractController
     public function __construct(
         AdminGroups $ysGroups,
         YsGroupCPT $ysGroupCPT,
-        StatusMetaBox $metaBox,
+        StatusPostMetaBox $metaBox,
         GroupAdminMetabox $groupAdminMetabox,
-        CoverPhotoMetaBox $coverPhotoMetaBox,
+        CoverPhotoPostMetaBox $coverPhotoMetaBox,
         YsGroupPostCPT $ysGroupPostCPT,
-        GroupIdMetaBox $ysGroupIdMetaBox,
+        GroupIdPostMetaBox $ysGroupIdMetaBox,
         YsGroupsMemberTermMeta $ysGroupsMemberTermMeta
     ) {
         parent::__construct();

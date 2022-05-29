@@ -77,6 +77,7 @@ class GroupPostsCrudController
     }
 
     /**
+     * Création de la publication de groupe
      * Url à appeler {wp-json/ys-group/v1/posts/create}
      *
      * @param \WP_REST_Request $request
@@ -84,17 +85,22 @@ class GroupPostsCrudController
      */
     public static function createPost(\WP_REST_Request $request): \WP_REST_Response
     {
-        $post['post_title'] = substr($request->get_param('content'), 0, 5);
-        $post['post_content'] = sanitize_text_field($request->get_param('content'));
+        $post['post_title'] = substr($request->get_param('post_content'), 0, 5);
+        $post['post_content'] = sanitize_text_field($request->get_param('post_content'));
+        $post['post_author'] = $request->get_param('post_author');
         $post['post_status'] = 'publish';
         $post['post_type'] = 'ys-group-post';
 
+        /** @var $newPostId | Persistance du post en bdd */
         $newPostId = wp_insert_post($post);
 
         $response['status'] = 200;
         if (!is_wp_error($newPostId)) {
             $response['success'] = true;
             $response['data'] = get_post($newPostId);
+
+            /** On lie le post au group en question */
+            update_post_meta($response['data']->ID, YS_GROUP_ID_META_KEY, $request->get_param('group_id'));
         } else {
             $response['success'] = false;
             $response['message'] = __('No post found!', YS_GROUP_TEXT_DOMAIN);

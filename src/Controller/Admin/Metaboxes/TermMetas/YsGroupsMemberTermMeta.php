@@ -1,6 +1,6 @@
 <?php
 
-namespace YsGroup\Controller\Admin\Metaboxs\TermMetas;
+namespace YsGroup\Controller\Admin\Metaboxes\TermMetas;
 
 use YsGroup\Controller\AbstractController;
 

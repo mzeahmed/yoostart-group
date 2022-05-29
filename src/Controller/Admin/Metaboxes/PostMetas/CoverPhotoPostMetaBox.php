@@ -1,11 +1,11 @@
 <?php
 
-namespace YsGroup\Controller\Admin\Metaboxs\PostMetas;
+namespace YsGroup\Controller\Admin\Metaboxes\PostMetas;
 
 use Carbon_Fields\Field;
 use Carbon_Fields\Container;
 
-class CoverPhotoMetaBox
+class CoverPhotoPostMetaBox
 {
     public function __construct()
     {
@@ -25,7 +25,6 @@ class CoverPhotoMetaBox
                     ->set_visible_in_rest_api(),
             ])
             ->set_context('side')
-            ->set_priority('low')
-        ;
+            ->set_priority('low');
     }
 }

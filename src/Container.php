@@ -4,8 +4,8 @@ namespace YsGroup;
 
 use YsGroupsCacheContainer;
 use YsGroup\Services\Mailer;
-use YsGroup\Services\Session;
 use YsGroup\Services\RestApi;
+use YsGroup\Services\Session;
 use YsGroup\Services\RewriteRules;
 use YsGroup\Controller\Admin\Admin;
 use YsGroup\Controller\Front\Front;
@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\Dumper\PhpDumper;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 /**
- * Container de service pour la mise en place de l'injection de dependance
+ * Container de service pour la mise en place de l'injection de dépendance
  *
  * @since 1.0.7
  */
@@ -25,8 +25,10 @@ class Container
 {
     public static function load(): void
     {
-        if (file_exists(dirname(__DIR__) . '/cache/container.php')) {
-            require_once dirname(__DIR__) . '/cache/container.php';
+        $file = dirname(__DIR__) . '/cache/container.php';
+
+        if (file_exists($file)) {
+            require_once $file;
             $container = new YsGroupsCacheContainer();
         } else {
             $container = new ContainerBuilder();
@@ -36,6 +38,7 @@ class Container
                 $container,
                 new FileLocator(dirname(__DIR__) . '/config')
             );
+
             try {
                 $loader->load('services.yml');
             } catch (\Exception $e) {
@@ -45,17 +48,14 @@ class Container
             $container->compile();
 
             /**
-             * creation du fichier de cache du container
+             * Création du fichier de cache du container
              *
              * @todo à chaque modification du fichier de configuration 'config/services.yaml'
              * @todo supprimer le fichier '/cache/container.php'
              * il sera generé automatiquement avec les nouvelles configurations
              */
             $dumper = new PhpDumper($container);
-            file_put_contents(
-                dirname(__DIR__) . '/cache/container.php',
-                $dumper->dump(['class' => 'YsGroupsCacheContainer'])
-            );
+            file_put_contents($file, $dumper->dump(['class' => 'YsGroupsCacheContainer']));
         }
 
         try {

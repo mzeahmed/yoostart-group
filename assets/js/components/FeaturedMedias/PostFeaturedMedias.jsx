@@ -2,7 +2,7 @@ import { useState } from 'react';
 import FileInput from './inputs/FileInput';
 import TextInput from './inputs/TextInput';
 
-export default function PostFeaturedMedias ({ handleChange, inputs }) {
+export default function PostFeaturedMedias ({ handleChange, formDatas }) {
   const [isFile, setIsFile] = useState(false);
   const [isText, setIsText] = useState(false);
 
@@ -29,9 +29,9 @@ export default function PostFeaturedMedias ({ handleChange, inputs }) {
   let textInput;
 
   if (isFile) {
-    fileInput = FileInput({ handleChange, inputs });
+    fileInput = FileInput({ handleChange, formDatas });
   } else if (isText) {
-    textInput = TextInput({ handleChange, inputs });
+    textInput = TextInput({ handleChange, formDatas });
   }
 
   return (

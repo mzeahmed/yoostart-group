@@ -1,6 +1,6 @@
 <?php
 
-namespace YsGroup\Controller\Admin\Metaboxs\PostMetas;
+namespace YsGroup\Controller\Admin\Metaboxes\PostMetas;
 
 use YsGroup\Controller\AbstractController;
 

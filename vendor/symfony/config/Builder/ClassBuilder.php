@@ -20,21 +20,18 @@ namespace Symfony\Component\Config\Builder;
  */
 class ClassBuilder
 {
-    /** @var string */
-    private $namespace;
-
-    /** @var string */
-    private $name;
+    private string $namespace;
+    private string $name;
 
     /** @var Property[] */
-    private $properties = [];
+    private array $properties = [];
 
     /** @var Method[] */
-    private $methods = [];
-    private $require = [];
-    private $use = [];
-    private $implements = [];
-    private $allowExtraKeys = false;
+    private array $methods = [];
+    private array $require = [];
+    private array $use = [];
+    private array $implements = [];
+    private bool $allowExtraKeys = false;
 
     public function __construct(string $namespace, string $name)
     {
@@ -68,7 +65,7 @@ class ClassBuilder
             }
             $require .= sprintf('require_once __DIR__.\DIRECTORY_SEPARATOR.\'%s\';', implode('\'.\DIRECTORY_SEPARATOR.\'', $path))."\n";
         }
-        $use = '';
+        $use = $require ? "\n" : '';
         foreach (array_keys($this->use) as $statement) {
             $use .= sprintf('use %s;', $statement)."\n";
         }
@@ -81,7 +78,7 @@ class ClassBuilder
         foreach ($this->methods as $method) {
             $lines = explode("\n", $method->getContent());
             foreach ($lines as $line) {
-                $body .= '    '.$line."\n";
+                $body .= ($line ? '    '.$line : '')."\n";
             }
         }
 
@@ -89,9 +86,7 @@ class ClassBuilder
 
 namespace NAMESPACE;
 
-REQUIRE
-USE
-
+REQUIREUSE
 /**
  * This class is automatically generated to help in creating a config.
  */

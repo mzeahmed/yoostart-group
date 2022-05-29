@@ -46,20 +46,18 @@ class YsGroupsCacheContainer extends Container
     public function getRemovedIds(): array
     {
         return [
-            'Psr\\Container\\ContainerInterface' => true,
-            'Symfony\\Component\\DependencyInjection\\ContainerInterface' => true,
             'YsGroup\\Container' => true,
             'YsGroup\\Controller\\Admin\\AdminGroups' => true,
             'YsGroup\\Controller\\Admin\\GroupListTable' => true,
-            'YsGroup\\Controller\\Admin\\Metaboxs\\PostMetas\\CoverPhotoMetaBox' => true,
-            'YsGroup\\Controller\\Admin\\Metaboxs\\PostMetas\\GroupAdminMetabox' => true,
-            'YsGroup\\Controller\\Admin\\Metaboxs\\PostMetas\\GroupIdMetaBox' => true,
-            'YsGroup\\Controller\\Admin\\Metaboxs\\PostMetas\\StatusMetaBox' => true,
-            'YsGroup\\Controller\\Admin\\Metaboxs\\TermMetas\\YsGroupsMemberTermMeta' => true,
+            'YsGroup\\Controller\\Admin\\Metaboxes\\PostMetas\\CoverPhotoPostMetaBox' => true,
+            'YsGroup\\Controller\\Admin\\Metaboxes\\PostMetas\\GroupAdminMetabox' => true,
+            'YsGroup\\Controller\\Admin\\Metaboxes\\PostMetas\\GroupIdPostMetaBox' => true,
+            'YsGroup\\Controller\\Admin\\Metaboxes\\PostMetas\\StatusPostMetaBox' => true,
+            'YsGroup\\Controller\\Admin\\Metaboxes\\TermMetas\\YsGroupsMemberTermMeta' => true,
             'YsGroup\\Controller\\Admin\\YsGroupCPT' => true,
             'YsGroup\\Controller\\Admin\\YsGroupPostCPT' => true,
             'YsGroup\\Controller\\Api\\YsGroupPostRestController' => true,
-            'YsGroup\\Controller\\Front\\GroupPostsController' => true,
+            'YsGroup\\Controller\\Front\\GroupPostsCrudController' => true,
             'YsGroup\\Controller\\Front\\GroupsController' => true,
             'YsGroup\\Helpers\\Helpers' => true,
             'YsGroup\\Model\\Db' => true,
@@ -80,7 +78,7 @@ class YsGroupsCacheContainer extends Container
      */
     protected function getAdminService()
     {
-        return $this->services['YsGroup\\Controller\\Admin\\Admin'] = new \YsGroup\Controller\Admin\Admin(new \YsGroup\Controller\Admin\AdminGroups(), new \YsGroup\Controller\Admin\YsGroupCPT(), new \YsGroup\Controller\Admin\Metaboxs\PostMetas\StatusMetaBox(), new \YsGroup\Controller\Admin\Metaboxs\PostMetas\GroupAdminMetabox(), new \YsGroup\Controller\Admin\Metaboxs\PostMetas\CoverPhotoMetaBox(), new \YsGroup\Controller\Admin\YsGroupPostCPT(), new \YsGroup\Controller\Admin\Metaboxs\PostMetas\GroupIdMetaBox(), new \YsGroup\Controller\Admin\Metaboxs\TermMetas\YsGroupsMemberTermMeta());
+        return $this->services['YsGroup\\Controller\\Admin\\Admin'] = new \YsGroup\Controller\Admin\Admin(new \YsGroup\Controller\Admin\AdminGroups(), new \YsGroup\Controller\Admin\YsGroupCPT(), new \YsGroup\Controller\Admin\Metaboxes\PostMetas\StatusPostMetaBox(), new \YsGroup\Controller\Admin\Metaboxes\PostMetas\GroupAdminMetabox(), new \YsGroup\Controller\Admin\Metaboxes\PostMetas\CoverPhotoPostMetaBox(), new \YsGroup\Controller\Admin\YsGroupPostCPT(), new \YsGroup\Controller\Admin\Metaboxes\PostMetas\GroupIdPostMetaBox(), new \YsGroup\Controller\Admin\Metaboxes\TermMetas\YsGroupsMemberTermMeta());
     }
 
     /**

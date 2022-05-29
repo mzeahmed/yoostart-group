@@ -1,6 +1,5 @@
+import { CURRENT_USER } from '../../constants/constants';
 import NewPostModal from '../modals/NewPostModal';
-
-const currentUser = window.ys_group_config.current_user;
 
 export default function NewPostForm () {
   return (
@@ -8,10 +7,10 @@ export default function NewPostForm () {
       <div className="row">
         <div className="col-md-2 user-avatar">
           <div className="avatar">
-            <a href={currentUser.profile_url}><img src={currentUser.avatar_image} alt=""/></a>
+            <a href={CURRENT_USER['profile_url']}><img src={CURRENT_USER['avatar_image']} alt=""/></a>
           </div>
         </div>
-        <div className="col-md-10 post-input">
+        <div className="col-md-10 ys-group-post-input">
           <NewPostModal/>
         </div>
       </div>
