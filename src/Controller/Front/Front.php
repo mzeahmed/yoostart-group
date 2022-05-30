@@ -14,6 +14,7 @@ class Front
         $this->groups = $groups;
 
         add_action('wp_enqueue_scripts', [$this, 'enqueueScripts']);
+        add_action('wp_logout', [$this, 'unsetJWT'], 99);
     }
 
     /**
@@ -55,8 +56,10 @@ class Front
                 'ajax_url' => admin_url('admin-ajax.php'),
                 '_cover_nonce' => wp_create_nonce('ys_group_ajax_nonce'),
                 'rest_url' => rest_url(),
-                'current_user' => get_ys_user_details(get_current_user_id()),
+                'yoostart_user' => get_ys_user_details(get_current_user_id()),
+                'wp_user' => wp_get_current_user(),
                 'text_domain' => YS_GROUP_TEXT_DOMAIN,
+                '_ys_group_jwt' => get_transient('_ys_group_jwt')
             ];
 
             wp_localize_script(
@@ -65,5 +68,15 @@ class Front
                 $config
             );
         }
+    }
+
+    /**
+     * Unset du jwt à la déconnexion
+     *
+     * @since 1.3.5
+     */
+    public function unsetJWT(): void
+    {
+        delete_transient('_ys_group_jwt');
     }
 }

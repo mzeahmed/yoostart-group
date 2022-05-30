@@ -2,14 +2,17 @@ import { __ } from '@wordpress/i18n';
 import { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import {
-  CURRENT_USER,
+  YOOSTART_USER,
   YS_GROUP_CREATE_POST_ENDPONT,
   YS_GROUP_ID,
+  YS_GROUP_JWT,
   YS_GROUP_TEXT_DOMAIN
 } from '../../constants/constants';
 import PostFeaturedMedias from '../FeaturedMedias/PostFeaturedMedias';
 
 export default function NewPostModal () {
+
+  // console.log(YS_GROUP_ID);
 
   const [formData, setFormData] = useState({});
   const [show, setShow] = useState(false);
@@ -25,12 +28,12 @@ export default function NewPostModal () {
       headers: {
         'Content-Type': 'application/json',
         'accept': 'application/json',
-        // 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        'Authorization': `Bearer ${YS_GROUP_JWT}`,
       },
 
       body: JSON.stringify({
         post_content: formData.post_content,
-        post_author: CURRENT_USER['id'],
+        post_author: YOOSTART_USER['id'],
         group_id: YS_GROUP_ID
       })
     })
@@ -43,7 +46,7 @@ export default function NewPostModal () {
 
     setTimeout(() => {
       setSubmitting(false);
-    }, 3000);
+    }, 2000);
   }
 
   /** Enlevement du modal*/
@@ -66,7 +69,7 @@ export default function NewPostModal () {
     <>
       <Button className="post-input-button" variant="light" onClick={handleShow}>
         {__(
-          CURRENT_USER['firstname'] + ' share your service offers or submit an issue to the community',
+          YOOSTART_USER['firstname'] + ' share your service offers or submit an issue to the community',
           'yoostartwp-groups')
         }
       </Button>
@@ -87,7 +90,7 @@ export default function NewPostModal () {
                   <textarea
                     className="form-control"
                     name="post_content"
-                    placeholder={CURRENT_USER['firstname'] + ' ' + __('publish something', YS_GROUP_TEXT_DOMAIN)}
+                    placeholder={YOOSTART_USER['firstname'] + ' ' + __('publish something', YS_GROUP_TEXT_DOMAIN)}
                     onChange={handleChange}
                     is="textarea-autogrow"
                   ></textarea>
@@ -98,7 +101,7 @@ export default function NewPostModal () {
 
             <hr/>
 
-            <Button type="submit" variant="primary" onClick={() => setTimeout(handleClose, 3000)}>
+            <Button type="submit" variant="primary" onClick={() => setTimeout(handleClose, 2000)}>
               {__('Publish', YS_GROUP_TEXT_DOMAIN)}
             </Button>
           </form>

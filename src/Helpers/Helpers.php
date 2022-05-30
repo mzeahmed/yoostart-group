@@ -357,7 +357,6 @@ class Helpers
      * @param string $postMetaKey
      * @param int    $groupId
      * @param mixed  $file
-     *
      * @param string $type cover_photo ou avatar
      *
      * @return bool|string|void
@@ -513,5 +512,39 @@ class Helpers
     public static function getGroupMembersCount($groupId)
     {
         return (new Groups())->getGroupMembersCount($groupId);
+    }
+
+    /**
+     * Generation du JWT
+     *
+     * @param string $email
+     * @param string $password
+     *
+     * @return void
+     * @see   https://wordpress.org/plugins/jwt-auth/
+     * @since 1.3.5
+     */
+    public static function generateJWT(string $email, string $password): void
+    {
+        $data = [
+            "username" => $email,
+            "password" => $password
+        ];
+
+        $curl = curl_init(home_url() . '/wp-json/jwt-auth/v1/token');
+
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLINFO_HEADER_OUT, true);
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+
+        $json = curl_exec($curl);
+        $obj = json_decode($json);
+        $token = $obj->{'data'}->{'token'};
+
+        // setcookie('_ys_group_jwt', $token);
+        set_transient('_ys_group_jwt', $token);
+
+        curl_close($curl);
     }
 }

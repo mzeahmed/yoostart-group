@@ -4,12 +4,11 @@
  * @link              yoostart.com
  * @since             1.0.0
  * @package           YsGroup
- *
  * @wordpress-plugin
  * Plugin Name:       Yoostart Group
  * Plugin URI:        https://yoostart.com
  * Description:       Plugin de gestion des groupes, à destination de yoostart.com, nécessite le plugin yoostartwp
- * Version:           1.3.4
+ * Version:           1.3.5
  * Author:            Yoostart
  * Author URI:        yoostart.com
  * License:           GPL-2.0+
@@ -36,8 +35,6 @@ function yoostart_group(): ?YsGroup\YsGroup
     return YsGroup\YsGroup::getInstance();
 }
 
-yoostart_group();
-
 add_action('after_setup_theme', function () {
     Carbon_Fields\Carbon_Fields::boot();
 });
@@ -45,3 +42,5 @@ add_action('after_setup_theme', function () {
 add_action('ys_group_loaded', function () {
     YsGroup\Container::load();
 });
+
+yoostart_group();
