@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { YS_GROUP_TEXT_DOMAIN } from '../../../constants/constants';
 import Comment from './parts/Comment';
 
-export default function PostFooter ({ postId }) {
+export default function PostFooter ({ id }) {
   const [isShowed, setIsSohwed] = useState(false);
 
   const handleClick = () => {
@@ -13,7 +13,7 @@ export default function PostFooter ({ postId }) {
   let form;
 
   if (isShowed) {
-    form = Comment({ postId });
+    form = Comment({ id });
   }
 
   return (

@@ -515,7 +515,7 @@ class Helpers
     }
 
     /**
-     * Generation du JWT
+     * Génération du JWT
      *
      * @param string $email
      * @param string $password

@@ -1,11 +1,11 @@
-import FeaturedImage from './parts/FeaturedImage'
-import Content from './parts/Content'
+import Content from './parts/Content';
+import FeaturedImage from './parts/FeaturedImage';
 
-export default function PostContent ({ content, postFeaturedImage, postTitle }) {
+export default function PostContent ({ content, featured_image, title }) {
   return (
     <div className="post-content">
       <Content content={content}/>
-      <FeaturedImage postFeaturedImage={postFeaturedImage} postTitle={postTitle}/>
+      <FeaturedImage featured_image={featured_image} title={title}/>
     </div>
-  )
+  );
 }

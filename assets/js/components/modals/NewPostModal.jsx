@@ -1,19 +1,11 @@
 import { __ } from '@wordpress/i18n';
 import { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import {
-  YOOSTART_USER,
-  YS_GROUP_CREATE_POST_ENDPONT,
-  YS_GROUP_ID,
-  YS_GROUP_JWT,
-  YS_GROUP_TEXT_DOMAIN
-} from '../../constants/constants';
+import { YOOSTART_USER, YS_GROUP_TEXT_DOMAIN } from '../../constants/constants';
+import { savePost } from '../../services/PostService';
 import PostFeaturedMedias from '../FeaturedMedias/PostFeaturedMedias';
 
-export default function NewPostModal () {
-
-  // console.log(YS_GROUP_ID);
-
+export default function NewPostModal ({ onSave }) {
   const [formData, setFormData] = useState({});
   const [show, setShow] = useState(false);
 
@@ -23,30 +15,13 @@ export default function NewPostModal () {
     event.preventDefault();
     setSubmitting(true);
 
-    fetch(YS_GROUP_CREATE_POST_ENDPONT, {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-        'accept': 'application/json',
-        'Authorization': `Bearer ${YS_GROUP_JWT}`,
-      },
-
-      body: JSON.stringify({
-        post_content: formData.post_content,
-        post_author: YOOSTART_USER['id'],
-        group_id: YS_GROUP_ID
-      })
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data);
-      });
+    await savePost(formData).then((post) => {
+      onSave && typeof onSave === 'function' && onSave(post);
+    });
 
     setTimeout(() => {
       setSubmitting(false);
-    }, 2000);
+    }, 500);
   }
 
   /** Enlevement du modal*/
@@ -70,7 +45,7 @@ export default function NewPostModal () {
       <Button className="post-input-button" variant="light" onClick={handleShow}>
         {__(
           YOOSTART_USER['firstname'] + ' share your service offers or submit an issue to the community',
-          'yoostartwp-groups')
+          YS_GROUP_TEXT_DOMAIN)
         }
       </Button>
 
@@ -101,7 +76,7 @@ export default function NewPostModal () {
 
             <hr/>
 
-            <Button type="submit" variant="primary" onClick={() => setTimeout(handleClose, 2000)}>
+            <Button type="submit" variant="primary" onClick={() => setTimeout(handleClose, 500)}>
               {__('Publish', YS_GROUP_TEXT_DOMAIN)}
             </Button>
           </form>

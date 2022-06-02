@@ -1,7 +1,7 @@
 import { YOOSTART_USER } from '../../constants/constants';
 import NewPostModal from '../modals/NewPostModal';
 
-export default function NewPostForm () {
+export default function NewPostForm ({ onSave }) {
   return (
     <div className="ys-group-new-post-form" id="ys_group_post_form">
       <div className="row">
@@ -11,7 +11,7 @@ export default function NewPostForm () {
           </div>
         </div>
         <div className="col-md-10 ys-group-post-input">
-          <NewPostModal/>
+          <NewPostModal onSave={onSave}/>
         </div>
       </div>
     </div>

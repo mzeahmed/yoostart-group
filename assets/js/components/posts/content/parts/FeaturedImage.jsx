@@ -1,8 +1,8 @@
-export default function FeaturedImage ({ postFeaturedImage, postTitle }) {
-  if (postFeaturedImage !== false) {
+export default function FeaturedImage ({ featured_image, title }) {
+  if (featured_image !== false) {
     return (
       <div className="featured-image">
-        <img src={postFeaturedImage} alt={`Image de ${postTitle}`}/>
+        <img src={featured_image} alt={`Image de ${title}`}/>
       </div>
     );
   } else {
