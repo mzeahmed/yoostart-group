@@ -49,6 +49,10 @@ class Front
                 true,
             );
 
+            /** Dequeue de tinymce, conflit avec VueJs  */
+            wp_dequeue_script('yoostart-emoji-js');
+            wp_dequeue_script('yoostart-emoji-lang-fr');
+
             /**
              * Variables dont on besoin d'envoyer à javascript, React etc...
              */

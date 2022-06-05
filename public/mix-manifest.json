@@ -1,8 +1,8 @@
 {
     "/build/app.js": "/build/app.js",
     "/build/admin.js": "/build/admin.js",
-    "/build/admin.css": "/build/admin.css",
     "/build/app.css": "/build/app.css",
+    "/build/admin.css": "/build/admin.css",
     "/build/images/camera.png": "/build/images/camera.png",
     "/build/images/default-group-avatar.png": "/build/images/default-group-avatar.png",
     "/build/images/default-group-cover.png": "/build/images/default-group-cover.png"

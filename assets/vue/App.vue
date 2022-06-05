@@ -1,8 +1,8 @@
 <script setup>
-  import Posts from './components/posts/Posts'</script>
+  import Posts from './components/posts/Posts';</script>
 
 <template>
-  <div class="App">
-    <Posts/>
+  <div class="ys-group-app">
+    <Posts />
   </div>
 </template>

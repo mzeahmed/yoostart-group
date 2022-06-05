@@ -19,12 +19,13 @@ export async function getPosts () {
     headers: {
       'Authorization': ` Bearer ${YS_GROUP_JWT}`,
     },
-  }).then((res) => {
-    if (! res.ok) {
-      throw Error(__('Could not fetch the data for that resource', YS_GROUP_TEXT_DOMAIN));
-    }
-    return res.json();
-  });
+  })
+  // .then((res) => {
+  //   if (! res.ok) {
+  //     throw Error(__('Could not fetch the data for that resource', YS_GROUP_TEXT_DOMAIN));
+  //   }
+  //   return res.json();
+  // });
 }
 
 /**
@@ -43,7 +44,7 @@ export async function createPost (post) {
     },
 
     body: JSON.stringify({
-      post_content: post.post_content,
+      post_content: post,
       post_author: YOOSTART_USER['id'],
       group_id: YS_GROUP_ID,
     }),

@@ -1,7 +1,8 @@
 <script setup>
   import { __ } from '@wordpress/i18n';
   import { ref } from 'vue';
-  import { YS_GROUP_GET_POSTS_ENDPOINT, YS_GROUP_JWT, YS_GROUP_TEXT_DOMAIN } from '../../config';
+  import { getPosts } from '../../../js/services/PostService';
+  import { YS_GROUP_TEXT_DOMAIN } from '../../config';
   import PostForm from '../forms/PostForm';
   import PostContent from './content/PostContent';
   import PostFooter from './footer/PostFooter';
@@ -10,11 +11,7 @@
   const post = ref(null);
   const error = ref(null);
 
-  fetch(YS_GROUP_GET_POSTS_ENDPOINT, {
-    headers: {
-      'Authorization': `Bearer ${YS_GROUP_JWT}`,
-    },
-  })
+  getPosts()
       .then((res) => res.json())
       .then((json) => (post.value = json))
       .catch((err) => (error.value = err));
