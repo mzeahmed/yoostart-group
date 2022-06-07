@@ -20,7 +20,7 @@
   "type": "wordpress-plugin",
   "license": "proprietary",
   "require": {
-    "php": ">=8.0"
+    "php": ">=7.4"
   },
   "config": {
     "sort-packages": true
