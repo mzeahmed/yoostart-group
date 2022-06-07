@@ -82,7 +82,7 @@ class YsGroupCPT extends AbstractController
             'capabilities' => $capabilities,
         ];
 
-        register_post_type('ys-group', $args);
+        register_post_type(YS_GROUP_CPT, $args);
     }
 
     /**
@@ -117,7 +117,7 @@ class YsGroupCPT extends AbstractController
             'show_tagcloud' => false,
         ];
 
-        register_taxonomy('ys_group_member', 'ys-group', $args);
+        register_taxonomy('ys_group_member', YS_GROUP_CPT, $args);
     }
 
     /**
@@ -130,7 +130,7 @@ class YsGroupCPT extends AbstractController
      */
     public function disableGutenberg($status, $postType): mixed
     {
-        $disabledpostTypes = ['ys-group', 'ys-group-post'];
+        $disabledpostTypes = [YS_GROUP_CPT, YS_GROUP_POST_CPT];
 
         if (in_array($postType, $disabledpostTypes, true)) {
             $status = false;
@@ -144,9 +144,9 @@ class YsGroupCPT extends AbstractController
      *
      * @return string
      */
-    public function archivePageTitle(string $description)
+    public function archivePageTitle(string $description): string
     {
-        if (is_post_type_archive('ys-group')) {
+        if (is_post_type_archive(YS_GROUP_CPT)) {
             $description = __('Groups', YS_GROUP_TEXT_DOMAIN) . ' - ' . get_bloginfo('name');
         }
 

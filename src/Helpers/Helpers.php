@@ -547,4 +547,29 @@ class Helpers
 
         curl_close($curl);
     }
+
+    /**
+     * Ajoute un argument de requete
+     *
+     * @param $param
+     * @param $key
+     *
+     * @return array[]|null
+     * @since 1.2.5
+     */
+    public static function queryArgument($param, $key): ?array
+    {
+        if ($param) {
+            return [
+                [
+                    'key' => $key,
+                    'value' => $param,
+                    'type' => 'NUMERIC',
+                    'compare' => '=',
+                ],
+            ];
+        }
+
+        return null;
+    }
 }

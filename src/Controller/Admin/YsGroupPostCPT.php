@@ -64,7 +64,7 @@ class YsGroupPostCPT extends AbstractController
             'capabilities' => $capabilities,
         ];
 
-        register_post_type('ys-group-post', $args);
+        register_post_type(YS_GROUP_POST_CPT, $args);
     }
 
     /**
@@ -91,7 +91,7 @@ class YsGroupPostCPT extends AbstractController
      * @return void
      * @since   1.2.4
      */
-    public function showMetaValue($column, $postId)
+    public function showMetaValue($column, $postId): void
     {
         $groupId = get_post_meta($postId, YS_GROUP_ID_META_KEY, true);
 

@@ -27,6 +27,10 @@ define('YS_GROUP_UPLOAD_BASE_URL', $uploadDir['baseurl']);
 
 define('YS_GROUP_DB_PREFIX', $wpdb->prefix . 'ys_group_');
 
+// Post types
+const YS_GROUP_POST_CPT = 'ys-group-post';
+const YS_GROUP_CPT = 'ys-group';
+
 // Postmetas
 const YS_GROUP_STATUS_META_KEY = '_ys_group_status';
 const YS_GROUP_ADMIN_META_KEY = '_ys_group_admin_meta_key';
