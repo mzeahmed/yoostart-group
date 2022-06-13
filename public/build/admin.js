@@ -1,1 +1,228 @@
-(()=>{var t={3254:()=>{function t(e){return t="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},t(e)}function e(t,e){for(var n=0;n<e.length;n++){var o=e[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(t,o.key,o)}}function n(e,n){if(n&&("object"===t(n)||"function"==typeof n))return n;if(void 0!==n)throw new TypeError("Derived constructors may only return object or undefined");return o(e)}function o(t){if(void 0===t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return t}function r(t){var e="function"==typeof Map?new Map:void 0;return r=function(t){if(null===t||(n=t,-1===Function.toString.call(n).indexOf("[native code]")))return t;var n;if("function"!=typeof t)throw new TypeError("Super expression must either be null or a function");if(void 0!==e){if(e.has(t))return e.get(t);e.set(t,o)}function o(){return i(t,arguments,s(this).constructor)}return o.prototype=Object.create(t.prototype,{constructor:{value:o,enumerable:!1,writable:!0,configurable:!0}}),c(o,t)},r(t)}function i(t,e,n){return i=u()?Reflect.construct:function(t,e,n){var o=[null];o.push.apply(o,e);var r=new(Function.bind.apply(t,o));return n&&c(r,n.prototype),r},i.apply(null,arguments)}function u(){if("undefined"==typeof Reflect||!Reflect.construct)return!1;if(Reflect.construct.sham)return!1;if("function"==typeof Proxy)return!0;try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(t){return!1}}function c(t,e){return c=Object.setPrototypeOf||function(t,e){return t.__proto__=e,t},c(t,e)}function s(t){return s=Object.setPrototypeOf?Object.getPrototypeOf:function(t){return t.__proto__||Object.getPrototypeOf(t)},s(t)}var f=function(t){!function(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function");t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,writable:!0,configurable:!0}}),Object.defineProperty(t,"prototype",{writable:!1}),e&&c(t,e)}(y,t);var r,i,f,a,l,p=(r=y,i=u(),function(){var t,e=s(r);if(i){var o=s(this).constructor;t=Reflect.construct(e,arguments,o)}else t=e.apply(this,arguments);return n(this,t)});function y(){var t,e,n,r;return function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,y),(t=p.call(this)).onFocus=t.onFocus.bind(o(t)),t.autogrow=t.autogrow.bind(o(t)),t.onResize=(e=t.onResize.bind(o(t)),n=300,function(){var t=arguments,o=this;clearTimeout(r),r=setTimeout((function(){e.apply(o,t)}),n)}),t}return f=y,(a=[{key:"connectedCallback",value:function(){this.addEventListener("focus",this.onFocus)}},{key:"disconnectedCallback",value:function(){window.removeEventListener("resize",this.onResize)}},{key:"onFocus",value:function(){this.style.overflow="hidden",this.style.resize="none",this.style.boxSizing="border-box",this.autogrow(),window.addEventListener("resize",this.onResize),this.addEventListener("input",this.autogrow),this.removeEventListener("focus",this.onFocus)}},{key:"onResize",value:function(){this.autogrow()}},{key:"autogrow",value:function(){this.style.height="auto",this.style.height=this.scrollHeight+"px"}}])&&e(f.prototype,a),l&&e(f,l),Object.defineProperty(f,"prototype",{writable:!1}),y}(r(HTMLTextAreaElement));customElements.define("textarea-autogrow",f,{extends:"textarea"})}},e={};function n(o){var r=e[o];if(void 0!==r)return r.exports;var i=e[o]={exports:{}};return t[o](i,i.exports,n),i.exports}(()=>{"use strict";n(3254);document.querySelector(".term-description-wrap").remove()})()})();
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./assets/js/elements/Autogrow.js":
+/*!****************************************!*\
+  !*** ./assets/js/elements/Autogrow.js ***!
+  \****************************************/
+/***/ (() => {
+
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _wrapNativeSuper(Class) { var _cache = typeof Map === "function" ? new Map() : undefined; _wrapNativeSuper = function _wrapNativeSuper(Class) { if (Class === null || !_isNativeFunction(Class)) return Class; if (typeof Class !== "function") { throw new TypeError("Super expression must either be null or a function"); } if (typeof _cache !== "undefined") { if (_cache.has(Class)) return _cache.get(Class); _cache.set(Class, Wrapper); } function Wrapper() { return _construct(Class, arguments, _getPrototypeOf(this).constructor); } Wrapper.prototype = Object.create(Class.prototype, { constructor: { value: Wrapper, enumerable: false, writable: true, configurable: true } }); return _setPrototypeOf(Wrapper, Class); }; return _wrapNativeSuper(Class); }
+
+function _construct(Parent, args, Class) { if (_isNativeReflectConstruct()) { _construct = Reflect.construct; } else { _construct = function _construct(Parent, args, Class) { var a = [null]; a.push.apply(a, args); var Constructor = Function.bind.apply(Parent, a); var instance = new Constructor(); if (Class) _setPrototypeOf(instance, Class.prototype); return instance; }; } return _construct.apply(null, arguments); }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _isNativeFunction(fn) { return Function.toString.call(fn).indexOf("[native code]") !== -1; }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+/**
+ * @param {*} callback
+ * @param {*} delay
+ * @returns
+ * @since 1.0.9
+ */
+function debounce(callback, delay) {
+  var timer;
+  return function () {
+    var args = arguments;
+    var context = this;
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      callback.apply(context, args);
+    }, delay);
+  };
+}
+/**
+ * Extension automatique des champs de type textarea
+ * @since 1.0.9
+ */
+
+
+var Autogrow = /*#__PURE__*/function (_HTMLTextAreaElement) {
+  _inherits(Autogrow, _HTMLTextAreaElement);
+
+  var _super = _createSuper(Autogrow);
+
+  function Autogrow() {
+    var _this;
+
+    _classCallCheck(this, Autogrow);
+
+    _this = _super.call(this);
+    _this.onFocus = _this.onFocus.bind(_assertThisInitialized(_this));
+    _this.autogrow = _this.autogrow.bind(_assertThisInitialized(_this));
+    _this.onResize = debounce(_this.onResize.bind(_assertThisInitialized(_this)), 300);
+    return _this;
+  }
+
+  _createClass(Autogrow, [{
+    key: "connectedCallback",
+    value: function connectedCallback() {
+      this.addEventListener('focus', this.onFocus);
+    }
+  }, {
+    key: "disconnectedCallback",
+    value: function disconnectedCallback() {
+      window.removeEventListener('resize', this.onResize);
+    }
+  }, {
+    key: "onFocus",
+    value: function onFocus() {
+      this.style.overflow = 'hidden';
+      this.style.resize = 'none';
+      this.style.boxSizing = 'border-box';
+      this.autogrow();
+      window.addEventListener('resize', this.onResize);
+      this.addEventListener('input', this.autogrow);
+      this.removeEventListener('focus', this.onFocus);
+    }
+  }, {
+    key: "onResize",
+    value: function onResize() {
+      this.autogrow();
+    }
+  }, {
+    key: "autogrow",
+    value: function autogrow() {
+      this.style.height = 'auto';
+      this.style.height = this.scrollHeight + 'px';
+    }
+  }]);
+
+  return Autogrow;
+}( /*#__PURE__*/_wrapNativeSuper(HTMLTextAreaElement));
+/**
+ * @example useage <textarea is="textarea-autogrow"></textarea>
+ */
+
+
+customElements.define('textarea-autogrow', Autogrow, {
+  "extends": 'textarea'
+});
+
+/***/ }),
+
+/***/ "./assets/js/modules/remove-field.js":
+/*!*******************************************!*\
+  !*** ./assets/js/modules/remove-field.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ removeField)
+/* harmony export */ });
+function removeField() {
+  var field = document.querySelector('.term-description-wrap');
+  field.remove();
+}
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+(() => {
+"use strict";
+/*!****************************!*\
+  !*** ./assets/js/admin.js ***!
+  \****************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _elements_Autogrow__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./elements/Autogrow */ "./assets/js/elements/Autogrow.js");
+/* harmony import */ var _elements_Autogrow__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_elements_Autogrow__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _modules_remove_field__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/remove-field */ "./assets/js/modules/remove-field.js");
+
+
+(0,_modules_remove_field__WEBPACK_IMPORTED_MODULE_1__["default"])();
+})();
+
+/******/ })()
+;

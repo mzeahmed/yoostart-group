@@ -541,7 +541,7 @@ class Helpers
         $json = curl_exec($curl);
         $obj = json_decode($json);
         $token = $obj->{'data'}->{'token'};
-
+        // dd($json, $obj, $token);
         // setcookie('_ys_group_jwt', $token);
         set_transient('_ys_group_jwt', $token);
 

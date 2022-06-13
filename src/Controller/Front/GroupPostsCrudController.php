@@ -21,12 +21,13 @@ class GroupPostsCrudController
         $groupId = json_decode($request->get_param('_ys_group_id_meta_key'));
 
         $posts = new \WP_Query([
-            'posts_per_page' => -1,
+            'posts_per_page' => $request['per_page'],
             'post_type' => YS_GROUP_POST_CPT,
             'orderby' => 'date',
             'order' => 'desc',
             'post_status' => 'publish',
             'meta_query' => Helpers::queryArgument($groupId, '_ys_group_id_meta_key'),
+            'paged' => $request['paged'] ? $request['paged'] : 1
         ]);
 
         $data = [];

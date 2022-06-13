@@ -22,7 +22,7 @@
     let elems = document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button');
     elems.forEach((e) => {
       const target = e.closest('.modal');
-      console.log(target);
+      // console.log(target);
       e.addEventListener('click', () => {
         target.classList.remove('is-active');
       });
@@ -30,7 +30,7 @@
   };
   // esc();
 
-  console.log(modal);
+  // console.log(modal);
 
   async function handleSubmit (e) {
     e.preventDefault();

@@ -4,7 +4,7 @@ namespace YsGroup\Controller\Api;
 
 use YsGroup\Controller\Front\GroupPostsCrudController;
 
-class YsGroupPostRestController
+class YsGroupPostRestEndpoint
 {
     public string $version;
 

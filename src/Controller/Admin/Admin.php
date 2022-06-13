@@ -14,8 +14,6 @@ use YsGroup\Controller\Admin\Metaboxes\TermMetas\YsGroupsMemberTermMeta;
  */
 class Admin extends AbstractController
 {
-    public AdminGroups $ysGroups;
-
     public YsGroupCPT $ysGroupCPT;
 
     public YsGroupPostCPT $ysGroupPostCPT;
@@ -33,19 +31,17 @@ class Admin extends AbstractController
     public string $page;
 
     /**
-     * @param AdminGroups $ysGroups
-     * @param YsGroupCPT $ysGroupCPT
-     * @param StatusPostMetaBox $metaBox
-     * @param GroupAdminMetabox $groupAdminMetabox
-     * @param CoverPhotoPostMetaBox $coverPhotoMetaBox
-     * @param YsGroupPostCPT $ysGroupPostCPT
-     * @param GroupIdPostMetaBox $ysGroupIdMetaBox
+     * @param YsGroupCPT             $ysGroupCPT
+     * @param StatusPostMetaBox      $metaBox
+     * @param GroupAdminMetabox      $groupAdminMetabox
+     * @param CoverPhotoPostMetaBox  $coverPhotoMetaBox
+     * @param YsGroupPostCPT         $ysGroupPostCPT
+     * @param GroupIdPostMetaBox     $ysGroupIdMetaBox
      * @param YsGroupsMemberTermMeta $ysGroupsMemberTermMeta
      *
      * @since 1.0.6
      */
     public function __construct(
-        AdminGroups $ysGroups,
         YsGroupCPT $ysGroupCPT,
         StatusPostMetaBox $metaBox,
         GroupAdminMetabox $groupAdminMetabox,
@@ -56,7 +52,6 @@ class Admin extends AbstractController
     ) {
         parent::__construct();
 
-        $this->ysGroups = $ysGroups;
         $this->ysGroupCPT = $ysGroupCPT;
         $this->metabox = $metaBox;
         $this->groupAdminMetabox = $groupAdminMetabox;
@@ -79,12 +74,12 @@ class Admin extends AbstractController
      * @return void
      * @since 1.0.6
      */
-    public function enqueueScripts()
+    public function enqueueScripts(): void
     {
         global $current_screen;
 
         if (
-            (!empty($this->page) && ($this->page === 'ys_options_groups'))
+            (! empty($this->page) && ($this->page === 'ys_options_groups'))
             || $current_screen->taxonomy === 'ys_group_member'
             || $current_screen->post_type === 'ys-group-post'
             || $current_screen->post_type === 'ys-group'
@@ -116,7 +111,7 @@ class Admin extends AbstractController
      */
     public function dependencyNotice(): ?string
     {
-        if (!class_exists('Yoostart')) {
+        if (! class_exists('Yoostart')) {
             return $this->render('admin/dependency-notice', []);
         }
 
@@ -129,34 +124,11 @@ class Admin extends AbstractController
      * @return void
      * @since 1.1.0
      */
-    public function redirectIfMainPluginNotActiv()
+    public function redirectIfMainPluginNotActiv(): void
     {
-        if ((!empty($this->page) && ($this->page === 'ys_options_groups')) && !class_exists('Yoostart')) {
+        if ((! empty($this->page) && ($this->page === 'ys_options_groups')) && ! class_exists('Yoostart')) {
             wp_safe_redirect(admin_url('plugins.php'));
             die();
         }
     }
-
-    /**
-     * Affiche le nom du plugin à coté des pages créés par le plugin
-     *
-     * // * @param array $posts_states
-     * // * @param \WP_Post $post
-     * // *
-     * // * @return array
-     * // * @see   YS_GROUP_POSTS
-     * // * @since 1.0.5
-     */
-    // public function displayPostStates(array $posts_states, \WP_Post $post): array
-    // {
-    //     $postIds = (new PluginPosts())->getPostsId(YS_GROUP_POSTS);
-    //
-    //     foreach ($postIds as $id) {
-    //         if ($id == $post->ID) {
-    //             $posts_states[] = 'Yoostart Groups';
-    //         }
-    //     }
-    //
-    //     return $posts_states;
-    // }
 }

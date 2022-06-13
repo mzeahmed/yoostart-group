@@ -15,10 +15,10 @@ class YsGroupPostCPT extends AbstractController
 
         add_action('init', [$this, 'registerPostType']);
 
-        add_filter('manage_ys-group-post_posts_columns', [$this, 'manageCustomColumns']);
-        add_action('manage_ys-group-post_posts_custom_column', [$this, 'showMetaValue'], 10, 3);
+        add_filter('manage_' . YS_GROUP_POST_CPT . '_posts_columns', [$this, 'manageCustomColumns']);
+        add_action('manage_' . YS_GROUP_POST_CPT . '_posts_custom_column', [$this, 'showMetaValue'], 10, 3);
 
-        add_filter('manage_edit-ys-group-post_sortable_columns', [$this, 'sortableColumn']);
+        add_filter('manage_edit-' . YS_GROUP_POST_CPT . '_sortable_columns', [$this, 'sortableColumn']);
     }
 
     /**
@@ -68,6 +68,8 @@ class YsGroupPostCPT extends AbstractController
     }
 
     /**
+     * Ajout de colonne
+     *
      * @param $columns
      *
      * @wp-hook manage_{$post_type}_posts_columns
@@ -76,7 +78,7 @@ class YsGroupPostCPT extends AbstractController
      */
     public function manageCustomColumns($columns): ?array
     {
-        $columns['ys-group-post'] = __('Group title', YS_GROUP_TEXT_DOMAIN);
+        $columns['ys-group-post'] = __('Group', YS_GROUP_TEXT_DOMAIN);
 
         return $columns;
     }

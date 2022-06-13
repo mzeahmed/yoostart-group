@@ -1,6 +1,6 @@
 <script setup>
   import { __ } from '@wordpress/i18n';
-  import { ref } from 'vue';
+  import { onBeforeMount, onMounted, ref } from 'vue';
   import { getPosts } from '../../../js/services/PostService';
   import { YS_GROUP_TEXT_DOMAIN } from '../../config';
   import PostForm from '../forms/PostForm';
@@ -8,13 +8,41 @@
   import PostFooter from './footer/PostFooter';
   import PostHeader from './header/PostHeader';
 
-  const post = ref(null);
+  const posts = ref([]);
   const error = ref(null);
+  const loading = ref(false);
 
-  getPosts()
-      .then((res) => res.json())
-      .then((json) => (post.value = json))
-      .catch((err) => (error.value = err));
+  onBeforeMount(() => {
+    getPosts()
+        .then((res) => res.json())
+        .then((json) => {
+          loading.value = true;
+          posts.value = json;
+        })
+        .catch((err) => {
+          error.value = err;
+          console.log(err);
+          loading.value = true;
+        });
+  });
+
+  onMounted(() => {
+    window.onscroll = () => {
+      // let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+      let bottomOfWindow = (window.innerHeight + window.scrollY) >= document.body.scrollHeight;
+      // if (bottomOfWindow) {
+      //   getNextPosts()
+      //       .then(res => res.json())
+      //       .then(result => {
+      //         posts.push(result);
+      //         // alert('allo');
+      //         console.log(result);
+      //       });
+      // }
+
+      console.log(bottomOfWindow);
+    };
+  });
 
 </script>
 
@@ -22,31 +50,37 @@
   <PostForm />
 
   <div v-if="error" class="ys-group-posts">
-    <p class="post">{{ __('Oops! Error encountered: ', YS_GROUP_TEXT_DOMAIN) }} {{ error.message }}</p>
+    <p class="post">{{ __('Oops! Error encountered: ', YS_GROUP_TEXT_DOMAIN) }} <strong>{{ error.message }}</strong></p>
   </div>
 
-  <div v-else-if="post" class="ys-group-posts">
-    <div class="post" v-for="p in post">
+  <div v-else-if="!loading">
+    <div class="ys-group-posts-loader text-center">
+      {{ __('Loading posts ...', YS_GROUP_TEXT_DOMAIN) }}
+    </div>
+  </div>
+
+  <div v-else-if="posts" class="ys-group-posts">
+    <div class="post" v-for="post in posts">
       <PostHeader
-          :avatar=p.author.avatar_image
-          :author_name=p.author.fullname
-          :date=p.date
-          :profile_url=p.author.profile_url
+          :avatar=post.author.avatar_image
+          :author_name=post.author.fullname
+          :date=post.date
+          :profile_url=post.author.profile_url
       />
       <PostContent
-          :content=p.content
-          :featured_image=p.featured_image.thumbnail
-          :title=p.title
+          :content=post.content
+          :featured_image=post.featured_image.thumbnail
+          :title=post.title
       />
       <PostFooter
-          :post_id=p.id
+          :post_id=post.id
       />
     </div>
   </div>
 
   <div v-else>
     <div class="ys-group-posts-loader text-center-lg">
-      {{ __('Loading...', YS_GROUP_TEXT_DOMAIN) }}
+      {{ __('No post for now', YS_GROUP_TEXT_DOMAIN) }}
     </div>
   </div>
 </template>

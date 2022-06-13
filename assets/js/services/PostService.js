@@ -1,11 +1,9 @@
-import { __ } from '@wordpress/i18n';
 import {
   YOOSTART_USER,
   YS_GROUP_CREATE_POST_ENDPONT,
   YS_GROUP_GET_POSTS_ENDPOINT,
   YS_GROUP_ID,
   YS_GROUP_JWT,
-  YS_GROUP_TEXT_DOMAIN,
 } from '../constants/constants';
 
 /**
@@ -15,17 +13,19 @@ import {
  * @since 1.2.5
  */
 export async function getPosts () {
-  return fetch(YS_GROUP_GET_POSTS_ENDPOINT, {
+  return fetch(YS_GROUP_GET_POSTS_ENDPOINT + `&per_page=5`, {
     headers: {
       'Authorization': ` Bearer ${YS_GROUP_JWT}`,
     },
-  })
-  // .then((res) => {
-  //   if (! res.ok) {
-  //     throw Error(__('Could not fetch the data for that resource', YS_GROUP_TEXT_DOMAIN));
-  //   }
-  //   return res.json();
-  // });
+  });
+}
+
+export async function getNextPosts () {
+  return fetch(YS_GROUP_GET_POSTS_ENDPOINT + `&per_page=1`, {
+    headers: {
+      'Authorization': ` Bearer ${YS_GROUP_JWT}`,
+    },
+  });
 }
 
 /**

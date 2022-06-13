@@ -2,8 +2,6 @@
 
 namespace YsGroup\Controller\Front;
 
-use YsGroup\Helpers\Helpers;
-
 /**
  * @since 1.0.9
  */
@@ -17,20 +15,6 @@ class Front
 
         add_action('wp_enqueue_scripts', [$this, 'enqueueScripts']);
         add_action('wp_logout', [$this, 'unsetJWT'], 99);
-
-        add_action('wp', function () {
-            global $post;
-            $groupId = $post->ID;
-
-            $obj = new \WP_Query([
-                'post_type' => YS_GROUP_POST_CPT,
-                'meta_query' => Helpers::queryArgument($groupId, YS_GROUP_ID_META_KEY),
-                'post_status' => 'publish',
-            ]);
-            $count = $obj->post_count;
-
-            dump($count);
-        });
     }
 
     /**

@@ -2,13 +2,13 @@
 
 namespace YsGroup\Services;
 
-use YsGroup\Controller\Api\YsGroupPostRestController;
+use YsGroup\Controller\Api\YsGroupPostRestEndpoint;
 
 class RestApi
 {
-    public YsGroupPostRestController $ysGroupPostRestController;
+    public YsGroupPostRestEndpoint $ysGroupPostRestController;
 
-    public function __construct(YsGroupPostRestController $ysGroupPostRestController)
+    public function __construct(YsGroupPostRestEndpoint $ysGroupPostRestController)
     {
         $this->ysGroupPostRestController = $ysGroupPostRestController;
     }

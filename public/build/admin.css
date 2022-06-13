@@ -1,1 +1,23 @@
-.ys-groups-dashboard{margin-top:60px}.ys-groups-dashboard .nav-tab:hover{text-decoration:none!important}.ys-groups-dashboard form button,.ys-groups-dashboard form button:hover{background:#f6f7f7;border-color:#2271b1;color:#2271b1}.ys-groups-dashboard .ys-group-form-container{margin-top:20px}.post-type-ys-group-post #titlediv #edit-slug-box{display:none!important}
+.ys-groups-dashboard {
+  margin-top: 60px;
+}
+.ys-groups-dashboard .nav-tab:hover {
+  text-decoration: none !important;
+}
+.ys-groups-dashboard form button {
+  color: #2271b1;
+  border-color: #2271b1;
+  background: #f6f7f7;
+}
+.ys-groups-dashboard form button:hover {
+  color: #2271b1;
+  border-color: #2271b1;
+  background: #f6f7f7;
+}
+.ys-groups-dashboard .ys-group-form-container {
+  margin-top: 20px;
+}
+
+.post-type-ys-group-post #titlediv #edit-slug-box {
+  display: none !important;
+}
