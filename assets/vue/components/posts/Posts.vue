@@ -1,7 +1,7 @@
 <script setup>
   import { __ } from '@wordpress/i18n';
   import { onBeforeMount, onMounted, ref } from 'vue';
-  import { getPosts } from '../../../js/services/PostService';
+  import { getNextPosts, getPosts } from '../../api/post';
   import { YS_GROUP_TEXT_DOMAIN } from '../../config';
   import PostForm from '../forms/PostForm';
   import PostContent from './content/PostContent';
@@ -11,38 +11,50 @@
   const posts = ref([]);
   const error = ref(null);
   const loading = ref(false);
+  const postCount = ref(null);
+  const totalPages = ref(null);
 
   onBeforeMount(() => {
     getPosts()
-        .then((res) => res.json())
+        .then((res) => {
+          postCount.value = res.headers.get('X-WP-Total');
+          totalPages.value = res.headers.get('X-WP-TotalPages');
+
+          return res.json();
+        })
         .then((json) => {
           loading.value = true;
           posts.value = json;
+
+          let bottomOfWindow = (window.innerHeight + window.scrollY) >= document.body.scrollHeight;
+          if (bottomOfWindow) {
+            // console.log(json);
+          }
         })
         .catch((err) => {
           error.value = err;
-          console.log(err);
           loading.value = true;
+          console.log(err);
         });
   });
 
-  onMounted(() => {
-    window.onscroll = () => {
-      // let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
-      let bottomOfWindow = (window.innerHeight + window.scrollY) >= document.body.scrollHeight;
-      // if (bottomOfWindow) {
-      //   getNextPosts()
-      //       .then(res => res.json())
-      //       .then(result => {
-      //         posts.push(result);
-      //         // alert('allo');
-      //         console.log(result);
-      //       });
-      // }
-
-      console.log(bottomOfWindow);
-    };
-  });
+  // onMounted(() => {
+  //   window.onscroll = () => {
+  //     // let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+  //     let bottomOfWindow = (window.innerHeight + window.scrollY) >= document.body.scrollHeight;
+  //     if (bottomOfWindow) {
+  //       getNextPosts()
+  //           .then(res => res.json())
+  //           .then(result => {
+  //             posts.value.push(result);
+  //             // alert('allo');
+  //             console.log(result);
+  //           });
+  //     }
+  //
+  //     // console.log(bottomOfWindow);
+  //   };
+  // });
 
 </script>
 

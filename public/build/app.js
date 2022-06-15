@@ -19616,6 +19616,116 @@ function savePost(post) {
 
 /***/ }),
 
+/***/ "./assets/vue/api/post.js":
+/*!********************************!*\
+  !*** ./assets/vue/api/post.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createPost": () => (/* binding */ createPost),
+/* harmony export */   "getPosts": () => (/* binding */ getPosts),
+/* harmony export */   "savePost": () => (/* binding */ savePost)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config */ "./assets/vue/config.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+/**
+ * Récuperation des publications
+ *
+ * @returns {Promise<*[]|any>}
+ * @since 1.2.5
+ */
+
+function getPosts() {
+  return _getPosts.apply(this, arguments);
+}
+/**
+ * Création d'une publication
+ *
+ * @returns {Promise<any>}
+ * @param post
+ */
+
+function _getPosts() {
+  _getPosts = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            return _context.abrupt("return", fetch(_config__WEBPACK_IMPORTED_MODULE_1__.YS_GROUP_GET_POSTS_ENDPOINT + "&per_page=5", {
+              headers: {
+                'Authorization': " Bearer ".concat(_config__WEBPACK_IMPORTED_MODULE_1__.YS_GROUP_JWT)
+              }
+            }));
+
+          case 1:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+  return _getPosts.apply(this, arguments);
+}
+
+function createPost(_x) {
+  return _createPost.apply(this, arguments);
+}
+/**
+ * @param post
+ * @returns {Promise<*>}
+ */
+
+function _createPost() {
+  _createPost = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(post) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            return _context2.abrupt("return", fetch(_config__WEBPACK_IMPORTED_MODULE_1__.YS_GROUP_CREATE_POST_ENDPONT, {
+              method: 'post',
+              headers: {
+                'Content-Type': 'application/json',
+                'accept': 'application/json',
+                'Authorization': "Bearer ".concat(_config__WEBPACK_IMPORTED_MODULE_1__.YS_GROUP_JWT)
+              },
+              body: JSON.stringify({
+                post_content: post,
+                post_author: _config__WEBPACK_IMPORTED_MODULE_1__.YOOSTART_USER.id,
+                group_id: _config__WEBPACK_IMPORTED_MODULE_1__.YS_GROUP_ID
+              })
+            }).then(function (response) {
+              return response.json();
+            }));
+
+          case 1:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  }));
+  return _createPost.apply(this, arguments);
+}
+
+function savePost(post) {
+  var _post$id;
+
+  return (_post$id = post.id) !== null && _post$id !== void 0 ? _post$id : createPost(post);
+}
+
+/***/ }),
+
 /***/ "./assets/vue/config.js":
 /*!******************************!*\
   !*** ./assets/vue/config.js ***!
@@ -19842,7 +19952,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/i18n/build-module/index.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _js_services_PostService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../js/services/PostService */ "./assets/js/services/PostService.js");
+/* harmony import */ var _api_post__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../api/post */ "./assets/vue/api/post.js");
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../config */ "./assets/vue/config.js");
 /* harmony import */ var _forms_PostForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../forms/PostForm */ "./assets/vue/components/forms/PostForm.vue");
 /* harmony import */ var _content_PostContent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./content/PostContent */ "./assets/vue/components/posts/content/PostContent.vue");
@@ -19864,43 +19974,55 @@ __webpack_require__.r(__webpack_exports__);
     var posts = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)([]);
     var error = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
     var loading = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var postCount = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
+    var totalPages = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
     (0,vue__WEBPACK_IMPORTED_MODULE_1__.onBeforeMount)(function () {
-      (0,_js_services_PostService__WEBPACK_IMPORTED_MODULE_2__.getPosts)().then(function (res) {
+      (0,_api_post__WEBPACK_IMPORTED_MODULE_2__.getPosts)().then(function (res) {
+        postCount.value = res.headers.get('X-WP-Total');
+        totalPages.value = res.headers.get('X-WP-TotalPages');
         return res.json();
       }).then(function (json) {
         loading.value = true;
         posts.value = json;
+        var bottomOfWindow = window.innerHeight + window.scrollY >= document.body.scrollHeight;
+
+        if (bottomOfWindow) {// console.log(json);
+        }
       })["catch"](function (err) {
         error.value = err;
-        console.log(err);
         loading.value = true;
+        console.log(err);
       });
-    });
-    (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)(function () {
-      window.onscroll = function () {
-        // let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
-        var bottomOfWindow = window.innerHeight + window.scrollY >= document.body.scrollHeight; // if (bottomOfWindow) {
-        //   getNextPosts()
-        //       .then(res => res.json())
-        //       .then(result => {
-        //         posts.push(result);
-        //         // alert('allo');
-        //         console.log(result);
-        //       });
-        // }
+    }); // onMounted(() => {
+    //   window.onscroll = () => {
+    //     // let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+    //     let bottomOfWindow = (window.innerHeight + window.scrollY) >= document.body.scrollHeight;
+    //     if (bottomOfWindow) {
+    //       getNextPosts()
+    //           .then(res => res.json())
+    //           .then(result => {
+    //             posts.value.push(result);
+    //             // alert('allo');
+    //             console.log(result);
+    //           });
+    //     }
+    //
+    //     // console.log(bottomOfWindow);
+    //   };
+    // });
 
-        console.log(bottomOfWindow);
-      };
-    });
     var __returned__ = {
       posts: posts,
       error: error,
       loading: loading,
+      postCount: postCount,
+      totalPages: totalPages,
       __: _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__,
       onBeforeMount: vue__WEBPACK_IMPORTED_MODULE_1__.onBeforeMount,
       onMounted: vue__WEBPACK_IMPORTED_MODULE_1__.onMounted,
       ref: vue__WEBPACK_IMPORTED_MODULE_1__.ref,
-      getPosts: _js_services_PostService__WEBPACK_IMPORTED_MODULE_2__.getPosts,
+      getNextPosts: _api_post__WEBPACK_IMPORTED_MODULE_2__.getNextPosts,
+      getPosts: _api_post__WEBPACK_IMPORTED_MODULE_2__.getPosts,
       YS_GROUP_TEXT_DOMAIN: _config__WEBPACK_IMPORTED_MODULE_3__.YS_GROUP_TEXT_DOMAIN,
       PostForm: _forms_PostForm__WEBPACK_IMPORTED_MODULE_4__["default"],
       PostContent: _content_PostContent__WEBPACK_IMPORTED_MODULE_5__["default"],

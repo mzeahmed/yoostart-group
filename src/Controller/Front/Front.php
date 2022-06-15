@@ -2,6 +2,8 @@
 
 namespace YsGroup\Controller\Front;
 
+use YsGroup\Helpers\Helpers;
+
 /**
  * @since 1.0.9
  */

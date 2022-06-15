@@ -20,20 +20,23 @@ class GroupPostsCrudController
     {
         $groupId = json_decode($request->get_param('_ys_group_id_meta_key'));
 
-        $posts = new \WP_Query([
+        $query = new \WP_Query([
             'posts_per_page' => $request['per_page'],
             'post_type' => YS_GROUP_POST_CPT,
             'orderby' => 'date',
             'order' => 'desc',
             'post_status' => 'publish',
             'meta_query' => Helpers::queryArgument($groupId, '_ys_group_id_meta_key'),
-            'paged' => $request['paged'] ? $request['paged'] : 1
+            'paged' => $request['page'] ? $request['page'] : 1
         ]);
+
+        $totalPosts = $query->found_posts;
+        $maxPages = $query->max_num_pages;
 
         $data = [];
         $i = 0;
 
-        foreach ($posts->posts as $post) {
+        foreach ($query->posts as $post) {
             $data[$i]['id'] = $post->ID;
             $data[$i]['title'] = $post->post_title;
             $data[$i]['slug'] = $post->post_name;
@@ -54,7 +57,12 @@ class GroupPostsCrudController
             ], 404);
         }
 
-        return rest_ensure_response($data);
+        $response = rest_ensure_response($data);
+
+        $response->header('X-WP-Total', $totalPosts);
+        $response->header('X-WP-TotalPages', $maxPages);
+
+        return $response;
     }
 
     /**
