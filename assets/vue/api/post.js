@@ -11,9 +11,11 @@ import {
  *
  * @returns {Promise<*[]|any>}
  * @since 1.2.5
+ * @param {number} postPerPage
+ * @param {number} page
  */
-export async function getPosts () {
-  return fetch(YS_GROUP_GET_POSTS_ENDPOINT + `&per_page=5`, {
+export async function getPosts (postPerPage, page = 1) {
+  return fetch(YS_GROUP_GET_POSTS_ENDPOINT + `&per_page=${postPerPage}&page=${page}`, {
     headers: {
       'Authorization': ` Bearer ${YS_GROUP_JWT}`,
     },

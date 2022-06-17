@@ -18,14 +18,15 @@ class YsGroupPostRestEndpoint
         $this->namespace = '/ys-group/v' . $this->version;
         $this->resourceName = 'posts';
 
-        add_action('rest_api_init', [$this, 'registerRoutes']);
+        add_action('rest_api_init', [$this, 'registerRestRoutes']);
+        add_action('rest_api_init', [$this, 'registerRestFields']);
     }
 
     /**
      * @return void
      * @since 1.2.0
      */
-    public function registerRoutes(): void
+    public function registerRestRoutes(): void
     {
         // GET
         register_rest_route(
@@ -47,13 +48,20 @@ class YsGroupPostRestEndpoint
                 'callback' => [GroupPostsCrudController::class, 'createPost']
             ]
         );
+    }
 
+    /**
+     * @return void
+     * @since 1.4.3
+     */
+    public function registerRestFields(): void
+    {
         /** Id du du group lié */
         register_rest_field(
             YS_GROUP_POST_CPT,
             YS_GROUP_ID_META_KEY,
             [
-                'get_callback' => [$this, 'registerGroupIdMetaKeyField'],
+                'get_callback' => [$this, 'groupIdMetaKeyField'],
                 'update_calback' => null,
                 'schema' => null,
             ]
@@ -97,12 +105,12 @@ class YsGroupPostRestEndpoint
     /**
      * Récuperation de l'ID du groupe lié au post
      *
-     * @param $obj
+     * @param $obj | post_type
      *
      * @return mixed
      * @since 1.2.5
      */
-    public function registerGroupIdMetaKeyField($obj): mixed
+    public function groupIdMetaKeyField($obj): mixed
     {
         return get_post_meta($obj->ID, YS_GROUP_ID_META_KEY, true);
     }

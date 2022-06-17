@@ -1,7 +1,7 @@
 <script setup>
   import { __ } from '@wordpress/i18n';
-  import { onBeforeMount, onMounted, ref } from 'vue';
-  import { getNextPosts, getPosts } from '../../api/post';
+  import { onBeforeMount, ref } from 'vue';
+  import { getPosts } from '../../api/post';
   import { YS_GROUP_TEXT_DOMAIN } from '../../config';
   import PostForm from '../forms/PostForm';
   import PostContent from './content/PostContent';
@@ -13,9 +13,10 @@
   const loading = ref(false);
   const postCount = ref(null);
   const totalPages = ref(null);
+  const currentPage = ref(1);
 
   onBeforeMount(() => {
-    getPosts()
+    getPosts(5, currentPage.value)
         .then((res) => {
           postCount.value = res.headers.get('X-WP-Total');
           totalPages.value = res.headers.get('X-WP-TotalPages');
@@ -26,10 +27,12 @@
           loading.value = true;
           posts.value = json;
 
-          let bottomOfWindow = (window.innerHeight + window.scrollY) >= document.body.scrollHeight;
-          if (bottomOfWindow) {
-            // console.log(json);
-          }
+          window.onscroll = () => {
+            let bottomOfWindow = (window.innerHeight + window.scrollY) >= document.body.scrollHeight;
+            if (bottomOfWindow) {
+              // console.log(json);
+            }
+          };
         })
         .catch((err) => {
           error.value = err;

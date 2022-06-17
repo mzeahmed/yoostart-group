@@ -90,14 +90,6 @@ class GroupPostsCrudController
             $response['data'] = get_post($newPostId);
 
             $groupId = $request->get_param('group_id');
-            // $count = self::postCount($groupId);
-
-            $obj = new \WP_Query([
-                'post_type' => YS_GROUP_POST_CPT,
-                'meta_query' => Helpers::queryArgument($groupId, YS_GROUP_ID_META_KEY)
-            ]);
-
-            $count = $obj->post_count;
 
             /** On lie le post au group en question */
             update_post_meta($response['data']->ID, YS_GROUP_ID_META_KEY, $groupId);
