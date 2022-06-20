@@ -4,25 +4,21 @@ if (! function_exists('get_plugin_data')) {
     require_once ABSPATH . 'wp-admin/includes/plugin.php';
 }
 
-// dump(get_post_type_archive_link('ys-groups'));
-
 global $wpdb;
 $plugin_data = get_plugin_data(YS_GROUP_PLUGIN_FILE);
 $uploadDir = wp_upload_dir();
-
-const DS = DIRECTORY_SEPARATOR;
 
 define('YS_GROUP_VERSION', $plugin_data['Version']);
 define('YS_GROUP_PLUGIN_NAME', $plugin_data['Name']);
 define('YS_GROUP_TEXT_DOMAIN', $plugin_data['TextDomain']);
 
-define('YS_GROUP_PATH', dirname(YS_GROUP_PLUGIN_FILE) . DS);
+define('YS_GROUP_PATH', dirname(__DIR__) . '/');
 define('YS_GROUP_URI', dirname(plugin_dir_url(__FILE__)));
 define('YS_GROUP_URL', home_url('group/'));
 
-const YS_GROUP_FRONT_IMG_URI = YS_GROUP_URI . DS . 'public' . DS . 'build' . DS . 'images' . DS;
+const YS_GROUP_FRONT_IMG_URI = YS_GROUP_URI . '/public/build/images';
 
-define('YS_GROUP_UPLOAD_DIR', $uploadDir['basedir'] . DS . 'yoostartwp-groups' . DS);
+define('YS_GROUP_UPLOAD_DIR', $uploadDir['basedir'] . '/yoostartwp-groups');
 define('YS_GROUP_UPLOAD_BASE_URL', $uploadDir['baseurl']);
 
 define('YS_GROUP_DB_PREFIX', $wpdb->prefix . 'ys_group_');
