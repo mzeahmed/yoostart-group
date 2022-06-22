@@ -16,7 +16,7 @@ define('YS_GROUP_PATH', dirname(__DIR__) . '/');
 define('YS_GROUP_URI', dirname(plugin_dir_url(__FILE__)));
 define('YS_GROUP_URL', home_url('group/'));
 
-const YS_GROUP_FRONT_IMG_URI = YS_GROUP_URI . '/public/build/images';
+define('YS_GROUP_FRONT_IMG_URI', YS_GROUP_URI . '/public/build/images/');
 
 define('YS_GROUP_UPLOAD_DIR', $uploadDir['basedir'] . '/yoostartwp-groups');
 define('YS_GROUP_UPLOAD_BASE_URL', $uploadDir['baseurl']);
@@ -24,17 +24,17 @@ define('YS_GROUP_UPLOAD_BASE_URL', $uploadDir['baseurl']);
 define('YS_GROUP_DB_PREFIX', $wpdb->prefix . 'ys_group_');
 
 // Post types
-const YS_GROUP_POST_CPT = 'ys-group-post';
-const YS_GROUP_CPT = 'ys-group';
+define('YS_GROUP_POST_CPT', 'ys-group-post');
+define('YS_GROUP_CPT', 'ys-group');
 
 // Postmetas
-const YS_GROUP_STATUS_META_KEY = '_ys_group_status';
-const YS_GROUP_ADMIN_META_KEY = '_ys_group_admin_meta_key';
-const YS_GROUP_ID_META_KEY = '_ys_group_id_meta_key';
-const YS_GROUP_COVER_PHOTO_META_KEY = 'ys_group_cover_photo_meta_key';
+define('YS_GROUP_STATUS_META_KEY', '_ys_group_status');
+define('YS_GROUP_ADMIN_META_KEY', '_ys_group_admin_meta_key');
+define('YS_GROUP_ID_META_KEY', '_ys_group_id_meta_key');
+define('YS_GROUP_COVER_PHOTO_META_KEY', 'ys_group_cover_photo_meta_key');
 
 // Term meta
-const YS_GROUP_MEMBER_USER_TERM_META_KEY = '_ys_group_member_user';
+define('YS_GROUP_MEMBER_USER_TERM_META_KEY', '_ys_group_member_user');
 
 // Rajouter le nom des pages nécessaires
 // const YS_GROUP_POSTS = [
