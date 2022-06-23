@@ -24,7 +24,7 @@ class FixSomeErrors
 
         $post_types_to_fix = [
             [
-                'post_type' => 'ys-group',
+                'post_type' => YS_GROUP_CPT,
                 'posts_per_page' => 6,
             ],
 

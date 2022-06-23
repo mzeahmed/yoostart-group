@@ -78,15 +78,14 @@ class Admin extends AbstractController
     {
         global $current_screen;
 
-        if (
-            (! empty($this->page) && ($this->page === 'ys_options_groups'))
+        if ((! empty($this->page) && ($this->page === 'ys_options_groups'))
             || $current_screen->taxonomy === 'ys_group_member'
             || $current_screen->post_type === 'ys-group-post'
-            || $current_screen->post_type === 'ys-group'
+            || $current_screen->post_type === YS_GROUP_CPT
         ) {
             wp_enqueue_style(
                 'ys-groups-admin',
-                YS_GROUP_URI . '/public/css/admin.css',
+                YS_GROUP_URI . 'public/css/admin.css',
                 [],
                 YS_GROUP_VERSION,
                 'all'
@@ -94,7 +93,7 @@ class Admin extends AbstractController
 
             wp_enqueue_script(
                 'ys-groups-admin',
-                YS_GROUP_URI . '/public/js/admin.js',
+                YS_GROUP_URI . 'public/js/admin.js',
                 ['jquery'],
                 YS_GROUP_VERSION,
                 true

@@ -13,12 +13,12 @@ define('YS_GROUP_PLUGIN_NAME', $plugin_data['Name']);
 define('YS_GROUP_TEXT_DOMAIN', $plugin_data['TextDomain']);
 
 define('YS_GROUP_PATH', dirname(__DIR__) . '/');
-define('YS_GROUP_URI', dirname(plugin_dir_url(__FILE__)));
+define('YS_GROUP_URI', dirname(plugin_dir_url(__FILE__)) . '/');
 define('YS_GROUP_URL', home_url('group/'));
 
 define('YS_GROUP_FRONT_IMG_URI', YS_GROUP_URI . '/public/build/images/');
 
-define('YS_GROUP_UPLOAD_DIR', $uploadDir['basedir'] . '/yoostartwp-groups');
+define('YS_GROUP_UPLOAD_DIR', $uploadDir['basedir'] . '/yoostart-group');
 define('YS_GROUP_UPLOAD_BASE_URL', $uploadDir['baseurl']);
 
 define('YS_GROUP_DB_PREFIX', $wpdb->prefix . 'ys_group_');

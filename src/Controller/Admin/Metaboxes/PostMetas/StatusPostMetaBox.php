@@ -18,14 +18,14 @@ class StatusPostMetaBox extends AbstractController
     }
 
     /**
-     * @param string $postType
+     * @param string   $postType
      * @param \WP_Post $post
      *
      * @return void
      */
     public function addStatusMetabox(string $postType, \WP_Post $post): void
     {
-        if ($postType == 'ys-group' && current_user_can('publish_posts', $post)) {
+        if ($postType == YS_GROUP_CPT && current_user_can('publish_posts', $post)) {
             add_meta_box(
                 YS_GROUP_STATUS_META_KEY . '_postbox',
                 'Status',
@@ -52,7 +52,7 @@ class StatusPostMetaBox extends AbstractController
     /**
      * Persistance de la meta en bdd
      *
-     * @param int $postId
+     * @param int      $postId
      * @param \WP_Post $post
      *
      * @return void
@@ -60,8 +60,8 @@ class StatusPostMetaBox extends AbstractController
     public function saveStatusMetaKey(int $postId, \WP_Post $post)
     {
         if (
-            !isset($_POST['_ys_group_status_nonce'])
-            && !wp_verify_nonce($_POST['_ys_group_status_nonce'], '_ys_group_status_nonce')
+            ! isset($_POST['_ys_group_status_nonce'])
+            && ! wp_verify_nonce($_POST['_ys_group_status_nonce'], '_ys_group_status_nonce')
         ) {
             return;
         }

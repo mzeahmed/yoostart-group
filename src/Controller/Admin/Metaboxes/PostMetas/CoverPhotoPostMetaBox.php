@@ -12,10 +12,10 @@ class CoverPhotoPostMetaBox
         add_action('carbon_fields_register_fields', [$this, 'registerCoverPhotoMetaKey']);
     }
 
-    public function registerCoverPhotoMetaKey()
+    public function registerCoverPhotoMetaKey(): void
     {
         Container::make('post_meta', __('Cover photo', YS_GROUP_TEXT_DOMAIN))
-            ->where('post_type', '=', 'ys-group')
+            ->where('post_type', '=', YS_GROUP_CPT)
             ->add_fields([
                 Field::make(
                     'image',

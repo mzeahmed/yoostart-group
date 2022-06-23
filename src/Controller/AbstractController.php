@@ -42,7 +42,7 @@ abstract class AbstractController
      *
      * @param string $template
      * @param string $varName
-     * @param array $params
+     * @param array  $params
      *
      * @return string
      * @example Exemple d'usage :
@@ -54,13 +54,12 @@ abstract class AbstractController
      */
     protected function template(string $template, string $varName = '', array $params = []): string
     {
-        $ysGPt = 'ys-group';
         $located = '';
 
-        if (is_single() && get_post_type() === $ysGPt) {
-            $located = $this->getTemplatePath() . $template . '-' . $ysGPt . '.php';
-        } elseif (is_post_type_archive($ysGPt)) {
-            $located = $this->getTemplatePath() . $template . '-' . $ysGPt . '.php';
+        if (is_single() && get_post_type() === YS_GROUP_CPT) {
+            $located = $this->getTemplatePath() . $template . '-' . YS_GROUP_CPT . '.php';
+        } elseif (is_post_type_archive(YS_GROUP_CPT)) {
+            $located = $this->getTemplatePath() . $template . '-' . YS_GROUP_CPT . '.php';
         }
 
         set_query_var($varName, $params);
@@ -83,7 +82,7 @@ abstract class AbstractController
      * Rendu du template
      *
      * @param string $template
-     * @param array $params
+     * @param array  $params
      *
      * @return string|null
      * @since 1.0.0
@@ -99,7 +98,7 @@ abstract class AbstractController
         /**
          * @since 1.1.1
          */
-        if (!is_admin()) {
+        if (! is_admin()) {
             return ob_get_clean();
         }
 
@@ -111,7 +110,7 @@ abstract class AbstractController
      *
      * @param string $template
      * @param string $varName Nom de la variable
-     * @param array $params Tableau des valeurs
+     * @param array  $params  Tableau des valeurs
      *
      * @return string
      * @example Exemple d'usage :

@@ -13,6 +13,7 @@ class YsGroup
 {
     /**
      * Instance de AdminGroupsController
+     *
      * @var YsGroup|null
      */
     protected static ?YsGroup $instance = null;
@@ -39,6 +40,7 @@ class YsGroup
 
         /**
          * Refresh des permaliens à l'activation du plugin
+         *
          * @since 1.2.1
          */
         register_activation_hook(YS_GROUP_PLUGIN_FILE, function () {
@@ -51,6 +53,7 @@ class YsGroup
 
     /**
      * S'assure qu'une seule instance de AdminGroupsController est chargée
+     *
      * @return YsGroup|null
      * @see   yoostart_group()
      * @since 1.0.0
@@ -70,6 +73,7 @@ class YsGroup
      * qu'après que tous les autres plugins aient été chargés,
      * afin d'éviter les problèmes causés par les noms des répertoires de plugins
      * qui changent l'ordre de chargement.
+     *
      * @return void
      * @since 1.0.0
      */
@@ -90,7 +94,7 @@ class YsGroup
     {
         $group_slug = get_query_var('gslug');
 
-        if (/*is_page('Groupes') ||*/ (is_archive() && get_post_type() == 'ys-group')) {
+        if (/*is_page('Groupes') ||*/ (is_archive() && get_post_type() == YS_GROUP_CPT)) {
             $classes[] = 'ys-groups-groups';
         }
 

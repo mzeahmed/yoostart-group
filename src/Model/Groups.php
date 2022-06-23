@@ -18,7 +18,7 @@ class Groups extends Db
     public function getGroups(int $limit = -1): array
     {
         return get_posts([
-            'post_type' => 'ys-group',
+            'post_type' => YS_GROUP_CPT,
             'numberposts' => $limit,
             'post_status' => 'publish',
         ]);
